@@ -1,4 +1,5 @@
-import { inter, interBold } from '@/fonts/Fonts';
+
+import { inter, interBold } from '@fonts/Fonts';
 import { Providers } from './Providers';
 import './globals.css';
 
