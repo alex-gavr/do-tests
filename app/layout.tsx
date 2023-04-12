@@ -1,6 +1,6 @@
 import { inter, interBold } from '@/fonts/Fonts';
-import StyledComponentsRegistry from '@/lib/SCregistry';
 import { Providers } from './Providers';
+import './globals.css';
 
 export const metadata = {
   title: 'Create Next App',
@@ -10,11 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={`${interBold.variable} ${inter.variable}`}>
-      <StyledComponentsRegistry>
         <Providers>
           <body>{children}</body>
         </Providers>
-      </StyledComponentsRegistry>
     </html>
   );
 }
