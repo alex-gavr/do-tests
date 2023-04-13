@@ -9,7 +9,6 @@ export interface ISetStep {
 }
 export interface IIncrementStep {
   type: ActionsType.incrementStep;
-  payload: null;
 }
 
 export type Actions = ISetStep | IIncrementStep;
