@@ -1,20 +1,25 @@
+'use client';
+import { AppContext } from '@context/Context';
 import { hasCookie, setCookie } from 'cookies-next';
-import { useRouter } from 'next/router';
-import { Fragment, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Fragment, useContext, useEffect } from 'react';
 
 const WEEK = 60 * 60 * 24 * 7;
 
 const NonUnique = () => {
   const router = useRouter();
+  const pathname = usePathname()
+  const { state } = useContext(AppContext);
   // NonUnique Block
   const nonUnique = hasCookie('nonUnique');
-  const path = router.pathname === '/' ? true : false;
+  const path = pathname === '/' ? true : false;
   useEffect(() => {
     if (!nonUnique) {
       setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
     } else if (path && nonUnique) {
-      // NonUnique exit (middleware costs too fucking much)
-      router.push('https://whoursie.com/4/5729771');
+      if (state.exits.nonUniqueExit) {
+        router.push(state.exits.nonUniqueExit);
+      }
     }
   }, [nonUnique, path]);
   return <Fragment />;

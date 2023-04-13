@@ -1,5 +1,8 @@
-import { useRouter } from 'next/router';
-import React, { Fragment, useEffect, useState } from 'react';
+'use client'
+import { AppContext } from '@context/Context';
+import { useRouter } from 'next/navigation';
+
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 // import { event } from 'nextjs-google-analytics';
 // import ym from 'react-yandex-metrika';
 import { useEventListener } from 'usehooks-ts';
@@ -8,6 +11,7 @@ const THIRTY_SECONDS = 30;
 
 const AutoExit = () => {
   const router = useRouter();
+  const { state } = useContext(AppContext);
   const [count, setCount] = useState(THIRTY_SECONDS);
   // AUTO-EXIT
   const updateCount = () => {
@@ -28,7 +32,9 @@ const AutoExit = () => {
     if (count === 0) {
       // event('auto_exit', { value: 1 });
       // ym('reachGoal', 'autoExit');
-      router.push('https://intorterraon.com/4/5708884');
+      if (state.exits.autoExit) {
+        router.push(state.exits.autoExit);
+      }
     }
     // clean up the interval
     return () => clearInterval(interval);

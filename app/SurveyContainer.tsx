@@ -1,4 +1,5 @@
 import Button from '@components/Button/Button';
+import Link from 'next/link';
 import React from 'react';
 
 const SurveyContainer = () => {
