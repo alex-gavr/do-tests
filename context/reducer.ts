@@ -6,18 +6,18 @@ const surveyReducer = (state: InitialState, action: Actions): InitialState => {
 
   switch (type) {
     case ActionsType.setStep: {
-      const currentStep = state.step;
+      const { currentStep } = state;
       return {
         ...state,
-        step: currentStep + 1,
+        currentStep: currentStep + 1,
       };
     }
 
     case ActionsType.incrementStep: {
-      const currentStep = state.step;
+      const { currentStep } = state;
       return {
         ...state,
-        step: currentStep + 1,
+        currentStep: currentStep + 1,
       };
     }
 

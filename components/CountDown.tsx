@@ -1,5 +1,6 @@
 'use client';
 import { AppContext } from '@context/Context';
+import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 // import ym from 'react-yandex-metrika';
@@ -18,7 +19,8 @@ const CountDown = () => {
     if (time < 0 && process.env.NODE_ENV === 'production') {
       // ym('reachGoal', 'countDownExit');
       if (state.exits.accessAutoExit) {
-        router.push(state.exits.accessAutoExit);
+        const url =  makeExitUrl(state.exits.accessAutoExit)
+        router.push(url);
       }
     }
 
