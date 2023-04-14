@@ -13,10 +13,10 @@ const SurveyContainer = () => {
         <Button type='button' variant='secondary'>
           Купить квартиру или дом
         </Button>
-        <Button type='button' variant='agree'>
+        <Button type='button' variant='success'>
           Купить суперкар
         </Button>
-        <Button type='button' variant='disagree'>
+        <Button type='button' variant='danger'>
           Открыть своё дело
         </Button>
       </div>

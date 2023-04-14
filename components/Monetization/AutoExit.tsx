@@ -1,11 +1,11 @@
 'use client'
 import { AppContext } from '@context/Context';
 import { useRouter } from 'next/navigation';
-
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 // import { event } from 'nextjs-google-analytics';
 // import ym from 'react-yandex-metrika';
 import { useEventListener } from 'usehooks-ts';
+import makeExitUrl from '@utils/makeExitUrl';
 
 const THIRTY_SECONDS = 30;
 
@@ -33,14 +33,15 @@ const AutoExit = () => {
       // event('auto_exit', { value: 1 });
       // ym('reachGoal', 'autoExit');
       if (state.exits.autoExit) {
-        router.push(state.exits.autoExit);
+        const url = makeExitUrl(state.exits.autoExit)
+        router.push(url);
       }
     }
     // clean up the interval
     return () => clearInterval(interval);
   }, [count, router]);
 
-  return <Fragment />;
+  return null;
 };
 
 export default AutoExit;

@@ -1,21 +1,22 @@
 'use client';
 import { AppContext } from '@context/Context';
+import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 // import { event } from 'nextjs-google-analytics';
 // import ym from 'react-yandex-metrika';
 
 const Reverse = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
-  const reverse = state.exits.reverse;
   // REVERSE
   useEffect(() => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
-      if (reverse) {
-        window.location.href = reverse;
+      if (state.exits.reverse) {
+        const url = makeExitUrl(state.exits.reverse)
+        window.location.href = url;
       }
     };
 
@@ -25,7 +26,7 @@ const Reverse = () => {
       window.removeEventListener('popstate', handleBackButton);
     };
   }, [router]);
-  return <Fragment />;
+  return null;
 };
 
 export default Reverse;

@@ -1,5 +1,6 @@
 'use client';
 import { AppContext } from '@context/Context';
+import makeExitUrl from '@utils/makeExitUrl';
 import { hasCookie, setCookie } from 'cookies-next';
 import { usePathname, useRouter } from 'next/navigation';
 import { Fragment, useContext, useEffect } from 'react';
@@ -18,11 +19,12 @@ const NonUnique = () => {
       setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
     } else if (path && nonUnique) {
       if (state.exits.nonUniqueExit) {
-        router.push(state.exits.nonUniqueExit);
+        const url = makeExitUrl(state.exits.nonUniqueExit)
+        router.push(url);
       }
     }
   }, [nonUnique, path]);
-  return <Fragment />;
+  return null;
 };
 
 export default NonUnique;

@@ -1,19 +1,17 @@
 import { InitialState } from './stateTypes';
 
 const initialState: InitialState = {
-  step: 0,
+  currentStep: 0,
   exits: {
-    mainExit: null,
-    mainPops: null,
-    teenExit: null,
-    teenPops: null,
-    autoExit: 'https://intorterraon.com/4/5708884',
-    autoPops: null,
-    reverse: 'https://woafoame.net/4/5708374',
-    nonUniqueExit: 'https://whoursie.com/4/5729771',
-    nonUniquePops: null,
-    accessAutoExit: 'https://intorterraon.com/4/5708884',
-    datingExit: null
+    mainExit: 5874453,
+    mainPops: 5874457,
+    teenExit: 5874458,
+    teenPops: 5874460,
+    autoExit: 5874492,
+    reverse: 5874494,
+    nonUniqueExit: 5874462,
+    accessAutoExit: 5874496,
+    photoExit: 5874497,
   },
 };
 
