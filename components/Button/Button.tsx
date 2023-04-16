@@ -8,11 +8,12 @@ interface IButton {
   variant?: 'primary' | 'secondary' | 'success' | 'danger';
   children?: React.ReactNode;
   disabled?: boolean;
+  arrayLength: number;
 }
-const Button = ({ children, type, variant, disabled }: IButton) => {
+const Button = ({ children, type, variant, disabled, arrayLength }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
   const baseStyles =
-    'flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base';
+    'min-w-[120px] flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base';
 
   const variantStyles = {
     primary: 'bg-neutral-800 text-slate-50 hover:bg-cyan-500',
@@ -34,7 +35,9 @@ const Button = ({ children, type, variant, disabled }: IButton) => {
       : null;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch({ type: ActionsType.incrementStep });
+    if (state.currentStep < arrayLength) {
+      dispatch({ type: ActionsType.incrementStep });
+    }
   };
 
   return (
