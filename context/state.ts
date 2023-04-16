@@ -1,7 +1,7 @@
 import { InitialState } from './stateTypes';
 
 const initialState: InitialState = {
-  currentStep: 0,
+  currentStep: 1,
   exits: {
     mainExit: 5874453,
     mainPops: 5874457,

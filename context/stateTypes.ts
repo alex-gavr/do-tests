@@ -24,15 +24,17 @@ type IExitsTypes =
 
 type TLeadsTo = 'nextQuestion' | 'exit' | 'thank-you' | 'customValue';
 
-interface IButton {
+export interface IAnswer {
+  id: number;
   text: string;
   styleVariant: TStyleVariants;
   leadsToExit: TLeadsTo;
-  exits?: Array<IExitsTypes>;
+  exits?: Array<IExitsTypes> | null;
 }
 export interface ISurveyText {
+  id: number;
   question: string;
-  answers: Array<IButton>;
+  answers: Array<IAnswer>;
 }
 
 export interface InitialState {
