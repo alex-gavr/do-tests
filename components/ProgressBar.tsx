@@ -13,7 +13,7 @@ const ProgressBar = () => {
   // we add here question about age
   const allQuestions =  data.length  + 1;
 
-  const progress = state.step / allQuestions;
+  const progress = state.currentStep / allQuestions;
 
   return (
     <m.div
