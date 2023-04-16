@@ -9,21 +9,21 @@ const WEEK = 60 * 60 * 24 * 7;
 
 const NonUnique = () => {
   const router = useRouter();
-  const pathname = usePathname()
+  // const pathname = usePathname()
   const { state } = useContext(AppContext);
   // NonUnique Block
   const nonUnique = hasCookie('nonUnique');
-  const path = pathname === '/' ? true : false;
+  // const path = pathname === '/' ? true : false;
   useEffect(() => {
     if (!nonUnique) {
       setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
-    } else if (path && nonUnique) {
+    } else if (nonUnique) {
       if (state.exits.nonUniqueExit) {
         const url = makeExitUrl(state.exits.nonUniqueExit)
         router.push(url);
       }
     }
-  }, [nonUnique, path]);
+  }, [nonUnique]);
   return null;
 };
 
