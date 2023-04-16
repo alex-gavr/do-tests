@@ -1,24 +1,29 @@
+'use client';
 import Button from '@components/Button/Button';
-import Link from 'next/link';
-import React from 'react';
+import { useContext } from 'react';
+import { AppContext } from '@context/Context';
+import { TSurveyData } from '@db/schema';
 
-const SurveyContainer = () => {
+const SurveyContainer = ({ results }: TSurveyData) => {
+  const { state } = useContext(AppContext);
+  const arrayLength = results.length;
+
+  const className = 'flex flex-wrap w-full justify-center items-center gap-4'
+
+  if (results === null) {
+    return null;
+  }
+  const currentQuestion = results.filter((result) => result.id === state.currentStep);
+  
   return (
     <section className='flex flex-col items-center justify-center gap-6 rounded-2xl bg-gray-100 p-4 shadow-xl shadow-gray-300 sm:gap-8 sm:p-8'>
-      <h1 className='text-xl sm:text-2xl md:text-3xl'>Как вы зарабатываете на жизнь?</h1>
-      <div className='grid max-w-2xl grid-cols-2 gap-4 md:gap-6'>
-        <Button type='button' variant='primary'>
-          Съездить в отпуск всей семьей
-        </Button>
-        <Button type='button' variant='secondary'>
-          Купить квартиру или дом
-        </Button>
-        <Button type='button' variant='success'>
-          Купить суперкар
-        </Button>
-        <Button type='button' variant='danger'>
-          Открыть своё дело
-        </Button>
+      <h1 className='text-xl sm:text-2xl md:text-3xl'>{currentQuestion[0].question}</h1>
+      <div className={className}>
+        {currentQuestion[0].answers.map((answer) => (
+          <Button type='button' variant={answer.styleVariant} key={answer.id} arrayLength={arrayLength}>
+            {answer.text}
+          </Button>
+        ))}
       </div>
     </section>
   );
