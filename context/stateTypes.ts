@@ -11,7 +11,7 @@ interface IExits {
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';
-type IExitsTypes =
+export type IExitsTypes =
   | 'mainExit'
   | 'mainPops'
   | 'teenExit'
@@ -22,14 +22,18 @@ type IExitsTypes =
   | 'accessAutoExit'
   | 'photoExit';
 
-type TLeadsTo = 'nextQuestion' | 'exit' | 'thank-you' | 'customValue';
+export type IButtonExits = Exclude<
+  IExitsTypes,
+  'autoExit' | 'reverse' | 'nonUniqueExit' | 'accessAutoExit' | 'photoExit'
+>;
+
+type TLeadsTo = 'teenExit' | 'nextQuestion' | 'thankYou';
 
 export interface IAnswer {
   id: number;
   text: string;
   styleVariant: TStyleVariants;
-  leadsToExit: TLeadsTo;
-  exits?: Array<IExitsTypes> | null;
+  to: TLeadsTo;
 }
 export interface ISurveyText {
   id: number;
@@ -39,6 +43,7 @@ export interface ISurveyText {
 
 export interface InitialState {
   currentStep: number;
+  surveyLength: number;
   // currentSurveyText: ISurveyText;
   exits: IExits;
 }

@@ -1,29 +1,31 @@
 import MemoizedCommentSection from '@components/Comments/CommentSection';
-import SurveyContainer from './SurveyContainer';
 import CountDown from '@components/CountDown';
-import { surveyData } from '@db/db';
-import { InferModel } from 'drizzle-orm';
+import Button from '@components/Button/Button';
 
-const Home = async () => {
-  const results = await surveyData;
+// import dynamic from 'next/dynamic';
+// const MemoizedCommentSection = dynamic(() => import('@components/Comments/CommentSection'))
 
-  
-
+const StartingPage = async () => {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 py-10 sm:px-4'>
+    <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 pt-20 pb-10 sm:px-4'>
+      <header className='fixed top-0 w-full py-1'>
+        <CountDown />
+      </header>
       <div className='flex max-w-4xl flex-col items-center justify-center gap-4'>
-        <h1 className='text-2xl text-emerald-400 sm:text-3xl md:text-4xl '>
-          Сможете ли вы сделать отличную карьеру в Интернете и стать миллионером в 2023 году?
+        <h1 className='text-2xl text-slate-950 sm:text-4xl md:text-4xl '>
+          Find out which top-tier company will gladly hire you because you have similar values
         </h1>
-        <p className='text-sm sm:text-base'>
-          Пройдите этот БЕСПЛАТНЫЙ тест и узнайте, как вы можете зарабатывать деньги в Интернете.
+        <p className='text-sm sm:text-base w-full text-center'>
+          limited edition survey is available now <br />
+          <strong className='underline underline-offset-2 decoration-indigo-600'> for free</strong>
         </p>
       </div>
-      <SurveyContainer results={results} />
+      <Button type='button' variant='primary' to='beginSurvey'>
+        Begin
+      </Button>
       <MemoizedCommentSection />
-      <CountDown />
     </main>
   );
 };
 
-export default Home;
+export default StartingPage;

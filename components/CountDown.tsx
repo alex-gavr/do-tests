@@ -28,11 +28,11 @@ const CountDown = () => {
   }, [time]);
 
   return (
-    <div className='fixed top-1 z-10 flex flex-col items-center justify-center gap-2'>
+    <div className='flex flex-row items-center justify-center gap-2'>
       {time > 0 ? (
         <>
-          <p className='text-center'>free access ends in</p>
-          <p className='rounded-lg bg-purple-900 px-4 py-1 text-base text-white md:text-lg'>
+          <p className='text-center text-xs text-slate-950 sm:text-sm md:text-base'>free access ends in</p>
+          <p className='rounded-lg bg-indigo-200 px-4 py-1 text-xs text-slate-950 sm:text-sm md:text-base'>
             {time} seconds
           </p>
         </>
