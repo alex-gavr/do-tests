@@ -2,6 +2,7 @@ import { InitialState } from './stateTypes';
 
 const initialState: InitialState = {
   currentStep: 1,
+  surveyLength: 0,
   exits: {
     mainExit: 5874453,
     mainPops: 5874457,

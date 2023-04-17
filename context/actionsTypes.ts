@@ -1,14 +1,16 @@
 export enum ActionsType {
-  setStep = 'setStep',
   incrementStep = 'incrementStep',
+  setSurveyLength = 'setSurveyLength',
 }
 
-export interface ISetStep {
-  type: ActionsType.setStep;
-  payload: null;
-}
 export interface IIncrementStep {
   type: ActionsType.incrementStep;
 }
+export interface ISetSurveyLength {
+  type: ActionsType.setSurveyLength;
+  payload: {
+    surveyLength: number;
+  };
+}
 
-export type Actions = ISetStep | IIncrementStep;
+export type Actions = IIncrementStep | ISetSurveyLength;
