@@ -1,6 +1,7 @@
 import { inter, interBold } from '@fonts/Fonts';
 import { Providers } from './Providers';
 import '../styles/globals.css';
+import ProgressBar from '@components/ProgressBar';
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +12,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en' className={`${interBold.variable} ${inter.variable}`}>
       <Providers>
-        <body>{children}</body>
+        <body className='relative'>
+          <ProgressBar />
+          {children}
+        </body>
       </Providers>
     </html>
   );
