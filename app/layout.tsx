@@ -17,8 +17,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ProgressBar />
           {children}
         </body>
-        <Analytics />
       </Providers>
+      <Analytics />
     </html>
   );
 }
