@@ -43,11 +43,10 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (to === 'beginSurvey') {
       // dispatch({ type: ActionsType.incrementStep });
-      router.push(`/survey/1`);
+      router.push(`/survey`);
     }
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
-      router.push(`/survey/${state.currentStep + 1}`);
     }
     if (to === 'thankYou') {
       // dispatch({ type: ActionsType.incrementStep });
