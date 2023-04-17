@@ -2,6 +2,7 @@ import { inter, interBold } from '@fonts/Fonts';
 import { Providers } from './Providers';
 import '../styles/globals.css';
 import ProgressBar from '@components/ProgressBar';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ProgressBar />
           {children}
         </body>
+        <Analytics />
       </Providers>
     </html>
   );
