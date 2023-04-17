@@ -2,10 +2,8 @@
 import { AppContext } from '@context/Context';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
-
+import mixpanel from '@lib/mixpanel';
 import React, { useContext, useEffect } from 'react';
-// import { event } from 'nextjs-google-analytics';
-// import ym from 'react-yandex-metrika';
 
 const Reverse = () => {
   const router = useRouter();
@@ -14,8 +12,9 @@ const Reverse = () => {
   useEffect(() => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
+      mixpanel.track('reverse');
       if (state.exits.reverse) {
-        const url = makeExitUrl(state.exits.reverse)
+        const url = makeExitUrl(state.exits.reverse);
         window.location.href = url;
       }
     };

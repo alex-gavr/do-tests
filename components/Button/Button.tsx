@@ -6,6 +6,8 @@ import makeExitUrl from '@utils/makeExitUrl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
+import mixpanel from '@lib/mixpanel';
+import { setCookie } from 'cookies-next';
 
 interface IButton {
   type?: 'button' | 'submit' | 'reset';
@@ -17,6 +19,7 @@ interface IButton {
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
   const router = useRouter();
+  // console.log(state);
 
   const baseStyles =
     'min-w-[120px] flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base tracking-widest';
@@ -44,22 +47,37 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
     if (to === 'beginSurvey') {
       // dispatch({ type: ActionsType.incrementStep });
       router.push(`/survey`);
+      mixpanel.track('Begin survey');
     }
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
+      mixpanel.track('question section', {
+        step: state.currentStep,
+        totalSteps: state.surveyLength,
+        buttonText: children,
+      });
     }
     if (to === 'thankYou') {
       // dispatch({ type: ActionsType.incrementStep });
       router.push(`/thank-you`);
+      mixpanel.track('question section', {
+        step: state.currentStep,
+        totalSteps: state.surveyLength,
+        buttonText: children,
+      });
     }
   };
 
   const handleClickLink = () => {
     if (to === 'mainExit') {
+      mixpanel.track('lead');
+      const WEEK = 60 * 60 * 24 * 7;
+      setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
       const url = makeExitUrl(state.exits.mainExit);
       window.open(url, '_blank')
     }
     if (to === 'teenExit') {
+      mixpanel.track('teenLead');
       const url = makeExitUrl(state.exits.teenExit);
       window.open(url, '_blank')
     }

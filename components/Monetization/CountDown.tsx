@@ -3,7 +3,7 @@ import { AppContext } from '@context/Context';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
-// import ym from 'react-yandex-metrika';
+import mixpanel from '@lib/mixpanel';
 
 const MINUTE = 60;
 
@@ -17,7 +17,7 @@ const CountDown = () => {
       setTime((currentCount) => currentCount - 1);
     }, 1000);
     if (time < 0 && process.env.NODE_ENV === 'production') {
-      // ym('reachGoal', 'countDownExit');
+      mixpanel.track('accessAutoExit');
       if (state.exits.accessAutoExit) {
         const url =  makeExitUrl(state.exits.accessAutoExit)
         router.push(url);

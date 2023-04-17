@@ -1,5 +1,5 @@
 import MemoizedCommentSection from '@components/Comments/CommentSection';
-import CountDown from '@components/CountDown';
+import CountDown from '@components/Monetization/CountDown';
 import Button from '@components/Button/Button';
 
 // import dynamic from 'next/dynamic';
