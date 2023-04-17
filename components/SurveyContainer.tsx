@@ -36,7 +36,7 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
 
   return (
     <section className='flex flex-col items-center justify-center gap-6 rounded-2xl bg-gray-100 px-4 py-6 shadow-xl shadow-gray-300 sm:gap-8 sm:p-8'>
-      <h1 className='text-xl sm:text-2xl md:text-3xl'>{currentQuestion?.question}</h1>
+      <h1 className='px-4 text-center text-xl sm:text-2xl md:text-3xl'>{currentQuestion?.question}</h1>
       <div className={className}>
         {currentAnswers?.map((answer) => (
           <Button to={answer.leadsTo} type='button' variant={answer.styleVariant} key={answer.id}>

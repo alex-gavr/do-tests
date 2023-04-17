@@ -12,7 +12,7 @@ const StartingPage = async () => {
         <CountDown />
       </header>
       <div className='flex max-w-4xl flex-col items-center justify-center gap-4'>
-        <h1 className='text-2xl text-slate-950 sm:text-4xl md:text-4xl '>
+        <h1 className='text-2xl text-slate-950 sm:text-4xl md:text-4xl pl-2'>
           Find out which top-tier company will gladly hire you because you have similar values
         </h1>
         <p className='text-sm sm:text-base w-full text-center'>
