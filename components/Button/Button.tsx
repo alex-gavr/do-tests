@@ -4,7 +4,7 @@ import { ActionsType } from '@context/actionsTypes';
 import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useContext } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
@@ -14,12 +14,14 @@ interface IButton {
   variant?: 'primary' | 'secondary' | 'success' | 'danger';
   children?: React.ReactNode;
   disabled?: boolean;
-  to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou';
+  to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou' | 'noOfferId';
 }
+const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
   const router = useRouter();
-  // console.log(state);
+  const searchParams = useSearchParams();
+  const offerId = searchParams.get('offer_id');
 
   const baseStyles =
     'min-w-[120px] flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base tracking-widest';
@@ -44,14 +46,9 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
       : null;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (to === 'beginSurvey') {
-      // dispatch({ type: ActionsType.incrementStep });
-      router.push(`/survey`);
-      mixpanel.track('Begin survey');
-    }
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
-      mixpanel.track('question section', {
+      production && mixpanel.track('question section', {
         step: state.currentStep,
         totalSteps: state.surveyLength,
         buttonText: children,
@@ -60,34 +57,48 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
     if (to === 'thankYou') {
       // dispatch({ type: ActionsType.incrementStep });
       router.push(`/thank-you`);
-      mixpanel.track('question section', {
+      production && mixpanel.track('question section', {
         step: state.currentStep,
         totalSteps: state.surveyLength,
         buttonText: children,
       });
     }
+    if (to === 'noOfferId') {
+      const mainUrl = makeExitUrl(5886690);
+      const pops = makeExitUrl(5886691)
+      production && window.open(mainUrl, '_blank');
+      production && router.push(pops);
+      production && mixpanel.track('no offer id');
+    }
   };
 
   const handleClickLink = () => {
+    if (to === 'beginSurvey') {
+      production && mixpanel.track('Begin survey');
+    }
     if (to === 'mainExit') {
-      mixpanel.track('lead');
+      production && mixpanel.track('lead');
       const WEEK = 60 * 60 * 24 * 7;
       setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
       const url = makeExitUrl(state.exits.mainExit);
-      window.open(url, '_blank')
+      window.open(url, '_blank');
     }
     if (to === 'teenExit') {
-      mixpanel.track('teenLead');
+      production && mixpanel.track('teenLead');
       const url = makeExitUrl(state.exits.teenExit);
-      window.open(url, '_blank')
+      window.open(url, '_blank');
     }
   };
-  const hrefPops = to === 'mainExit' ? makeExitUrl(state.exits.mainPops) : makeExitUrl(state.exits.teenPops);
-
+  const hrefPops =
+    to === 'mainExit'
+      ? makeExitUrl(state.exits.mainPops)
+      : to === 'beginSurvey'
+      ? `/survey?offer_id=${offerId}`
+      : makeExitUrl(state.exits.teenPops);
 
   return (
     <>
-      {to === 'beginSurvey' || to === 'nextQuestion' || to === 'thankYou' ? (
+      { to === 'nextQuestion' || to === 'thankYou' || to === 'noOfferId' ? (
         <button
           type={type}
           onClick={handleClick}
