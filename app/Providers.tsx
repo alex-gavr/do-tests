@@ -10,8 +10,10 @@ import mixpanel from '@lib/mixpanel';
 const production = process.env.NODE_ENV === 'production';
 export function Providers({ children }: PropsWithChildren) {
   useEffect(() => {
-    mixpanel.track('loaded');
-  },[])
+    {
+      production && mixpanel.track('loaded');
+    }
+  }, []);
   return (
     <AppProvider>
       {production && <AutoExit />}
