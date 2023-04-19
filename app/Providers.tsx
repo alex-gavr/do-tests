@@ -4,10 +4,14 @@ import NonUnique from '@components/Monetization/NonUnique';
 import Reverse from '@components/Monetization/Reverse';
 import { AppProvider } from '@context/Context';
 import { AnimatePresence, LazyMotion } from 'framer-motion';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
+import mixpanel from '@lib/mixpanel';
 
 const production = process.env.NODE_ENV === 'production';
 export function Providers({ children }: PropsWithChildren) {
+  useEffect(() => {
+    mixpanel.track('loaded');
+  },[])
   return (
     <AppProvider>
       {production && <AutoExit />}
