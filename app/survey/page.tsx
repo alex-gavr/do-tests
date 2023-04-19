@@ -1,3 +1,4 @@
+export const runtime = 'experimental-edge';
 import { db } from '@db/db';
 import { surveyAnswers, surveyQuestions } from '@db/schema';
 import { eq } from 'drizzle-orm';
