@@ -11,8 +11,10 @@ const Page = async ({ searchParams }: { searchParams: { [key: string]: string } 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
   const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;
 
-  const offerQuestions = await db.select().from(questionsTable);
-  const offerAnswers = await db.select().from(answersTable);
+  // This helps to avoid waterfalls
+  const offerQuestionsData = db.select().from(questionsTable);
+  const offerAnswersData = db.select().from(answersTable);
+  const [offerQuestions, offerAnswers] = await Promise.all([offerQuestionsData, offerAnswersData]);
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 py-10 sm:px-4'>
