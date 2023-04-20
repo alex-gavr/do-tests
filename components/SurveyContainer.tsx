@@ -2,12 +2,12 @@
 import Button from '@components/Button/Button';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '@context/Context';
-import { TSurveyAnswer, TSurveyQuestion } from '@db/schema';
 import { ActionsType } from '@context/actionsTypes';
+import { TDefaultSurveyAnswers, TDefaultSurveyQuestion } from '@db/schema';
 
 interface IProps {
-  questions: Array<TSurveyQuestion>;
-  answers: Array<TSurveyAnswer>;
+  questions: Array<TDefaultSurveyQuestion>;
+  answers: Array<TDefaultSurveyAnswers>;
 }
 
 const SurveyContainer = ({ questions, answers }: IProps) => {

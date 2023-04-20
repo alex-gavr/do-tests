@@ -1,23 +1,19 @@
-import Button from '@components/Button/Button';
 // import CompanyCard from '@components/Company';
-import React from 'react';
 import dynamic from 'next/dynamic';
+// import CareerThankYou from 'app/(careerSurvey)/ThankYou';
+// import DefaultThankYou from 'app/(defaultSurvey)/ThankYou';
 
-const CompanyCard = dynamic(() => import('@components/Company'));
+const CareerThankYou = dynamic(() => import('app/(careerSurvey)/ThankYou'));
+const DefaultThankYou = dynamic(() => import('app/(defaultSurvey)/ThankYou'));
 
-const Page = () => {
+const Page = ({ searchParams }: { searchParams: { [key: string]: string } }) => {
+
+  const offerId = parseInt(searchParams.offer_id ? searchParams.offer_id : '0');
+
   return (
     <section className='flex min-h-screen flex-col items-center justify-center gap-8 p-4'>
-      <h1 className='text-center text-xl sm:text-2xl md:text-2xl lg:text-4xl'>
-        We happy to announce that your values align with
-      </h1>
-      <CompanyCard />
-      <p className='text-center text-sm sm:text-lg md:text-xl lg:text-2xl'>
-        There are other offers that can give you a head start in career change 👇
-      </p>
-      <Button to='mainExit' variant='primary'>
-        Claim Offer
-      </Button>
+      {offerId === 9241 && <CareerThankYou />}
+      {offerId === 0 && <DefaultThankYou />}
     </section>
   );
 };

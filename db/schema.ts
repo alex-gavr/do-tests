@@ -1,22 +1,44 @@
-import { IAnswer } from '@context/stateTypes';
 import { InferModel } from 'drizzle-orm';
-import { bigint, int, json, mediumint, mysqlEnum, mysqlTable, serial, text, varchar } from 'drizzle-orm/mysql-core';
+import { bigint, mysqlEnum, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
 
-export const surveyQuestions = mysqlTable('survey_questions', {
+// DEFAULT SURVEY
+
+export const defaultSurveyQuestions = mysqlTable('default_survey_questions', {
   id: bigint('id', { mode: 'number' }).primaryKey(),
   question: varchar('question', { length: 255 }).notNull(),
-  offer_id: mediumint('offer_id').notNull(),
 });
 
-export type TSurveyQuestion = InferModel<typeof surveyQuestions>;
+export type TDefaultSurveyQuestion = InferModel<typeof defaultSurveyQuestions>;
 
-export const surveyAnswers = mysqlTable('survey_answers', {
+
+export const defaultSurveyAnswers = mysqlTable('default_survey_answers', {
   id: bigint('id', { mode: 'number' }).primaryKey(),
   text: varchar('answer', { length: 100 }).notNull(),
   styleVariant: mysqlEnum('style_variant', ['primary', 'secondary', 'success', 'danger']).notNull(),
   questionId: bigint('question_id', { mode: 'number' }).notNull(),
   leadsTo: mysqlEnum('leads_to', ['teenExit', 'nextQuestion','thankYou']).notNull(),
-  offer_id: mediumint('offer_id').notNull(),
 });
 
-export type TSurveyAnswer = InferModel<typeof surveyAnswers>;
+export type TDefaultSurveyAnswers = InferModel<typeof defaultSurveyAnswers>;
+
+
+// CAREER SURVEY
+
+export const careerSurveyQuestions = mysqlTable('career_survey_questions', {
+  id: bigint('id', { mode: 'number' }).primaryKey(),
+  question: varchar('question', { length: 255 }).notNull(),
+});
+
+export type TCareerSurveyQuestion = InferModel<typeof careerSurveyQuestions>;
+
+export const careerSurveyAnswers = mysqlTable('career_survey_answers', {
+  id: bigint('id', { mode: 'number' }).primaryKey(),
+  text: varchar('answer', { length: 100 }).notNull(),
+  styleVariant: mysqlEnum('style_variant', ['primary', 'secondary', 'success', 'danger']).notNull(),
+  questionId: bigint('question_id', { mode: 'number' }).notNull(),
+  leadsTo: mysqlEnum('leads_to', ['teenExit', 'nextQuestion','thankYou']).notNull(),
+});
+
+export type TCareerSurveyAnswer = InferModel<typeof careerSurveyAnswers>;
+
+

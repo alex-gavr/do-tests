@@ -4,7 +4,7 @@ import { ActionsType } from '@context/actionsTypes';
 import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import React, { useContext } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
@@ -14,14 +14,14 @@ interface IButton {
   variant?: 'primary' | 'secondary' | 'success' | 'danger';
   children?: React.ReactNode;
   disabled?: boolean;
-  to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou' | 'noOfferId';
+  to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou';
 }
 const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const offerId = searchParams.get('offer_id');
+  const param = searchParams.get('offer_id');
+  const offerId = param ? `?offer_id=${param}` : '';
 
   const baseStyles =
     'min-w-[120px] flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base tracking-widest';
@@ -48,33 +48,26 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
-      production && mixpanel.track('question section', {
-        step: state.currentStep,
-        totalSteps: state.surveyLength,
-        buttonText: children,
-      });
-    }
-    if (to === 'thankYou') {
-      // dispatch({ type: ActionsType.incrementStep });
-      router.push(`/thank-you`);
-      production && mixpanel.track('question section', {
-        step: state.currentStep,
-        totalSteps: state.surveyLength,
-        buttonText: children,
-      });
-    }
-    if (to === 'noOfferId') {
-      const mainUrl = makeExitUrl(5886690);
-      const pops = makeExitUrl(5886691)
-      production && window.open(mainUrl, '_blank');
-      production && router.push(pops);
-      production && mixpanel.track('no offer id');
+      production &&
+        mixpanel.track('question section', {
+          step: state.currentStep,
+          totalSteps: state.surveyLength,
+          buttonText: children,
+        });
     }
   };
 
   const handleClickLink = () => {
     if (to === 'beginSurvey') {
       production && mixpanel.track('Begin survey');
+    }
+    if (to === 'thankYou') {
+      production &&
+        mixpanel.track('question section', {
+          step: state.currentStep,
+          totalSteps: state.surveyLength,
+          buttonText: children,
+        });
     }
     if (to === 'mainExit') {
       production && mixpanel.track('lead');
@@ -90,15 +83,17 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
     }
   };
   const hrefPops =
-    to === 'mainExit'
+    to === 'beginSurvey'
+      ? `/survey${offerId}`
+      : to === 'thankYou'
+      ? `/thank-you${offerId}`
+      : to === 'mainExit'
       ? makeExitUrl(state.exits.mainPops)
-      : to === 'beginSurvey'
-      ? `/survey?offer_id=${offerId}`
       : makeExitUrl(state.exits.teenPops);
 
   return (
     <>
-      { to === 'nextQuestion' || to === 'thankYou' || to === 'noOfferId' ? (
+      {to === 'nextQuestion' ? (
         <button
           type={type}
           onClick={handleClick}
