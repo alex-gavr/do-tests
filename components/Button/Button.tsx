@@ -4,10 +4,10 @@ import { ActionsType } from '@context/actionsTypes';
 import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import React, { useContext } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
+import { useGetParam } from '@hooks/useGetParam';
 
 interface IButton {
   type?: 'button' | 'submit' | 'reset';
@@ -19,9 +19,9 @@ interface IButton {
 const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
-  const searchParams = useSearchParams();
-  const param = searchParams.get('offer_id');
-  const offerId = param ? `?offer_id=${param}` : '';
+  const { valueString, valueNumber: offerId } = useGetParam('offer_id');
+
+  const offerIdLinkParam = `?offer_id=${valueString}`;
 
   const baseStyles =
     'min-w-[120px] flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base tracking-widest';
@@ -53,13 +53,17 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
           step: state.currentStep,
           totalSteps: state.surveyLength,
           buttonText: children,
+          offerId: offerId,
         });
     }
   };
 
   const handleClickLink = () => {
     if (to === 'beginSurvey') {
-      production && mixpanel.track('Begin survey');
+      production &&
+        mixpanel.track('Begin survey', {
+          offerId: offerId,
+        });
     }
     if (to === 'thankYou') {
       production &&
@@ -67,26 +71,33 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
           step: state.currentStep,
           totalSteps: state.surveyLength,
           buttonText: children,
+          offerId: offerId,
         });
     }
     if (to === 'mainExit') {
-      production && mixpanel.track('lead');
+      production &&
+        mixpanel.track('lead', {
+          offerId: offerId,
+        });
       const WEEK = 60 * 60 * 24 * 7;
       setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
       const url = makeExitUrl(state.exits.mainExit);
       window.open(url, '_blank');
     }
     if (to === 'teenExit') {
-      production && mixpanel.track('teenLead');
+      production &&
+        mixpanel.track('teenLead', {
+          offerId: offerId,
+        });
       const url = makeExitUrl(state.exits.teenExit);
       window.open(url, '_blank');
     }
   };
   const hrefPops =
     to === 'beginSurvey'
-      ? `/survey${offerId}`
+      ? `/survey${offerIdLinkParam}`
       : to === 'thankYou'
-      ? `/thank-you${offerId}`
+      ? `/thank-you${offerIdLinkParam}`
       : to === 'mainExit'
       ? makeExitUrl(state.exits.mainPops)
       : makeExitUrl(state.exits.teenPops);

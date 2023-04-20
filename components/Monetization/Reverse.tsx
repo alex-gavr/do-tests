@@ -4,15 +4,19 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import mixpanel from '@lib/mixpanel';
 import React, { useContext, useEffect } from 'react';
+import { useGetParam } from '@hooks/useGetParam';
 
 const Reverse = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
+  const { valueNumber: offerId } = useGetParam('offer_id');
   // REVERSE
   useEffect(() => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
-      mixpanel.track('reverse');
+      mixpanel.track('reverse', {
+        offerId
+      });
       if (state.exits.reverse) {
         const url = makeExitUrl(state.exits.reverse);
         window.location.href = url;

@@ -10,7 +10,9 @@ const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>)
   const { state } = useContext(AppContext);
   const router = useRouter();
   const handleClick = () => {
-    mixpanel.track('photoExit');
+    mixpanel.track('photoExit', {
+      photoId: img,
+    });
     const url = makeExitUrl(state.exits.photoExit);
     router.push(url);
   };
