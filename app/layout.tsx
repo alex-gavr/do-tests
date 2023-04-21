@@ -1,8 +1,8 @@
 import { inter, interBold } from '@fonts/Fonts';
-import { Providers } from './Providers';
 import '../styles/globals.css';
 import ProgressBar from '@components/ProgressBar';
 import { Analytics } from '@vercel/analytics/react';
+import Providers from './Providers';
 
 export const metadata = {
   title: 'Create Next App',
