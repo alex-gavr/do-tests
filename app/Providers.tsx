@@ -10,9 +10,8 @@ import { useGetParam } from '@hooks/useGetParam';
 
 const production = process.env.NODE_ENV === 'production';
 export function Providers({ children }: PropsWithChildren) {
-
   const { valueNumber: offerId } = useGetParam('offerId');
-  
+
   useEffect(() => {
     {
       production &&

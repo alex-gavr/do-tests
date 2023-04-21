@@ -1,12 +1,17 @@
 export const runtime = 'experimental-edge';
 import { db } from '@db/db';
-import { careerSurveyAnswers, careerSurveyQuestions, defaultSurveyAnswers, defaultSurveyQuestions } from '@db/schema';
+import {
+  careerSurveyAnswers,
+  careerSurveyQuestions,
+  defaultSurveyAnswers,
+  defaultSurveyQuestions,
+} from '@db/schema';
 // import SurveyContainer from '@components/SurveyContainer';
 import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
 const Page = async ({ searchParams }: { searchParams: { [key: string]: string } }) => {
-  const offerId = parseInt(searchParams.offer_id ? searchParams.offer_id : '0');
+  const offerId = searchParams.offer_id ? parseInt(searchParams.offer_id) : undefined;
 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
   const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;

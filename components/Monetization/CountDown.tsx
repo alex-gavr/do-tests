@@ -4,11 +4,13 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import mixpanel from '@lib/mixpanel';
+import { useGetParam } from '@hooks/useGetParam';
 
 const MINUTE = 60;
 
 const CountDown = () => {
   const router = useRouter();
+  const { valueNumber: offerId } = useGetParam('offer_id');
   const { state } = useContext(AppContext);
   const [time, setTime] = useState(MINUTE);
 
@@ -17,7 +19,7 @@ const CountDown = () => {
       setTime((currentCount) => currentCount - 1);
     }, 1000);
     if (time < 0 && process.env.NODE_ENV === 'production') {
-      mixpanel.track('accessAutoExit');
+      mixpanel.track('accessAutoExit', { offerId });
       if (state.exits.accessAutoExit) {
         const url =  makeExitUrl(state.exits.accessAutoExit)
         router.push(url);
