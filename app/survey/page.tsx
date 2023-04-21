@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
 const Page = async ({ searchParams }: {searchParams: { [key: string]: string | undefined }}) => {
+  
   const offerId = searchParams.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
