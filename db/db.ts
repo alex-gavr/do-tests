@@ -1,7 +1,5 @@
 import { connect } from '@planetscale/database';
 import { drizzle } from 'drizzle-orm/planetscale-serverless';
-// import { IAnswer } from '@context/stateTypes';
-// import { eq, sql } from 'drizzle-orm';
 
 const connection = connect({
   host: process.env.DATABASE_HOST,
