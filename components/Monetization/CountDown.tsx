@@ -10,7 +10,7 @@ const MINUTE = 60;
 
 const CountDown = () => {
   const router = useRouter();
-  const { valueNumber: offerId } = useGetParam('offer_id');
+  const { valueString: offerId } = useGetParam('offer_id');
   const { state } = useContext(AppContext);
   const [time, setTime] = useState(MINUTE);
 

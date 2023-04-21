@@ -10,7 +10,7 @@ import { useGetParam } from '@hooks/useGetParam';
 const NonUnique = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
-  const { valueNumber: offerId } = useGetParam('offer_id');
+  const { valueString: offerId } = useGetParam('offer_id');
   // NonUnique Block
   const nonUnique = hasCookie('nonUnique');
   useEffect(() => {

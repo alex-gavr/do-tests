@@ -9,7 +9,7 @@ import { useGetParam } from '@hooks/useGetParam';
 const Reverse = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
-  const { valueNumber: offerId } = useGetParam('offer_id');
+  const { valueString: offerId } = useGetParam('offer_id');
   // REVERSE
   useEffect(() => {
     const handleBackButton = (event: PopStateEvent) => {

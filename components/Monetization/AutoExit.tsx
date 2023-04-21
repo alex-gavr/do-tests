@@ -11,7 +11,7 @@ const THIRTY_SECONDS = 30;
 
 const AutoExit = () => {
   const router = useRouter();
-  const { valueNumber: offerId } = useGetParam('offer_id');
+  const { valueString: offerId } = useGetParam('offer_id');
   const { state } = useContext(AppContext);
   const [count, setCount] = useState(THIRTY_SECONDS);
   // AUTO-EXIT

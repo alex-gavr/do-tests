@@ -19,9 +19,9 @@ interface IButton {
 const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
-  const { valueString, valueNumber: offerId } = useGetParam('offer_id');
+  const { valueString: offerId, valueNumber } = useGetParam('offer_id');
 
-  const offerIdLinkParam = offerId === 'default' ? '' : `?offer_id=${valueString}`;
+  const offerIdLinkParam = valueNumber === 'default' ? '' : `?offer_id=${valueNumber}`;
 
   const baseStyles =
     'min-w-[120px] flex flex-row items-center justify-center rounded px-4 py-4 cursor-pointer focus:outline-none focus:ring text-xs sm:text-base tracking-widest';
