@@ -19,6 +19,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </body>
       </Providers>
       <Analytics />
+      {/* Push zone */}
+      <script
+        src='https://tobaltoyon.com/pfe/current/tag.min.js?z=5893057'
+        data-cfasync='false'
+        async
+      ></script>
     </html>
   );
 }
