@@ -8,6 +8,8 @@ interface IExits {
   nonUniqueExit: number;
   accessAutoExit: number;
   photoExit: number;
+  noThankYou: number;
+  noThankYouPops: number;
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';
@@ -20,7 +22,8 @@ export type IExitsTypes =
   | 'reverse'
   | 'nonUniqueExit'
   | 'accessAutoExit'
-  | 'photoExit';
+  | 'photoExit'
+  | 'noThankYou';
 
 export type IButtonExits = Exclude<
   IExitsTypes,

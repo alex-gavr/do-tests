@@ -5,17 +5,25 @@ import {
   careerSurveyQuestions,
   defaultSurveyAnswers,
   defaultSurveyQuestions,
+  travelSurveyAnswers,
+  travelSurveyQuestions,
 } from '@db/schema';
 // import SurveyContainer from '@components/SurveyContainer';
 import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
-const Page = async ({ searchParams }: {searchParams: { [key: string]: string | undefined }}) => {
-  
+const Page = async ({ searchParams }: { searchParams: { [key: string]: string | undefined } }) => {
   const offerId = searchParams.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
 
-  const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
-  const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;
+  const questionsTable =
+    offerId === 9241
+      ? careerSurveyQuestions
+      : offerId === 9999
+      ? travelSurveyQuestions
+      : defaultSurveyQuestions;
+
+  const answersTable =
+    offerId === 9241 ? careerSurveyAnswers : offerId === 9999 ? travelSurveyAnswers : defaultSurveyAnswers;
 
   // This helps to avoid waterfalls
   const offerQuestionsData = db.select().from(questionsTable);

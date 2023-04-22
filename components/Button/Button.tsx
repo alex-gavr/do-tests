@@ -11,7 +11,7 @@ import { useGetParam } from '@hooks/useGetParam';
 
 interface IButton {
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'success' | 'danger';
+  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'luxury' | 'luxurySecondary';
   children?: React.ReactNode;
   disabled?: boolean;
   to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou';
@@ -32,6 +32,9 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
       'border bg-indigo-50 border-neutral-800 bg-transparent text-gray-950 hover:bg-neutral-800 hover:text-slate-50',
     success: 'bg-emerald-600 text-neutral-50 hover:bg-emerald-300 hover:text-neutral-900',
     danger: 'bg-red-700 text-neutral-50 hover:bg-red-600 hover:text-neutral-50',
+    luxury:
+      'bg-purple-900 text-slate-50 border border-purple-700 rounded-3xl hover:bg-purple-800 hover:border-purple-600 hover:shadow-xl',
+      luxurySecondary: 'border border-purple-800 text-slate-900'
   };
 
   const variantStyle =
@@ -43,6 +46,10 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
       ? variantStyles.success
       : variant === 'danger'
       ? variantStyles.danger
+      : variant === 'luxury'
+      ? variantStyles.luxury
+      : variant === 'luxurySecondary'
+      ? variantStyles.luxurySecondary
       : null;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

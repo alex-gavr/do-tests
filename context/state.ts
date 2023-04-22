@@ -13,6 +13,8 @@ const initialState: InitialState = {
     nonUniqueExit: 5874462,
     accessAutoExit: 5874496,
     photoExit: 5874497,
+    noThankYou: 5892040,
+    noThankYouPops: 5892041
   },
 };
 

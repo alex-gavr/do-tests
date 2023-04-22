@@ -3,11 +3,11 @@ import Button from '@components/Button/Button';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
-import { TDefaultSurveyAnswers, TDefaultSurveyQuestion } from '@db/schema';
+import { TSurveyAnswers, TSurveyQuestions } from '@db/schema';
 
 interface IProps {
-  questions: Array<TDefaultSurveyQuestion>;
-  answers: Array<TDefaultSurveyAnswers>;
+  questions: Array<TSurveyQuestions>;
+  answers: Array<TSurveyAnswers> ;
 }
 
 const SurveyContainer = ({ questions, answers }: IProps) => {
@@ -36,7 +36,7 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
 
   return (
     <section className='flex flex-col items-center justify-center gap-6 rounded-2xl bg-gray-100 px-4 py-6 shadow-xl shadow-gray-300 sm:gap-8 sm:p-8'>
-      <h1 className='px-4 text-center text-xl sm:text-2xl md:text-3xl'>{currentQuestion?.question}</h1>
+      <h1 className='px-4 text-center text-2xl sm:text-3xl md:text-4xl'>{currentQuestion?.question}</h1>
       <div className={className}>
         {currentAnswers?.map((answer) => (
           <Button to={answer.leadsTo} type='button' variant={answer.styleVariant} key={answer.id}>
