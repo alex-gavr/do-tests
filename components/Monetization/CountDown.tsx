@@ -8,7 +8,11 @@ import { useGetParam } from '@hooks/useGetParam';
 
 const MINUTE = 60;
 
-const CountDown = () => {
+const CountDown = ({
+  freeAccess = 'free access ends in',
+  secondsWord = 'seconds',
+  offerExpired = 'expired',
+}) => {
   const router = useRouter();
   const { valueString: offerId } = useGetParam('offer_id');
   const { state } = useContext(AppContext);
@@ -21,7 +25,7 @@ const CountDown = () => {
     if (time < 0 && process.env.NODE_ENV === 'production') {
       mixpanel.track('accessAutoExit', { offerId });
       if (state.exits.accessAutoExit) {
-        const url =  makeExitUrl(state.exits.accessAutoExit)
+        const url = makeExitUrl(state.exits.accessAutoExit);
         router.push(url);
       }
     }
@@ -33,13 +37,13 @@ const CountDown = () => {
     <div className='flex flex-row items-center justify-center gap-2'>
       {time > 0 ? (
         <>
-          <p className='text-center text-xs text-slate-950 sm:text-sm md:text-base'>free access ends in</p>
+          <p className='text-center text-xs text-slate-950 sm:text-sm md:text-base'>{freeAccess}</p>
           <p className='rounded-lg bg-indigo-200 px-4 py-1 text-xs text-slate-950 sm:text-sm md:text-base'>
-            {time} seconds
+            {time} {secondsWord}
           </p>
         </>
       ) : (
-        <p>offer expired</p>
+        <p>{offerExpired}</p>
       )}
     </div>
   );

@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { useContext } from 'react';
 
 const production = process.env.NODE_ENV === 'production';
-const NoThankYou = () => {
+
+const NoThankYou = ({noText = 'No, thank you'}) => {
   const { state } = useContext(AppContext);
   const { valueString: offerId } = useGetParam('offer_id');
 
@@ -26,7 +27,7 @@ const NoThankYou = () => {
   return (
     <div className='fixed bottom-2 flex items-center justify-center'>
       <Link href={href} onClick={handleClick} className='px-8 py-2 text-slate-400'>
-        No, thank you
+        {noText}
       </Link>
     </div>
   );

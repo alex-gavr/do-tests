@@ -8,6 +8,7 @@ import React, { useContext } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
 import { useGetParam } from '@hooks/useGetParam';
+import { useParams } from 'next/navigation';
 
 interface IButton {
   type?: 'button' | 'submit' | 'reset';
@@ -20,6 +21,7 @@ const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
   const { valueString: offerId, valueNumber } = useGetParam('offer_id');
+  const { lang } = useParams();
 
   const offerIdLinkParam = valueNumber === 'default' ? '' : `?offer_id=${valueNumber}`;
 
@@ -34,7 +36,7 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
     danger: 'bg-red-700 text-neutral-50 hover:bg-red-600 hover:text-neutral-50',
     luxury:
       'bg-purple-900 text-slate-50 border border-purple-700 rounded-3xl hover:bg-purple-800 hover:border-purple-600 hover:shadow-xl',
-      luxurySecondary: 'border border-purple-800 text-slate-900'
+    luxurySecondary: 'border border-purple-800 text-slate-900',
   };
 
   const variantStyle =
@@ -102,9 +104,9 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
   };
   const hrefPops =
     to === 'beginSurvey'
-      ? `/survey${offerIdLinkParam}`
+      ? `/${lang}/survey${offerIdLinkParam}`
       : to === 'thankYou'
-      ? `/thank-you${offerIdLinkParam}`
+      ? `/${lang}/thank-you${offerIdLinkParam}`
       : to === 'mainExit'
       ? makeExitUrl(state.exits.mainPops)
       : makeExitUrl(state.exits.teenPops);
