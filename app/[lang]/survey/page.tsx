@@ -1,4 +1,4 @@
-export const runtime = 'experimental-edge';
+export const runtime = 'nodejs';
 import { IServerProps } from '@app/page';
 import { db } from '@db/db';
 import {
@@ -13,26 +13,28 @@ import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
 const Page = async ({ params, searchParams }: IServerProps) => {
-  const offerId = searchParams.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
-  const language = params.lang === 'id' ? params.lang : 'en';
-  
+  const offerId = searchParams?.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
+  const language = params?.lang === 'id' ? params.lang : 'en';
 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
-
   const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;
+
+  const questionToQuery =
+    language === 'id' ? travelSurveyQuestions.questionId : travelSurveyQuestions.questionEn;
+  const answersToQuery = language === 'id' ? travelSurveyAnswers.textId : travelSurveyAnswers.textEn;
 
   // This helps to avoid waterfalls
   const offerQuestionsDataMultiLanguage = db
     .select({
       id: travelSurveyQuestions.id,
-      question: language === 'id' ? travelSurveyQuestions.questionId : travelSurveyQuestions.questionEn,
+      question: questionToQuery,
     })
     .from(travelSurveyQuestions);
 
   const offerAnswersDataMultiLanguage = db
     .select({
       id: travelSurveyAnswers.id,
-      text: language === 'id' ? travelSurveyAnswers.textId : travelSurveyAnswers.textEn,
+      text: answersToQuery,
       styleVariant: travelSurveyAnswers.styleVariant,
       questionId: travelSurveyAnswers.questionId,
       leadsTo: travelSurveyAnswers.leadsTo,
