@@ -14,7 +14,7 @@ const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
 const Page = async ({ params, searchParams }: IServerProps) => {
   const offerId = searchParams?.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
-  const language = params?.lang === 'id' ? params.lang : 'en';
+  const language = params?.lang === 'id' || params?.lang === 'id-ID' ? 'id' : 'en';
 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
   const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;
