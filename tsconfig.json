@@ -29,8 +29,9 @@
       "@hooks/*": ["hooks/*"],
       "@fonts/*": ["fonts/*"],
       "@db/*": ["db/*"],
-      "@app/*": ["app/[lang]/*"],
+      "@app/*": ["app/*"],
       "@styles/*": ["styles/*"],
+      "@static/*": ["static/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

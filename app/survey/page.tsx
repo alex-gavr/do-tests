@@ -1,4 +1,5 @@
-export const runtime = 'nodejs';
+export const runtime = "experimental-edge";
+
 import { IServerProps } from '@app/page';
 import { db } from '@db/db';
 import {
@@ -12,9 +13,11 @@ import {
 import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
-const Page = async ({ params, searchParams }: IServerProps) => {
+
+const Page = async ({ searchParams }: IServerProps) => {
+  
   const offerId = searchParams?.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
-  const language = params?.lang === 'id' || params?.lang === 'id-ID' ? 'id' : 'en';
+  const language = searchParams?.locale;
 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
   const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;

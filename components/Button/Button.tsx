@@ -8,7 +8,6 @@ import React, { useContext } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
 import { useGetParam } from '@hooks/useGetParam';
-import { useParams } from 'next/navigation';
 
 interface IButton {
   type?: 'button' | 'submit' | 'reset';
@@ -21,7 +20,6 @@ const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
   const { valueString: offerId, valueNumber } = useGetParam('offer_id');
-  const { lang } = useParams();
 
   const offerIdLinkParam = valueNumber === 'default' ? '' : `?offer_id=${valueNumber}`;
 
@@ -104,9 +102,9 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
   };
   const hrefPops =
     to === 'beginSurvey'
-      ? `/${lang}/survey${offerIdLinkParam}`
+      ? `/survey${offerIdLinkParam}`
       : to === 'thankYou'
-      ? `/${lang}/thank-you${offerIdLinkParam}`
+      ? `/thank-you${offerIdLinkParam}`
       : to === 'mainExit'
       ? makeExitUrl(state.exits.mainPops)
       : makeExitUrl(state.exits.teenPops);

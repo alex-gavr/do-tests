@@ -11,14 +11,15 @@ export const metadata = {
 
 interface IProps {
   children: React.ReactNode;
-  params: { lang: string };
+  // params: { lang: string };
   // searchParams: { [key: string]: string }
 }
 
 const production = process.env.NODE_ENV === 'production';
-export default function RootLayout({ children, params }: IProps) {
+export default function RootLayout({ children }: IProps) {
+
   return (
-    <html lang={params.lang} className={`${interBold.variable} ${inter.variable}`}>
+    <html lang={'en'} className={`${interBold.variable} ${inter.variable}`}>
       <Providers>
         <body className='relative'>
           <ProgressBar />

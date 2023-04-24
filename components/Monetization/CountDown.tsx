@@ -8,11 +8,16 @@ import { useGetParam } from '@hooks/useGetParam';
 
 const MINUTE = 60;
 
+interface IProps {
+  freeAccess?: string;
+  secondsWord?: string;
+  offerExpired?: string;
+}
 const CountDown = ({
   freeAccess = 'free access ends in',
   secondsWord = 'seconds',
-  offerExpired = 'expired',
-}) => {
+  offerExpired = 'offer expired',
+}: IProps) => {
   const router = useRouter();
   const { valueString: offerId } = useGetParam('offer_id');
   const { state } = useContext(AppContext);

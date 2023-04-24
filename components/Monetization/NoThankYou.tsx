@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 const production = process.env.NODE_ENV === 'production';
 
-const NoThankYou = ({noText = 'No, thank you'}) => {
+const NoThankYou = ({noThankYou}: {noThankYou: string}) => {
   const { state } = useContext(AppContext);
   const { valueString: offerId } = useGetParam('offer_id');
 
@@ -27,7 +27,7 @@ const NoThankYou = ({noText = 'No, thank you'}) => {
   return (
     <div className='fixed bottom-2 flex items-center justify-center'>
       <Link href={href} onClick={handleClick} className='px-8 py-2 text-slate-400'>
-        {noText}
+        {noThankYou}
       </Link>
     </div>
   );
