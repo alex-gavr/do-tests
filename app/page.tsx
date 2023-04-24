@@ -12,7 +12,6 @@ export interface IServerProps {
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
   const language = searchParams?.locale
-  const t = await getTranslator(language as ValidLocale);
 
   const offerId = searchParams?.offer_id ? parseInt(searchParams.offer_id) : undefined;
 
@@ -22,7 +21,6 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
       {offerId === undefined && <DefaultSurvey />}
       {/* @ts-ignore */}
       {offerId === 9999 && <TravelSurvey language={language} />}
-      <p>{t.Index.title}</p>
     </main>
   );
 };
