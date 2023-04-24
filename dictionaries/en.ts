@@ -5,7 +5,8 @@ const dictionary = {
   TravelSurvey: {
     title: 'Experience the Magic of Singapore',
     button: 'Begin',
-    paragraph: 'Complete our survey to get a chance to win a luxury vacation to explore city in style!',
+    paragraph:
+      'Complete our survey to get a chance to win a <strong>luxury vacation</strong> to explore city in style!',
   },
   CountDown: {
     freeAccess: 'free access ends in',

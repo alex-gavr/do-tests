@@ -6,7 +6,7 @@ const dictionary = {
     title: 'Temukan Keajaiban Singapura',
     button: 'Mulai',
     paragraph:
-      'Lengkapi survei kami untuk mendapatkan perubahan untuk memenangkan liburan mewah untuk menjelajahi kota dengan penuh gaya!',
+      'Lengkapi survei kami untuk mendapatkan perubahan untuk memenangkan <strong>liburan mewah</strong> untuk menjelajahi kota dengan penuh gaya!',
   },
   CountDown: {
     freeAccess: 'akses gratis berakhir',

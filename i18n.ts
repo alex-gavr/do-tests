@@ -31,19 +31,4 @@ const dictionaries: Record<ValidLocale, any> = {
 export const getTranslator = async (locale: ValidLocale) => {
   const dictionary = await dictionaries[locale]();
   return dictionary as Dictionary;
-  // console.log(dictionary);
-  // return (key: string, params?: { [key: string]: string | number }) => {
-  //   console.log(key);
-
-  //   let translation = key.split('.').reduce((obj, key) => obj && obj[key], dictionary);
-  //   if (!translation) {
-  //     return key;
-  //   }
-  //   // if (params && Object.entries(params).length) {
-  //   //   Object.entries(params).forEach(([key, value]) => {
-  //   //     translation = translation!.replace(`{{ ${key} }}`, String(value));
-  //   //   });
-  //   // }
-  //   return translation;
-  // };
 };

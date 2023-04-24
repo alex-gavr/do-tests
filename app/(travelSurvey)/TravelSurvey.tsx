@@ -4,33 +4,25 @@ import NoThankYou from '@components/Monetization/NoThankYou';
 import Image from 'next/image';
 import img from '@static/images/singapore2.webp';
 import { ValidLocale, getTranslator } from 'i18n';
-
-// function useTranslationsRich(translations: string, formats: Formats) {
-//   const pattern = /\[([^\]]+)\]/g;
-
-//   const richText = translations;
-
-//   const chunks = translations.split(pattern);
-
-//   const result = chunks.map((chunk, index) => {
-//     const match = pattern.exec(richText);
-//     if (match && match[1]) {
-//       const formatFunction = formats[match[1]];
-//       return formatFunction ? formatFunction(<>{chunk}</>) : <>{match[0]}</>;
-//     }
-//     console.log(chunk);
-//     return <>{chunk}</>;
-
-//   });
-
-//   return <>{result}</>;
-// }
+import formatRichText from '@utils/formatRichText';
 
 export interface ILanguage {
   language: ValidLocale;
 }
 const TravelSurvey = async ({ language }: ILanguage) => {
   const t = await getTranslator(language as ValidLocale);
+
+  const tags = [
+    {
+      tag: 'strong',
+      component: ({ children, index }: any) => (
+        <strong key={`child-${index}`} className='text-amber-200 underline underline-offset-4'>
+          {children}
+        </strong>
+      ),
+    },
+  ];
+
 
   return (
     <>
@@ -45,7 +37,7 @@ const TravelSurvey = async ({ language }: ILanguage) => {
         <h1 className='pl-2 text-center text-3xl text-slate-100 sm:text-4xl md:text-4xl'>
           {t.TravelSurvey.title}
         </h1>
-        <p className='text-center text-lg text-slate-300'>{t.TravelSurvey.paragraph}</p>
+        <p className='text-center text-lg text-slate-300'>{formatRichText(t.TravelSurvey.paragraph, tags)}</p>
         <Button type='button' variant='luxury' to='beginSurvey'>
           {t.TravelSurvey.button}
         </Button>

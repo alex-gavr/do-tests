@@ -37,8 +37,6 @@ export function middleware(request: NextRequest) {
 
   request.nextUrl.searchParams.set('locale', `${locale[0]}`);
 
-  console.log(request.nextUrl);
-
   return NextResponse.rewrite(request.nextUrl);
 }
 
