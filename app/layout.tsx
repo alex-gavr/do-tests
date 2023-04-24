@@ -15,7 +15,6 @@ interface IProps {
   // searchParams: { [key: string]: string }
 }
 
-const production = process.env.NODE_ENV === 'production';
 export default function RootLayout({ children }: IProps) {
 
   return (
@@ -27,10 +26,6 @@ export default function RootLayout({ children }: IProps) {
         </body>
       </Providers>
       <Analytics />
-      {/* Push zone */}
-      {production && (
-        <script src='https://tobaltoyon.com/pfe/current/tag.min.js?z=5893057' data-cfasync='false' async />
-      )}
     </html>
   );
 }
