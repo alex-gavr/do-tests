@@ -1,7 +1,8 @@
-export const runtime = "experimental-edge";
-
+export const runtime = 'experimental-edge';
+import { connect } from '@planetscale/database';
+import { drizzle } from 'drizzle-orm/planetscale-serverless';
 import { IServerProps } from '@app/page';
-import { db } from '@db/db';
+// import { db } from '@db/db';
 import {
   careerSurveyAnswers,
   careerSurveyQuestions,
@@ -13,9 +14,15 @@ import {
 import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
+const connection = connect({
+  host: process.env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME_SINGAPORE,
+  password: process.env.DATABASE_PASSWORD_SINGAPORE,
+});
+
+const db = drizzle(connection);
 
 const Page = async ({ searchParams }: IServerProps) => {
-  
   const offerId = searchParams?.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
   const language = searchParams?.locale;
 
