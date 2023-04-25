@@ -7,7 +7,7 @@ import { TSurveyAnswers, TSurveyQuestions } from '@db/schema';
 
 interface IProps {
   questions: Array<TSurveyQuestions>;
-  answers: Array<TSurveyAnswers> ;
+  answers: Array<TSurveyAnswers>;
 }
 
 const SurveyContainer = ({ questions, answers }: IProps) => {
@@ -35,7 +35,7 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
   const className = 'flex flex-wrap w-full justify-center items-center gap-4';
 
   return (
-    <section className='flex flex-col items-center justify-center gap-6 rounded-2xl bg-gray-100 px-4 py-6 shadow-xl shadow-gray-300 sm:gap-8 sm:p-8'>
+    <section className='flex w-full max-w-[600px] flex-col items-center justify-center gap-6 rounded-2xl bg-gray-100 px-4 py-6 shadow-xl shadow-gray-300 sm:gap-8 sm:p-8'>
       <h1 className='px-4 text-center text-2xl sm:text-3xl md:text-4xl'>{currentQuestion?.question}</h1>
       <div className={className}>
         {currentAnswers?.map((answer) => (
