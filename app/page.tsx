@@ -1,6 +1,5 @@
-// export const runtime = 'experimental-edge';
+// export const runtime = 'edge';
 
-import { ValidLocale, getTranslator } from 'i18n';
 import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
@@ -11,7 +10,7 @@ export interface IServerProps {
 }
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
-  const language = searchParams?.locale
+  const language = searchParams?.locale;
 
   const offerId = searchParams?.offer_id ? parseInt(searchParams.offer_id) : undefined;
 
