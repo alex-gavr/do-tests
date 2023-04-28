@@ -1,4 +1,4 @@
-export const runtime = 'nodejs';
+// export const runtime = 'edge';
 
 import { IServerProps } from '@app/page';
 import { db } from '@db/db';
