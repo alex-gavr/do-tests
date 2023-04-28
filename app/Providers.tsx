@@ -4,9 +4,10 @@ import NonUnique from '@components/Monetization/NonUnique';
 import Reverse from '@components/Monetization/Reverse';
 import { AppProvider } from '@context/Context';
 import { AnimatePresence, LazyMotion } from 'framer-motion';
-import React, { ReactNode, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { useGetParam } from '@hooks/useGetParam';
+import InitialReverse from '@components/Monetization/InitialReverse';
 
 interface IProps {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ const Providers = ({ children }: IProps) => {
       {production && <AutoExit />}
       {production && <Reverse />}
       {production && <NonUnique />}
+      {production && <InitialReverse />}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>
