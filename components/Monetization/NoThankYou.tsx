@@ -25,8 +25,8 @@ const NoThankYou = ({noThankYou}: {noThankYou: string}) => {
   const href = makeExitUrl(state.exits.noThankYouPops);
 
   return (
-    <div className='fixed bottom-2 flex items-center justify-center'>
-      <Link href={href} onClick={handleClick} className='px-8 py-2 text-slate-400'>
+    <div className='flex items-center justify-center'>
+      <Link href={href} onClick={handleClick} className='px-8 py-4 text-gray-400 text-xs sm:text-sm md:text-base underline underline-offset-2'>
         {noThankYou}
       </Link>
     </div>
