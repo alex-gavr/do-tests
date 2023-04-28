@@ -4,6 +4,8 @@ import { useContext, useEffect } from 'react';
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { TSurveyAnswers, TSurveyQuestions } from '@db/schema';
+import Notification from './Notification';
+import { AnimatePresence } from 'framer-motion';
 
 interface IProps {
   questions: Array<TSurveyQuestions>;
@@ -17,6 +19,20 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
   const currentAnswers = answers.filter((answers) => answers.questionId === state.currentStep);
 
   useEffect(() => {
+    if (state.notificationVisible === null) {
+      const timer = setTimeout(() => {
+        dispatch({
+          type: ActionsType.setNotificationVisibility,
+          payload: {
+            visible: true,
+          },
+        });
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [state.notificationVisible]);
+
+  useEffect(() => {
     if (state.surveyLength !== arrayLength) {
       dispatch({
         type: ActionsType.setSurveyLength,
@@ -26,8 +42,6 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
       });
     }
   }, [arrayLength, state.surveyLength]);
-
-  // const filterBoi = slug ? slug : state.currentStep
 
   if (currentQuestion === null) {
     return null;
@@ -44,6 +58,7 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
           </Button>
         ))}
       </div>
+      <AnimatePresence>{state.notificationVisible && <Notification />}</AnimatePresence>
     </section>
   );
 };
