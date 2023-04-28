@@ -1,6 +1,7 @@
 export enum ActionsType {
   incrementStep = 'incrementStep',
   setSurveyLength = 'setSurveyLength',
+  setNotificationVisibility = 'setNotificationVisibility',
 }
 
 export interface IIncrementStep {
@@ -12,5 +13,11 @@ export interface ISetSurveyLength {
     surveyLength: number;
   };
 }
+export interface ISetNotificationVisibility {
+  type: ActionsType.setNotificationVisibility;
+  payload: {
+    visible: boolean;
+  };
+}
 
-export type Actions = IIncrementStep | ISetSurveyLength;
+export type Actions = IIncrementStep | ISetSurveyLength | ISetNotificationVisibility;

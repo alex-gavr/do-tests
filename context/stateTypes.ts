@@ -5,11 +5,14 @@ interface IExits {
   teenPops: number;
   autoExit: number;
   reverse: number;
+  initialReverse: number;
   nonUniqueExit: number;
   accessAutoExit: number;
   photoExit: number;
   noThankYou: number;
   noThankYouPops: number;
+  motivatedYes: number;
+  motivatedYesPops: number;
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';
@@ -20,10 +23,13 @@ export type IExitsTypes =
   | 'teenPops'
   | 'autoExit'
   | 'reverse'
+  | 'initialReverse'
   | 'nonUniqueExit'
   | 'accessAutoExit'
   | 'photoExit'
-  | 'noThankYou';
+  | 'noThankYou'
+  | 'motivatedYes'
+  | 'noThankYouPops';
 
 export type IButtonExits = Exclude<
   IExitsTypes,
@@ -47,6 +53,6 @@ export interface ISurveyText {
 export interface InitialState {
   currentStep: number;
   surveyLength: number;
-  // currentSurveyText: ISurveyText;
   exits: IExits;
+  notificationVisible: boolean | null;
 }
