@@ -6,7 +6,7 @@ const CareerThankYou = () => {
   return (
     <>
       <h1 className='text-center text-xl sm:text-2xl md:text-2xl lg:text-4xl'>
-        We happy to announce that your values align with
+        We happy to announce that you fit
       </h1>
       <CompanyCard />
       <p className='text-center text-sm sm:text-lg md:text-xl lg:text-2xl'>
