@@ -30,7 +30,7 @@ const Providers = ({ children }: IProps) => {
       {production && <AutoExit />}
       {production && <Reverse />}
       {production && <NonUnique />}
-      {production && <InitialReverse />}
+      {/* {production && <InitialReverse />} */}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>
