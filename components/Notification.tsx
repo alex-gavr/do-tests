@@ -16,6 +16,7 @@ const Notification = () => {
     production &&
       mixpanel.track('motivated', {
         offerId: offerId,
+        step: state.currentStep
       });
     const url = makeExitUrl(state.exits.motivatedYes);
     window.open(url, '_blank');
@@ -25,6 +26,7 @@ const Notification = () => {
     production &&
       mixpanel.track('notMotivated', {
         offerId: offerId,
+        step: state.currentStep
       });
     dispatch({
       type: ActionsType.setNotificationVisibility,
