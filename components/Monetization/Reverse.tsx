@@ -15,7 +15,8 @@ const Reverse = () => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
       mixpanel.track('reverse', {
-        offerId
+        offerId,
+        step: state.currentStep
       });
       if (state.exits.reverse) {
         const url = makeExitUrl(state.exits.reverse);
