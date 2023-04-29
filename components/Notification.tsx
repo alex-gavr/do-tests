@@ -49,7 +49,7 @@ const Notification = () => {
         <div className='flex items-start'>
           <div className='ml-3 w-0 flex-1'>
             <p className='mt-1 text-sm text-gray-100'>
-              Have you been somehow motivated to complete this survey?
+              Have you been forced by someone to complete this survey?
             </p>
             <div className='mt-4 flex justify-center gap-4'>
               <a

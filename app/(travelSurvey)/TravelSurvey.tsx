@@ -43,7 +43,7 @@ const TravelSurvey = async ({ language }: ILanguage) => {
         </Button>
       </div>
       <Image priority src={img} alt='singapore' className='fixed top-0 h-screen object-cover' />
-      <NoThankYou noThankYou={t.NoThankYou.text} />
+      <NoThankYou randomInt={1}>{t.NoThankYou.text}</NoThankYou>
     </>
   );
 };
