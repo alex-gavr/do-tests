@@ -5,7 +5,7 @@ interface IExits {
   teenPops: number;
   autoExit: number;
   reverse: number;
-  initialReverse: number;
+  backButton: number;
   nonUniqueExit: number;
   accessAutoExit: number;
   photoExit: number;
@@ -23,7 +23,7 @@ export type IExitsTypes =
   | 'teenPops'
   | 'autoExit'
   | 'reverse'
-  | 'initialReverse'
+  | 'backButton'
   | 'nonUniqueExit'
   | 'accessAutoExit'
   | 'photoExit'

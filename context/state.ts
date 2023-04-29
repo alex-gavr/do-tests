@@ -10,7 +10,7 @@ const initialState: InitialState = {
     teenPops: 5874460,
     autoExit: 5874492,
     reverse: 5874494,
-    initialReverse: 5906732,
+    backButton: 5908107,
     nonUniqueExit: 5874462,
     accessAutoExit: 5874496,
     photoExit: 5874497,
