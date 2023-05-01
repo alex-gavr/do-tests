@@ -4,10 +4,11 @@ import { ActionsType } from '@context/actionsTypes';
 import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
 import { useGetParam } from '@hooks/useGetParam';
+import { useRouter } from 'next/navigation';
 
 interface IButton {
   type?: 'button' | 'submit' | 'reset';
@@ -20,6 +21,7 @@ const production = process.env.NODE_ENV === 'production';
 const Button = ({ children, type, variant, disabled, to }: IButton) => {
   const { state, dispatch } = useContext(AppContext);
   const { valueString: offerId, valueNumber } = useGetParam('offer_id');
+  const router = useRouter();
 
   const offerIdLinkParam = valueNumber === 'default' ? '' : `?offer_id=${valueNumber}`;
 
@@ -53,6 +55,13 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
       : null;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (to === 'beginSurvey') {
+      production &&
+        mixpanel.track('Begin survey', {
+          offerId: offerId,
+        });
+      router.push(`/survey${offerIdLinkParam}`);
+    }
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
       production &&
@@ -63,14 +72,15 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
           offerId: offerId,
         });
     }
-  };
-
-  const handleClickLink = () => {
-    if (to === 'beginSurvey') {
+    if (to === 'teenExit') {
       production &&
-        mixpanel.track('Begin survey', {
+        mixpanel.track('teenLead', {
           offerId: offerId,
         });
+      const url = makeExitUrl(state.exits.teenExit);
+      const urlPops = makeExitUrl(state.exits.teenPops);
+      window.open(url, '_blank');
+      window.location.replace(urlPops);
     }
     if (to === 'thankYou') {
       production &&
@@ -80,6 +90,7 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
           buttonText: children,
           offerId: offerId,
         });
+      router.replace(`/thank-you${offerIdLinkParam}`);
     }
     if (to === 'mainExit') {
       production &&
@@ -89,43 +100,16 @@ const Button = ({ children, type, variant, disabled, to }: IButton) => {
       const WEEK = 60 * 60 * 24 * 7;
       setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
       const url = makeExitUrl(state.exits.mainExit);
+      const urlPops = makeExitUrl(state.exits.mainPops);
       window.open(url, '_blank');
-    }
-    if (to === 'teenExit') {
-      production &&
-        mixpanel.track('teenLead', {
-          offerId: offerId,
-        });
-      const url = makeExitUrl(state.exits.teenExit);
-      window.open(url, '_blank');
+      router.replace(urlPops);
     }
   };
-  const hrefPops =
-    to === 'beginSurvey'
-      ? `/survey${offerIdLinkParam}`
-      : to === 'thankYou'
-      ? `/thank-you${offerIdLinkParam}`
-      : to === 'mainExit'
-      ? makeExitUrl(state.exits.mainPops)
-      : makeExitUrl(state.exits.teenPops);
 
   return (
-    <>
-      {to === 'nextQuestion' ? (
-        <button
-          type={type}
-          onClick={handleClick}
-          disabled={disabled}
-          className={`${baseStyles} ${variantStyle}`}
-        >
-          {children}
-        </button>
-      ) : (
-        <Link className={`${baseStyles} ${variantStyle}`} href={hrefPops} onClick={handleClickLink}>
-          {children}
-        </Link>
-      )}
-    </>
+    <button type={type} onClick={handleClick} disabled={disabled} className={`${baseStyles} ${variantStyle}`}>
+      {children}
+    </button>
   );
 };
 
