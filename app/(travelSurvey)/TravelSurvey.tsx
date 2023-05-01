@@ -2,7 +2,8 @@ import Button from '@components/Button/Button';
 import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
 import Image from 'next/image';
-import img from '@static/images/singapore2.webp';
+// import img from '@static/images/singapore2.webp';
+import img from '@static/images/za.webp';
 import { ValidLocale, getTranslator } from 'i18n';
 import formatRichText from '@utils/formatRichText';
 
@@ -23,7 +24,6 @@ const TravelSurvey = async ({ language }: ILanguage) => {
     },
   ];
 
-
   return (
     <>
       <header className='fixed top-0 z-10 w-full py-1'>
@@ -38,12 +38,14 @@ const TravelSurvey = async ({ language }: ILanguage) => {
           {t.TravelSurvey.title}
         </h1>
         <p className='text-center text-lg text-slate-300'>{formatRichText(t.TravelSurvey.paragraph, tags)}</p>
-        <Button type='button' variant='luxury' to='beginSurvey'>
-          {t.TravelSurvey.button}
-        </Button>
+        <div className='flex w-full flex-row content-center justify-center gap-4'>
+          <NoThankYou>{t.NoThankYou.text}</NoThankYou>
+          <Button type='button' variant='luxury' to='beginSurvey'>
+            {t.TravelSurvey.button}
+          </Button>
+        </div>
       </div>
       <Image priority src={img} alt='singapore' className='fixed top-0 h-screen object-cover' />
-      <NoThankYou randomInt={1}>{t.NoThankYou.text}</NoThankYou>
     </>
   );
 };

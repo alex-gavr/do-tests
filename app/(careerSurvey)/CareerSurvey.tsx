@@ -2,14 +2,9 @@ import Button from '@components/Button/Button';
 import MemoizedCommentSection from '@components/Comments/CommentSection';
 import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
-import Notification from '@components/Notification';
-import { randomIntFromInterval } from '@utils/randomInt';
-{
-  /* Find out which top-tier company will gladly hire you because you have similar values */
-}
 
 const CareerSurvey = () => {
-  const randomInt = randomIntFromInterval(1, 2);
+  
   return (
     <>
       <header className='fixed top-0 w-full py-1'>
@@ -26,7 +21,7 @@ const CareerSurvey = () => {
         <Button type='button' variant='primary' to='beginSurvey'>
           Begin
         </Button>
-        <NoThankYou randomInt={randomInt}>Not interested</NoThankYou>
+        <NoThankYou>Not interested</NoThankYou>
       </div>
       <MemoizedCommentSection />
     </>

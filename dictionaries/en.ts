@@ -3,7 +3,7 @@ const dictionary = {
     title: 'Hello world!',
   },
   TravelSurvey: {
-    title: 'Experience the Magic of Singapore',
+    title: 'Experience the Magic of South Africa',
     button: 'Begin',
     paragraph:
       'Complete our survey to get a chance to win a <strong>luxury vacation</strong> to explore city in style!',
@@ -14,12 +14,12 @@ const dictionary = {
     offerExpired: 'offer expired',
   },
   NoThankYou: {
-    text: 'No, thank you',
+    text: 'Not interested',
   },
   ThankYou: {
     title: 'Thank you!',
     description:
-      'The guaranteed slot with an 8.74% chance of winning the luxury trip to Singapore is available below 👇',
+      'The guaranteed slot with an 8.74% chance of winning the luxury trip to South Africa is available below 👇',
     button: 'CLAIM',
   },
 };
