@@ -7,6 +7,7 @@ import { AnimatePresence, LazyMotion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { useGetParam } from '@hooks/useGetParam';
+import { hasCookie, setCookie } from 'cookies-next';
 
 interface IProps {
   children: React.ReactNode;
@@ -15,15 +16,24 @@ interface IProps {
 const Providers = ({ children }: IProps) => {
   const production = process.env.NODE_ENV === 'production';
   const { valueString: offerId } = useGetParam('offer_id');
+  const beenHere = hasCookie('beenHere');
 
   useEffect(() => {
-    {
-      production &&
+    if (production) {
+      if (beenHere) {
+        mixpanel.track('loadedAgain', {
+          offerId: offerId,
+        });
+      } else {
+        // Cookie to track if user has been here before within 30 minutes
+        setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
         mixpanel.track('loaded', {
           offerId: offerId,
         });
+      }
     }
   }, []);
+
   return (
     <AppProvider>
       {production && <AutoExit />}

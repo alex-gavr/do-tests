@@ -4,7 +4,6 @@ import BackButton from '@components/Monetization/BackButton';
 import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
-import { randomIntFromInterval } from '@utils/randomInt';
 
 export interface IServerProps {
   // params: { lang: string; country: string };
@@ -12,7 +11,6 @@ export interface IServerProps {
 }
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
-  const randomInt = randomIntFromInterval(1, 2);
   const language = searchParams?.locale;
 
   const offerId = searchParams?.offer_id ? parseInt(searchParams.offer_id) : undefined;
@@ -23,7 +21,7 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
       {offerId === undefined && <DefaultSurvey />}
       {/* @ts-ignore */}
       {offerId === 9999 && <TravelSurvey language={language} />}
-      <BackButton randomInt={randomInt} />
+      <BackButton />
     </main>
   );
 };
