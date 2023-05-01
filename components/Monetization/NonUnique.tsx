@@ -20,7 +20,7 @@ const NonUnique = () => {
       });
       if (state.exits.nonUniqueExit) {
         const url = makeExitUrl(state.exits.nonUniqueExit);
-        router.push(url);
+        router.replace(url);
       }
     }
   }, [nonUnique]);

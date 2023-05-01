@@ -1,6 +1,6 @@
 'use client';
 import { AppContext } from '@context/Context';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 import makeExitUrl from '@utils/makeExitUrl';
@@ -36,7 +36,7 @@ const AutoExit = () => {
       });
       if (state.exits.autoExit) {
         const url = makeExitUrl(state.exits.autoExit);
-        router.push(url);
+        router.replace(url);
       }
     }
     // clean up the interval

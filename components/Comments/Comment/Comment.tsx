@@ -14,7 +14,8 @@ const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>)
       photoId: img,
     });
     const url = makeExitUrl(state.exits.photoExit);
-    router.push(url);
+    window.open(url, '_black');
+    router.replace(url);
   };
 
   return (

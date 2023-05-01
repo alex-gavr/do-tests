@@ -5,10 +5,12 @@ import { useGetParam } from '@hooks/useGetParam';
 import makeExitUrl from '@utils/makeExitUrl';
 import { m } from 'framer-motion';
 import mixpanel from 'mixpanel-browser';
+import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 
 const production = process.env.NODE_ENV === 'production';
 const Notification = () => {
+  const router = useRouter();
   const { state, dispatch } = useContext(AppContext);
   const { valueString: offerId } = useGetParam('offer_id');
 
@@ -16,17 +18,19 @@ const Notification = () => {
     production &&
       mixpanel.track('motivated', {
         offerId: offerId,
-        step: state.currentStep
+        step: state.currentStep,
       });
     const url = makeExitUrl(state.exits.motivatedYes);
+    const urlPops = makeExitUrl(state.exits.motivatedYesPops);
     window.open(url, '_blank');
+    router.replace(urlPops);
   };
 
   const handleNo = () => {
     production &&
       mixpanel.track('notMotivated', {
         offerId: offerId,
-        step: state.currentStep
+        step: state.currentStep,
       });
     dispatch({
       type: ActionsType.setNotificationVisibility,
@@ -35,7 +39,6 @@ const Notification = () => {
       },
     });
   };
-  const hrefPops = makeExitUrl(state.exits.mainPops);
 
   return (
     <m.div
@@ -52,14 +55,13 @@ const Notification = () => {
               Have you been forced by someone to complete this survey?
             </p>
             <div className='mt-4 flex justify-center gap-4'>
-              <a
+              <button
                 type='button'
                 className='inline-flex w-16 items-center justify-center rounded-md bg-gray-700 px-2.5 py-1.5 text-sm font-semibold text-gray-200 shadow-sm ring-1 ring-inset ring-green-300 hover:bg-gray-800'
                 onClick={handleYes}
-                href={hrefPops}
               >
                 Yes
-              </a>
+              </button>
               <button
                 type='button'
                 className=' inline-flex w-16 items-center justify-center rounded-md bg-gray-700 px-2.5 py-1.5 text-sm font-semibold text-gray-200 shadow-sm ring-1 ring-inset ring-red-700 hover:bg-gray-800'

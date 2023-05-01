@@ -31,7 +31,7 @@ const CountDown = ({
       mixpanel.track('accessAutoExit', { offerId });
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit);
-        router.push(url);
+        router.replace(url);
       }
     }
 
