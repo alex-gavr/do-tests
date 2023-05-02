@@ -1,4 +1,5 @@
 'use client';
+import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
 import { useGetParam } from '@hooks/useGetParam';
 import makeExitUrl from '@utils/makeExitUrl';
@@ -24,13 +25,16 @@ const BackButton = () => {
   };
 
   return (
-    <button
+    <Button
       type='button'
       onClick={handleClick}
-      className='fixed bottom-2 left-2 rounded border border-red-500 border-opacity-40 bg-gray-900 text-gray-400 px-3 py-2 text-xs shadow-sm sm:text-sm'
+      variant={'backButton'}
+      className='fixed bottom-2 left-2 min-w-0'
+      size={'sm'}
+      to='backButton'
     >
       Back
-    </button>
+    </Button>
   );
 };
 

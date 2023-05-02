@@ -1,4 +1,5 @@
 'use client';
+import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
 import { useGetParam } from '@hooks/useGetParam';
 import makeExitUrl from '@utils/makeExitUrl';
@@ -26,12 +27,9 @@ const NoThankYou = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className='rounded-3xl border border-purple-800 px-4 py-4 text-xs tracking-wide text-gray-100 sm:text-sm'
-    >
+    <Button type='button' onClick={handleClick} variant={'luxurySecondary'} to='noThankYou' className='text-slate-200'>
       {children}
-    </button>
+    </Button>
   );
 };
 
