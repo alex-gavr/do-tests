@@ -2,12 +2,13 @@
 import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
 import { useGetParam } from '@hooks/useGetParam';
+import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import mixpanel from 'mixpanel-browser';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 
-const production = process.env.NODE_ENV === 'production';
+
 const BackButton = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
@@ -29,7 +30,7 @@ const BackButton = () => {
       type='button'
       onClick={handleClick}
       variant={'backButton'}
-      className='fixed bottom-2 left-2 min-w-0'
+      className='fixed bottom-2 left-2 min-w-0 sm:text-xs sm:top-2 sm:bottom-auto'
       size={'sm'}
       to='backButton'
     >

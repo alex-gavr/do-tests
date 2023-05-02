@@ -2,13 +2,14 @@
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { useGetParam } from '@hooks/useGetParam';
+import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import { m } from 'framer-motion';
 import mixpanel from 'mixpanel-browser';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 
-const production = process.env.NODE_ENV === 'production';
+
 const Notification = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(AppContext);

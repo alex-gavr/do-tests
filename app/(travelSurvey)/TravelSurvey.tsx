@@ -39,7 +39,7 @@ const TravelSurvey = async ({ language }: ILanguage) => {
         </h1>
         <p className='text-center text-lg text-slate-300'>{formatRichText(t.TravelSurvey.paragraph, tags)}</p>
         <div className='flex w-full flex-row content-center justify-center gap-4'>
-          <NoThankYou>{t.NoThankYou.text}</NoThankYou>
+          <NoThankYou className='text-slate-200'>{t.NoThankYou.text}</NoThankYou>
           <Button type='button' variant='luxury' to='beginSurvey'>
             {t.TravelSurvey.button}
           </Button>

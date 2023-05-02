@@ -21,7 +21,7 @@ const CareerSurvey = () => {
         <Button type='button' variant='primary' to='beginSurvey'>
           Begin
         </Button>
-        <NoThankYou>Not interested</NoThankYou>
+        <NoThankYou className='text-slate-900'>Not interested</NoThankYou>
       </div>
       <MemoizedCommentSection />
     </>

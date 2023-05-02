@@ -8,13 +8,13 @@ import React, { useEffect } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { useGetParam } from '@hooks/useGetParam';
 import { hasCookie, setCookie } from 'cookies-next';
+import production from '@utils/isProd';
 
 interface IProps {
   children: React.ReactNode;
 }
 
 const Providers = ({ children }: IProps) => {
-  const production = process.env.NODE_ENV === 'production';
   const { valueString: offerId } = useGetParam('offer_id');
   const beenHere = hasCookie('beenHere');
 

@@ -10,9 +10,10 @@ import { useGetParam } from '@hooks/useGetParam';
 import { useRouter } from 'next/navigation';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@utils/cn';
+import production from '@utils/isProd';
 
 const buttonVariants = cva(
-  'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',
+  'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors duration-500 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
@@ -25,7 +26,7 @@ const buttonVariants = cva(
         luxury:
           'bg-purple-900 text-slate-50 border border-purple-700 hover:bg-purple-800 hover:border-purple-600 hover:shadow-xl',
         luxurySecondary: 'border border-purple-800 text-slate-900 hover:bg-purple-900 hover:text-slate-50',
-        backButton: 'border border-red-500 border-opacity-40 bg-gray-900 text-gray-400 hover:bg-gray-950'
+        backButton: 'border border-red-500 border-opacity-40 bg-gray-900 text-gray-400 hover:bg-gray-950',
       },
       size: {
         default: 'p-4',
@@ -44,7 +45,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantP
   to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou';
   isLoading?: boolean;
 }
-const production = process.env.NODE_ENV === 'production';
+
 const Button = ({ children, type, variant, disabled, size, className, to, ...props }: IButtonProps) => {
   const { state, dispatch } = useContext(AppContext);
   const { valueString: offerId, valueNumber } = useGetParam('offer_id');

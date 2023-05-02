@@ -2,14 +2,13 @@
 import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
 import { useGetParam } from '@hooks/useGetParam';
+import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import mixpanel from 'mixpanel-browser';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useContext } from 'react';
 
-const production = process.env.NODE_ENV === 'production';
-
-const NoThankYou = ({ children }: { children: ReactNode }) => {
+const NoThankYou = ({ children, className }: { children: ReactNode, className?: string }) => {
   const { state } = useContext(AppContext);
   const router = useRouter();
   const { valueString: offerId } = useGetParam('offer_id');
@@ -27,7 +26,7 @@ const NoThankYou = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <Button type='button' onClick={handleClick} variant={'luxurySecondary'} to='noThankYou' className='text-slate-200'>
+    <Button type='button' onClick={handleClick} variant={'luxurySecondary'} to='noThankYou' className={className}>
       {children}
     </Button>
   );
