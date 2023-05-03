@@ -14,7 +14,7 @@ const dictionary = {
     offerExpired: 'penawaran kedaluwarsa',
   },
   NoThankYou: {
-    text: 'Tidak terima kasih',
+    text: 'Tidak tertarik',
   },
   ThankYou: {
     title: 'Terima kasih!',

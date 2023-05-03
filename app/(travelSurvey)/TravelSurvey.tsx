@@ -2,8 +2,8 @@ import Button from '@components/Button/Button';
 import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
 import Image from 'next/image';
-// import img from '@static/images/singapore2.webp';
-import img from '@static/images/za.webp';
+import img from '@static/images/singapore2.webp';
+// import img from '@static/images/za.webp';
 import { ValidLocale, getTranslator } from 'i18n';
 import formatRichText from '@utils/formatRichText';
 

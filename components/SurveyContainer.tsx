@@ -4,8 +4,8 @@ import { useContext, useEffect } from 'react';
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { TSurveyAnswers, TSurveyQuestions } from '@db/schema';
-import Notification from './Notification';
-import { AnimatePresence } from 'framer-motion';
+// import Notification from './Notification';
+// import { AnimatePresence } from 'framer-motion';
 
 interface IProps {
   questions: Array<TSurveyQuestions>;
@@ -58,7 +58,7 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
           </Button>
         ))}
       </div>
-      <AnimatePresence>{state.notificationVisible && <Notification />}</AnimatePresence>
+      {/* <AnimatePresence>{state.notificationVisible && <Notification />}</AnimatePresence> */}
     </section>
   );
 };

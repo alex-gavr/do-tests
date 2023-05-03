@@ -26,7 +26,7 @@ const NoThankYou = ({ children, className }: { children: ReactNode, className?: 
   };
 
   return (
-    <Button type='button' onClick={handleClick} variant={'secondary'} to='noThankYou' className={className}>
+    <Button type='button' onClick={handleClick} variant={'luxurySecondary'} to='noThankYou' className={className}>
       {children}
     </Button>
   );
