@@ -8,7 +8,6 @@ import mixpanel from 'mixpanel-browser';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 
-
 const BackButton = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
@@ -30,7 +29,7 @@ const BackButton = () => {
       type='button'
       onClick={handleClick}
       variant={'backButton'}
-      className='fixed bottom-2 left-2 min-w-0 sm:text-xs sm:top-2 sm:bottom-auto'
+      className='fixed bottom-2 left-2 min-w-0 sm:bottom-auto sm:top-2 sm:text-xs'
       size={'sm'}
       to='backButton'
     >

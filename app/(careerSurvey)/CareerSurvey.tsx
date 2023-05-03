@@ -4,7 +4,6 @@ import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
 
 const CareerSurvey = () => {
-  
   return (
     <>
       <header className='fixed top-0 w-full py-1'>
@@ -18,10 +17,12 @@ const CareerSurvey = () => {
           limited edition survey is for a short time available{' '}
           <strong className='underline decoration-indigo-600 underline-offset-2'> for free </strong>
         </p>
-        <Button type='button' variant='primary' to='beginSurvey'>
-          Begin
-        </Button>
-        <NoThankYou className='text-slate-900'>Not interested</NoThankYou>
+        <div className='flex flex-col justify-center items-center gap-4'>
+          <Button type='button' variant='primary' to='beginSurvey' className='min-w-[150px] sm:text-sm' size={'lg'}>
+            Begin
+          </Button>
+          <NoThankYou className='min-w-[150px] text-slate-900 sm:text-xs' >Not interested</NoThankYou>
+        </div>
       </div>
       <MemoizedCommentSection />
     </>

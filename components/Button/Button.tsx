@@ -26,12 +26,12 @@ const buttonVariants = cva(
         luxury:
           'bg-purple-900 text-slate-50 border border-purple-700 hover:bg-purple-800 hover:border-purple-600 hover:shadow-xl',
         luxurySecondary: 'border border-purple-800 text-slate-900 hover:bg-purple-900 hover:text-slate-50',
-        backButton: 'border border-red-500 border-opacity-40 bg-gray-900 text-gray-400 hover:bg-gray-950',
+        backButton: 'border border-red-300 bg-neutral-100 text-gray-600 hover:bg-gray-950 hover:text-gray-100 ',
       },
       size: {
         default: 'p-4',
         sm: 'p-2',
-        lg: 'px-8 py-4',
+        lg: 'px-6 py-4',
       },
     },
     defaultVariants: {
