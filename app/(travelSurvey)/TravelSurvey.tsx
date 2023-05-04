@@ -2,8 +2,6 @@ import Button from '@components/Button/Button';
 import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
 import Image from 'next/image';
-import img from '@static/images/singapore2.webp';
-// import img from '@static/images/za.webp';
 import { ValidLocale, getTranslator } from 'i18n';
 import formatRichText from '@utils/formatRichText';
 
@@ -45,7 +43,9 @@ const TravelSurvey = async ({ language }: ILanguage) => {
           </Button>
         </div>
       </div>
-      <Image priority src={img} alt='singapore' className='fixed top-0 h-screen object-cover' />
+      <div className='fixed top-0 h-screen w-full object-cover'>
+        <Image fill priority src={'/images/singapore2.webp'} alt='singapore' className='object-cover' />
+      </div>
     </>
   );
 };

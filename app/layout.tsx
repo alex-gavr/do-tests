@@ -7,6 +7,9 @@ import Providers from './Providers';
 export const metadata = {
   title: 'Best offers',
   description: 'Give it a try',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 interface IProps {
