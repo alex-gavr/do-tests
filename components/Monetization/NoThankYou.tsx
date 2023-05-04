@@ -2,6 +2,8 @@
 import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
 import { useGetParam } from '@hooks/useGetParam';
+import debug from '@utils/isDebug';
+
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import mixpanel from 'mixpanel-browser';
@@ -14,7 +16,7 @@ const NoThankYou = ({ children, className }: { children: ReactNode, className?: 
   const { valueString: offerId } = useGetParam('offer_id');
 
   const handleClick = () => {
-    if (production) {
+    if (production && !debug) {
       mixpanel.track('noThankYou', {
         offerId: offerId,
       });

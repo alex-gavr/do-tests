@@ -2,13 +2,15 @@
 import AutoExit from '@components/Monetization/AutoExit';
 import NonUnique from '@components/Monetization/NonUnique';
 import Reverse from '@components/Monetization/Reverse';
-import { AppProvider } from '@context/Context';
 import { AnimatePresence, LazyMotion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { useGetParam } from '@hooks/useGetParam';
 import { hasCookie, setCookie } from 'cookies-next';
 import production from '@utils/isProd';
+import { AppProvider } from '@context/Context';
+import debug from '@utils/isDebug';
+
 
 interface IProps {
   children: React.ReactNode;
@@ -19,7 +21,7 @@ const Providers = ({ children }: IProps) => {
   const beenHere = hasCookie('beenHere');
 
   useEffect(() => {
-    if (production) {
+    if (production && !debug) {
       if (beenHere) {
         mixpanel.track('loadedAgain', {
           offerId: offerId,
@@ -36,9 +38,9 @@ const Providers = ({ children }: IProps) => {
 
   return (
     <AppProvider>
-      {production && <AutoExit />}
-      {production && <Reverse />}
-      {production && <NonUnique />}
+      {production && !debug && <AutoExit />}
+      {production && !debug && <Reverse />}
+      {production && !debug && <NonUnique />}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>

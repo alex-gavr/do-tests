@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import mixpanel from '@lib/mixpanel';
 import { useGetParam } from '@hooks/useGetParam';
+import production from '@utils/isProd';
+import debug from '@utils/isDebug';
 
 const MINUTE = 60;
 
@@ -27,7 +29,7 @@ const CountDown = ({
     const interval = setInterval(() => {
       setTime((currentCount) => currentCount - 1);
     }, 1000);
-    if (time < 0 && process.env.NODE_ENV === 'production') {
+    if (time < 0 && production && !debug) {
       mixpanel.track('accessAutoExit', { offerId });
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit);

@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@utils/cn';
 import production from '@utils/isProd';
+import debug from '@utils/isDebug';
+
 
 const buttonVariants = cva(
   'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors duration-500 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',
@@ -55,7 +57,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (to === 'beginSurvey') {
-      production &&
+      production && !debug &&
         mixpanel.track('Begin survey', {
           offerId: offerId,
         });
@@ -63,7 +65,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
     }
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
-      production &&
+      production && !debug &&
         mixpanel.track('question section', {
           step: state.currentStep,
           totalSteps: state.surveyLength,
@@ -72,7 +74,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
         });
     }
     if (to === 'teenExit') {
-      production &&
+      production && !debug &&
         mixpanel.track('teenLead', {
           offerId: offerId,
         });
@@ -82,7 +84,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
       window.location.replace(urlPops);
     }
     if (to === 'thankYou') {
-      production &&
+      production && !debug &&
         mixpanel.track('question section', {
           step: state.currentStep,
           totalSteps: state.surveyLength,
@@ -92,12 +94,12 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
       router.replace(`/thank-you${offerIdLinkParam}`);
     }
     if (to === 'mainExit') {
-      production &&
+      production && !debug &&
         mixpanel.track('lead', {
           offerId: offerId,
         });
       const WEEK = 60 * 60 * 24 * 7;
-      setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
+      !debug && setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
       const url = makeExitUrl(state.exits.mainExit);
       const urlPops = makeExitUrl(state.exits.mainPops);
       window.open(url, '_blank');

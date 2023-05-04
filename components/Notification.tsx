@@ -2,6 +2,7 @@
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { useGetParam } from '@hooks/useGetParam';
+import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import { m } from 'framer-motion';
@@ -16,7 +17,7 @@ const Notification = () => {
   const { valueString: offerId } = useGetParam('offer_id');
 
   const handleYes = () => {
-    production &&
+    production && !debug &&
       mixpanel.track('motivated', {
         offerId: offerId,
         step: state.currentStep,
@@ -28,7 +29,7 @@ const Notification = () => {
   };
 
   const handleNo = () => {
-    production &&
+    production && !debug &&
       mixpanel.track('notMotivated', {
         offerId: offerId,
         step: state.currentStep,
