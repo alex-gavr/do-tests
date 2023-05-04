@@ -5,13 +5,18 @@ import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
 
+interface ISearchParams {
+  locale?: 'en' | 'id';
+  offer_id?: string | undefined;
+  debug?: string | undefined;
+}
 export interface IServerProps {
   // params: { lang: string; country: string };
-  searchParams?: { [key: string]: string | undefined };
+  searchParams?: ISearchParams;
 }
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
-  const language = searchParams?.locale;
+  const language = searchParams?.locale ?  searchParams?.locale : 'en';
 
   const offerId = searchParams?.offer_id ? parseInt(searchParams.offer_id) : undefined;
   const debug = searchParams?.debug ? true : false;
