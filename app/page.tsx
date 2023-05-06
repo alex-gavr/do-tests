@@ -1,10 +1,13 @@
 import BackButton from '@components/Monetization/BackButton';
 import Debug from './Debug';
 import { ISearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
-import CareerSurvey from '@app/(CareerSurvey)/CareerSurvey';
-import DefaultSurvey from '@app/(DefaultSurvey)/DefaultSurvey';
-import TravelSurvey from '@app/(TravelSurvey)/TravelSurvey';
-import { getBestDBLocation } from '@utils/getBestDBLocation';
+import CareerSurvey from './(CareerSurvey)/CareerSurvey';
+import DefaultSurvey from './(DefaultSurvey)/DefaultSurvey';
+import TravelSurvey from './(TravelSurvey)/TravelSurvey';
+
+
+
+
 export interface IServerProps {
   params: {
     offerId: number | 'default';

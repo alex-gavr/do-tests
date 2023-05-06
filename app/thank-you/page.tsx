@@ -1,4 +1,3 @@
-
 import CareerThankYou from "@app/(CareerSurvey)/CareerThankYou";
 import DefaultThankYou from "@app/(DefaultSurvey)/DefaultThankYou";
 import TravelThankYou from "@app/(TravelSurvey)/TravelThankYou";

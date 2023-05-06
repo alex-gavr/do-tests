@@ -5,7 +5,7 @@ import '@styles/globals.css';
 import ProgressBar from '@components/ProgressBar';
 import { Analytics } from '@vercel/analytics/react';
 import Providers from './Providers';
-import Debug from './Debug';
+
 
 export const metadata = {
   title: 'Best offers',
