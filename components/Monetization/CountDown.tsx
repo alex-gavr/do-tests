@@ -31,7 +31,7 @@ const CountDown = ({
     }, 1000);
     if (time < 0 && production && !debug) {
       const eventData = {
-        track: 'Access Auto Exit',
+        track: TrackEvents.accessAutoExit,
         offerId: offerId,
       };
       sendEvent(eventData);

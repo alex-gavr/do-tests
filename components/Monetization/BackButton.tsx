@@ -17,7 +17,7 @@ const BackButton = () => {
   const handleClick = () => {
     if (production && !debug) {
       const eventData = {
-        track: 'Back Exit',
+        track: TrackEvents.backButtonExit,
         offerId: offerId,
       };
       sendEvent(eventData);

@@ -16,7 +16,7 @@ const NonUnique = () => {
   useEffect(() => {
     if (nonUnique) {
       const eventData = {
-        track: 'Non Unique',
+        track: TrackEvents.nonUnique,
         offerId: offerId,
       };
       sendEvent(eventData);

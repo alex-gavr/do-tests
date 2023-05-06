@@ -16,7 +16,7 @@ const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>)
   const handleClick = () => {
     if (production && !debug) {
       const eventData = {
-        track: 'Photo Exit',
+        track: TrackEvents.photoExit,
         offerId: offerId,
         imgId: img,
       };

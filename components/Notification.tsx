@@ -18,7 +18,7 @@ const Notification = () => {
   const handleYes = () => {
     if (production && !debug) {
       const eventData = {
-        track: 'Motivated',
+        track: TrackEvents.motivated,
         offerId: offerId,
         step: state.currentStep
       };
@@ -34,7 +34,7 @@ const Notification = () => {
   const handleNo = () => {
     if (production && !debug) {
       const eventData = {
-        track: 'Not Motivated',
+        track: TrackEvents.notMotivated,
         offerId: offerId,
         step: state.currentStep
       };

@@ -32,7 +32,7 @@ const AutoExit = () => {
     // when count is 0, Auto-Exit happens
     if (count === 0) {
       const eventData = {
-        track: 'Auto Exit',
+        track: TrackEvents.autoExit,
         offerId: offerId,
       };
       sendEvent(eventData);

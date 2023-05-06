@@ -24,7 +24,7 @@ const Providers = ({ children }: IProps) => {
     if (production && !debug) {
       if (beenHere) {
         const eventData = {
-          track: 'Loaded Again',
+          track: TrackEvents.loadedAgain,
           offerId: offerId,
         };
         sendEvent(eventData);
@@ -32,7 +32,7 @@ const Providers = ({ children }: IProps) => {
         // Cookie to track if user has been here before within 30 minutes
         setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
         const eventData = {
-          track: 'Loaded',
+          track: TrackEvents.lead,
           offerId: offerId,
         };
         sendEvent(eventData);

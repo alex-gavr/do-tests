@@ -60,7 +60,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
     if (to === 'beginSurvey') {
       if (production && !debug) {
         const eventData = {
-          track: 'Begin Survey',
+          track: TrackEvents.beginSurveys,
           offerId: offerId,
         };
         sendEvent(eventData);
@@ -72,7 +72,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
 
       if (production && !debug) {
         const eventData = {
-          track: 'Question Section',
+          track: TrackEvents.questionSection,
           step: state.currentStep,
           totalSteps: state.surveyLength,
           buttonText: children,
@@ -84,7 +84,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
     if (to === 'teenExit') {
       if (production && !debug) {
         const eventData = {
-          track: 'Teen Lead',
+          track: TrackEvents.teenLead,
           offerId: offerId,
         };
         sendEvent(eventData);
@@ -98,7 +98,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
     if (to === 'thankYou') {
       if (production && !debug) {
         const eventData = {
-          track: 'Question Section',
+          track: TrackEvents.questionSection,
           step: state.currentStep,
           totalSteps: state.surveyLength,
           buttonText: children,
@@ -112,7 +112,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
     if (to === 'mainExit') {
       if (production && !debug) {
         const eventData = {
-          track: 'Lead',
+          track: TrackEvents.lead,
           offerId: offerId,
         };
         sendEvent(eventData);

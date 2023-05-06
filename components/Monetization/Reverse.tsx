@@ -13,7 +13,7 @@ const Reverse = () => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
       const eventData = {
-        track: 'Reverse Exit',
+        track: TrackEvents.reverseExit,
         offerId: offerId,
         step: state.currentStep,
       };

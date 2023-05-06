@@ -17,7 +17,7 @@ const NoThankYou = ({ children, className }: { children: ReactNode; className?: 
   const handleClick = () => {
     if (production && !debug) {
       const eventData = {
-        track: 'Not Interested Exit',
+        track: TrackEvents.notInterested,
         offerId: offerId,
       };
       sendEvent(eventData);

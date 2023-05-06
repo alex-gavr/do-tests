@@ -7,6 +7,7 @@ export interface ICustomEventProperties {
   imgId?: string;
 }
 
+
 export const sendEvent = async ({
   track,
   offerId,
