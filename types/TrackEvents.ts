@@ -1,4 +1,4 @@
-enum TrackEvents {
+export enum TrackEvents {
     loaded = 'loaded',
     loadedAgain = 'loadedAgain',
     beginSurveys = 'beginSurveys',

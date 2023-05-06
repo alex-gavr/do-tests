@@ -6,6 +6,7 @@ import { useEventListener } from 'usehooks-ts';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
+import { TrackEvents } from 'types/TrackEvents';
 
 const THIRTY_SECONDS = 30;
 

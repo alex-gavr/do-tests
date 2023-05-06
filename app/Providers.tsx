@@ -11,6 +11,7 @@ import { AppProvider } from '@context/Context';
 import debug from '@utils/isDebug';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
+import { TrackEvents } from 'types/TrackEvents';
 
 interface IProps {
   children: React.ReactNode;

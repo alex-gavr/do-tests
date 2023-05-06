@@ -6,6 +6,7 @@ import { sendEvent } from '@utils/sendEvent';
 import { hasCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
+import { TrackEvents } from 'types/TrackEvents';
 
 const NonUnique = () => {
   const router = useRouter();

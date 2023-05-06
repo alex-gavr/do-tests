@@ -9,6 +9,7 @@ import { sendEvent } from '@utils/sendEvent';
 import { m } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
+import { TrackEvents } from 'types/TrackEvents';
 
 const Notification = () => {
   const router = useRouter();

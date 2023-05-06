@@ -14,6 +14,7 @@ import getPrevParams from '@utils/getPrevParams';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
 import production from '@utils/isProd';
+import { TrackEvents } from 'types/TrackEvents';
 
 const buttonVariants = cva(
   'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors duration-500 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',

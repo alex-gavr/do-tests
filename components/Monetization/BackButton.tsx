@@ -8,6 +8,7 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
+import { TrackEvents } from 'types/TrackEvents';
 
 const BackButton = () => {
   const router = useRouter();

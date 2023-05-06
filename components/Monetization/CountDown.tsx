@@ -7,6 +7,7 @@ import production from '@utils/isProd';
 import debug from '@utils/isDebug';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
+import { TrackEvents } from 'types/TrackEvents';
 
 const MINUTE = 60;
 

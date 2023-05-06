@@ -8,6 +8,7 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useContext } from 'react';
+import { TrackEvents } from 'types/TrackEvents';
 
 const NoThankYou = ({ children, className }: { children: ReactNode; className?: string }) => {
   const { state } = useContext(AppContext);

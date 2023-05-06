@@ -4,6 +4,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useContext, useEffect } from 'react';
+import { TrackEvents } from 'types/TrackEvents';
 
 const Reverse = () => {
   const { state } = useContext(AppContext);
