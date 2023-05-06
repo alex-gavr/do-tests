@@ -6,8 +6,6 @@ import DefaultSurvey from './(DefaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(TravelSurvey)/TravelSurvey';
 
 
-
-
 export interface IServerProps {
   params: {
     offerId: number | 'default';
