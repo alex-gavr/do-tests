@@ -1,6 +1,6 @@
-import CareerThankYou from "@app/(CareerSurvey)/CareerThankYou";
-import DefaultThankYou from "@app/(DefaultSurvey)/DefaultThankYou";
-import TravelThankYou from "@app/(TravelSurvey)/TravelThankYou";
+import CareerThankYou from "@app/(careerSurvey)/CareerThankYou";
+import DefaultThankYou from "@app/(defaultSurvey)/DefaultThankYou";
+import TravelThankYou from "@app/(travelSurvey)/TravelThankYou";
 import Debug from "@app/Debug";
 import { IServerProps } from "@app/page";
 import { useServerSearchParams } from "@hooks/useServerSearchParams";

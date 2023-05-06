@@ -1,9 +1,9 @@
 import BackButton from '@components/Monetization/BackButton';
 import Debug from './Debug';
 import { ISearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
-import CareerSurvey from './(CareerSurvey)/CareerSurvey';
-import DefaultSurvey from './(DefaultSurvey)/DefaultSurvey';
-import TravelSurvey from './(TravelSurvey)/TravelSurvey';
+import CareerSurvey from './(careerSurvey)/CareerSurvey';
+import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
+import TravelSurvey from './(travelSurvey)/TravelSurvey';
 
 
 export interface IServerProps {
