@@ -1,25 +1,27 @@
 'use client';
 import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
-import { useGetParam } from '@hooks/useGetParam';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
-
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
-import mixpanel from 'mixpanel-browser';
+import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useContext } from 'react';
 
-const NoThankYou = ({ children, className }: { children: ReactNode, className?: string }) => {
+const NoThankYou = ({ children, className }: { children: ReactNode; className?: string }) => {
   const { state } = useContext(AppContext);
   const router = useRouter();
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
 
   const handleClick = () => {
     if (production && !debug) {
-      mixpanel.track('noThankYou', {
+      const eventData = {
+        track: 'Not Interested Exit',
         offerId: offerId,
-      });
+      };
+      sendEvent(eventData);
+
       const url = makeExitUrl(state.exits.noThankYou);
       const urlPops = makeExitUrl(state.exits.noThankYouPops);
       window.open(url, '_blank');
@@ -28,7 +30,13 @@ const NoThankYou = ({ children, className }: { children: ReactNode, className?: 
   };
 
   return (
-    <Button type='button' onClick={handleClick} variant={'luxurySecondary'} to='noThankYou' className={className}>
+    <Button
+      type='button'
+      onClick={handleClick}
+      variant={'luxurySecondary'}
+      to='noThankYou'
+      className={className}
+    >
       {children}
     </Button>
   );

@@ -1,17 +1,17 @@
 'use client';
 import { AppContext } from '@context/Context';
-import { usePathname, useRouter } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 import makeExitUrl from '@utils/makeExitUrl';
-import mixpanel from '@lib/mixpanel';
-import { useGetParam } from '@hooks/useGetParam';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
+import { sendEvent } from '@utils/sendEvent';
 
 const THIRTY_SECONDS = 30;
 
 const AutoExit = () => {
   const router = useRouter();
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
   const { state } = useContext(AppContext);
   const [count, setCount] = useState(THIRTY_SECONDS);
   // AUTO-EXIT
@@ -31,9 +31,11 @@ const AutoExit = () => {
     }, 1000);
     // when count is 0, Auto-Exit happens
     if (count === 0) {
-      mixpanel.track('autoExit', {
-        offerId,
-      });
+      const eventData = {
+        track: 'Auto Exit',
+        offerId: offerId,
+      };
+      sendEvent(eventData);
       if (state.exits.autoExit) {
         const url = makeExitUrl(state.exits.autoExit);
         router.replace(url);

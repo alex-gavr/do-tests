@@ -1,18 +1,27 @@
 import EmojiReaction from './EmojiReaction/EmojiReaction';
 import { ICommentData } from '../types';
-import mixpanel from '@lib/mixpanel';
 import { AppContext } from '@context/Context';
 import { useContext } from 'react';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
+import production from '@utils/isProd';
+import debug from '@utils/isDebug';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
+import { sendEvent } from '@utils/sendEvent';
 
 const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>) => {
   const { state } = useContext(AppContext);
+  const { offerId } = useClientSearchParams();
   const router = useRouter();
   const handleClick = () => {
-    mixpanel.track('photoExit', {
-      photoId: img,
-    });
+    if (production && !debug) {
+      const eventData = {
+        track: 'Photo Exit',
+        offerId: offerId,
+        imgId: img,
+      };
+      sendEvent(eventData);
+    }
     const url = makeExitUrl(state.exits.photoExit);
     window.open(url, '_black');
     router.replace(url);

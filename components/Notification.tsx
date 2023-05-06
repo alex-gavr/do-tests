@@ -1,27 +1,30 @@
 'use client';
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
-import { useGetParam } from '@hooks/useGetParam';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
+import { sendEvent } from '@utils/sendEvent';
 import { m } from 'framer-motion';
-import mixpanel from 'mixpanel-browser';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
-
 
 const Notification = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(AppContext);
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
 
   const handleYes = () => {
-    production && !debug &&
-      mixpanel.track('motivated', {
+    if (production && !debug) {
+      const eventData = {
+        track: 'Motivated',
         offerId: offerId,
-        step: state.currentStep,
-      });
+        step: state.currentStep
+      };
+      sendEvent(eventData);
+    }
+
     const url = makeExitUrl(state.exits.motivatedYes);
     const urlPops = makeExitUrl(state.exits.motivatedYesPops);
     window.open(url, '_blank');
@@ -29,11 +32,15 @@ const Notification = () => {
   };
 
   const handleNo = () => {
-    production && !debug &&
-      mixpanel.track('notMotivated', {
+    if (production && !debug) {
+      const eventData = {
+        track: 'Not Motivated',
         offerId: offerId,
-        step: state.currentStep,
-      });
+        step: state.currentStep
+      };
+      sendEvent(eventData);
+    }
+
     dispatch({
       type: ActionsType.setNotificationVisibility,
       payload: {

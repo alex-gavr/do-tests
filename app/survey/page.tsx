@@ -1,7 +1,5 @@
-// export const runtime = 'edge';
-
+import Debug from '@app/Debug';
 import { IServerProps } from '@app/page';
-import { db } from '@db/db';
 import {
   careerSurveyAnswers,
   careerSurveyQuestions,
@@ -10,12 +8,27 @@ import {
   travelSurveyAnswers,
   travelSurveyQuestions,
 } from '@db/schema';
+import { useServerSearchParams } from '@hooks/useServerSearchParams';
+import { connect } from '@planetscale/database';
+import { getBestDBLocation } from '@utils/getBestDBLocation';
+import { drizzle } from 'drizzle-orm/planetscale-serverless';
 import dynamic from 'next/dynamic';
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
 const Page = async ({ searchParams }: IServerProps) => {
-  const offerId = searchParams?.offer_id === undefined ? 'default' : parseInt(searchParams.offer_id);
-  const language = searchParams?.locale;
+  const { language, country, debug, offerId } = useServerSearchParams(searchParams);
+
+  const { username, password } = getBestDBLocation(country);
+
+  const config = {
+    host: process.env.DATABASE_HOST,
+    username: username,
+    password: password,
+  };
+
+  const connection = connect(config);
+
+  const db = drizzle(connection);
 
   const questionsTable = offerId === 9241 ? careerSurveyQuestions : defaultSurveyQuestions;
   const answersTable = offerId === 9241 ? careerSurveyAnswers : defaultSurveyAnswers;
@@ -50,6 +63,7 @@ const Page = async ({ searchParams }: IServerProps) => {
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 py-10 sm:px-4'>
+      <Debug debug={debug} />
       <SurveyContainer questions={offerQuestions} answers={offerAnswers} />
     </main>
   );

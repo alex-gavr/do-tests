@@ -4,15 +4,16 @@ import { ActionsType } from '@context/actionsTypes';
 import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
 import React, { ButtonHTMLAttributes, useContext } from 'react';
-import mixpanel from '@lib/mixpanel';
 import { setCookie } from 'cookies-next';
-import { useGetParam } from '@hooks/useGetParam';
+
 import { useRouter } from 'next/navigation';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@utils/cn';
-import production from '@utils/isProd';
 import debug from '@utils/isDebug';
-
+import getPrevParams from '@utils/getPrevParams';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
+import { sendEvent } from '@utils/sendEvent';
+import production from '@utils/isProd';
 
 const buttonVariants = cva(
   'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors duration-500 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',
@@ -28,7 +29,8 @@ const buttonVariants = cva(
         luxury:
           'bg-purple-900 text-slate-50 border border-purple-700 hover:bg-purple-800 hover:border-purple-600 hover:shadow-xl',
         luxurySecondary: 'border border-purple-800 text-slate-900 hover:bg-purple-900 hover:text-slate-50',
-        backButton: 'border border-red-300 bg-neutral-900 text-gray-200 hover:bg-gray-950 hover:text-gray-100 ',
+        backButton:
+          'border border-red-300 bg-neutral-900 text-gray-200 hover:bg-gray-950 hover:text-gray-100 ',
       },
       size: {
         default: 'p-4',
@@ -50,54 +52,72 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantP
 
 const Button = ({ children, type, variant, disabled, size, className, to, ...props }: IButtonProps) => {
   const { state, dispatch } = useContext(AppContext);
-  const { valueString: offerId, valueNumber } = useGetParam('offer_id');
   const router = useRouter();
+  const { offerId } = useClientSearchParams();
+  const oldSearchParams = getPrevParams();
 
-  const offerIdLinkParam = valueNumber === 'default' ? '' : `?offer_id=${valueNumber}`;
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = () => {
     if (to === 'beginSurvey') {
-      production && !debug &&
-        mixpanel.track('Begin survey', {
+      if (production && !debug) {
+        const eventData = {
+          track: 'Begin Survey',
           offerId: offerId,
-        });
-      router.push(`/survey${offerIdLinkParam}`);
+        };
+        sendEvent(eventData);
+      }
+      router.push(`/survey${oldSearchParams}`);
     }
     if (to === 'nextQuestion') {
       dispatch({ type: ActionsType.incrementStep });
-      production && !debug &&
-        mixpanel.track('question section', {
+
+      if (production && !debug) {
+        const eventData = {
+          track: 'Question Section',
           step: state.currentStep,
           totalSteps: state.surveyLength,
           buttonText: children,
           offerId: offerId,
-        });
+        };
+        sendEvent(eventData);
+      }
     }
     if (to === 'teenExit') {
-      production && !debug &&
-        mixpanel.track('teenLead', {
+      if (production && !debug) {
+        const eventData = {
+          track: 'Teen Lead',
           offerId: offerId,
-        });
+        };
+        sendEvent(eventData);
+      }
+
       const url = makeExitUrl(state.exits.teenExit);
       const urlPops = makeExitUrl(state.exits.teenPops);
       window.open(url, '_blank');
       window.location.replace(urlPops);
     }
     if (to === 'thankYou') {
-      production && !debug &&
-        mixpanel.track('question section', {
+      if (production && !debug) {
+        const eventData = {
+          track: 'Question Section',
           step: state.currentStep,
           totalSteps: state.surveyLength,
           buttonText: children,
           offerId: offerId,
-        });
-      router.replace(`/thank-you${offerIdLinkParam}`);
+        };
+        sendEvent(eventData);
+      }
+
+      router.replace(`/thank-you${oldSearchParams}`);
     }
     if (to === 'mainExit') {
-      production && !debug &&
-        mixpanel.track('lead', {
+      if (production && !debug) {
+        const eventData = {
+          track: 'Lead',
           offerId: offerId,
-        });
+        };
+        sendEvent(eventData);
+      }
+
       const WEEK = 60 * 60 * 24 * 7;
       !debug && setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
       const url = makeExitUrl(state.exits.mainExit);

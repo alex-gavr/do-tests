@@ -4,34 +4,38 @@ import NonUnique from '@components/Monetization/NonUnique';
 import Reverse from '@components/Monetization/Reverse';
 import { AnimatePresence, LazyMotion } from 'framer-motion';
 import React, { useEffect } from 'react';
-import mixpanel from '@lib/mixpanel';
-import { useGetParam } from '@hooks/useGetParam';
+// import mixpanel from '@lib/mixpanel';
 import { hasCookie, setCookie } from 'cookies-next';
 import production from '@utils/isProd';
 import { AppProvider } from '@context/Context';
 import debug from '@utils/isDebug';
-
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
+import { sendEvent } from '@utils/sendEvent';
 
 interface IProps {
   children: React.ReactNode;
 }
 
 const Providers = ({ children }: IProps) => {
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
   const beenHere = hasCookie('beenHere');
 
   useEffect(() => {
     if (production && !debug) {
       if (beenHere) {
-        mixpanel.track('loadedAgain', {
+        const eventData = {
+          track: 'Loaded Again',
           offerId: offerId,
-        });
+        };
+        sendEvent(eventData);
       } else {
         // Cookie to track if user has been here before within 30 minutes
         setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
-        mixpanel.track('loaded', {
+        const eventData = {
+          track: 'Loaded',
           offerId: offerId,
-        });
+        };
+        sendEvent(eventData);
       }
     }
   }, []);

@@ -3,10 +3,10 @@ import { AppContext } from '@context/Context';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
-import mixpanel from '@lib/mixpanel';
-import { useGetParam } from '@hooks/useGetParam';
 import production from '@utils/isProd';
 import debug from '@utils/isDebug';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
+import { sendEvent } from '@utils/sendEvent';
 
 const MINUTE = 60;
 
@@ -21,7 +21,7 @@ const CountDown = ({
   offerExpired = 'offer expired',
 }: IProps) => {
   const router = useRouter();
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
   const { state } = useContext(AppContext);
   const [time, setTime] = useState(MINUTE);
 
@@ -30,7 +30,12 @@ const CountDown = ({
       setTime((currentCount) => currentCount - 1);
     }, 1000);
     if (time < 0 && production && !debug) {
-      mixpanel.track('accessAutoExit', { offerId });
+      const eventData = {
+        track: 'Access Auto Exit',
+        offerId: offerId,
+      };
+      sendEvent(eventData);
+
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit);
         router.replace(url);

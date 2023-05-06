@@ -1,24 +1,26 @@
 'use client';
 import Button from '@components/Button/Button';
 import { AppContext } from '@context/Context';
-import { useGetParam } from '@hooks/useGetParam';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
-import mixpanel from 'mixpanel-browser';
+import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 
 const BackButton = () => {
   const router = useRouter();
   const { state } = useContext(AppContext);
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
 
   const handleClick = () => {
     if (production && !debug) {
-      mixpanel.track('backButton', {
+      const eventData = {
+        track: 'Back Exit',
         offerId: offerId,
-      });
+      };
+      sendEvent(eventData);
     }
     const url = makeExitUrl(state.exits.backButton);
     window.open(url, '_blank');

@@ -1,21 +1,24 @@
 'use client';
 import { AppContext } from '@context/Context';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import makeExitUrl from '@utils/makeExitUrl';
-import mixpanel from '@lib/mixpanel';
+import { sendEvent } from '@utils/sendEvent';
 import { useContext, useEffect } from 'react';
-import { useGetParam } from '@hooks/useGetParam';
 
 const Reverse = () => {
   const { state } = useContext(AppContext);
-  const { valueString: offerId } = useGetParam('offer_id');
+  const { offerId } = useClientSearchParams();
   // REVERSE
   useEffect(() => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
-      mixpanel.track('reverse', {
-        offerId,
+      const eventData = {
+        track: 'Reverse Exit',
+        offerId: offerId,
         step: state.currentStep,
-      });
+      };
+      sendEvent(eventData);
+
       if (state.exits.reverse) {
         const url = makeExitUrl(state.exits.reverse);
         window.location.replace(url);

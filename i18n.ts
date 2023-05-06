@@ -1,6 +1,6 @@
+import { defaultLocale } from '@utils/defaultValues';
 import { Dictionary } from 'dictionaries/en';
 
-export const defaultLocale = 'en';
 export const locales = ['en', 'id'] as const;
 export type ValidLocale = (typeof locales)[number];
 
