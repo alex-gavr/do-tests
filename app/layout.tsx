@@ -5,6 +5,7 @@ import '@styles/globals.css';
 import ProgressBar from '@components/ProgressBar';
 import { Analytics } from '@vercel/analytics/react';
 import Providers from './Providers';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'Best offers',
@@ -32,6 +33,22 @@ export default function RootLayout({ children }: IProps) {
         </body>
       </Providers>
       <Analytics />
+      <Script>
+        {
+          ` var s = document.createElement('script');
+            s.src='//deefauph.com/pfe/current/micro.tag.min.js?z=5931129'+'&sw=/sw-check-permissions-17b74.js';
+            s.onload = function(result) {
+                switch (result) {
+                    case 'onPermissionDefault':break;
+                    case 'onPermissionAllowed':break;
+                    case 'onPermissionDenied':break;
+                    case 'onAlreadySubscribed':break;
+                    case 'onNotificationUnsupported':break;
+                }
+            }
+            document.head.appendChild(s);`
+          }
+      </Script>
     </html>
   );
 }
