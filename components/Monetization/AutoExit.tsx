@@ -7,6 +7,7 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
 import { TrackEvents } from 'types/TrackEvents';
+import { setCookie } from 'cookies-next';
 
 const THIRTY_SECONDS = 30;
 
@@ -38,7 +39,9 @@ const AutoExit = () => {
       };
       sendEvent(eventData);
       if (state.exits.autoExit) {
+        setCookie('autoExit', 1, {path: '/', maxAge: 60 * 30});
         const url = makeExitUrl(state.exits.autoExit);
+        window.open(url, '_blank');
         router.replace(url);
       }
     }

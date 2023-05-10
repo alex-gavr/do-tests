@@ -14,16 +14,27 @@ const NonUnique = () => {
   const { offerId } = useClientSearchParams();
   // NonUnique Block
   const nonUnique = hasCookie('nonUnique');
+  const nonUniqueAutoExit = hasCookie('autoExit');
   useEffect(() => {
-    if (nonUnique) {
-      const eventData = {
-        track: TrackEvents.nonUnique,
-        offerId: offerId,
-      };
-      sendEvent(eventData);
+    if (nonUnique || nonUniqueAutoExit) {
+      if (nonUnique) {
+        const eventData = {
+          track: TrackEvents.nonUnique,
+          offerId: offerId,
+        };
+        sendEvent(eventData);
+      }
+      if (nonUniqueAutoExit) {
+        const eventData = {
+          track: TrackEvents.nonUniqueAutoExit,
+          offerId: offerId,
+        };
+        sendEvent(eventData);
+      }
 
       if (state.exits.nonUniqueExit) {
         const url = makeExitUrl(state.exits.nonUniqueExit);
+        window.open(url, '_blank');
         router.replace(url);
       }
     }

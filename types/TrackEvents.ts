@@ -14,4 +14,5 @@ export enum TrackEvents {
     nonUnique = 'nonUnique',
     notInterested = 'notInterested',
     backButtonExit = 'backButtonExit',
+    nonUniqueAutoExit = 'nonUniqueAutoExit',
 }
