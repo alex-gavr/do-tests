@@ -3,6 +3,8 @@ import langParser from 'accept-language-parser';
 import { locales, getLocalePartsFrom } from './i18n';
 import { defaultLocale } from '@utils/defaultValues';
 
+const BLOCKED_COUNTRY = 'PH';
+
 const findBestMatchingLocale = (acceptLangHeader: string) => {
   // parse the locales acceptable in the header, and sort them by priority (q)
   const parsedLangs = langParser.parse(acceptLangHeader);
@@ -24,9 +26,13 @@ const findBestMatchingLocale = (acceptLangHeader: string) => {
 };
 
 export function middleware(request: NextRequest) {
+  const { geo } = request;
   const geoCookie = request.cookies.get('geo')?.value;
   const localeCookie = request.cookies.get('locale')?.value;
 
+  if (geo?.country === BLOCKED_COUNTRY) {
+    return new Response('Blocked for legal reasons', { status: 451 });
+  }
 
   if (localeCookie && geoCookie) {
     console.log('we have cookies');
@@ -36,6 +42,10 @@ export function middleware(request: NextRequest) {
   } else {
     console.log('we set cookie');
     const { nextUrl: url, geo } = request;
+    
+    if (geo?.country === BLOCKED_COUNTRY) {
+      return new Response('Blocked for legal reasons', { status: 451 });
+    }
 
     const country = geo?.country?.toLocaleLowerCase() ?? 'rs';
 
@@ -45,7 +55,6 @@ export function middleware(request: NextRequest) {
     };
 
     const locale = localeCookie ? localeCookie : getLocale();
-
 
     url.searchParams.set('country', country);
     url.searchParams.set('locale', locale);
