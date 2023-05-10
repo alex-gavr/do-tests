@@ -2,7 +2,6 @@ export const runtime = 'edge';
 
 import { inter, interBold } from '@fonts/Fonts';
 import '@styles/globals.css';
-import ProgressBar from '@components/ProgressBar';
 import { Analytics } from '@vercel/analytics/react';
 import Providers from './Providers';
 
@@ -16,15 +15,15 @@ export const metadata = {
 
 interface IProps {
   children: React.ReactNode;
-  // params: { lang: string };
+  // params: { key: string };
 }
 
 export default function RootLayout({ children }: IProps) {
+  
   return (
     <html lang={'en'} className={`${interBold.variable} ${inter.variable}`}>
       <Providers>
         <body className='relative'>
-          <ProgressBar />
           {children}
         </body>
       </Providers>
