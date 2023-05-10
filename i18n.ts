@@ -1,7 +1,7 @@
 import { defaultLocale } from '@utils/defaultValues';
 import { Dictionary } from 'dictionaries/en';
 
-export const locales = ['en', 'id'] as const;
+export const locales = ['en', 'id', 'th', 'tl'] as const;
 export type ValidLocale = (typeof locales)[number];
 
 type PathnameLocale = {
@@ -26,6 +26,8 @@ export const getLocalePartsFrom = ({ locale }: LocaleSource) => {
 const dictionaries: Record<ValidLocale, any> = {
   en: () => import('dictionaries/en').then((module) => module.default),
   id: () => import('dictionaries/id').then((module) => module.default),
+  th: () => import('dictionaries/th').then((module) => module.default),
+  tl: () => import('dictionaries/tl').then((module) => module.default),
 } as const;
 
 export const getTranslator = async (locale: ValidLocale) => {
