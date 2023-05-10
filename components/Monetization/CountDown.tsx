@@ -8,23 +8,29 @@ import debug from '@utils/isDebug';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
 import { TrackEvents } from 'types/TrackEvents';
+import { cn } from '@utils/cn';
 
+const TIMER = 180;
 const MINUTE = 60;
 
 interface IProps {
   freeAccess?: string;
   secondsWord?: string;
   offerExpired?: string;
+  className?: string;
 }
 const CountDown = ({
   freeAccess = 'free access ends in',
   secondsWord = 'seconds',
   offerExpired = 'offer expired',
+  className,
 }: IProps) => {
   const router = useRouter();
   const { offerId } = useClientSearchParams();
   const { state } = useContext(AppContext);
-  const [time, setTime] = useState(MINUTE);
+  const [time, setTime] = useState(TIMER);
+  // const minutes = Math.floor(time / MINUTE);
+  // const seconds = time % MINUTE;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,9 +56,16 @@ const CountDown = ({
     <div className='flex flex-row items-center justify-center gap-2'>
       {time > 0 ? (
         <>
-          <p className='text-center text-xs text-slate-950 sm:text-sm md:text-base'>{freeAccess}</p>
-          <p className='rounded-lg bg-indigo-200 px-4 py-1 text-xs text-slate-950 sm:text-sm md:text-base'>
+          <p className='text-center text-xs text-slate-950 sm:text-sm'>{freeAccess}</p>
+          <p
+            className={cn(
+              'rounded-lg bg-indigo-200 px-2 py-1 text-xs text-slate-950 sm:text-sm',
+              className,
+            )}
+          >
+            {/* 0{minutes}: */}
             {time} {secondsWord}
+            
           </p>
         </>
       ) : (
