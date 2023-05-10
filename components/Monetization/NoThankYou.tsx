@@ -1,5 +1,5 @@
 'use client';
-import Button from '@components/Button/Button';
+import Button, { IButtonVariants } from '@components/Button/Button';
 import { AppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
@@ -10,7 +10,15 @@ import { useRouter } from 'next/navigation';
 import { ReactNode, useContext } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
-const NoThankYou = ({ children, className }: { children: ReactNode; className?: string }) => {
+const NoThankYou = ({
+  children,
+  className,
+  variant,
+}: {
+  children: ReactNode;
+  className?: string;
+  variant?: IButtonVariants;
+}) => {
   const { state } = useContext(AppContext);
   const router = useRouter();
   const { offerId } = useClientSearchParams();
@@ -34,7 +42,7 @@ const NoThankYou = ({ children, className }: { children: ReactNode; className?: 
     <Button
       type='button'
       onClick={handleClick}
-      variant={'luxurySecondary'}
+      variant={variant ?? 'luxurySecondary'}
       to='noThankYou'
       className={className}
     >
