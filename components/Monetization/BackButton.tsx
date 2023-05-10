@@ -10,7 +10,10 @@ import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
-const BackButton = () => {
+interface IBackButtonProps {
+  text?: string;
+}
+const BackButton = ({text = 'back'}: IBackButtonProps) => {
   const router = useRouter();
   const { state } = useContext(AppContext);
   const { offerId } = useClientSearchParams();
@@ -33,11 +36,11 @@ const BackButton = () => {
       type='button'
       onClick={handleClick}
       variant={'backButton'}
-      className='fixed bottom-2 left-2 min-w-0 sm:bottom-auto sm:top-2 sm:text-xs'
+      className='fixed bottom-2 left-2 min-w-0 sm:bottom-auto sm:top-2 sm:text-xs z-[998]'
       size={'sm'}
       to='backButton'
     >
-      Back
+      {text}
     </Button>
   );
 };
