@@ -5,7 +5,6 @@ import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
 import React, { ButtonHTMLAttributes, useContext } from 'react';
 import { setCookie } from 'cookies-next';
-
 import { useRouter } from 'next/navigation';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@utils/cn';
@@ -23,15 +22,17 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-slate-900 text-white hover:bg-slate-800',
         primary: 'bg-indigo-800 text-slate-50 hover:bg-cyan-500',
-        secondary:
-          'border bg-indigo-50 border-neutral-800 bg-transparent text-gray-950 hover:bg-neutral-800 hover:text-slate-50',
+        secondary: 'border bg-indigo-50 border-neutral-800 bg-transparent text-gray-950',
         success: 'bg-emerald-600 text-neutral-50 hover:bg-emerald-300 hover:text-neutral-900',
+        successSecondary: 'border border-emerald-600 text-neutral-900',
         danger: 'bg-red-700 text-neutral-50 hover:bg-red-600 hover:text-neutral-50',
         luxury:
           'bg-purple-900 text-slate-50 border border-purple-700 hover:bg-purple-800 hover:border-purple-600 hover:shadow-xl',
         luxurySecondary: 'border border-purple-800 text-slate-900 hover:bg-purple-900 hover:text-slate-50',
         backButton:
-          'border border-red-300 bg-neutral-900 text-gray-200 hover:bg-gray-950 hover:text-gray-100 ',
+          'border border-red-300 bg-neutral-900 text-gray-200 hover:bg-gray-950 hover:text-gray-100',
+        lazada: 'bg-gradient-to-r from-red-600 to-amber-500 text-neutral-100 border border-neutral-400',
+        lazadaSecondary: 'border bg-neutral-100 border-slate-500 text-neutral-900',
       },
       size: {
         default: 'p-4',
@@ -46,6 +47,8 @@ const buttonVariants = cva(
   },
 );
 
+type IButtonStyles = VariantProps<typeof buttonVariants>;
+export type IButtonVariants = IButtonStyles['variant'];
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   to: IButtonExits | 'beginSurvey' | 'nextQuestion' | 'thankYou';
   isLoading?: boolean;
