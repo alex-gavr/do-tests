@@ -1,5 +1,7 @@
 import Button from '@components/Button/Button';
 import CompanyCard from '@components/Company';
+
+
 import React from 'react';
 
 const CareerThankYou = () => {

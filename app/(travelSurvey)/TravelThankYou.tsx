@@ -22,10 +22,10 @@ const TravelThankYou = async ({ language }: ILanguage) => {
         />
       </svg>
 
-      <h1 className='text-4xl'>{t.ThankYou.title}</h1>
-      <p className='text-center text-lg'>{t.ThankYou.description}</p>
+      <h1 className='text-4xl'>{t.TravelSurvey.thankYou.title}</h1>
+      <p className='text-center text-lg'>{t.TravelSurvey.thankYou.description}</p>
       <Button to='mainExit' variant='luxury'>
-        {t.ThankYou.button}
+        {t.TravelSurvey.thankYou.button}
       </Button>
     </>
   );

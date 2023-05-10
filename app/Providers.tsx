@@ -4,7 +4,6 @@ import NonUnique from '@components/Monetization/NonUnique';
 import Reverse from '@components/Monetization/Reverse';
 import { AnimatePresence, LazyMotion } from 'framer-motion';
 import React, { useEffect } from 'react';
-// import mixpanel from '@lib/mixpanel';
 import { hasCookie, setCookie } from 'cookies-next';
 import production from '@utils/isProd';
 import { AppProvider } from '@context/Context';
