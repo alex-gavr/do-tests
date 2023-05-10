@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { ValidLocale, getTranslator } from 'i18n';
 import formatRichText from '@utils/formatRichText';
 import ReviewsContainer from '@components/Reviews/ReviewsContainer';
-
 import Review from '@components/Reviews/Review';
 import FullScreenImage from '@components/FullScreenImage';
 import { travelReviews } from '@configs/TravelSurvey/TravelSingporeReviews';
@@ -59,7 +58,7 @@ const TravelSurvey = async ({ language }: ILanguage) => {
         </ReviewsContainer>
       </div>
       <FullScreenImage />
-      <div className='absolute top-0 h-screen w-full object-cover '>
+      <div className='fixed top-0 h-screen w-full object-cover '>
         <Image fill priority src={'/images/travel/singapore2.webp'} alt='singapore' className='object-cover ' />
       </div>
     </>

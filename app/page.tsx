@@ -4,10 +4,8 @@ import { ISearchParams, useServerSearchParams } from '@hooks/useServerSearchPara
 import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
-import kv from '@vercel/kv';
 import dynamic from 'next/dynamic';
 import ShoppingSurvey from './(shoppingSurvey)/ShoppingSurvey';
-import { TSurvey, surveySchema } from 'types/Survey';
 const BackButton = dynamic(() => import('@components/Monetization/BackButton'));
 
 export interface IServerProps {
