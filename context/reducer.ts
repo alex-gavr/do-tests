@@ -28,6 +28,17 @@ const surveyReducer = (state: InitialState, action: Actions): InitialState => {
         notificationVisible: visible,
       };
     }
+    case ActionsType.setImageFullScreen: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        fullScreenImage: {
+          visible: payload.visible,
+          src: payload.src
+        },
+      };
+    }
 
     default:
       return state;

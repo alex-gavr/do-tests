@@ -20,6 +20,10 @@ const initialState: InitialState = {
     motivatedYesPops: 5906971,
   },
   notificationVisible: null,
+  fullScreenImage: {
+    visible: false,
+    src: null,
+  },
 };
 
 export default initialState;

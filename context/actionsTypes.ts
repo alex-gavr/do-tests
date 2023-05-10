@@ -2,6 +2,7 @@ export enum ActionsType {
   incrementStep = 'incrementStep',
   setSurveyLength = 'setSurveyLength',
   setNotificationVisibility = 'setNotificationVisibility',
+  setImageFullScreen = 'setImageFullScreen',
 }
 
 export interface IIncrementStep {
@@ -19,5 +20,12 @@ export interface ISetNotificationVisibility {
     visible: boolean;
   };
 }
+export interface ISetImageFullScreen {
+  type: ActionsType.setImageFullScreen;
+  payload: {
+    visible: boolean;
+    src: string | null;
+  };
+}
 
-export type Actions = IIncrementStep | ISetSurveyLength | ISetNotificationVisibility;
+export type Actions = IIncrementStep | ISetSurveyLength | ISetNotificationVisibility | ISetImageFullScreen;

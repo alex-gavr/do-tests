@@ -50,9 +50,14 @@ export interface ISurveyText {
   answers: Array<IAnswer>;
 }
 
+interface IImageFull {
+  visible: boolean;
+  src: string | null;
+}
 export interface InitialState {
   currentStep: number;
   surveyLength: number;
   exits: IExits;
   notificationVisible: boolean | null;
+  fullScreenImage: IImageFull;
 }
