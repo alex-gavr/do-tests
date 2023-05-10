@@ -4,19 +4,21 @@ import { useContext, useEffect } from 'react';
 import { AppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { TSurveyAnswers, TSurveyQuestions } from '@db/schema';
+import { TSurvey } from 'types/Survey';
+import { cn } from '@utils/cn';
 // import Notification from './Notification';
 // import { AnimatePresence } from 'framer-motion';
 
 interface IProps {
-  questions: Array<TSurveyQuestions>;
-  answers: Array<TSurveyAnswers>;
+  surveyData: TSurvey;
+  offerId: number | 'default';
 }
 
-const SurveyContainer = ({ questions, answers }: IProps) => {
+const SurveyContainer = ({ surveyData, offerId }: IProps) => {
   const { state, dispatch } = useContext(AppContext);
-  const arrayLength = questions.length;
-  const currentQuestion = questions.find((questions) => questions.id === state.currentStep);
-  const currentAnswers = answers.filter((answers) => answers.questionId === state.currentStep);
+  const arrayLength = surveyData.length;
+  const currentQuestion = surveyData.find((questions) => questions.id === state.currentStep);
+  // const currentAnswers = answers.filter((answers) => answers.questionId === state.currentStep);
 
   useEffect(() => {
     if (state.notificationVisible === null) {
@@ -50,9 +52,16 @@ const SurveyContainer = ({ questions, answers }: IProps) => {
 
   return (
     <section className='flex w-full max-w-[600px] flex-col items-center justify-center gap-6 rounded-2xl bg-gray-100 px-4 py-6 shadow-xl shadow-gray-300 sm:gap-8 sm:p-8'>
-      <h1 className='px-4 text-center text-2xl sm:text-3xl md:text-4xl'>{currentQuestion?.question}</h1>
+      <h1
+        className={cn(
+          'px-4 text-center text-2xl sm:text-3xl md:text-4xl',
+          offerId === 9998 && 'bg-gradient-to-r from-red-600 to-amber-500 rounded-md text-white py-1 tracking-wider',
+        )}
+      >
+        {currentQuestion?.question}
+      </h1>
       <div className={className}>
-        {currentAnswers?.map((answer) => (
+        {currentQuestion?.answers?.map((answer) => (
           <Button to={answer.leadsTo} type='button' variant={answer.styleVariant} key={answer.id}>
             {answer.text}
           </Button>
