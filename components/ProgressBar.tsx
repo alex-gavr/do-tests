@@ -13,12 +13,14 @@ const ProgressBar = () => {
   const progress = state.currentStep / state.surveyLength;
 
   return (
-    <m.div
-      className='transform-origin-0 fixed left-0 right-0 top-0 h-2 bg-indigo-800'
-      initial={{ scaleX: 0 }}
-      animate={{ scaleX: progress }}
-      transition={{ duration: 2 }}
-    />
+    <div className='flex flex-col item-center content-center fixed left-0 right-0 top-0'>
+      <m.div
+        className='origin-left w-full h-2 bg-gradient-to-r from-rose-400 to-violet-500'
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: progress }}
+        transition={{ duration: 2 }}
+      />
+    </div>
   );
 };
 
