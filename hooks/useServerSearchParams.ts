@@ -1,8 +1,9 @@
 import { defaultCountry, defaultLocale, defaultOffer } from "@utils/defaultValues";
+import { ValidLocale } from "i18n";
 
 
 export interface ISearchParams {
-  locale?: 'en' | 'id';
+  locale?: ValidLocale;
   offer_id?: string | undefined;
   debug?: string | undefined;
   country?: string | undefined;
