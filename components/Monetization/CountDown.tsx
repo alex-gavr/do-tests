@@ -11,7 +11,7 @@ import { TrackEvents } from 'types/TrackEvents';
 import { cn } from '@utils/cn';
 import { hasCookie, setCookie } from 'cookies-next';
 
-const TIMER = 180;
+const TIMER = 120;
 const MINUTE = 60;
 
 interface IProps {

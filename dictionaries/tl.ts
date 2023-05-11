@@ -8,15 +8,17 @@ const dictionary = {
     },
     thankYou: {
       title: 'Salamat!',
-      description: 'Ang garantisadong slot na may 8.74% na tsansa na manalo sa luxury trip sa Singapore ay available sa ibaba 👇',
+      description:
+        'Ang garantisadong slot na may 8.74% na tsansa na manalo sa luxury trip sa Singapore ay available sa ibaba 👇',
       button: 'Pag -angkin',
     },
   },
   ShoppingSurvey: {
     welcome: {
-      title: 'Kumuha ng <strong> eksklusibo </strong> shopping deal pagkatapos makumpleto ang survey',
+      title:
+        'Kumpletuhin ang aming survey at makakuha ng hanggang <strong>80% diskwento</strong> sa iyong susunod na pagbili mula sa mga nangungunang tatak ng e-commerce',
       paragraph:
-        'Nakipagsosyo kami sa mga nangungunang tatak ng e-commerce upang mabigyan ka ng isang espesyal na regalo',
+        'Tuklasin ang sikretong shopping hack na alam na ng libu-libong mamimili - kumpletuhin ang aming survey at makakuha ng eksklusibong deal!',
       button: 'Magsimula',
     },
     thankYou: {
@@ -95,7 +97,7 @@ const dictionary = {
     },
   },
   CountDown: {
-    freeAccess: 'nagtatapos ang libreng pag-access',
+    freeAccess: 'Dalian! Nagtatapos ang libreng pag-access',
     secondsWord: 'segundo',
     offerExpired: 'nag-expire ang alok',
   },

@@ -4,7 +4,6 @@ import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
 import Review from '@components/Reviews/Review';
 import ReviewsContainer from '@components/Reviews/ReviewsContainer';
-import shoppingReviews from '@configs/ShoppingSurvey/ShoppingReviews';
 import formatRichText from '@utils/formatRichText';
 import { ValidLocale, getTranslator } from 'i18n';
 
@@ -19,12 +18,11 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
     {
       tag: 'strong',
       component: ({ children, index }: any) => (
-        <strong
-          key={`child-${index}`}
-          className='bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent'
-        >
-          {children}
-        </strong>
+        <span className='relative ml-1 mr-3 inline-block from-pink-500 to-violet-500 before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-gradient-to-r'>
+          <strong key={`child-${index}`} className='relative px-2 text-white'>
+            {children}
+          </strong>
+        </span>
       ),
     },
   ];
@@ -41,11 +39,13 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
       </header>
       <div className='flex min-h-[70vh] max-w-4xl flex-col items-center justify-center gap-6'>
         <div className='flex flex-col items-center justify-center gap-2'>
-          <h1 className='text-center text-2xl sm:text-3xl md:text-4xl'>
+          <h1 className='text-center text-2xl leading-9 sm:text-3xl md:text-4xl'>
             {formatRichText(t.ShoppingSurvey.welcome.title, accent)}
           </h1>
           {/* <h1>Get personal discount from Lazada after completing survey</h1> */}
-          <p className='text-center text-sm sm:text-base'>{t.ShoppingSurvey.welcome.paragraph}</p>
+          <p className='text-center text-sm sm:text-base'>
+            {t.ShoppingSurvey.welcome.paragraph}
+          </p>
         </div>
 
         <div className='flex w-full flex-row content-center justify-center gap-4'>

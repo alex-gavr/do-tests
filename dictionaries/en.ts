@@ -14,8 +14,10 @@ const dictionary = {
   },
   ShoppingSurvey: {
     welcome: {
-      title: 'Get <strong>exclusive</strong> shopping deal after completing the survey',
-      paragraph: 'we have partnered with top e-commerce brands to provide you with a special gifts',
+      title:
+        'Complete our survey and get upto <strong>80% off</strong> your next purchase from top e-commerce brands',
+      paragraph:
+        'Discover the secret shopping hack that thousands of shoppers already know - complete our survey and get an exclusive deal!',
       button: 'BEGIN',
     },
     thankYou: {
@@ -94,7 +96,7 @@ const dictionary = {
     },
   },
   CountDown: {
-    freeAccess: 'free access ends in',
+    freeAccess: 'Be Quick! Free access ends in',
     secondsWord: 'seconds',
     offerExpired: 'offer expired',
   },
