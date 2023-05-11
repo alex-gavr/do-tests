@@ -21,6 +21,7 @@ export const sendEvent = async ({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: process.env.NEXT_PUBLIC_API_ROUTE_SECRET!,
       },
       body: JSON.stringify({
         track: track,
