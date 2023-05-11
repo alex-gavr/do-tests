@@ -53,8 +53,9 @@ export function middleware(request: NextRequest) {
       const matchedLocale = findBestMatchingLocale(request.headers.get('Accept-Language') || defaultLocale);
       return matchedLocale;
     };
-
-    const locale = localeCookie ? localeCookie : getLocale();
+    
+    const locale = getLocale();
+    console.log('lang:', locale);
 
     url.searchParams.set('country', country);
     url.searchParams.set('locale', locale);
