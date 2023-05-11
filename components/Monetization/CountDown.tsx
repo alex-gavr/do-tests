@@ -36,8 +36,18 @@ const CountDown = ({
 
   useEffect(() => {
     if (alreadyAccessAutoExit) {
-      notFound();
+      const eventData = {
+        track: TrackEvents.alreadyAccessAutoExit,
+        offerId: offerId,
+      };
+      sendEvent(eventData);
+      if (state.exits.accessAutoExit) {
+        const url = makeExitUrl(state.exits.accessAutoExit);
+        window.open(url, '_blank');
+        router.replace(url);
+      }
     }
+    
     const interval = setInterval(() => {
       setTime((currentCount) => currentCount - 1);
     }, 1000);
