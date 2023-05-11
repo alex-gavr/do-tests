@@ -19,10 +19,11 @@ interface IProps {
 const Providers = ({ children }: IProps) => {
   const { offerId } = useClientSearchParams();
   const beenHere = hasCookie('beenHere');
+  const nonUnique = hasCookie('nonUnique');
 
   useEffect(() => {
     if (production && !debug) {
-      if (beenHere) {
+      if (beenHere && !nonUnique) {
         const eventData = {
           track: TrackEvents.loadedAgain,
           offerId: offerId,
