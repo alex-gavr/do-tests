@@ -1,6 +1,6 @@
 'use client';
 import { AppContext } from '@context/Context';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 import makeExitUrl from '@utils/makeExitUrl';
@@ -13,6 +13,11 @@ const THIRTY_SECONDS = 30;
 
 const AutoExit = () => {
   const router = useRouter();
+  const pathname = usePathname()
+  if (pathname === '/higher-lower-game' || pathname === '/game-over' || pathname === '/leaderboard') {
+    return null;
+  }
+  
   const { offerId } = useClientSearchParams();
   const { state } = useContext(AppContext);
   const [count, setCount] = useState(THIRTY_SECONDS);
