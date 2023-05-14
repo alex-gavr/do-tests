@@ -9,7 +9,8 @@ import countries from '@lib/countries';
 import { CountryPair } from '@utils/HigherLowerGame/getRandomCountriesPair';
 import getNextCountryPair from '@utils/HigherLowerGame/getNextCountryPair';
 import { useRouter } from 'next/navigation';
-import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
+import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
+import { Vignette } from '@lib/Vignette';
 
 interface ICountriesProps {
   initialCountries: CountryPair;
@@ -101,7 +102,7 @@ const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }:
 
   const handleClickHint = () => {
     // Show Vignette
-    // Vignette();
+    Vignette();
 
     // Trigger Hint
     dispatch({ type: ActionsType.setHint, payload: true });
