@@ -1,4 +1,4 @@
-export const Vignette = () => {
+export const vignette = () => {
   const script = document.createElement('script');
   script.id = 'vignette';
   script.src = `https://glizauvo.net/401/5948180`;

@@ -1,89 +1,57 @@
 import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
+import { gameLeaderboard } from '@db/schema';
 import { TrophyIcon } from '@heroicons/react/24/solid';
-import { leaderboard } from '@lib/leaderboard';
-import generateRandomName from '@utils/HigherLowerGame/generateRandomName';
-import { randomIntFromInterval } from '@utils/randomInt';
+import { connect } from '@planetscale/database';
+import { desc } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/planetscale-serverless';
 import { cookies } from 'next/dist/client/components/headers';
 import Link from 'next/link';
 
 interface IPageProps {}
 
-const players = [
-  {
-    id: 1,
-    name: 'name',
-    country: 'Nigeria',
-    highestScore: 30,
-    hintsAvailable: 50,
-  },
-  {
-    id: 2,
-    name: 'name2',
-    country: 'Nigeria',
-    highestScore: 30,
-    hintsAvailable: 50,
-  },
-];
+const config = {
+  host: process.env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME_FRANKFURT,
+  password: process.env.DATABASE_PASSWORD_FRANKFURT,
+};
 
-const Page = ({}: IPageProps) => {
+const connection = connect(config);
+
+const db = drizzle(connection);
+
+const Page = async ({}: IPageProps) => {
   const cookie = cookies();
   const playerName = cookie.get('playerName')?.value ?? '?????';
-  function generateData(): any[] {
-    const countries = [
-      'USA',
-      'Canada',
-      'Australia',
-      'Brazil',
-      'Mexico',
-      'Thailand',
-      'India',
-      'South Africa',
-      'Indonesia',
-      'South Korea',
-      'Nigeria',
-      'Ghana',
-      'Kenya',
-      'Malaysia',
-      'Philippines',
-      'Vietnam',
-    ];
-    const data = [];
 
-    for (let i = 1; i <= 50; i++) {
-      const id = i;
-      const name = generateRandomName();
-      const country = countries[Math.floor(Math.random() * countries.length)];
-      const highestScore = randomIntFromInterval(10, 102);
-      const hintsAvailable = randomIntFromInterval(2, 40);
-
-      const obj = { id, name, country, highestScore, hintsAvailable };
-      data.push(obj);
-    }
-
-    data.sort((a, b) => b.highestScore - a.highestScore);
-    return data;
-  }
-
-  console.log(generateData());
+  const leaderboardData = await db
+    .select()
+    .from(gameLeaderboard)
+    .orderBy(desc(gameLeaderboard.topScore))
+    .limit(10);
 
   return (
-    <div className='flex min-h-screen flex-col items-center gap-4 bg-slate-900 px-2 py-4 relative'>
+    <div className='relative flex min-h-screen flex-col items-center gap-4 bg-slate-900 px-2 py-4'>
       <div className='flex flex-row items-center justify-center gap-2'>
         <h1 className='text-center text-4xl text-cyan-300'>Leaderboard</h1>
         <TrophyIcon className='h-8 w-8 text-yellow-300' />
       </div>
-      <p className='text-center text-lg text-neutral-200'>Legends of the game</p>
-      {leaderboard.map((player) => (
+      <p className='text-center text-lg text-neutral-200'>TOP 25 Legends of the game</p>
+      {leaderboardData.map((player) => (
         <PlayerCard
-          key={player.id}
-          name={player.name}
+          key={player.uuid}
+          name={player.playerName}
           country={player.country}
-          highestScore={player.highestScore}
+          highestScore={player.topScore}
           hintsAvailable={player.hintsAvailable}
           playerName={playerName}
         />
       ))}
-      <Link className='fixed bottom-2 left-2 text-neutral-200 bg-blue-700 z-10 px-3 py-2 text-xs rounded-md' href={'/game-over'}>back</Link>
+      <Link
+        className='fixed bottom-2 left-2 z-10 rounded-md bg-blue-700 px-3 py-2 text-xs text-neutral-200'
+        href={'/game-over'}
+      >
+        back
+      </Link>
     </div>
   );
 };

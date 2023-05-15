@@ -1,5 +1,5 @@
 import { InferModel } from 'drizzle-orm';
-import { bigint, mysqlEnum, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
+import { bigint, mediumint, mysqlEnum, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
 
 // DEFAULT SURVEY
 
@@ -72,3 +72,14 @@ export const travelSurveyAnswers = mysqlTable('travel_survey_answers', {
   questionId: bigint('question_id', { mode: 'number' }).notNull(),
   leadsTo: mysqlEnum('leads_to', ['teenExit', 'nextQuestion', 'thankYou']).notNull(),
 });
+
+
+export const gameLeaderboard = mysqlTable('game_leaderboard', {
+  uuid: varchar('uuid', { length: 36 }).notNull(),
+  playerName: varchar('player_name', { length: 100 }).notNull(),
+  country: varchar('country', { length: 50 }).notNull(),
+  topScore: mediumint('top_score').notNull(),
+  hintsAvailable: mediumint('hints_available').notNull(),
+});
+
+export type TGameLeaderboard = InferModel<typeof gameLeaderboard>;
