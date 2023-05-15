@@ -1,13 +1,12 @@
 'use client';
 import Button from '@components/Button/Button';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
-import React, { useContext } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
 interface IBackButtonProps {
@@ -15,7 +14,7 @@ interface IBackButtonProps {
 }
 const BackButton = ({text = 'back'}: IBackButtonProps) => {
   const router = useRouter();
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const { offerId } = useClientSearchParams();
 
   const handleClick = () => {

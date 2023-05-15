@@ -1,13 +1,13 @@
 'use client';
 import Button, { IButtonVariants } from '@components/Button/Button';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
 const NoThankYou = ({
@@ -19,7 +19,7 @@ const NoThankYou = ({
   className?: string;
   variant?: IButtonVariants;
 }) => {
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const router = useRouter();
   const { offerId } = useClientSearchParams();
 

@@ -1,8 +1,8 @@
 'use client';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import makeExitUrl from '@utils/makeExitUrl';
-import { notFound, useRouter } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import production from '@utils/isProd';
 import debug from '@utils/isDebug';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
@@ -28,7 +28,7 @@ const CountDown = ({
 }: IProps) => {
   const router = useRouter();
   const { offerId } = useClientSearchParams();
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const [time, setTime] = useState(TIMER);
   // const minutes = Math.floor(time / MINUTE);
   // const seconds = time % MINUTE;

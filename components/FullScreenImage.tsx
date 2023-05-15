@@ -1,14 +1,13 @@
 'use client';
 
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
-import { useContext } from 'react';
-import { StarIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon } from '@heroicons/react/20/solid';
 
 interface IFullScreenImageProps {}
 
 const FullScreenImage = ({}: IFullScreenImageProps) => {
-  const { state, dispatch } = useContext(AppContext);
+  const { surveyState: state, surveyDispatch: dispatch } = useAppContext();
 
   const handleClick = () => {
     dispatch({
@@ -28,7 +27,11 @@ const FullScreenImage = ({}: IFullScreenImageProps) => {
           onClick={handleClick}
         >
           <XMarkIcon className='absolute bottom-2 right-2 z-40 h-8 w-8 rounded-sm bg-slate-950 text-white' />
-          <img src={state.fullScreenImage.src!} alt='whatever' className='w-5/6 rounded-md sm:w-3/6 md:w-1/6' />
+          <img
+            src={state.fullScreenImage.src!}
+            alt='whatever'
+            className='w-5/6 rounded-md sm:w-3/6 md:w-1/6'
+          />
         </div>
       )}
     </>

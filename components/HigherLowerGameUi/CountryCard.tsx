@@ -1,13 +1,11 @@
 'use client';
 
-import { AppContext } from '@context/Context';
-import { ActionsType } from '@context/actionsTypes';
+import { useAppContext } from '@context/Context';
+import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
-import getQuestionMarks from '@utils/HigherLowerGame/createQuestionMarks';
 import { cn } from '@utils/cn';
 import { randomIntFromInterval } from '@utils/randomInt';
 import Image from 'next/image';
-import { useContext, useState } from 'react';
 
 interface ICountryCardProps {
   id: number;
@@ -20,18 +18,18 @@ interface ICountryCardProps {
 }
 //  Flag_of_Sao_Tome_and_Principe
 const CountryCard = ({ id, index, src, name, population: p, iso2, isWin }: ICountryCardProps) => {
-  const { state, dispatch } = useContext(AppContext);
+  const { gameState: state, gameDispatch: dispatch } = useAppContext();
   //   const [isPicked, setIsPicked] = useState<boolean>(false);
   // const [showPopulation, setShowPopulation] = useState<boolean>(false);
   const population = p.toLocaleString();
   const rangePercentage = randomIntFromInterval(50, 90);
   const range = createPopulationRange(p, rangePercentage);
-  const isPicked = id === state.higherLowerGame.pickedCard?.id ? true : false;
-  const isAnswerCorrect = state.higherLowerGame.isAnswerCorrect;
+  const isPicked = id === state.pickedCard?.id ? true : false;
+  const isAnswerCorrect = state.isAnswerCorrect;
 
   const handleClick = () => {
     dispatch({
-      type: ActionsType.setPickedCard,
+      type: GameActionTypes.setPickedCard,
       payload: {
         id,
         name,
@@ -61,7 +59,7 @@ const CountryCard = ({ id, index, src, name, population: p, iso2, isWin }: ICoun
         className={cn(
           cardBaseStyles,
           borderStyles,
-          state.higherLowerGame.showAnswer && isWin === false ? 'pointer-events-none' : '',
+          state.showAnswer && isWin === false ? 'pointer-events-none' : '',
         )}
         onClick={handleClick}
       >
@@ -69,9 +67,9 @@ const CountryCard = ({ id, index, src, name, population: p, iso2, isWin }: ICoun
         <div className={cn(nameBaseStyles, borderStyles)}>
           <div className='flex h-full w-full items-center justify-center'>
             <p className='text-xs uppercase tracking-widest text-white text-center'>
-              {state.higherLowerGame.showAnswer
+              {state.showAnswer
                 ? population
-                : state.higherLowerGame.hint.showHint
+                : state.hint.showHint
                 ? range[0].toLocaleString() + ' - ' + range[1].toLocaleString()
                 : name}
             </p>

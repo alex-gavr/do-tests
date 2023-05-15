@@ -1,7 +1,6 @@
 import EmojiReaction from './EmojiReaction/EmojiReaction';
 import { ICommentData } from '../types';
-import { AppContext } from '@context/Context';
-import { useContext } from 'react';
+import { useAppContext } from '@context/Context';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import production from '@utils/isProd';
@@ -11,7 +10,7 @@ import { sendEvent } from '@utils/sendEvent';
 import { TrackEvents } from 'types/TrackEvents';
 
 const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>) => {
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const { offerId } = useClientSearchParams();
   const router = useRouter();
   const handleClick = () => {

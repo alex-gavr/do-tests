@@ -1,7 +1,7 @@
 'use client';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { usePathname, useRouter } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 import makeExitUrl from '@utils/makeExitUrl';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
@@ -13,13 +13,13 @@ const THIRTY_SECONDS = 30;
 
 const AutoExit = () => {
   const router = useRouter();
-  const pathname = usePathname()
+  const pathname = usePathname();
   if (pathname === '/higher-lower-game' || pathname === '/game-over' || pathname === '/leaderboard') {
     return null;
   }
-  
+
   const { offerId } = useClientSearchParams();
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const [count, setCount] = useState(THIRTY_SECONDS);
   // AUTO-EXIT
   const updateCount = () => {
@@ -44,7 +44,7 @@ const AutoExit = () => {
       };
       sendEvent(eventData);
       if (state.exits.autoExit) {
-        setCookie('autoExit', 1, {path: '/', maxAge: 60 * 30});
+        setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
         const url = makeExitUrl(state.exits.autoExit);
         window.open(url, '_blank');
         router.replace(url);

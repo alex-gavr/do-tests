@@ -54,29 +54,11 @@ interface IImageFull {
   visible: boolean;
   src: string | null;
 }
-interface IPickedCard {
-  id: number;
-  name: string;
-  iso2: string;
-  population: number;
-}
-interface IHigherLowerGame {
-  isAnswerCorrect: boolean | null;
-  countDown: number;
-  pickedCard: IPickedCard | null;
-  hint: {
-    numberOfHintsAvailable: number;
-    showHint: boolean;
-  };
-  showAnswer: boolean;
-  score: number;
-  highestScore: number;
-}
+
 export interface InitialState {
   currentStep: number;
   surveyLength: number;
   exits: IExits;
   notificationVisible: boolean | null;
   fullScreenImage: IImageFull;
-  higherLowerGame: IHigherLowerGame;
 }

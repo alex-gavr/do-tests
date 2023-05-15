@@ -1,13 +1,13 @@
 'use client';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
 const Reverse = () => {
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const { offerId } = useClientSearchParams();
   // REVERSE
   useEffect(() => {

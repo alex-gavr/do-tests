@@ -1,6 +1,6 @@
 'use client';
 
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { cn } from '@utils/cn';
 import debug from '@utils/isDebug';
@@ -9,7 +9,6 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
 interface IImageToAdProps {
@@ -18,7 +17,7 @@ interface IImageToAdProps {
 }
 
 const ImageToAd = ({ src, className }: IImageToAdProps) => {
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const { offerId } = useClientSearchParams();
   const router = useRouter();
   const handleClick = () => {

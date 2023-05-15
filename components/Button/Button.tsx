@@ -1,9 +1,9 @@
 'use client';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { IButtonExits } from '@context/stateTypes';
 import makeExitUrl from '@utils/makeExitUrl';
-import React, { ButtonHTMLAttributes, useContext } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { cva, VariantProps } from 'class-variance-authority';
@@ -55,7 +55,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantP
 }
 
 const Button = ({ children, type, variant, disabled, size, className, to, ...props }: IButtonProps) => {
-  const { state, dispatch } = useContext(AppContext);
+  const { surveyState: state, surveyDispatch: dispatch } = useAppContext();
   const router = useRouter();
   const { offerId } = useClientSearchParams();
   const oldSearchParams = getPrevParams();

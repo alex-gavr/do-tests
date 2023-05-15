@@ -1,16 +1,16 @@
 'use client';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { hasCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
 const NonUnique = () => {
   const router = useRouter();
-  const { state } = useContext(AppContext);
+  const { surveyState: state } = useAppContext();
   const { offerId } = useClientSearchParams();
   // NonUnique Block
   const nonUnique = hasCookie('nonUnique');

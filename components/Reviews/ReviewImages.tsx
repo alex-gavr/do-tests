@@ -1,16 +1,15 @@
 'use client';
 
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import Image from 'next/image';
-import { useContext } from 'react';
 
 interface IReviewImagesProps {
   image: string;
 }
 
 const ReviewImages = ({ image }: IReviewImagesProps) => {
-  const { dispatch } = useContext(AppContext);
+  const { surveyDispatch: dispatch } = useAppContext();
 
   const handleShowImage = (img: string) => {
     dispatch({

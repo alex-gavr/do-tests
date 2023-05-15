@@ -1,9 +1,8 @@
 'use client';
 import Button from '@components/Button/Button';
-import { useContext, useEffect } from 'react';
-import { AppContext } from '@context/Context';
+import { useEffect } from 'react';
+import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
-import { TSurveyAnswers, TSurveyQuestions } from '@db/schema';
 import { TSurvey } from 'types/Survey';
 import { cn } from '@utils/cn';
 // import Notification from './Notification';
@@ -15,7 +14,8 @@ interface IProps {
 }
 
 const SurveyContainer = ({ surveyData, offerId }: IProps) => {
-  const { state, dispatch } = useContext(AppContext);
+  const { surveyState: state, surveyDispatch: dispatch } = useAppContext();
+
   const arrayLength = surveyData.length;
   const currentQuestion = surveyData.find((questions) => questions.id === state.currentStep);
   // const currentAnswers = answers.filter((answers) => answers.questionId === state.currentStep);
@@ -55,7 +55,8 @@ const SurveyContainer = ({ surveyData, offerId }: IProps) => {
       <h1
         className={cn(
           'px-4 text-center text-2xl sm:text-3xl md:text-4xl',
-          offerId === 9998 && 'bg-gradient-to-r from-red-600 to-amber-500 rounded-md text-white py-1 tracking-wider',
+          offerId === 9998 &&
+            'rounded-md bg-gradient-to-r from-red-600 to-amber-500 py-1 tracking-wider text-white',
         )}
       >
         {currentQuestion?.question}

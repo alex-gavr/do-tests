@@ -1,5 +1,5 @@
 'use client';
-import { AppContext } from '@context/Context';
+import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
@@ -8,12 +8,11 @@ import makeExitUrl from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { m } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
 
 const Notification = () => {
   const router = useRouter();
-  const { state, dispatch } = useContext(AppContext);
+  const { surveyState: state, surveyDispatch: dispatch } = useAppContext();
   const { offerId } = useClientSearchParams();
 
   const handleYes = () => {

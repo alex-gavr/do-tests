@@ -1,25 +1,24 @@
 'use client';
 
 import GameButton from '@components/HigherLowerGameUi/GameButton';
-import { AppContext } from '@context/Context';
-import { ActionsType } from '@context/actionsTypes';
+import { useAppContext } from '@context/Context';
+import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
 
 interface IButtonsContainerProps {}
 
 const ButtonsContainer = ({}: IButtonsContainerProps) => {
-  const { state, dispatch } = useContext(AppContext);
+  const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const router = useRouter();
 
   const handleClickGame = () => {
     deleteCookie('lost');
-    dispatch({ type: ActionsType.resetScore });
-    dispatch({ type: ActionsType.resetCountDown });
-    dispatch({ type: ActionsType.setIsAnswerCorrect, payload: null });
-    dispatch({ type: ActionsType.setShowAnswer, payload: false });
-    dispatch({ type: ActionsType.setPickedCard, payload: null });
+    dispatch({ type: GameActionTypes.resetScore });
+    dispatch({ type: GameActionTypes.resetCountDown });
+    dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
+    dispatch({ type: GameActionTypes.setShowAnswer, payload: false });
+    dispatch({ type: GameActionTypes.setPickedCard, payload: null });
     router.replace('/higher-lower-game');
   };
 
