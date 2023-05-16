@@ -7,6 +7,9 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['mysql2'],
   },
+  images: {
+    domains: ['offerimage.com'],
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

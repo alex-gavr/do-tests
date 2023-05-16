@@ -3,13 +3,14 @@
 import GameButton from '@components/HigherLowerGameUi/GameButton';
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
+import { VignetteActionTypes } from '@context/vignette/vignetteActionsType';
 import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 
 interface IButtonsContainerProps {}
 
 const ButtonsContainer = ({}: IButtonsContainerProps) => {
-  const { gameState: state, gameDispatch: dispatch } = useAppContext();
+  const { gameState: state, gameDispatch: dispatch, vignetteDispatch } = useAppContext();
   const router = useRouter();
 
   const handleClickGame = () => {
@@ -26,7 +27,8 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
     router.replace('/leaderboard');
   };
   const handleGetMoreHints = () => {
-    console.log('hints');
+    vignetteDispatch({ type: VignetteActionTypes.openVignette });
+    dispatch({ type: GameActionTypes.setIncrementNumberOfHintsAvailable });
   };
 
   return (

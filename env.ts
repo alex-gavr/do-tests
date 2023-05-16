@@ -15,6 +15,7 @@ const envVariables = z.object({
     KV_REST_API_TOKEN: z.string(),
     KV_REST_API_READ_ONLY_TOKEN: z.string(),
     NEXT_PUBLIC_API_ROUTE_SECRET: z.string(),
+    NEXT_PUBLIC_VIGNETTE_URL: z.string(),
 });
 
 envVariables.parse(process.env);

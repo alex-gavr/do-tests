@@ -4,6 +4,7 @@ import { inter, interBold } from '@fonts/Fonts';
 import '@styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Providers from './Providers';
+import Vignette from '@components/Vignette';
 
 export const metadata = {
   title: 'Best offers',
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: IProps) {
       <Providers>
         <body className='relative'>
           {children}
+          <Vignette />
         </body>
       </Providers>
       <Analytics />

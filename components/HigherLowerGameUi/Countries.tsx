@@ -10,6 +10,7 @@ import getNextCountryPair from '@utils/HigherLowerGame/getNextCountryPair';
 import { useRouter } from 'next/navigation';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
+import { VignetteActionTypes } from '@context/vignette/vignetteActionsType';
 
 interface ICountriesProps {
   initialCountries: CountryPair;
@@ -20,7 +21,7 @@ interface ICountriesProps {
 
 const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }: ICountriesProps) => {
   const [countriesToDisplay, setCountriesToDisplay] = useState<CountryPair>(initialCountries);
-  const { gameState: state, gameDispatch: dispatch } = useAppContext();
+  const { gameState: state, gameDispatch: dispatch, vignetteDispatch } = useAppContext();
   const router = useRouter();
   const name = hasCookie('playerName');
   useEffect(() => {
@@ -99,7 +100,7 @@ const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }:
 
   const handleClickHint = () => {
     // Show Vignette
-    // vignette();
+    vignetteDispatch({ type: VignetteActionTypes.openVignette });
 
     // Trigger Hint
     dispatch({ type: GameActionTypes.setHint, payload: true });
