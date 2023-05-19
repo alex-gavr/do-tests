@@ -36,19 +36,21 @@ const CreateUser = ({ country }: ICreateUserProps) => {
   };
 
   useEffect(() => {
-    gameDispatch({ type: GameActionTypes.setUser, payload: user });
-    if (production) {
-      const data: TGameEventProperties = {
-        track: GameEvents.userCreated,
-        offerId: 'populations-game',
-        userId: user.uuid,
-        playerName: user.playerName,
-        country: user.country,
-        topScore: user.topScore,
-        hintsAvailable: user.hintsAvailable,
-        roundsPlayed: user.roundsPlayed,
-      };
-      sendEvent('game', data);
+    if (gameState.user.uuid.length === 0) {
+      gameDispatch({ type: GameActionTypes.setUser, payload: user });
+      if (production) {
+        const data: TGameEventProperties = {
+          track: GameEvents.userCreated,
+          offerId: 'populations-game',
+          userId: user.uuid,
+          playerName: user.playerName,
+          country: user.country,
+          topScore: user.topScore,
+          hintsAvailable: user.hintsAvailable,
+          roundsPlayed: user.roundsPlayed,
+        };
+        sendEvent('game', data);
+      }
     }
   }, []);
 
