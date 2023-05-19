@@ -16,17 +16,19 @@ export const metadata = {
 
 interface IProps {
   children: React.ReactNode;
+  modal: React.ReactNode;
   // params: { key: string };
 }
 
-export default function RootLayout({ children }: IProps) {
-  
+export default function RootLayout({ children, modal }: IProps) {
+
   return (
     <html lang={'en'} className={`${interBold.variable} ${inter.variable}`}>
       <Providers>
         <body className='relative'>
           {children}
-          <Vignette />
+          {/* <Vignette /> */}
+          {modal}
         </body>
       </Providers>
       <Analytics />

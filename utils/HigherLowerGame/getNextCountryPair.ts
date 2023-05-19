@@ -1,7 +1,9 @@
+import { ICard } from '@context/higher-lower-game/gameStateType';
 import { ICountry } from '@lib/countries';
-import { CountryPair } from './getRandomCountriesPair';
 
-const getNextCountryPair = (countries: ICountry[], currentPair: CountryPair): CountryPair => {
+export type TCountryPair = [ICard, ICard];
+
+const getNextCountryPair = (countries: ICountry[], currentPair: TCountryPair): TCountryPair => {
   const availableCountries = countries.filter((country) => !currentPair.includes(country));
   const randomIndex1 = Math.floor(Math.random() * availableCountries.length);
   let randomIndex2 = Math.floor(Math.random() * availableCountries.length);

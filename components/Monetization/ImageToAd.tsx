@@ -27,7 +27,7 @@ const ImageToAd = ({ src, className }: IImageToAdProps) => {
         offerId: offerId,
         imgId: src,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
     }
     const url = makeExitUrl(state.exits.photoExit);
     window.open(url, '_black');

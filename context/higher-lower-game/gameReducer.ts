@@ -5,55 +5,73 @@ const gameReducer = (state: IGameInitialState, action: TGameActions): IGameIniti
   const { type } = action;
 
   switch (type) {
+    case GameActionTypes.setUser: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        user: payload,
+      };
+    }
+
+    case GameActionTypes.setTopScore: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          topScore: payload,
+        },
+      };
+    }
+
+    case GameActionTypes.setHintsAvailable: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          hintsAvailable: payload,
+        },
+      };
+    }
+    case GameActionTypes.setRoundsPlayed: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          roundsPlayed: payload,
+        },
+      };
+    }
+
+    case GameActionTypes.setTopCard: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        topCard: payload,
+      };
+    }
+    case GameActionTypes.setBottomCard: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        bottomCard: payload,
+      };
+    }
+
     case GameActionTypes.setPickedCard: {
       const { payload } = action;
 
       return {
         ...state,
         pickedCard: payload,
-      };
-    }
-    case GameActionTypes.setHint: {
-      const { payload } = action;
-
-      return {
-        ...state,
-        hint: {
-          ...state.hint,
-          showHint: payload,
-        },
-      };
-    }
-    case GameActionTypes.setDecrementNumberOfHintsAvailable: {
-      // const { payload } = action;
-
-      return {
-        ...state,
-        hint: {
-          ...state.hint,
-          numberOfHintsAvailable: state.hint.numberOfHintsAvailable - 1,
-        },
-      };
-    }
-    case GameActionTypes.setIncrementNumberOfHintsAvailable: {
-      // const { payload } = action;
-      return {
-        ...state,
-        hint: {
-          ...state.hint,
-          numberOfHintsAvailable: state.hint.numberOfHintsAvailable + 1,
-        },
-      };
-    }
-    case GameActionTypes.setNumberOfHintsAvailable: {
-      const { payload } = action;
-
-      return {
-        ...state,
-        hint: {
-          ...state.hint,
-          numberOfHintsAvailable: payload,
-        },
       };
     }
 
@@ -65,38 +83,16 @@ const gameReducer = (state: IGameInitialState, action: TGameActions): IGameIniti
         showAnswer: payload,
       };
     }
-    case GameActionTypes.setIncrementScore: {
-      // const { payload } = action;
 
-      return {
-        ...state,
-        score: state.score + 1,
-      };
-    }
-    case GameActionTypes.resetScore: {
-      // const { payload } = action;
-
-      return {
-        ...state,
-        score: 0,
-      };
-    }
-    case GameActionTypes.setIncrementHighestScore: {
-      // const { payload } = action;
-
-      return {
-        ...state,
-        highestScore: state.highestScore + 1,
-      };
-    }
-    case GameActionTypes.setHighestScore: {
+    case GameActionTypes.setShowHint: {
       const { payload } = action;
 
       return {
         ...state,
-        highestScore: payload,
+        showHint: payload,
       };
     }
+
     case GameActionTypes.setIsAnswerCorrect: {
       const { payload } = action;
 
@@ -105,20 +101,102 @@ const gameReducer = (state: IGameInitialState, action: TGameActions): IGameIniti
         isAnswerCorrect: payload,
       };
     }
-    case GameActionTypes.resetCountDown: {
-      // const { payload } = action;
 
+    case GameActionTypes.resetLostCountDown: {
       return {
         ...state,
-        countDown: 3,
+        lostCountDown: 3,
       };
     }
-    case GameActionTypes.decrementCountDown: {
+    case GameActionTypes.decrementLostCountDown: {
+      if (state.lostCountDown === 0) {
+        return state;
+      }
+
+      return {
+        ...state,
+        lostCountDown: state.lostCountDown - 1,
+      };
+    }
+
+    case GameActionTypes.setSecondsToAnswerEnabled: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        timerToAnswer: {
+          ...state.timerToAnswer,
+          enabled: payload,
+        },
+      };
+    }
+    case GameActionTypes.setSecondsToAnswer: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        timerToAnswer: {
+          ...state.timerToAnswer,
+          time: payload,
+        },
+      };
+    }
+
+    case GameActionTypes.resetSecondsToAnswer: {
+      if (state.user.roundsPlayed <= 2) {
+        return {
+          ...state,
+          timerToAnswer: {
+            ...state.timerToAnswer,
+            time: 25,
+          },
+        };
+      } else {
+        return {
+          ...state,
+          timerToAnswer: {
+            ...state.timerToAnswer,
+            time: 15,
+          },
+        };
+      }
+    }
+
+    case GameActionTypes.decrementSecondsToAnswer: {
+      if (state.timerToAnswer.time === 0) {
+        return state;
+      }
+
+      return {
+        ...state,
+        timerToAnswer: {
+          ...state.timerToAnswer,
+          time: state.timerToAnswer.time - 1,
+        },
+      };
+    }
+
+    case GameActionTypes.setScore: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        score: payload,
+      };
+    }
+    case GameActionTypes.incrementScore: {
+      return {
+        ...state,
+        score: state.score + 1,
+      };
+    }
+
+    case GameActionTypes.resetScore: {
       // const { payload } = action;
 
       return {
         ...state,
-        countDown: state.countDown - 1,
+        score: 0,
       };
     }
 

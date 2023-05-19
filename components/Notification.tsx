@@ -22,7 +22,7 @@ const Notification = () => {
         offerId: offerId,
         step: state.currentStep
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
     }
 
     const url = makeExitUrl(state.exits.motivatedYes);
@@ -38,7 +38,7 @@ const Notification = () => {
         offerId: offerId,
         step: state.currentStep
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
     }
 
     dispatch({

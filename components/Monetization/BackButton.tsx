@@ -23,7 +23,7 @@ const BackButton = ({text = 'back'}: IBackButtonProps) => {
         track: TrackEvents.backButtonExit,
         offerId: offerId,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
     }
     const url = makeExitUrl(state.exits.backButton);
     window.open(url, '_blank');

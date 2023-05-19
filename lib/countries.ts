@@ -3,7 +3,7 @@ export interface ICountry {
   name: string;
   flag: string;
   iso2: string;
-  iso3: string;
+  iso3?: string;
   population: number;
 }
 const countries: ICountry[] = [

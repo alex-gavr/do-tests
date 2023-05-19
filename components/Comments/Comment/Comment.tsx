@@ -20,7 +20,7 @@ const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>)
         offerId: offerId,
         imgId: img,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
     }
     const url = makeExitUrl(state.exits.photoExit);
     window.open(url, '_black');

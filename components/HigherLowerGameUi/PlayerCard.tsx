@@ -17,7 +17,7 @@ const PlayerCard = ({ name, country, highestScore, hintsAvailable, playerName }:
     <div
       className={cn(
         'flex w-full flex-row items-center justify-between gap-1 rounded-sm bg-neutral-800 px-2 py-2 capitalize max-w-2xl',
-        user ? 'bg-neutral-50' : '',
+        user ? 'bg-neutral-50 ' : '',
       )}
     >
       <div className='flex flex-col items-start justify-start'>

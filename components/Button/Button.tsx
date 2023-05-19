@@ -67,7 +67,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.beginSurveys,
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
       router.push(`/survey${oldSearchParams}`);
     }
@@ -79,10 +79,10 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.questionSection,
           step: state.currentStep,
           totalSteps: state.surveyLength,
-          buttonText: children,
+          buttonText: children?.toString(),
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
     }
     if (to === 'teenExit') {
@@ -91,7 +91,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.teenLead,
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
 
       const url = makeExitUrl(state.exits.teenExit);
@@ -105,10 +105,10 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.questionSection,
           step: state.currentStep,
           totalSteps: state.surveyLength,
-          buttonText: children,
+          buttonText: children?.toString(),
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
 
       router.replace(`/thank-you${oldSearchParams}`);
@@ -119,7 +119,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.lead,
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
 
       const WEEK = 60 * 60 * 24 * 7;

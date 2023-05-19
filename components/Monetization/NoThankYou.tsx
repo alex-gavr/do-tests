@@ -29,7 +29,7 @@ const NoThankYou = ({
         track: TrackEvents.notInterested,
         offerId: offerId,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
 
       const url = makeExitUrl(state.exits.noThankYou);
       const urlPops = makeExitUrl(state.exits.noThankYouPops);

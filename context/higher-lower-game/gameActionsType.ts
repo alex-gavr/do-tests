@@ -1,58 +1,80 @@
+import { ICard, TUser } from './gameStateType';
+
 export enum GameActionTypes {
+  // user
+  setUser = 'setUser',
+  // topScore
+  setTopScore = 'setTopScore',
+  // hintsAvailable
+  setHintsAvailable = 'setHintsAvailable',
+  // roundsPlayed
+  setRoundsPlayed ='setRoundsPlayed',
+  // topCard
+  setTopCard = 'setTopCard',
+  // bottomCard
+  setBottomCard = 'setBottomCard',
+  // Picked Card
   setPickedCard = 'setPickedCard',
-  setHint = 'setHint',
-  setDecrementNumberOfHintsAvailable = 'setDecrementNumberOfHintsAvailable',
-  setIncrementNumberOfHintsAvailable = 'setIncrementNumberOfHintsAvailable',
-  setNumberOfHintsAvailable = 'setNumberOfHintsAvailable',
-  setShowAnswer = 'setShowAnswer',
-  setIncrementScore = 'setIncrementScore',
-  resetScore = 'resetScore',
-  setIncrementHighestScore = 'setIncrementHighestScore',
-  setHighestScore = 'setHighestScore',
+  // isAnswerCorrect
   setIsAnswerCorrect = 'setIsAnswerCorrect',
-  resetCountDown = 'resetCountDown',
-  decrementCountDown = 'decrementCountDown',
+  // showAnswer
+  setShowAnswer = 'setShowAnswer',
+  // CountDown
+  resetLostCountDown = 'resetLostCountDown',
+  decrementLostCountDown = 'decrementLostCountDown',
+
+  // secondsToAnswer
+  setSecondsToAnswerEnabled = 'setSecondsToAnswerEnabled',
+  setSecondsToAnswer ='setSecondsToAnswer',
+  resetSecondsToAnswer = 'resetSecondsToAnswer',
+  decrementSecondsToAnswer = 'decrementSecondsToAnswer',
+
+  // showHint
+  setShowHint = 'setShowHint',
+  // score
+  setScore = 'setScore',
+  // incrementScore
+  incrementScore = 'incrementScore',
+  // resetScore
+  resetScore = 'resetScore',
 }
 
+export interface ISetUser {
+  type: GameActionTypes.setUser;
+  payload: TUser;
+}
+export interface ISetTopScore {
+  type: GameActionTypes.setTopScore;
+  payload: TUser['topScore'];
+}
+export interface ISetHintsAvailable {
+  type: GameActionTypes.setHintsAvailable;
+  payload: TUser['hintsAvailable'];
+}
+export interface ISetRoundsPlayed {
+  type: GameActionTypes.setRoundsPlayed;
+  payload: TUser['roundsPlayed'];
+}
+export interface ISetTopCard {
+  type: GameActionTypes.setTopCard;
+  payload: ICard;
+}
+export interface ISetBottomCard {
+  type: GameActionTypes.setBottomCard;
+  payload: ICard;
+}
 export interface ISetPickedCard {
   type: GameActionTypes.setPickedCard;
-  payload: {
-    id: number;
-    name: string;
-    iso2: string;
-    population: number;
-  } | null;
+  payload: Omit<ICard, 'src'> | null;
 }
-export interface ISetHint {
-  type: GameActionTypes.setHint;
-  payload: boolean;
-}
-export interface ISetDecrementNumberOfHintsAvailable {
-  type: GameActionTypes.setDecrementNumberOfHintsAvailable;
-}
-export interface ISetIncrementNumberOfHintsAvailable {
-  type: GameActionTypes.setIncrementNumberOfHintsAvailable;
-}
-export interface ISetNumberOfHintsAvailable {
-  type: GameActionTypes.setNumberOfHintsAvailable;
-  payload: number;
-}
+
 export interface ISetShowAnswer {
   type: GameActionTypes.setShowAnswer;
   payload: boolean;
 }
-export interface ISetIncrementScore {
-  type: GameActionTypes.setIncrementScore;
-}
-export interface IResetScore {
-  type: GameActionTypes.resetScore;
-}
-export interface ISetIncrementHighestScore {
-  type: GameActionTypes.setIncrementHighestScore;
-}
-export interface ISetHighestScore {
-  type: GameActionTypes.setHighestScore;
-  payload: number;
+export interface ISetShowHint {
+  type: GameActionTypes.setShowHint;
+  payload: boolean;
 }
 
 export interface ISetIsAnswerCorrect {
@@ -61,23 +83,53 @@ export interface ISetIsAnswerCorrect {
 }
 
 export interface IResetCountDown {
-  type: GameActionTypes.resetCountDown;
+  type: GameActionTypes.resetLostCountDown;
 }
 export interface IDecrementCountDown {
-  type: GameActionTypes.decrementCountDown;
+  type: GameActionTypes.decrementLostCountDown;
+}
+export interface ISetSecondsToAnswerEnabled {
+  type: GameActionTypes.setSecondsToAnswerEnabled;
+  payload: boolean;
+}
+export interface ISetSecondsToAnswer {
+  type: GameActionTypes.setSecondsToAnswer;
+  payload: number;
+}
+export interface IResetSecondsToAnswer {
+  type: GameActionTypes.resetSecondsToAnswer;
+}
+export interface IDecrementSecondsToAnswer {
+  type: GameActionTypes.decrementSecondsToAnswer;
+}
+export interface ISetScore {
+  type: GameActionTypes.setScore;
+  payload: number;
+}
+export interface ISetIncrementScore {
+  type: GameActionTypes.incrementScore;
+}
+export interface ISetResetScore {
+  type: GameActionTypes.resetScore;
 }
 
 export type TGameActions =
+  | ISetUser
+  | ISetTopScore
+  | ISetHintsAvailable
+  | ISetRoundsPlayed
+  | ISetTopCard
+  | ISetBottomCard
   | ISetPickedCard
-  | ISetHint
-  | ISetDecrementNumberOfHintsAvailable
-  | ISetIncrementNumberOfHintsAvailable
   | ISetShowAnswer
-  | ISetIncrementScore
-  | IResetScore
-  | ISetIncrementHighestScore
-  | ISetHighestScore
+  | ISetShowHint
   | ISetIsAnswerCorrect
   | IResetCountDown
   | IDecrementCountDown
-  | ISetNumberOfHintsAvailable;
+  | IResetSecondsToAnswer
+  | IDecrementSecondsToAnswer
+  | ISetSecondsToAnswerEnabled
+  | ISetSecondsToAnswer
+  | ISetScore
+  | ISetIncrementScore
+  | ISetResetScore;

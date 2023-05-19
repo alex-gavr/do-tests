@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
 import surveyReducer from './reducer';
 import initialState from './state';
 import { Actions } from './actionsTypes';
@@ -34,7 +34,7 @@ const useAppContext = (): AppContextType => {
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [surveyState, surveyDispatch] = useReducer(surveyReducer, initialState);
-  const [gameState, gameDispatch] = useReducer(gameReducer, GameInitialState);
+  const [gameState, gameDispatch] = useReducer(gameReducer, getSavedState(GameInitialState));
   const [vignetteState, vignetteDispatch] = useReducer(vignetteReducer, VignetteInitialState);
 
   const store = useMemo(
@@ -42,7 +42,21 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     [surveyState, surveyDispatch, gameState, gameDispatch, vignetteState, vignetteDispatch],
   );
 
+  useEffect(() => {
+    localStorage.setItem('gameState', JSON.stringify(gameState));
+  }, [gameState]);
+
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 };
 
 export { AppContext, AppProvider, useAppContext };
+
+const getSavedState = (initialState: IGameInitialState) => {
+  if (typeof window !== 'undefined') {
+    const savedState = localStorage.getItem('gameState');
+    if (savedState !== null) {
+      return JSON.parse(savedState);
+    }
+    return initialState;
+  }
+};

@@ -1,55 +1,70 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CountryCard from './CountryCard';
 import { useAppContext } from '@context/Context';
 import GameButton from './GameButton';
 import countries from '@lib/countries';
-import { CountryPair } from '@utils/HigherLowerGame/getRandomCountriesPair';
-import getNextCountryPair from '@utils/HigherLowerGame/getNextCountryPair';
+import getNextCountryPair, { TCountryPair } from '@utils/HigherLowerGame/getNextCountryPair';
 import { useRouter } from 'next/navigation';
-import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
-import { VignetteActionTypes } from '@context/vignette/vignetteActionsType';
+import { ICard } from '@context/higher-lower-game/gameStateType';
+import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
+import calculateBounds from '@utils/HigherLowerGame/calculateBounds';
+import { randomIntFromInterval } from '@utils/randomInt';
+import TimerToAnswer from './TimerToAnswer';
+import production from '@utils/isProd';
+import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
+import { GameEvents } from 'types/TrackEvents';
 
-interface ICountriesProps {
-  initialCountries: CountryPair;
-  highestScore: string | undefined;
-  hints: string | undefined;
-  playerName: string;
-}
+interface ICountriesProps {}
 
-const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }: ICountriesProps) => {
-  const [countriesToDisplay, setCountriesToDisplay] = useState<CountryPair>(initialCountries);
-  const { gameState: state, gameDispatch: dispatch, vignetteDispatch } = useAppContext();
+const Countries = ({}: ICountriesProps) => {
+  const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const router = useRouter();
-  const name = hasCookie('playerName');
-  useEffect(() => {
-    if (name !== true) {
-      setCookie('playerName', playerName, { maxAge: 60 * 60 * 24 * 365 });
-    }
-  }, [name]);
-  // console.log(state.higherLowerGame);
 
-  const highestScore = state.highestScore;
-  const hints = state.hint.numberOfHintsAvailable;
+  const countriesToDisplay: TCountryPair = [state.topCard, state.bottomCard];
+
+  const topScore = state.user.topScore;
+  const hints = state.user.hintsAvailable;
   const nothingPicked = state.pickedCard === null;
   const showAnswer = state.showAnswer;
-  const showHint = state.hint.showHint;
+  const showHint = state.showHint;
   const pickedCardPopulation = state.pickedCard?.population;
-  const timer = state.countDown;
+  const timer = state.lostCountDown;
 
-  const unpickedCard = countriesToDisplay.filter((country) => country.id !== state.pickedCard?.id);
+  const unpickedCard = countriesToDisplay.find((country) => country.id !== state.pickedCard?.id);
+
+  // RANGES FOR CARDS
+  const isTopCardPopulationBigger = state.topCard.population > state.bottomCard.population ? true : false;
+  const rangeForFirstCountry = useMemo(() => {
+    return createPopulationRange(state.topCard.population, 90);
+  }, []);
+  const rangeForSecondCountry = useMemo(() => {
+    return createPopulationRange(state.bottomCard.population, 90);
+  }, []);
+
+  if (isTopCardPopulationBigger) {
+    useMemo(() => {
+      rangeForSecondCountry[1] = Math.round(rangeForFirstCountry[1] * (randomIntFromInterval(90, 110) / 100));
+    }, []);
+  } else {
+    useMemo(() => {
+      rangeForFirstCountry[1] = Math.round(rangeForSecondCountry[1] * (randomIntFromInterval(90, 110) / 100));
+    }, []);
+  }
 
   let isWin: boolean | null = null;
 
   if (pickedCardPopulation && unpickedCard) {
-    isWin = pickedCardPopulation > unpickedCard[0].population ? true : false;
+    isWin = pickedCardPopulation > unpickedCard.population ? true : false;
   }
 
   useEffect(() => {
     if (showAnswer && isWin === false) {
       const timer = setTimeout(() => {
+        dispatch({ type: GameActionTypes.setRoundsPlayed, payload: state.user.roundsPlayed + 1 });
         router.replace('/game-over');
       }, 3000);
       return () => clearTimeout(timer);
@@ -59,7 +74,7 @@ const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }:
   useEffect(() => {
     if (showAnswer && isWin === false) {
       const interval = setInterval(() => {
-        dispatch({ type: GameActionTypes.decrementCountDown });
+        dispatch({ type: GameActionTypes.decrementLostCountDown });
       }, 1000);
 
       return () => clearInterval(interval);
@@ -74,54 +89,86 @@ const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }:
 
       // if win increase score
       if (isWin === true) {
-        dispatch({ type: GameActionTypes.setIncrementScore });
+        dispatch({ type: GameActionTypes.incrementScore });
+        dispatch({ type: GameActionTypes.resetSecondsToAnswer });
       }
       // increment highest score, if it matches current score and if it is a win
-      if (isWin === true && highestScore === state.score) {
-        deleteCookie('highestScore');
-        setCookie('highestScore', highestScore + 1, { maxAge: 60 * 60 * 24 * 365 });
-        // setHighestScore((prev: number) => prev + 1);
-        dispatch({ type: GameActionTypes.setIncrementHighestScore });
+      if (isWin === true && topScore === state.score) {
+        // setTopScore((prev: number) => prev + 1);
+        dispatch({ type: GameActionTypes.setTopScore, payload: topScore + 1 });
       }
+      // If lose
       if (isWin === false) {
+        if (production) {
+          const data: TGameEventProperties = {
+            track: GameEvents.lostByWrongAnswer,
+            offerId: 'populations-game',
+            userId: state.user.uuid,
+            playerName: state.user.playerName,
+            country: state.user.country,
+            topScore: state.user.topScore,
+            hintsAvailable: state.user.hintsAvailable,
+            roundsPlayed: state.user.roundsPlayed,
+          };
+          sendEvent('game', data);
+        }
         setCookie('lost', true, { maxAge: 60 * 60 * 24 });
       }
     }
     // Get Next Country Pair
     if (state.showAnswer) {
+      dispatch({ type: GameActionTypes.resetSecondsToAnswer });
       dispatch({ type: GameActionTypes.setPickedCard, payload: null });
-      dispatch({ type: GameActionTypes.setHint, payload: false });
+      dispatch({ type: GameActionTypes.setShowHint, payload: false });
       dispatch({ type: GameActionTypes.setShowAnswer, payload: false });
       dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
       const countriesPair = getNextCountryPair(countries, countriesToDisplay);
-      setCountriesToDisplay(countriesPair);
+      dispatch({ type: GameActionTypes.setTopCard, payload: countriesPair[0] });
+      dispatch({ type: GameActionTypes.setBottomCard, payload: countriesPair[1] });
     }
   };
 
   const handleClickHint = () => {
+    if (production) {
+      const data: TGameEventProperties = {
+        track: GameEvents.showHint,
+        offerId: 'populations-game',
+        userId: state.user.uuid,
+        playerName: state.user.playerName,
+        country: state.user.country,
+        topScore: state.user.topScore,
+        hintsAvailable: state.user.hintsAvailable,
+        roundsPlayed: state.user.roundsPlayed,
+      };
+      sendEvent('game', data);
+    }
+
+    // Freeze time
+    dispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: false });
     // Show Vignette
-    vignetteDispatch({ type: VignetteActionTypes.openVignette });
+    router.push('/vignette/5948180');
+    // vignetteDispatch({ type: VignetteActionTypes.openVignette });
 
     // Trigger Hint
-    dispatch({ type: GameActionTypes.setHint, payload: true });
+    dispatch({ type: GameActionTypes.setShowHint, payload: true });
     // Decrease number of hints available
-    dispatch({ type: GameActionTypes.setDecrementNumberOfHintsAvailable });
-    deleteCookie('hints');
-    setCookie('hints', hints - 1, { maxAge: 60 * 60 * 24 * 365 });
+    dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable - 1 });
   };
 
   return (
     <>
-      <div className='flex flex-row flex-wrap justify-center gap-4'>
+      <TimerToAnswer />
+      <div className='flex flex-col flex-wrap justify-center gap-4'>
         {countriesToDisplay.map((country, index) => (
           <CountryCard
+            range={index % 2 === 0 ? rangeForFirstCountry : rangeForSecondCountry}
             isWin={isWin}
             key={country.id}
             id={country.id}
             index={index}
             name={country.name}
             population={country.population}
-            src={country.flag}
+            flag={country.flag}
             iso2={country.iso2}
           />
         ))}
@@ -141,16 +188,16 @@ const Countries = ({ initialCountries, highestScore: h, hints: h2, playerName }:
           ? timer
           : `confirm ${state.pickedCard?.name}`}
       </GameButton>
-      {!showAnswer && (
-        <GameButton
-          onClick={handleClickHint}
-          type='button'
-          variant='secondary'
-          disabled={showHint || hints === 0}
-        >
-          {showHint ? 'hope it helps' : hints === 0 ? 'no hint credits left' : 'show hint'}
-        </GameButton>
-      )}
+
+      <GameButton
+        onClick={handleClickHint}
+        type='button'
+        variant='secondary'
+        disabled={showHint || hints === 0 || showAnswer === true}
+      >
+        {showHint ? 'hope it helps' : hints === 0 ? 'no hint credits left' : 'show hint'}
+      </GameButton>
+
       {/* <p>Available hints {hintsAvailable}</p> */}
     </>
   );

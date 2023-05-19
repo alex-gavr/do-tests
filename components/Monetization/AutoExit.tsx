@@ -42,7 +42,7 @@ const AutoExit = () => {
         track: TrackEvents.autoExit,
         offerId: offerId,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
       if (state.exits.autoExit) {
         setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
         const url = makeExitUrl(state.exits.autoExit);

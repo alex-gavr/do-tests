@@ -80,6 +80,7 @@ export const gameLeaderboard = mysqlTable('game_leaderboard', {
   country: varchar('country', { length: 50 }).notNull(),
   topScore: mediumint('top_score').notNull(),
   hintsAvailable: mediumint('hints_available').notNull(),
+  roundsPlayed: mediumint('rounds_played').notNull(),
 });
 
 export type TGameLeaderboard = InferModel<typeof gameLeaderboard>;

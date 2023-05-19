@@ -27,7 +27,7 @@ const Page = async ({}: IPageProps) => {
     .select()
     .from(gameLeaderboard)
     .orderBy(desc(gameLeaderboard.topScore))
-    .limit(10);
+    .limit(25);
 
   return (
     <div className='relative flex min-h-screen flex-col items-center gap-4 bg-slate-900 px-2 py-4'>

@@ -22,14 +22,14 @@ const NonUnique = () => {
           track: TrackEvents.nonUnique,
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
       if (nonUniqueAutoExit) {
         const eventData = {
           track: TrackEvents.nonUniqueAutoExit,
           offerId: offerId,
         };
-        sendEvent(eventData);
+        sendEvent('offer',eventData);
       }
 
       if (state.exits.nonUniqueExit) {

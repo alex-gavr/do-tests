@@ -18,7 +18,7 @@ const Reverse = () => {
         offerId: offerId,
         step: state.currentStep,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
 
       if (state.exits.reverse) {
         const url = makeExitUrl(state.exits.reverse);

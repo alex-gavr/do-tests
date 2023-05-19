@@ -40,7 +40,7 @@ const CountDown = ({
         track: TrackEvents.alreadyAccessAutoExit,
         offerId: offerId,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit);
         window.open(url, '_blank');
@@ -57,7 +57,7 @@ const CountDown = ({
         track: TrackEvents.accessAutoExit,
         offerId: offerId,
       };
-      sendEvent(eventData);
+      sendEvent('offer',eventData);
 
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit);

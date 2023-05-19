@@ -17,3 +17,22 @@ export enum TrackEvents {
     nonUniqueAutoExit = 'nonUniqueAutoExit',
     alreadyAccessAutoExit = 'alreadyAccessAutoExit',
 }
+
+export enum GameEvents {
+    playAgain = 'playAgain',
+    requestLeaderboard = 'requestLeaderboard',
+    getMoreHint = 'getMoreHint',
+    vignetteGameOver = 'vignetteGameOver',
+    vignetteImpression = 'vignetteImpression',
+    vignetteProxy = 'vignetteProxy',
+    vignetteLead = 'vignetteLead',
+    vignetteClose = 'vignetteClose',
+    showHint = 'showHint',
+    userCreated = 'userCreated',
+    userExists = 'userExists',
+    lostOnTime = 'lostOnTime',
+    lostByWrongAnswer = 'lostByWrongAnswer',
+    firstTimeGame = 'firstTimeGame',
+    firstTimeGameOver = 'firstTimeGameOver',
+    firstTimeLeaderboard = 'firstTimeLeaderboard',
+}

@@ -2,7 +2,6 @@
 
 import { useAppContext } from '@context/Context';
 import { VignetteActionTypes } from '@context/vignette/vignetteActionsType';
-import getVignetteData from '@utils/Vignette/getVignetteData';
 import triggerImpression from '@utils/Vignette/triggerImpression';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -28,11 +27,11 @@ const Vignette = ({}: IVignetteProps) => {
     vignetteDispatch({ type: VignetteActionTypes.resetVignetteData });
 
     // fetch new data
-    const newData = await getVignetteData();
-    if (newData !== undefined) {
-      // set data to state if we got new data
-      vignetteDispatch({ type: VignetteActionTypes.setVignetteData, payload: newData });
-    }
+    // const newData = await getVignetteData();
+    // if (newData !== undefined) {
+    //   // set data to state if we got new data
+    //   vignetteDispatch({ type: VignetteActionTypes.setVignetteData, payload: newData });
+    // }
   };
 
   return (
