@@ -11,7 +11,6 @@ const VignetteModal = ({params}: IVignetteModalProps) => {
   
   return (
     <Modal>
-      {/* @ts-expect-error Async Server Component */}
       <Vignette params={params} />
     </Modal>
   );

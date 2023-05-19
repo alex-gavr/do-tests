@@ -89,7 +89,7 @@ const CountryCard = ({ id, index, flag, name, population: p, iso2, isWin, range 
         className={cn(cardBaseStyles, borderStyles, state.showAnswer ? 'pointer-events-none' : '')}
         onClick={handleClick}
       >
-        <Image width={400} height={300} className='absolute object-cover' src={flag} alt='whatever' />
+        <Image width={400} height={300} className='absolute object-cover' src={flag} alt='whatever' priority />
         <div className={cn(nameBaseStyles, borderStyles)}>
           <div className='flex h-full w-full items-center justify-center'>
             <p className='text-center text-xs uppercase tracking-widest text-white'>

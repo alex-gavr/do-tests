@@ -35,4 +35,5 @@ export enum GameEvents {
     firstTimeGame = 'firstTimeGame',
     firstTimeGameOver = 'firstTimeGameOver',
     firstTimeLeaderboard = 'firstTimeLeaderboard',
+    clickedOnVignetteImage = 'clickedOnVignetteImage',
 }

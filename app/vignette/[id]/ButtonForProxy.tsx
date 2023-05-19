@@ -1,15 +1,13 @@
 'use client';
 import { useAppContext } from '@context/Context';
-import { ICustomEventProperties, TGameEventProperties } from '@utils/sendEvent';
+import { TGameEventProperties } from '@utils/sendEvent';
 import { sendEvent } from '@utils/sendEvent';
-import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 
 interface IButtonForProxyProps {}
 
 const ButtonForProxy = ({}: IButtonForProxyProps) => {
   const { gameState: state } = useAppContext();
-  const router = useRouter();
 
   const handleClick = async () => {
     const eventData: TGameEventProperties = {
@@ -23,11 +21,8 @@ const ButtonForProxy = ({}: IButtonForProxyProps) => {
       roundsPlayed: state.user.roundsPlayed,
     };
     sendEvent('game', eventData);
-    console.log('you would be redirected to google.com. For testing purposes nothing happens');
-    router.back();
-    // window.location.replace('https://google.com');
+    window.location.replace('https://google.com');
   };
-  console.log('fallback ui for vignette');
 
   return (
     <div className='flex min-h-screen flex-col items-center justify-center'>
@@ -36,7 +31,8 @@ const ButtonForProxy = ({}: IButtonForProxyProps) => {
         className='cursor-pointer rounded-lg border border-slate-400 bg-blue-500 px-6 py-3 text-center text-sm tracking-wider text-white'
         onClick={handleClick}
       >
-        fallback ui for vignette (press to close it)
+        Rare find! <br />
+        Click to claim gift!
       </button>
     </div>
   );
