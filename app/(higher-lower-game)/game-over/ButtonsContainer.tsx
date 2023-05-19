@@ -1,12 +1,11 @@
 'use client';
-
 import GameButton from '@components/HigherLowerGameUi/GameButton';
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { sendUserDataToDb } from '@utils/HigherLowerGame/sendUserDataToDb';
 import production from '@utils/isProd';
-import { TGameEventProperties, gameDataSchema, offerDataSchema, sendEvent } from '@utils/sendEvent';
+import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

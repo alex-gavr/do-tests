@@ -1,10 +1,10 @@
-'use client';
+'use client'
 import { useAppContext } from '@context/Context';
 import { TrophyIcon } from '@heroicons/react/24/solid';
 
-interface IScoresProps {}
+interface IScoresContainerProps {}
 
-const Scores = ({}: IScoresProps) => {
+const ScoresContainer = ({}: IScoresContainerProps) => {
   const { gameState: state } = useAppContext();
 
   return (
@@ -21,4 +21,4 @@ const Scores = ({}: IScoresProps) => {
   );
 };
 
-export default Scores;
+export default ScoresContainer;
