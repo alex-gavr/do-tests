@@ -89,7 +89,14 @@ const CountryCard = ({ id, index, flag, name, population: p, iso2, isWin, range 
         className={cn(cardBaseStyles, borderStyles, state.showAnswer ? 'pointer-events-none' : '')}
         onClick={handleClick}
       >
-        <Image width={400} height={300} className='absolute object-cover' src={flag} alt='whatever' priority />
+        <Image
+          width={400}
+          height={300}
+          className='absolute object-cover'
+          src={flag}
+          alt='whatever'
+          priority
+        />
         <div className={cn(nameBaseStyles, borderStyles)}>
           <div className='flex h-full w-full items-center justify-center'>
             <p className='text-center text-xs uppercase tracking-widest text-white'>
@@ -103,14 +110,18 @@ const CountryCard = ({ id, index, flag, name, population: p, iso2, isWin, range 
         </div>
       </div>
       {index !== 1 && (
-        <p className='rounded-xl bg-emerald-300 px-4 py-2 text-xs  uppercase tracking-widest text-black'>
+        <p className='rounded-xl bg-emerald-300 px-4 py-2 text-center  text-xs uppercase tracking-widest text-black'>
           {isAnswerCorrect === true
             ? positiveFeedBack
             : isAnswerCorrect === false
             ? 'incorrect 😢'
             : state.user.roundsPlayed <= 2
-            ? 'pick top or bottom country ' + state.timerToAnswer.time
+            ? 'pick top or bottom country'
             : state.timerToAnswer.time}
+          <br />
+          {state.user.roundsPlayed <= 2 &&
+            isAnswerCorrect === null &&
+            'Seconds left: ' + state.timerToAnswer.time}
         </p>
       )}
     </div>
