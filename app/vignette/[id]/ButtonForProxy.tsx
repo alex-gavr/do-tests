@@ -1,5 +1,4 @@
 'use client';
-
 import { useAppContext } from '@context/Context';
 import { ICustomEventProperties, TGameEventProperties } from '@utils/sendEvent';
 import { sendEvent } from '@utils/sendEvent';
@@ -24,6 +23,7 @@ const ButtonForProxy = ({}: IButtonForProxyProps) => {
     sendEvent('game', eventData);
     window.location.replace('https://google.com');
   };
+  console.log('fallback ui for vignette');
 
   return (
     <div className='flex min-h-screen flex-col items-center justify-center'>
