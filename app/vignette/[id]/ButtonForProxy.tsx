@@ -2,12 +2,14 @@
 import { useAppContext } from '@context/Context';
 import { ICustomEventProperties, TGameEventProperties } from '@utils/sendEvent';
 import { sendEvent } from '@utils/sendEvent';
+import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 
 interface IButtonForProxyProps {}
 
 const ButtonForProxy = ({}: IButtonForProxyProps) => {
   const { gameState: state } = useAppContext();
+  const router = useRouter();
 
   const handleClick = async () => {
     const eventData: TGameEventProperties = {
@@ -21,7 +23,9 @@ const ButtonForProxy = ({}: IButtonForProxyProps) => {
       roundsPlayed: state.user.roundsPlayed,
     };
     sendEvent('game', eventData);
-    window.location.replace('https://google.com');
+    console.log('you would be redirected to google.com. For testing purposes nothing happens');
+    router.back();
+    // window.location.replace('https://google.com');
   };
   console.log('fallback ui for vignette');
 
@@ -34,6 +38,7 @@ const ButtonForProxy = ({}: IButtonForProxyProps) => {
       >
         You Found a Secrete! <br />
         Press to Claim it now
+        (for now nothing happens)
       </button>
     </div>
   );
