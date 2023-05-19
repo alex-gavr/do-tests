@@ -2,7 +2,7 @@ import { IVignette } from '@context/vignette/vignetteStateType';
 
 const getVignetteData = async (zone: string) => {
   try {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_VIGNETTE_URL}${zone}`, { mode: 'same-origin' }).then(
+    const data = await fetch(`${process.env.NEXT_PUBLIC_VIGNETTE_URL}${zone}`).then(
       (res) => {
         console.log(res);
         return res.json();

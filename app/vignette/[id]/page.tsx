@@ -1,3 +1,4 @@
+export const fetchCache = 'only-no-store';
 import getVignetteData from '@utils/Vignette/getVignetteData';
 import Image from 'next/image';
 import SendImpression from './SendImpression';
