@@ -4,6 +4,7 @@ import Image from 'next/image';
 import SendImpression from './SendImpression';
 import Buttons from './Buttons';
 import ButtonForProxy from './ButtonForProxy';
+import Test from './Test';
 
 interface IVignetteProps {
   params: {
@@ -21,7 +22,8 @@ const Vignette = async ({ params }: IVignetteProps) => {
 
   return (
     <>
-      <SendImpression url={vignetteData.impression_url} />
+      <Test />
+      {/* <SendImpression url={vignetteData.impression_url} /> */}
       <div className='flex min-h-screen flex-col items-center justify-center'>
         <div className=' flex min-w-[280px] max-w-sm flex-col items-center justify-center gap-4 rounded-lg bg-white p-4 shadow-2xl'>
           <div className='flex w-full flex-row items-center justify-start gap-4'>
