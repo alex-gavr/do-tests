@@ -28,8 +28,8 @@ export const GameInitialState: IGameInitialState = {
   showAnswer: false,
   lostCountDown: 3,
   timerToAnswer: {
-    enabled: false,
-    time: 20,
+    enabled: true,
+    time: 25,
   },
   showHint: false,
   score: 0,
