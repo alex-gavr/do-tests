@@ -36,9 +36,7 @@ const ButtonForProxy = ({}: IButtonForProxyProps) => {
         className='cursor-pointer rounded-lg border border-slate-400 bg-blue-500 px-6 py-3 text-center text-sm tracking-wider text-white'
         onClick={handleClick}
       >
-        You Found a Secrete! <br />
-        Press to Claim it now
-        (for now nothing happens)
+        fallback ui for vignette (press to close it)
       </button>
     </div>
   );
