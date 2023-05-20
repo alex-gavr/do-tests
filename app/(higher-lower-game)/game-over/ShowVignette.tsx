@@ -14,7 +14,9 @@ const ShowVignette = ({}: IShowVignetteProps) => {
   const router = useRouter();
   useEffect(() => {
     if (production) {
+      
       router.push('/vignette/5959144');
+
       const data: TGameEventProperties = {
         track: GameEvents.vignetteGameOver,
         offerId: 'populations-game',

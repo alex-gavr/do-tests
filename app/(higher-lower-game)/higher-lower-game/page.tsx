@@ -12,7 +12,11 @@ const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/Scor
 });
 const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
   ssr: false,
-  loading: () => <div className='h-screen w-full flex flex-col justify-center items-center'><h1 className='text-white'>Loading...</h1></div>,
+  loading: () => (
+    <div className='flex h-[60vh] w-full flex-col items-center justify-center'>
+      <h1 className='text-white'>Loading...</h1>
+    </div>
+  ),
 });
 const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), {
   ssr: false,
@@ -33,7 +37,7 @@ const Page = ({ searchParams }: IServerProps) => {
         <div className='absolute top-4 w-full'>
           <ScoresContainer />
         </div>
-        <h1 className='text-center text-xl text-white sm:text-2xl md:text-3xl mt-16'>
+        <h1 className='mt-16 text-center text-xl text-white sm:text-2xl md:text-3xl'>
           which country has higher population?
         </h1>
         <Countries />
