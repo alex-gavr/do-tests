@@ -1,12 +1,10 @@
-// import BackButton from '@components/Monetization/BackButton';
+import BackButton from '@components/Monetization/BackButton';
 import Debug from './Debug';
 import { ISearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
 import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
-import dynamic from 'next/dynamic';
 import ShoppingSurvey from './(shoppingSurvey)/ShoppingSurvey';
-const BackButton = dynamic(() => import('@components/Monetization/BackButton'));
 
 export interface IServerProps {
   searchParams: ISearchParams;

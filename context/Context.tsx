@@ -22,6 +22,16 @@ interface AppContextType {
   vignetteDispatch: React.Dispatch<TVignetteActions>;
 }
 
+const getSavedState = (initialState: IGameInitialState) => {
+  if (typeof window !== 'undefined') {
+    const savedState = localStorage.getItem('gameState');
+    if (savedState !== null) {
+      return JSON.parse(savedState);
+    }
+    return initialState;
+  }
+};
+
 const AppContext = createContext<AppContextType>({} as AppContextType);
 
 const useAppContext = (): AppContextType => {
@@ -50,13 +60,3 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export { AppContext, AppProvider, useAppContext };
-
-const getSavedState = (initialState: IGameInitialState) => {
-  if (typeof window !== 'undefined') {
-    const savedState = localStorage.getItem('gameState');
-    if (savedState !== null) {
-      return JSON.parse(savedState);
-    }
-    return initialState;
-  }
-};

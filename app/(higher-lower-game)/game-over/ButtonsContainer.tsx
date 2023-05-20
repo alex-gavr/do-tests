@@ -15,6 +15,7 @@ interface IButtonsContainerProps {}
 
 const ButtonsContainer = ({}: IButtonsContainerProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
+
   const [loading, setLoading] = useState<boolean>(false);
   const playerNameCookie = hasCookie('playerName');
   const router = useRouter();

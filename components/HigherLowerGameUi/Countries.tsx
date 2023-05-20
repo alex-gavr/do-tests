@@ -11,7 +11,6 @@ import { setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ICard } from '@context/higher-lower-game/gameStateType';
 import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
-import calculateBounds from '@utils/HigherLowerGame/calculateBounds';
 import { randomIntFromInterval } from '@utils/randomInt';
 import TimerToAnswer from './TimerToAnswer';
 import production from '@utils/isProd';
