@@ -1,6 +1,6 @@
 export const runtime = 'edge';
 import { userSchema } from '@context/higher-lower-game/gameStateType';
-import { gameLeaderboard } from '@db/schema';
+import { gameUser } from '@db/schema';
 import { connect } from '@planetscale/database';
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/planetscale-serverless';
@@ -31,12 +31,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
     // Check if we already have this user
     const checkIfUserExists = await db
       .select()
-      .from(gameLeaderboard)
-      .where(eq(gameLeaderboard.uuid, user.uuid));
+      .from(gameUser)
+      .where(eq(gameUser.uuid, user.uuid));
 
     // If not push new user to DB
     if (checkIfUserExists.length === 0) {
-      const result = await db.insert(gameLeaderboard).values(user);
+      const result = await db.insert(gameUser).values(user);
       const success = result.rowsAffected === 1;
 
       return NextResponse.json({ response: `user added ${success}`, status: 200 });
@@ -49,9 +49,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
       if (user.hintsAvailable !== checkIfUserExists[0].hintsAvailable) {
         // update hintsAvailable
         const updateHints = await db
-          .update(gameLeaderboard)
+          .update(gameUser)
           .set({ hintsAvailable: user.hintsAvailable })
-          .where(eq(gameLeaderboard.uuid, user.uuid));
+          .where(eq(gameUser.uuid, user.uuid));
 
         const success = updateHints.rowsAffected === 1;
 
@@ -61,9 +61,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
       //  Check if TopScore changed
       if (user.topScore !== checkIfUserExists[0].topScore) {
         const updateTopScore = await db
-          .update(gameLeaderboard)
+          .update(gameUser)
           .set({ topScore: user.topScore })
-          .where(eq(gameLeaderboard.uuid, user.uuid));
+          .where(eq(gameUser.uuid, user.uuid));
 
         const success = updateTopScore.rowsAffected === 1;
 
@@ -73,9 +73,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
       //  Check if RoundsPlayed changed
       if (user.roundsPlayed !== checkIfUserExists[0].roundsPlayed) {
         const updateTopScore = await db
-          .update(gameLeaderboard)
+          .update(gameUser)
           .set({ roundsPlayed: user.roundsPlayed })
-          .where(eq(gameLeaderboard.uuid, user.uuid));
+          .where(eq(gameUser.uuid, user.uuid));
 
         const success = updateTopScore.rowsAffected === 1;
 

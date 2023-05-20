@@ -74,13 +74,14 @@ export const travelSurveyAnswers = mysqlTable('travel_survey_answers', {
 });
 
 
-export const gameLeaderboard = mysqlTable('game_leaderboard', {
+export const gameUser = mysqlTable('game_user', {
   uuid: varchar('uuid', { length: 36 }).notNull(),
   playerName: varchar('player_name', { length: 100 }).notNull(),
   country: varchar('country', { length: 50 }).notNull(),
   topScore: mediumint('top_score').notNull(),
+  currentScore: mediumint('current_score').notNull(),
   hintsAvailable: mediumint('hints_available').notNull(),
   roundsPlayed: mediumint('rounds_played').notNull(),
 });
 
-export type TGameLeaderboard = InferModel<typeof gameLeaderboard>;
+export type TGameUser = InferModel<typeof gameUser>;

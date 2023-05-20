@@ -8,6 +8,7 @@ export const userSchema = z.object({
   playerName: z.string(),
   country: z.string(),
   topScore: z.number(),
+  currentScore: z.number(),
   hintsAvailable: z.number(),
   roundsPlayed: z.number()
 });

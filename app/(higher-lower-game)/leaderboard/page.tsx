@@ -1,5 +1,5 @@
 import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
-import { gameLeaderboard } from '@db/schema';
+import { gameUser } from '@db/schema';
 import { TrophyIcon } from '@heroicons/react/24/solid';
 import { connect } from '@planetscale/database';
 import { desc } from 'drizzle-orm';
@@ -25,8 +25,8 @@ const Page = async ({}: IPageProps) => {
 
   const leaderboardData = await db
     .select()
-    .from(gameLeaderboard)
-    .orderBy(desc(gameLeaderboard.topScore))
+    .from(gameUser)
+    .orderBy(desc(gameUser.topScore))
     .limit(25);
 
   return (
