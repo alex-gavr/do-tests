@@ -56,6 +56,7 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
       playerName: state.user.playerName,
       country: state.user.country,
       topScore: state.user.topScore,
+      currentScore: state.user.currentScore,
       hintsAvailable: state.user.hintsAvailable,
       roundsPlayed: state.user.roundsPlayed,
     });

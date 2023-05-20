@@ -6,6 +6,7 @@ export const GameInitialState: IGameInitialState = {
     playerName: '',
     country: '',
     topScore: 0,
+    currentScore: 0,
     hintsAvailable: 0,
     roundsPlayed: 0,
   },

@@ -31,6 +31,7 @@ const CreateUser = ({ country }: ICreateUserProps) => {
     playerName: generateRandomName(),
     country: fullCountryName,
     topScore: 0,
+    currentScore: 0,
     hintsAvailable: 3,
     roundsPlayed: 0,
   };
