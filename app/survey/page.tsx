@@ -2,7 +2,6 @@ import Debug from '@app/Debug';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import { TSurvey, surveySchema } from 'types/Survey';
-import kv from '@vercel/kv';
 import { z } from 'zod';
 import dynamic from 'next/dynamic';
 import { shoppingSurveyData } from '@configs/ShoppingSurvey/ShoppingSurveyData';
@@ -10,6 +9,7 @@ import Privacy from '@app/Privacy';
 import ProgressBar from '@components/ProgressBar';
 import { ValidLocale, getTranslator } from 'i18n';
 import SurveyContainer from '@components/SurveyContainer';
+import { kv } from '@vercel/kv';
 
 // const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 

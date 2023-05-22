@@ -15,9 +15,9 @@ const dictionary = {
   },
   ShoppingSurvey: {
     welcome: {
-      title: 'Selesaikan survei kami dan dapatkan hingga <strong>diskon 80%</strong> pembelian Anda berikutnya dari merek e-niaga teratas',
+      title: 'Buka Diskon Eksklusif dan Tingkatkan Tabungan Anda!',
       paragraph:
-        'Temukan kiat belanja rahasia yang sudah diketahui oleh ribuan pembeli - selesaikan survei kami dan dapatkan penawaran eksklusif!',
+        'Dapatkan diskon hingga <strong> 80% </strong> untuk pembelian berikutnya dari merek e-commerce teratas dengan menyelesaikan survei',
       button: 'MULAI',
     },
     thankYou: {

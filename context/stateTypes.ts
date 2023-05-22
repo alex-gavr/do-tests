@@ -13,6 +13,13 @@ interface IExits {
   noThankYouPops: number;
   motivatedYes: number;
   motivatedYesPops: number;
+  mainExitIpp: number;
+  mainPopsIpp: number;
+  teenExitIpp: number;
+  teenPopsIpp: number;
+  nonUniqueIpp: number;
+  noThankYouIpp: number;
+  noThankYouPopsIpp: number;
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';

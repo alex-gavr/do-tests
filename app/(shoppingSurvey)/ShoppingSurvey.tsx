@@ -6,6 +6,7 @@ import Review from '@components/Reviews/Review';
 import ReviewsContainer from '@components/Reviews/ReviewsContainer';
 import formatRichText from '@utils/formatRichText';
 import { ValidLocale, getTranslator } from 'i18n';
+import Image from 'next/image';
 
 interface IShoppingSurveyProps {
   language: ValidLocale;
@@ -18,7 +19,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
     {
       tag: 'strong',
       component: ({ children, index }: any) => (
-        <span className='relative ml-1 mr-3 inline-block from-pink-500 to-violet-500 before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-gradient-to-r'>
+        <span className='relative ml-1 mr-1 inline-block from-pink-500 to-violet-500 before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-gradient-to-r'>
           <strong key={`child-${index}`} className='relative px-2 text-white'>
             {children}
           </strong>
@@ -37,14 +38,30 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
           secondsWord={t.CountDown.secondsWord}
         />
       </header>
-      <div className='flex min-h-[70vh] max-w-4xl flex-col items-center justify-center gap-6'>
+      <Image
+        src='/images/shopping.svg'
+        alt='whatever'
+        className='absolute left-0 top-8 w-56 -translate-x-8 sm:w-96 sm:-translate-x-14 sm:top-2'
+        width={300}
+        height={300}
+      />
+
+      <Image
+        src='/images/manShopping.svg'
+        alt='whatever'
+        className='absolute right-0 top-8 w-32 sm:w-64'
+        width={300}
+        height={500}
+      />
+      <div className='relative z-20 flex min-h-[70vh] max-w-4xl flex-col items-center justify-center gap-6'>
         <div className='flex flex-col items-center justify-center gap-2'>
-          <h1 className='text-center text-2xl leading-9 sm:text-3xl md:text-4xl'>
+          <h1 className='text-center text-xl sm:text-3xl md:text-4xl'>
             {formatRichText(t.ShoppingSurvey.welcome.title, accent)}
           </h1>
           {/* <h1>Get personal discount from Lazada after completing survey</h1> */}
           <p className='text-center text-sm sm:text-base'>
-            {t.ShoppingSurvey.welcome.paragraph}
+            {/* {t.ShoppingSurvey.welcome.paragraph} */}
+            {formatRichText(t.ShoppingSurvey.welcome.paragraph, accent)}
           </p>
         </div>
 
@@ -56,6 +73,27 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
             {t.ShoppingSurvey.welcome.button}
           </Button>
         </div>
+        <Image
+          src='/images/bucket.svg'
+          alt='whatever'
+          className='absolute right-0 bottom-0 w-16 rotate-12'
+          width={40}
+          height={40}
+        />
+        <Image
+          src='/images/bag.svg'
+          alt='whatever'
+          className='absolute left-0 bottom-4 w-16 -rotate-12'
+          width={40}
+          height={40}
+        />
+        <Image
+          src='/images/discount.svg'
+          alt='whatever'
+          className='absolute bottom-5 w-24'
+          width={40}
+          height={40}
+        />
       </div>
       <div className='z-10 bg-slate-50 bg-opacity-10 px-1 py-2 backdrop-blur-sm backdrop-filter'>
         <ReviewsContainer title={t.ShoppingSurvey.commentSection.title}>

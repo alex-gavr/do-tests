@@ -15,9 +15,9 @@ const dictionary = {
   ShoppingSurvey: {
     welcome: {
       title:
-        'Complete our survey and get upto <strong>80% off</strong> your next purchase from top e-commerce brands',
+        'Unlock Exclusive Discounts and Supercharge Your Savings!',
       paragraph:
-        'Discover the secret shopping hack that thousands of shoppers already know - complete our survey and get an exclusive deal!',
+        'Get up to <strong> 80% </strong> off your next purchase from top e-commerce brands by completing survey',
       button: 'BEGIN',
     },
     thankYou: {

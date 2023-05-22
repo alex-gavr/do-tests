@@ -14,6 +14,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
 import production from '@utils/isProd';
 import { TrackEvents } from 'types/TrackEvents';
+import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
 
 const buttonVariants = cva(
   'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors duration-500 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',
@@ -60,14 +61,14 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
   const { offerId } = useClientSearchParams();
   const oldSearchParams = getPrevParams();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (to === 'beginSurvey') {
       if (production && !debug) {
         const eventData = {
           track: TrackEvents.beginSurveys,
           offerId: offerId,
         };
-        sendEvent('offer',eventData);
+        sendEvent('offer', eventData);
       }
       router.push(`/survey${oldSearchParams}`);
     }
@@ -82,7 +83,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           buttonText: children?.toString(),
           offerId: offerId,
         };
-        sendEvent('offer',eventData);
+        sendEvent('offer', eventData);
       }
     }
     if (to === 'teenExit') {
@@ -91,11 +92,15 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.teenLead,
           offerId: offerId,
         };
-        sendEvent('offer',eventData);
+        sendEvent('offer', eventData);
       }
+      const teenExit = getExitLinkWithMediation(state.exits.teenExitIpp, state.exits.teenExit);
+      const teenPops = getExitLinkWithMediation(state.exits.teenPopsIpp, state.exits.teenPops);
 
-      const url = makeExitUrl(state.exits.teenExit);
-      const urlPops = makeExitUrl(state.exits.teenPops);
+      const [url, urlPops] = await Promise.all([teenExit, teenPops]);
+
+      // const url = makeExitUrl(state.exits.teenExit);
+      // const urlPops = makeExitUrl(state.exits.teenPops);
       window.open(url, '_blank');
       window.location.replace(urlPops);
     }
@@ -108,7 +113,7 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           buttonText: children?.toString(),
           offerId: offerId,
         };
-        sendEvent('offer',eventData);
+        sendEvent('offer', eventData);
       }
 
       router.replace(`/thank-you${oldSearchParams}`);
@@ -119,13 +124,19 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
           track: TrackEvents.lead,
           offerId: offerId,
         };
-        sendEvent('offer',eventData);
+        sendEvent('offer', eventData);
       }
+      const mainExit = getExitLinkWithMediation(state.exits.mainExitIpp, state.exits.mainExit);
+      const mainPops = getExitLinkWithMediation(state.exits.mainPopsIpp, state.exits.mainPops);
+
+      const [url, urlPops] = await Promise.all([mainExit, mainPops]);
+
+      // console.log(url, urlPops);
 
       const WEEK = 60 * 60 * 24 * 7;
       !debug && setCookie('nonUnique', 'true', { path: '/', maxAge: WEEK, secure: true });
-      const url = makeExitUrl(state.exits.mainExit);
-      const urlPops = makeExitUrl(state.exits.mainPops);
+      // const url = makeExitUrl(state.exits.mainExit);
+      // const urlPops = makeExitUrl(state.exits.mainPops);
       window.open(url, '_blank');
       router.replace(urlPops);
     }

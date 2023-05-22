@@ -18,6 +18,13 @@ const initialState: InitialState = {
     noThankYouPops: 5892041,
     motivatedYes: 5906970,
     motivatedYesPops: 5906971,
+    mainExitIpp: 5972907,
+    mainPopsIpp: 5972947,
+    teenExitIpp: 5972992,
+    teenPopsIpp: 5972993,
+    nonUniqueIpp: 5973160,
+    noThankYouIpp: 5973161,
+    noThankYouPopsIpp: 5973162,
   },
   notificationVisible: null,
   fullScreenImage: {

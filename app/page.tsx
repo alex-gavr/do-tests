@@ -13,8 +13,11 @@ export interface IServerProps {
 const StartingPage = async ({ searchParams }: IServerProps) => {
   const { language, country, debug, offerId } = useServerSearchParams(searchParams);
 
+  // const response = await fetch('https://offpichuan.com/rotate?zz=5972907;5972947').then((response) => response.json());
+  // console.log(response);
+
   return (
-    <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 pb-10 pt-20 sm:px-4'>
+    <main className='flex min-h-screen flex-col items-center justify-center gap-2 px-2 pb-10 pt-20 sm:px-4'>
       {debug && <Debug debug={debug} />}
       {offerId === 9241 && <CareerSurvey />}
       {offerId === 'default' && <DefaultSurvey />}

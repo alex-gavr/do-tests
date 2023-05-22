@@ -73,9 +73,9 @@ const Providers = ({ children }: IProps) => {
 
   return (
     <AppProvider>
-      {/* {production && !debug && <AutoExit />}
+      {production && !debug && <AutoExit />}
       {production && !debug && <Reverse />}
-      {production && !debug && <NonUnique />} */}
+      {production && !debug && <NonUnique />}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>
