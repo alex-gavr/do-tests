@@ -44,6 +44,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
         className='absolute left-0 top-8 w-56 -translate-x-8 sm:w-96 sm:-translate-x-14 sm:top-2'
         width={300}
         height={300}
+        priority
       />
 
       <Image
@@ -52,6 +53,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
         className='absolute right-0 top-8 w-32 sm:w-64'
         width={300}
         height={500}
+        priority
       />
       <div className='relative z-20 flex min-h-[70vh] max-w-4xl flex-col items-center justify-center gap-6'>
         <div className='flex flex-col items-center justify-center gap-2'>
@@ -79,6 +81,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
           className='absolute right-0 bottom-0 w-16 rotate-12'
           width={40}
           height={40}
+          priority
         />
         <Image
           src='/images/bag.svg'
@@ -86,6 +89,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
           className='absolute left-0 bottom-4 w-16 -rotate-12'
           width={40}
           height={40}
+          priority
         />
         <Image
           src='/images/discount.svg'
@@ -93,6 +97,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
           className='absolute bottom-5 w-24'
           width={40}
           height={40}
+          priority
         />
       </div>
       <div className='z-10 bg-slate-50 bg-opacity-10 px-1 py-2 backdrop-blur-sm backdrop-filter'>
