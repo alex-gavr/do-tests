@@ -1,21 +1,21 @@
 import { IServerProps } from '@app/page';
-import Countries from '@components/HigherLowerGameUi/Countries';
-import CreateUser from '@components/HigherLowerGameUi/CreateUser';
-import ScoresContainer from '@components/HigherLowerGameUi/ScoresContainer';
+// import Countries from '@components/HigherLowerGameUi/Countries';
+// import CreateUser from '@components/HigherLowerGameUi/CreateUser';
+// import ScoresContainer from '@components/HigherLowerGameUi/ScoresContainer';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import { cookies } from 'next/dist/client/components/headers';
 import { redirect } from 'next/navigation';
-// import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 
-// const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {});
-// const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
-//   loading: () => (
-//     <div className='flex h-[60vh] w-full flex-col items-center justify-center'>
-//       <h1 className='text-white'>Loading...</h1>
-//     </div>
-//   ),
-// });
-// const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), {});
+const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {});
+const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
+  loading: () => (
+    <div className='flex h-[60vh] w-full flex-col items-center justify-center'>
+      <h1 className='text-white'>Loading...</h1>
+    </div>
+  ),
+});
+const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), {});
 
 const Page = ({ searchParams }: IServerProps) => {
   const { country } = useServerSearchParams(searchParams);

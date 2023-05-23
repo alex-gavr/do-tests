@@ -8,10 +8,10 @@ import { shoppingSurveyData } from '@configs/ShoppingSurvey/ShoppingSurveyData';
 import Privacy from '@app/Privacy';
 import ProgressBar from '@components/ProgressBar';
 import { ValidLocale, getTranslator } from 'i18n';
-import SurveyContainer from '@components/SurveyContainer';
+// import SurveyContainer from '@components/SurveyContainer';
 import { kv } from '@vercel/kv';
 
-// const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
+const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
 const Page = async ({ searchParams }: IServerProps) => {
   const { language, country, debug, offerId } = useServerSearchParams(searchParams);

@@ -1,15 +1,15 @@
-import ButtonsContainer from './ButtonsContainer';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/dist/client/components/headers';
 import ShowVignette from './ShowVignette';
-import ScoresContainer from '@components/HigherLowerGameUi/ScoresContainer';
+// import ButtonsContainer from './ButtonsContainer';
+// import ScoresContainer from '@components/HigherLowerGameUi/ScoresContainer';
 
-// import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 
-// const ButtonsContainer = dynamic(() => import('./ButtonsContainer'));
-// const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
-//   ssr: false,
-// });
+const ButtonsContainer = dynamic(() => import('./ButtonsContainer'));
+const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
+  ssr: false,
+});
 
 interface IPageProps {}
 
