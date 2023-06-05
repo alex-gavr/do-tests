@@ -74,7 +74,7 @@ export const travelSurveyAnswers = mysqlTable('travel_survey_answers', {
 });
 
 
-export const gameUser = mysqlTable('game_user', {
+export const gameUser = mysqlTable('game_users', {
   uuid: varchar('uuid', { length: 36 }).notNull(),
   playerName: varchar('player_name', { length: 100 }).notNull(),
   country: varchar('country', { length: 50 }).notNull(),

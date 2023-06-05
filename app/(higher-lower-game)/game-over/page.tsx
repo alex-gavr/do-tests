@@ -6,7 +6,7 @@ import ShowVignette from './ShowVignette';
 
 import dynamic from 'next/dynamic';
 
-const ButtonsContainer = dynamic(() => import('./ButtonsContainer'));
+const ButtonsContainer = dynamic(() => import('./ButtonsContainer'), { ssr: false });
 const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
   ssr: false,
 });
@@ -23,8 +23,8 @@ const Page = async ({}: IPageProps) => {
 
   return (
     <>
-    <ShowVignette />
-      <div className='relative flex min-h-screen flex-col items-center justify-center gap-4 bg-slate-900 py-4 px-2'>
+      <ShowVignette />
+      <div className='relative flex min-h-screen flex-col items-center justify-center gap-4 bg-slate-900 px-2 py-4'>
         <div className='absolute top-4 w-full'>
           <ScoresContainer />
         </div>

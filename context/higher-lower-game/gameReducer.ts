@@ -25,6 +25,17 @@ const gameReducer = (state: IGameInitialState, action: TGameActions): IGameIniti
         },
       };
     }
+    case GameActionTypes.setCurrentScore: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          currentScore: payload,
+        },
+      };
+    }
 
     case GameActionTypes.setHintsAvailable: {
       const { payload } = action;
@@ -173,30 +184,6 @@ const gameReducer = (state: IGameInitialState, action: TGameActions): IGameIniti
           ...state.timerToAnswer,
           time: state.timerToAnswer.time - 1,
         },
-      };
-    }
-
-    case GameActionTypes.setScore: {
-      const { payload } = action;
-
-      return {
-        ...state,
-        score: payload,
-      };
-    }
-    case GameActionTypes.incrementScore: {
-      return {
-        ...state,
-        score: state.score + 1,
-      };
-    }
-
-    case GameActionTypes.resetScore: {
-      // const { payload } = action;
-
-      return {
-        ...state,
-        score: 0,
       };
     }
 

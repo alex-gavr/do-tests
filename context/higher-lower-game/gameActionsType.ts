@@ -3,12 +3,13 @@ import { ICard, TUser } from './gameStateType';
 export enum GameActionTypes {
   // user
   setUser = 'setUser',
+  setCurrentScore = 'setCurrentScore',
   // topScore
   setTopScore = 'setTopScore',
   // hintsAvailable
   setHintsAvailable = 'setHintsAvailable',
   // roundsPlayed
-  setRoundsPlayed ='setRoundsPlayed',
+  setRoundsPlayed = 'setRoundsPlayed',
   // topCard
   setTopCard = 'setTopCard',
   // bottomCard
@@ -25,18 +26,12 @@ export enum GameActionTypes {
 
   // secondsToAnswer
   setSecondsToAnswerEnabled = 'setSecondsToAnswerEnabled',
-  setSecondsToAnswer ='setSecondsToAnswer',
+  setSecondsToAnswer = 'setSecondsToAnswer',
   resetSecondsToAnswer = 'resetSecondsToAnswer',
   decrementSecondsToAnswer = 'decrementSecondsToAnswer',
 
   // showHint
   setShowHint = 'setShowHint',
-  // score
-  setScore = 'setScore',
-  // incrementScore
-  incrementScore = 'incrementScore',
-  // resetScore
-  resetScore = 'resetScore',
 }
 
 export interface ISetUser {
@@ -46,6 +41,10 @@ export interface ISetUser {
 export interface ISetTopScore {
   type: GameActionTypes.setTopScore;
   payload: TUser['topScore'];
+}
+export interface ISetCurrentScore {
+  type: GameActionTypes.setCurrentScore;
+  payload: TUser['currentScore'];
 }
 export interface ISetHintsAvailable {
   type: GameActionTypes.setHintsAvailable;
@@ -102,19 +101,10 @@ export interface IResetSecondsToAnswer {
 export interface IDecrementSecondsToAnswer {
   type: GameActionTypes.decrementSecondsToAnswer;
 }
-export interface ISetScore {
-  type: GameActionTypes.setScore;
-  payload: number;
-}
-export interface ISetIncrementScore {
-  type: GameActionTypes.incrementScore;
-}
-export interface ISetResetScore {
-  type: GameActionTypes.resetScore;
-}
 
 export type TGameActions =
   | ISetUser
+  | ISetCurrentScore
   | ISetTopScore
   | ISetHintsAvailable
   | ISetRoundsPlayed
@@ -129,7 +119,4 @@ export type TGameActions =
   | IResetSecondsToAnswer
   | IDecrementSecondsToAnswer
   | ISetSecondsToAnswerEnabled
-  | ISetSecondsToAnswer
-  | ISetScore
-  | ISetIncrementScore
-  | ISetResetScore;
+  | ISetSecondsToAnswer;

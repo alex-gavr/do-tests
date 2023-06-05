@@ -82,6 +82,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
         console.log(`user's rounds played has changes: ${success}`);
         // return NextResponse.json({ response: `user's top score has changes: ${success}`, status: 200 });
       }
+      //  Check if CurrentScore changed
+      if (user.currentScore !== checkIfUserExists[0].currentScore) {
+        const updateTopScore = await db
+          .update(gameUser)
+          .set({ currentScore: user.currentScore })
+          .where(eq(gameUser.uuid, user.uuid));
+
+        const success = updateTopScore.rowsAffected === 1;
+
+        console.log(`user's current score has changes: ${success}`);
+        // return NextResponse.json({ response: `user's top score has changes: ${success}`, status: 200 });
+      }
 
       return NextResponse.json({ response: 'success', status: 200 });
     }

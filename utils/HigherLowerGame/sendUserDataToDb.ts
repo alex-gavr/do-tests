@@ -1,6 +1,6 @@
 import { TUser } from '@context/higher-lower-game/gameStateType';
 
-export const sendUserDataToDb = async ({ uuid, playerName, country, topScore, hintsAvailable, roundsPlayed }: TUser) => {
+export const sendUserDataToDb = async ({ uuid, playerName, country, topScore, hintsAvailable, roundsPlayed, currentScore }: TUser) => {
   if (typeof window !== 'undefined') {
     const res = await fetch('/api/db', {
       method: 'POST',
@@ -13,6 +13,7 @@ export const sendUserDataToDb = async ({ uuid, playerName, country, topScore, hi
         playerName,
         country,
         topScore,
+        currentScore,
         hintsAvailable,
         roundsPlayed
       }),

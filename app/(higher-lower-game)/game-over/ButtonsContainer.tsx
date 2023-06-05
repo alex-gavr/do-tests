@@ -36,7 +36,7 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
     }
     deleteCookie('lost');
     router.replace('/higher-lower-game');
-    dispatch({ type: GameActionTypes.resetScore });
+    dispatch({ type: GameActionTypes.setCurrentScore, payload: 0 });
     dispatch({ type: GameActionTypes.resetLostCountDown });
     dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
     dispatch({ type: GameActionTypes.setShowAnswer, payload: false });
@@ -99,32 +99,34 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
   };
 
   const result =
-    state.score === 0
+    state.user.currentScore === 0
       ? "Oh no! Don't worry, everyone has to start somewhere. Keep practicing and you'll improve!"
-      : state.score <= 5 && state.score > 0
+      : state.user.currentScore <= 5 && state.user.currentScore > 0
       ? "Not bad for a start! You're making progress. Keep going!"
-      : state.score <= 10 && state.score > 5
+      : state.user.currentScore <= 10 && state.user.currentScore > 5
       ? "Good effort! You're getting the hang of it. Keep pushing forward!"
-      : state.score <= 15 && state.score > 10
+      : state.user.currentScore <= 15 && state.user.currentScore > 10
       ? "Well done! You're on the right track. Your hard work is paying off."
-      : state.score <= 20 && state.score > 15
+      : state.user.currentScore <= 20 && state.user.currentScore > 15
       ? "Impressive round! You're demonstrating solid skills and knowledge."
-      : state.score <= 30 && state.score > 20
+      : state.user.currentScore <= 30 && state.user.currentScore > 20
       ? "Excellent round! You're really mastering this. Keep up the great work!"
-      : state.score <= 40 && state.score > 30
+      : state.user.currentScore <= 40 && state.user.currentScore > 30
       ? 'Amazing job! Your score is evidence of your dedication and expertise.'
-      : state.score <= 50 && state.score > 40
+      : state.user.currentScore <= 50 && state.user.currentScore > 40
       ? "Outstanding! You're reaching new heights and achieving remarkable scores."
-      : state.score <= 75 && state.score > 50
+      : state.user.currentScore <= 75 && state.user.currentScore > 50
       ? 'Incredible! Your score showcases your exceptional abilities. Keep pushing boundaries!'
-      : state.score <= 100 && state.score > 75
+      : state.user.currentScore <= 100 && state.user.currentScore > 75
       ? "Wow! You're a true master in this area. Your score is truly remarkable. Congratulations!"
       : 'You are a true Legends, Congratulations!';
+
+      console.log(state.user.currentScore);
 
   return (
     <>
       <div className='flex flex-col items-center justify-center gap-2'>
-        <p className='text-3xl text-slate-200'>Final Score: {state.score}</p>
+        <p className='text-3xl text-slate-200'>Final Score: {state.user?.currentScore}</p>
         <p className='text-center tracking-wider text-emerald-300'>{result}</p>
       </div>
       <div className='flex flex-col items-center justify-center gap-4'>

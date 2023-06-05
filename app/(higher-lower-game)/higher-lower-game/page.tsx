@@ -6,16 +6,16 @@ import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import { cookies } from 'next/dist/client/components/headers';
 import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import SimpleLoader from '@components/SimpleLoader';
 
-const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {});
-const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
-  loading: () => (
-    <div className='flex h-[60vh] w-full flex-col items-center justify-center'>
-      <h1 className='text-white'>Loading...</h1>
-    </div>
-  ),
+const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
+  ssr: false,
 });
-const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), {});
+const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
+  loading: () => <SimpleLoader />,
+  ssr: false,
+});
+const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), { ssr: false });
 
 const Page = ({ searchParams }: IServerProps) => {
   const { country } = useServerSearchParams(searchParams);

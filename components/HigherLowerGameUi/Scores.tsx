@@ -14,7 +14,7 @@ const Scores = ({}: IScoresProps) => {
         <p className='text-slate-100'>{state.user.topScore}</p>
       </div>
       <div className='flex flex-col items-end justify-center '>
-        <p className='text-white'> score: {state.score}</p>
+        <p className='text-white'> score: {state.user.currentScore}</p>
         <p className='text-xs text-emerald-300'> hints available: {state.user.hintsAvailable}</p>
       </div>
     </div>

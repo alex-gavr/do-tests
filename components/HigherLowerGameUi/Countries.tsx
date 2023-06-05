@@ -88,11 +88,11 @@ const Countries = ({}: ICountriesProps) => {
 
       // if win increase score
       if (isWin === true) {
-        dispatch({ type: GameActionTypes.incrementScore });
+        dispatch({ type: GameActionTypes.setCurrentScore, payload: state.user.currentScore + 1 });
         dispatch({ type: GameActionTypes.resetSecondsToAnswer });
       }
       // increment highest score, if it matches current score and if it is a win
-      if (isWin === true && topScore === state.score) {
+      if (isWin === true && topScore === state.user.currentScore) {
         // setTopScore((prev: number) => prev + 1);
         dispatch({ type: GameActionTypes.setTopScore, payload: topScore + 1 });
       }
