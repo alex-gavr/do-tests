@@ -25,6 +25,7 @@ const initialState: InitialState = {
     nonUniqueIpp: 5973160,
     noThankYouIpp: 5973161,
     noThankYouPopsIpp: 5973162,
+    gameFinishIpp: 6020461
   },
   notificationVisible: null,
   fullScreenImage: {

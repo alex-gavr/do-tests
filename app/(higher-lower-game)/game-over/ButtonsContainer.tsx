@@ -4,6 +4,7 @@ import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { sendUserDataToDb } from '@utils/HigherLowerGame/sendUserDataToDb';
+import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
@@ -14,7 +15,7 @@ import { GameEvents } from 'types/TrackEvents';
 interface IButtonsContainerProps {}
 
 const ButtonsContainer = ({}: IButtonsContainerProps) => {
-  const { gameState: state, gameDispatch: dispatch } = useAppContext();
+  const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
 
   const [loading, setLoading] = useState<boolean>(false);
   const playerNameCookie = hasCookie('playerName');
@@ -121,11 +122,38 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
       ? "Wow! You're a true master in this area. Your score is truly remarkable. Congratulations!"
       : 'You are a true Legends, Congratulations!';
 
-      console.log(state.user.currentScore);
+  const handleEnd = async () => {
+    if (production) {
+      const data: TGameEventProperties = {
+        track: GameEvents.endOfGame,
+        offerId: 'populations-game',
+        userId: state.user.uuid,
+        playerName: state.user.playerName,
+        country: state.user.country,
+        topScore: state.user.topScore,
+        hintsAvailable: state.user.hintsAvailable,
+        roundsPlayed: state.user.roundsPlayed,
+      };
+      sendEvent('game', data);
+    }
+    const url = await getExitLinkWithMediation(surveyState.exits.gameFinishIpp, surveyState.exits.mainExit);
+    // Main Zone
+    router.replace(url);
+    // Pops
+    window.open(url, '_blank');
+  };
 
   return (
     <>
       <div className='flex flex-col items-center justify-center gap-2'>
+        <GameButton
+          type='button'
+          variant='secondary'
+          onClick={handleGetMoreHints}
+          className='absolute right-3 top-16 min-w-0 border-emerald-300 px-4 py-3 text-[0.65rem] capitalize'
+        >
+          get more hints
+        </GameButton>
         <p className='text-3xl text-slate-200'>Final Score: {state.user?.currentScore}</p>
         <p className='text-center tracking-wider text-emerald-300'>{result}</p>
       </div>
@@ -133,18 +161,18 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
         <GameButton type='button' variant='primary' onClick={handleClickGame}>
           Try Again
         </GameButton>
-        <GameButton type='button' variant='secondary' onClick={handleClickLeaderboard} className='p'>
+        <GameButton type='button' variant='secondary' onClick={handleEnd}>
+          Finish
+        </GameButton>
+        <GameButton
+          type='button'
+          variant='secondary'
+          onClick={handleClickLeaderboard}
+          className='absolute bottom-5'
+        >
           {loading ? <ArrowPathIcon className='h-4 w-4 animate-spin ' /> : 'Leaderboard'}
         </GameButton>
       </div>
-      <GameButton
-        type='button'
-        variant='primary'
-        onClick={handleGetMoreHints}
-        className='absolute bottom-5 min-w-0 bg-emerald-400 capitalize'
-      >
-        get more hints
-      </GameButton>
     </>
   );
 };

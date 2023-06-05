@@ -20,6 +20,7 @@ interface IExits {
   nonUniqueIpp: number;
   noThankYouIpp: number;
   noThankYouPopsIpp: number;
+  gameFinishIpp: number;
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';
