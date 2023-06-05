@@ -13,10 +13,8 @@ const Page = ({ searchParams }: IServerProps) => {
     <section className='flex min-h-screen flex-col items-center justify-center gap-8 p-4'>
       {debug && <Debug debug={debug} />}
       {offerId === 9241 && <CareerThankYou />}
-      {/* @ts-expect-error Async Server Component */}
       {offerId === 9999 && <TravelThankYou language={language} />}
       {offerId === 'default' && <DefaultThankYou />}
-      {/* @ts-expect-error Async Server Component */}
       {offerId === 9998 && <ShoppingThankYou language={language} />}
     </section>
   );

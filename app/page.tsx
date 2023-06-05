@@ -21,9 +21,7 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
       {debug && <Debug debug={debug} />}
       {offerId === 9241 && <CareerSurvey />}
       {offerId === 'default' && <DefaultSurvey />}
-      {/* @ts-expect-error Async Server Component */}
       {offerId === 9998 && <ShoppingSurvey language={language} />}
-      {/* @ts-expect-error Async Server Component */}
       {offerId === 9999 && <TravelSurvey language={language} />}
       <BackButton />
     </main>
