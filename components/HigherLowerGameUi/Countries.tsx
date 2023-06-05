@@ -22,6 +22,9 @@ interface ICountriesProps {}
 const Countries = ({}: ICountriesProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const router = useRouter();
+  if (state.topCard === null || state.bottomCard === null) {
+    return;
+  }
 
   const countriesToDisplay: TCountryPair = [state.topCard, state.bottomCard];
 
@@ -38,19 +41,31 @@ const Countries = ({}: ICountriesProps) => {
   // RANGES FOR CARDS
   const isTopCardPopulationBigger = state.topCard.population > state.bottomCard.population ? true : false;
   const rangeForFirstCountry = useMemo(() => {
-    return createPopulationRange(state.topCard.population, 90);
+    if (state.topCard) {
+      return createPopulationRange(state.topCard.population, 90);
+    }
   }, []);
   const rangeForSecondCountry = useMemo(() => {
-    return createPopulationRange(state.bottomCard.population, 90);
+    if (state.bottomCard) {
+      return createPopulationRange(state.bottomCard.population, 90);
+    }
   }, []);
 
   if (isTopCardPopulationBigger) {
     useMemo(() => {
-      rangeForSecondCountry[1] = Math.round(rangeForFirstCountry[1] * (randomIntFromInterval(90, 110) / 100));
+      if (rangeForFirstCountry && rangeForSecondCountry) {
+        rangeForSecondCountry[1] = Math.round(
+          rangeForFirstCountry[1] * (randomIntFromInterval(90, 110) / 100),
+        );
+      }
     }, []);
   } else {
     useMemo(() => {
-      rangeForFirstCountry[1] = Math.round(rangeForSecondCountry[1] * (randomIntFromInterval(90, 110) / 100));
+      if (rangeForFirstCountry && rangeForSecondCountry) {
+        rangeForFirstCountry[1] = Math.round(
+          rangeForSecondCountry[1] * (randomIntFromInterval(90, 110) / 100),
+        );
+      }
     }, []);
   }
 
@@ -194,7 +209,7 @@ const Countries = ({}: ICountriesProps) => {
         variant='secondary'
         disabled={showHint || hints === 0 || showAnswer === true}
       >
-        {showHint ? 'hope it helps' : hints === 0 ? 'no hint credits left' : 'show hint'}
+        {showHint ? 'hope it helps' : hints === 0 ? 'no hint credits left' : 'get hint'}
       </GameButton>
 
       {/* <p>Available hints {hintsAvailable}</p> */}

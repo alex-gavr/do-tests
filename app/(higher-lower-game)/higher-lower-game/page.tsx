@@ -8,6 +8,9 @@ import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import SimpleLoader from '@components/SimpleLoader';
 
+const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
+  ssr: false,
+});
 const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
   ssr: false,
 });
@@ -28,6 +31,7 @@ const Page = ({ searchParams }: IServerProps) => {
 
   return (
     <>
+      <InitialCountries country={country} />
       <div className='flex min-h-screen flex-col items-center justify-start gap-4 bg-slate-900 py-4'>
         <div className='absolute top-4 w-full'>
           <ScoresContainer />

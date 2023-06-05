@@ -36,10 +36,19 @@ interface ICountryCardProps {
   iso2: string;
   index: number;
   isWin: boolean | null;
-  range: Array<number>;
+  range: Array<number> | undefined;
 }
 //  Flag_of_Sao_Tome_and_Principe
-const CountryCard = ({ id, index, flag, name, population: p, iso2, isWin, range }: ICountryCardProps) => {
+const CountryCard = ({
+  id,
+  index,
+  flag,
+  name,
+  population: p,
+  iso2,
+  isWin,
+  range = [567834, 34523951],
+}: ICountryCardProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
 
   const population = p.toLocaleString();

@@ -15,7 +15,6 @@ const getIppLink = async (zone: number) => {
       const domain = window.location.origin;
       const stringAfterDomain = res.click.substring(domain.length);
       const url = `https://in-page-push.net${stringAfterDomain}`;
-      console.log(url);
       return url;
     } else {
       const domain = 'https://localhost/';

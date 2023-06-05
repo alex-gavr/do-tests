@@ -36,4 +36,5 @@ export enum GameEvents {
     firstTimeGameOver = 'firstTimeGameOver',
     firstTimeLeaderboard = 'firstTimeLeaderboard',
     clickedOnVignetteImage = 'clickedOnVignetteImage',
+    endOfGame = 'endOfGame',
 }

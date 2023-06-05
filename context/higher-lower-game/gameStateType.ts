@@ -21,8 +21,8 @@ interface ITimerToAnswer {
 }
 export interface IGameInitialState {
   user: TUser;
-  topCard: ICard;
-  bottomCard: ICard;
+  topCard: ICard | null;
+  bottomCard: ICard | null;
   pickedCard: Omit<ICard, 'src'> | null;
   isAnswerCorrect: boolean | null;
   showAnswer: boolean;

@@ -29,7 +29,6 @@ const Page = async ({}: IPageProps) => {
           <ScoresContainer />
         </div>
         <div className='flex flex-col items-center justify-center gap-8 place-self-center'>
-          {/* <h1 className='text-2xl text-white'>Game Over!</h1> */}
           <ButtonsContainer />
         </div>
       </div>
