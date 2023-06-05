@@ -18,8 +18,11 @@ const InitialCountries = ({ country }: IInitialCountriesProps) => {
 
   const bottomCardUsersGeo =
     countries.find((c) => c.iso2.toLocaleLowerCase() === country.toLocaleLowerCase()) ?? countries[6]; // or Argentina
-  const topCardWithLowerPopulation =
-    countries.find((c) => c.population < bottomCardUsersGeo.population) ?? countries[6]; // or Argentina
+  const allCardsWithLowerPopulation =
+    countries.filter((c) => c.population < bottomCardUsersGeo.population) ?? countries[6]; // or Argentina
+
+  const randomIndex = Math.floor(Math.random() * allCardsWithLowerPopulation.length);
+  const topCardWithLowerPopulation = allCardsWithLowerPopulation[randomIndex];
 
   useEffect(() => {
     dispatch({ type: GameActionTypes.setTopCard, payload: topCardWithLowerPopulation });
