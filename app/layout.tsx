@@ -34,7 +34,7 @@ export default function RootLayout({ children, modal }: IProps) {
           {modal}
         </body>
       </Providers>
-      <Analytics />
+      <Analytics mode='production' />
     </html>
   );
 }
