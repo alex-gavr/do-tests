@@ -5,6 +5,7 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { sendUserDataToDb } from '@utils/HigherLowerGame/sendUserDataToDb';
 import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
+import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
@@ -80,7 +81,7 @@ const ButtonsContainer = ({}: IButtonsContainerProps) => {
     setLoading(false);
   };
   const handleGetMoreHints = () => {
-    router.push('/vignette/5959137');
+    !debug && router.push('/vignette/5959137');
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
     dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable + 1 });
 

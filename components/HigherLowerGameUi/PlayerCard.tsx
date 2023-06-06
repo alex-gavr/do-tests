@@ -24,7 +24,7 @@ const PlayerCard = ({ name, country, highestScore, hintsAvailable, playerName }:
         <p className={cn('text-sm text-white', user ? 'text-black' : '')}>{user ? name + ' (you)' : name}</p>
         <p className={cn('text-sm text-neutral-400', user ? 'text-neutral-500' : '')}>{country}</p>
       </div>
-      <div className='flex flex-col items-start justify-end gap-1'>
+      <div className='flex flex-col items-end justify-end gap-1'>
         <p className={cn('text-sm text-green-400', user ? 'text-green-600' : '')}>
           Top Score: {highestScore}
         </p>
