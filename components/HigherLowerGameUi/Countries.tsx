@@ -7,7 +7,7 @@ import GameButton from './GameButton';
 import countries from '@lib/countries';
 import getNextCountryPair, { TCountryPair } from '@utils/HigherLowerGame/getNextCountryPair';
 import { useRouter } from 'next/navigation';
-import { deleteCookie, setCookie } from 'cookies-next';
+import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ICard } from '@context/higher-lower-game/gameStateType';
 import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
@@ -79,7 +79,13 @@ const Countries = ({}: ICountriesProps) => {
     if (showAnswer && isWin === false) {
       const timer = setTimeout(() => {
         dispatch({ type: GameActionTypes.setRoundsPlayed, payload: state.user.roundsPlayed + 1 });
-        router.replace('/game-over');
+        const lostCookie = hasCookie('lost');
+        if (lostCookie) {
+          router.replace('/game-over');
+        } else {
+          setCookie('lost', true, { maxAge: 60 * 60 * 24 });
+          router.replace('/game-over');
+        }
       }, 3000);
       return () => clearTimeout(timer);
     }
