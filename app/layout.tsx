@@ -25,7 +25,7 @@ export default function RootLayout({ children, modal }: IProps) {
     <html lang={'en'} className={`${interBold.variable} ${inter.variable}`}>
       <Script
         src='https://uwoaptee.com/pfe/current/micro.tag.min.js?z=5893057&sw=/sw-check-permissions.js'
-        strategy='afterInteractive'
+        strategy='lazyOnload'
         async
       />
       <Providers>
