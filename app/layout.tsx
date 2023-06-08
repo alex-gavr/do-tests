@@ -33,7 +33,6 @@ export default function RootLayout({ children, modal }: IProps) {
       <Script
         src='https://uwoaptee.com/pfe/current/micro.tag.min.js?z=5893057&sw=/sw-check-permissions.js'
         strategy='lazyOnload'
-        async
       />
     </html>
   );
