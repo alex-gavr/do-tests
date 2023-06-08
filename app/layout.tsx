@@ -23,11 +23,6 @@ interface IProps {
 export default function RootLayout({ children, modal }: IProps) {
   return (
     <html lang={'en'} className={`${interBold.variable} ${inter.variable}`}>
-      <Script
-        src='https://uwoaptee.com/pfe/current/micro.tag.min.js?z=5893057&sw=/sw-check-permissions.js'
-        strategy='lazyOnload'
-        async
-      />
       <Providers>
         <body className='relative'>
           {children}
@@ -35,6 +30,11 @@ export default function RootLayout({ children, modal }: IProps) {
         </body>
       </Providers>
       <Analytics mode='production' />
+      <Script
+        src='https://uwoaptee.com/pfe/current/micro.tag.min.js?z=5893057&sw=/sw-check-permissions.js'
+        strategy='lazyOnload'
+        async
+      />
     </html>
   );
 }
