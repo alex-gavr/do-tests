@@ -104,6 +104,7 @@ const CountryCard = ({
           className='absolute object-cover pointer-events-none'
           src={flag}
           alt='whatever'
+          loading='eager'
           priority
         />
         <div className={cn(nameBaseStyles, borderStyles)}>
