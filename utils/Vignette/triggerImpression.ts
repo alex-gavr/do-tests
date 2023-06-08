@@ -1,16 +1,7 @@
-import production from '@utils/isProd';
-
-const triggerImpression = async (url: string) => {
+const triggerImpression = (url: string) => {
   try {
-    const response = await fetch(url, { method: 'GET' });
+    fetch(url, { method: 'GET' });
     // Check the response status
-    if (!production) {
-      if (response.ok) {
-        console.log('Impression triggered successfully!');
-      } else {
-        console.log('Failed to trigger impression.');
-      }
-    }
   } catch (error) {
     console.log('Error triggering impression:', error);
   }
