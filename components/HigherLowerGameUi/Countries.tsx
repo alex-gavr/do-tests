@@ -7,7 +7,7 @@ import GameButton from './GameButton';
 import countries from '@lib/countries';
 import getNextCountryPair, { TCountryPair } from '@utils/HigherLowerGame/getNextCountryPair';
 import { useRouter } from 'next/navigation';
-import { setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ICard } from '@context/higher-lower-game/gameStateType';
 import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
@@ -109,7 +109,9 @@ const Countries = ({}: ICountriesProps) => {
       // increment highest score, if it matches current score and if it is a win
       if (isWin === true && topScore === state.user.currentScore) {
         // setTopScore((prev: number) => prev + 1);
+        deleteCookie('topScore');
         dispatch({ type: GameActionTypes.setTopScore, payload: topScore + 1 });
+        setCookie('topScore', topScore + 1, { path: '/', maxAge: 60 * 60 * 24 });
       }
       // If lose
       if (isWin === false) {

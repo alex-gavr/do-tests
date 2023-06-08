@@ -5,9 +5,14 @@ import ShowVignette from './ShowVignette';
 // import ScoresContainer from '@components/HigherLowerGameUi/ScoresContainer';
 
 import dynamic from 'next/dynamic';
+import Position from './Position';
+import production from '@utils/isProd';
+import AutoExit from '@components/Monetization/AutoExit';
 
-const ButtonsContainer = dynamic(() => import('./ButtonsContainer'), { ssr: false });
-const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
+const GameOverHeader = dynamic(() => import('./GameOverHeader'), {
+  ssr: false,
+});
+const GameOverFooter = dynamic(() => import('./GameOverFooter'), {
   ssr: false,
 });
 
@@ -23,13 +28,17 @@ const Page = async ({}: IPageProps) => {
 
   return (
     <>
+      {production && <AutoExit />}
       <ShowVignette />
-      <div className='relative flex min-h-screen flex-col items-center justify-center gap-4 bg-slate-900 px-2 py-4'>
-        <div className='absolute top-4 w-full'>
-          <ScoresContainer />
-        </div>
-        <div className='flex flex-col items-center justify-center gap-8 place-self-center'>
-          <ButtonsContainer />
+      <div className='relative flex min-h-screen w-full flex-col items-start justify-center gap-4 bg-slate-900 px-2 py-4'>
+        <div className='flex min-h-screen w-full flex-col items-center justify-start gap-8 place-self-center'>
+          <GameOverHeader />
+          <div className='mb-16 flex w-full flex-1 flex-col items-center justify-start gap-4'>
+            <Position />
+          </div>
+          <div className='fixed bottom-0 w-full rounded-t-md bg-gray-600 bg-opacity-40 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter'>
+            <GameOverFooter />
+          </div>
         </div>
       </div>
     </>

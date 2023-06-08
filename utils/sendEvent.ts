@@ -37,7 +37,6 @@ export interface ICustomEventProperties {
   imgId?: string;
 }
 
-// TODO: FIX THIS!
 export const sendEvent = async (
   dataVariant: TDataVariant,
   data: TOfferEventProperties | TGameEventProperties,

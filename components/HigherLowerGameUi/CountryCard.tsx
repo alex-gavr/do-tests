@@ -101,7 +101,7 @@ const CountryCard = ({
         <Image
           width={400}
           height={300}
-          className='absolute object-cover'
+          className='absolute object-cover pointer-events-none'
           src={flag}
           alt='whatever'
           priority

@@ -1,5 +1,5 @@
 import { InferModel } from 'drizzle-orm';
-import { bigint, mediumint, mysqlEnum, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
+import { bigint, int, mediumint, mysqlEnum, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
 
 // DEFAULT SURVEY
 
