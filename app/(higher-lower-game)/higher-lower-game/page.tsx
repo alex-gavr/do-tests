@@ -3,16 +3,18 @@ import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import { cookies } from 'next/dist/client/components/headers';
 import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import SimpleLoader from '@components/SimpleLoader';
+import ScoresSkeleton from '@components/HigherLowerGameUi/ScoresSkeleton';
+import CountriesSkeleton from '@components/HigherLowerGameUi/CountriesSkeleton';
 
 const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
   ssr: false,
 });
 const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
   ssr: false,
+  loading: () => <ScoresSkeleton />,
 });
 const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
-  loading: () => <SimpleLoader />,
+  loading: () => <CountriesSkeleton />,
   ssr: false,
 });
 const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), { ssr: false });
