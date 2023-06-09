@@ -10,7 +10,7 @@ const countries: ICountry[] = [
   {
     id: 1,
     name: 'Afghanistan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg',
+    flag: '/images/countries/Flag_of_the_Taliban.svg',
     iso2: 'AF',
     iso3: 'AFG',
     population: 37172386,
@@ -18,7 +18,7 @@ const countries: ICountry[] = [
   {
     id: 2,
     name: 'Albania',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg',
+    flag: '/images/countries/Flag_of_Albania.svg',
     iso2: 'AL',
     iso3: 'ALB',
     population: 2866376,
@@ -26,7 +26,7 @@ const countries: ICountry[] = [
   {
     id: 3,
     name: 'Algeria',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg',
+    flag: '/images/countries/Flag_of_Algeria.svg',
     iso2: 'DZ',
     iso3: 'DZA',
     population: 42228429,
@@ -34,7 +34,7 @@ const countries: ICountry[] = [
   {
     id: 4,
     name: 'Andorra',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Andorra.svg',
+    flag: '/images/countries/Flag_of_Andorra.svg',
     iso2: 'AD',
     iso3: 'AND',
     population: 77006,
@@ -42,7 +42,7 @@ const countries: ICountry[] = [
   {
     id: 5,
     name: 'Angola',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Angola.svg',
+    flag: '/images/countries/Flag_of_Angola.svg',
     iso2: 'AO',
     iso3: 'AGO',
     population: 30809762,
@@ -50,7 +50,7 @@ const countries: ICountry[] = [
   {
     id: 7,
     name: 'Antigua and Barbuda',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_Antigua_and_Barbuda.svg',
+    flag: '/images/countries/Flag_of_Antigua_and_Barbuda.svg',
     iso2: 'AG',
     iso3: 'ATG',
     population: 96286,
@@ -58,7 +58,7 @@ const countries: ICountry[] = [
   {
     id: 8,
     name: 'Argentina',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg',
+    flag: '/images/countries/Flag_of_Argentina.svg',
     iso2: 'AR',
     iso3: 'ARG',
     population: 44494502,
@@ -66,7 +66,7 @@ const countries: ICountry[] = [
   {
     id: 9,
     name: 'Armenia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_Armenia.svg',
+    flag: '/images/countries/Flag_of_Armenia.svg',
     iso2: 'AM',
     iso3: 'ARM',
     population: 2951776,
@@ -74,7 +74,7 @@ const countries: ICountry[] = [
   {
     id: 10,
     name: 'Aruba',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Aruba.svg',
+    flag: '/images/countries/Flag_of_Aruba.svg',
     iso2: 'AW',
     iso3: 'ABW',
     population: 105845,
@@ -82,7 +82,7 @@ const countries: ICountry[] = [
   {
     id: 11,
     name: 'Australia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg',
+    flag: '/images/countries/Flag_of_Australia_%28converted%29.svg',
     iso2: 'AU',
     iso3: 'AUS',
     population: 24982688,
@@ -90,7 +90,7 @@ const countries: ICountry[] = [
   {
     id: 12,
     name: 'Austria',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg',
+    flag: '/images/countries/Flag_of_Austria.svg',
     iso2: 'AT',
     iso3: 'AUT',
     population: 8840521,
@@ -98,7 +98,7 @@ const countries: ICountry[] = [
   {
     id: 13,
     name: 'Azerbaijan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Azerbaijan.svg',
+    flag: '/images/countries/Flag_of_Azerbaijan.svg',
     iso2: 'AZ',
     iso3: 'AZE',
     population: 9939800,
@@ -106,7 +106,7 @@ const countries: ICountry[] = [
   {
     id: 14,
     name: 'Bahamas',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Flag_of_the_Bahamas.svg',
+    flag: '/images/countries/Flag_of_the_Bahamas.svg',
     iso2: 'BS',
     iso3: 'BHS',
     population: 385640,
@@ -114,7 +114,7 @@ const countries: ICountry[] = [
   {
     id: 15,
     name: 'Bahrain',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Bahrain.svg',
+    flag: '/images/countries/Flag_of_Bahrain.svg',
     iso2: 'BH',
     iso3: 'BHR',
     population: 1569439,
@@ -122,7 +122,7 @@ const countries: ICountry[] = [
   {
     id: 16,
     name: 'Bangladesh',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg',
+    flag: '/images/countries/Flag_of_Bangladesh.svg',
     iso2: 'BD',
     iso3: 'BGD',
     population: 161356039,
@@ -130,7 +130,7 @@ const countries: ICountry[] = [
   {
     id: 17,
     name: 'Barbados',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Flag_of_Barbados.svg',
+    flag: '/images/countries/Flag_of_Barbados.svg',
     iso2: 'BB',
     iso3: 'BRB',
     population: 286641,
@@ -138,7 +138,7 @@ const countries: ICountry[] = [
   {
     id: 18,
     name: 'Belarus',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/85/Flag_of_Belarus.svg',
+    flag: '/images/countries/Flag_of_Belarus.svg',
     iso2: 'BY',
     iso3: 'BLR',
     population: 9483499,
@@ -146,7 +146,7 @@ const countries: ICountry[] = [
   {
     id: 19,
     name: 'Belgium',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg',
+    flag: '/images/countries/Flag_of_Belgium.svg',
     iso2: 'BE',
     iso3: 'BEL',
     population: 11433256,
@@ -154,7 +154,7 @@ const countries: ICountry[] = [
   {
     id: 20,
     name: 'Belize',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Flag_of_Belize.svg',
+    flag: '/images/countries/Flag_of_Belize.svg',
     iso2: 'BZ',
     iso3: 'BLZ',
     population: 383071,
@@ -162,7 +162,7 @@ const countries: ICountry[] = [
   {
     id: 21,
     name: 'Benin',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Benin.svg',
+    flag: '/images/countries/Flag_of_Benin.svg',
     iso2: 'BJ',
     iso3: 'BEN',
     population: 11485048,
@@ -170,7 +170,7 @@ const countries: ICountry[] = [
   {
     id: 22,
     name: 'Bermuda',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Flag_of_Bermuda.svg',
+    flag: '/images/countries/Flag_of_Bermuda.svg',
     iso2: 'BM',
     iso3: 'BMU',
     population: 63973,
@@ -178,7 +178,7 @@ const countries: ICountry[] = [
   {
     id: 23,
     name: 'Bhutan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Flag_of_Bhutan.svg',
+    flag: '/images/countries/Flag_of_Bhutan.svg',
     iso2: 'BT',
     iso3: 'BTN',
     population: 754394,
@@ -186,7 +186,7 @@ const countries: ICountry[] = [
   {
     id: 24,
     name: 'Bosnia and Herzegovina',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Flag_of_Bosnia_and_Herzegovina.svg',
+    flag: '/images/countries/Flag_of_Bosnia_and_Herzegovina.svg',
     iso2: 'BA',
     iso3: 'BIH',
     population: 3323929,
@@ -194,7 +194,7 @@ const countries: ICountry[] = [
   {
     id: 25,
     name: 'Botswana',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_Botswana.svg',
+    flag: '/images/countries/Flag_of_Botswana.svg',
     iso2: 'BW',
     iso3: 'BWA',
     population: 2254126,
@@ -202,7 +202,7 @@ const countries: ICountry[] = [
   {
     id: 27,
     name: 'Brazil',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg',
+    flag: 'images/countries/Flag_of_Brazil.svg',
     iso2: 'BR',
     iso3: 'BRA',
     population: 209469333,
@@ -210,7 +210,7 @@ const countries: ICountry[] = [
   {
     id: 29,
     name: 'Brunei',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Brunei.svg',
+    flag: '/images/countries/Flag_of_Brunei.svg',
     iso2: 'BN',
     iso3: 'BRN',
     population: 428962,
@@ -218,7 +218,7 @@ const countries: ICountry[] = [
   {
     id: 30,
     name: 'Bulgaria',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Bulgaria.svg',
+    flag: '/images/countries/Flag_of_Bulgaria.svg',
     iso2: 'BG',
     iso3: 'BGR',
     population: 7025037,
@@ -226,7 +226,7 @@ const countries: ICountry[] = [
   {
     id: 31,
     name: 'Burkina Faso',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Burkina_Faso.svg',
+    flag: '/images/countries/Flag_of_Burkina_Faso.svg',
     iso2: 'BF',
     iso3: 'BFA',
     population: 19751535,
@@ -234,7 +234,7 @@ const countries: ICountry[] = [
   {
     id: 32,
     name: 'Burundi',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Flag_of_Burundi.svg',
+    flag: '/images/countries/Flag_of_Burundi.svg',
     iso2: 'BI',
     iso3: 'BDI',
     population: 11175378,
@@ -242,7 +242,7 @@ const countries: ICountry[] = [
   {
     id: 33,
     name: 'Cambodia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_Cambodia.svg',
+    flag: '/images/countries/Flag_of_Cambodia.svg',
     iso2: 'KH',
     iso3: 'KHM',
     population: 16249798,
@@ -250,7 +250,7 @@ const countries: ICountry[] = [
   {
     id: 34,
     name: 'Cameroon',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Flag_of_Cameroon.svg',
+    flag: '/images/countries/Flag_of_Cameroon.svg',
     iso2: 'CM',
     iso3: 'CMR',
     population: 25216237,
@@ -258,7 +258,7 @@ const countries: ICountry[] = [
   {
     id: 35,
     name: 'Canada',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/c/cf/Flag_of_Canada.svg',
+    flag: 'images/countries/Flag_of_Canada.svg',
     iso2: 'CA',
     iso3: 'CAN',
     population: 37057765,
@@ -266,7 +266,7 @@ const countries: ICountry[] = [
   {
     id: 36,
     name: 'Cape Verde',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Cape_Verde.svg',
+    flag: '/images/countries/Flag_of_Cape_Verde.svg',
     iso2: 'CV',
     iso3: 'CPV',
     population: 543767,
@@ -274,7 +274,7 @@ const countries: ICountry[] = [
   {
     id: 37,
     name: 'Cayman Islands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_the_Cayman_Islands.svg',
+    flag: '/images/countries/Flag_of_the_Cayman_Islands.svg',
     iso2: 'KY',
     iso3: 'CYM',
     population: 64174,
@@ -282,7 +282,7 @@ const countries: ICountry[] = [
   {
     id: 38,
     name: 'Central African Republic',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Central_African_Republic.svg',
+    flag: '/images/countries/Flag_of_the_Central_African_Republic.svg',
     iso2: 'CF',
     iso3: 'CAF',
     population: 4666377,
@@ -290,7 +290,7 @@ const countries: ICountry[] = [
   {
     id: 39,
     name: 'Chad',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Chad.svg',
+    flag: '/images/countries/Flag_of_Chad.svg',
     iso2: 'TD',
     iso3: 'TCD',
     population: 15477751,
@@ -298,7 +298,7 @@ const countries: ICountry[] = [
   {
     id: 40,
     name: 'Chile',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg',
+    flag: '/images/countries/Flag_of_Chile.svg',
     iso2: 'CL',
     iso3: 'CHL',
     population: 18729160,
@@ -306,7 +306,7 @@ const countries: ICountry[] = [
   {
     id: 41,
     name: 'China',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
+    flag: '/images/countries/Flag_of_the_People%27s_Republic_of_China.svg',
     iso2: 'CN',
     iso3: 'CHN',
     population: 1392730000,
@@ -314,7 +314,7 @@ const countries: ICountry[] = [
   {
     id: 44,
     name: 'Colombia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg',
+    flag: '/images/countries/Flag_of_Colombia.svg',
     iso2: 'CO',
     iso3: 'COL',
     population: 49648685,
@@ -322,7 +322,7 @@ const countries: ICountry[] = [
   {
     id: 45,
     name: 'Comoros',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Flag_of_the_Comoros.svg',
+    flag: '/images/countries/Flag_of_the_Comoros.svg',
     iso2: 'KM',
     iso3: 'COM',
     population: 832322,
@@ -330,7 +330,7 @@ const countries: ICountry[] = [
   {
     id: 46,
     name: 'Congo',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_the_Republic_of_the_Congo.svg',
+    flag: '/images/countries/Flag_of_the_Republic_of_the_Congo.svg',
     iso2: 'CG',
     iso3: 'COG',
     population: 5244363,
@@ -338,7 +338,7 @@ const countries: ICountry[] = [
   {
     id: 48,
     name: 'Costa Rica',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Costa_Rica_%28state%29.svg',
+    flag: '/images/countries/Flag_of_Costa_Rica_%28state%29.svg',
     iso2: 'CR',
     iso3: 'CRI',
     population: 4999441,
@@ -346,7 +346,7 @@ const countries: ICountry[] = [
   {
     id: 49,
     name: 'Croatia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg',
+    flag: '/images/countries/Flag_of_Croatia.svg',
     iso2: 'HR',
     iso3: 'HRV',
     population: 4087843,
@@ -354,7 +354,7 @@ const countries: ICountry[] = [
   {
     id: 50,
     name: 'Cuba',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg',
+    flag: '/images/countries/Flag_of_Cuba.svg',
     iso2: 'CU',
     iso3: 'CUB',
     population: 11338138,
@@ -362,7 +362,7 @@ const countries: ICountry[] = [
   {
     id: 51,
     name: 'Cyprus',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Cyprus.svg',
+    flag: '/images/countries/Flag_of_Cyprus.svg',
     iso2: 'CY',
     iso3: 'CYP',
     population: 1189265,
@@ -370,7 +370,7 @@ const countries: ICountry[] = [
   {
     id: 52,
     name: 'Czech Republic',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_Czech_Republic.svg',
+    flag: '/images/countries/Flag_of_the_Czech_Republic.svg',
     iso2: 'CZ',
     iso3: 'CZE',
     population: 10629928,
@@ -378,7 +378,7 @@ const countries: ICountry[] = [
   {
     id: 53,
     name: 'Denmark',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg',
+    flag: '/images/countries/Flag_of_Denmark.svg',
     iso2: 'DK',
     iso3: 'DNK',
     population: 5793636,
@@ -386,7 +386,7 @@ const countries: ICountry[] = [
   {
     id: 54,
     name: 'Djibouti',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_Djibouti.svg',
+    flag: '/images/countries/Flag_of_Djibouti.svg',
     iso2: 'DJ',
     iso3: 'DJI',
     population: 958920,
@@ -394,7 +394,7 @@ const countries: ICountry[] = [
   {
     id: 55,
     name: 'Dominica',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Dominica.svg',
+    flag: '/images/countries/Flag_of_Dominica.svg',
     iso2: 'DM',
     iso3: 'DMA',
     population: 71625,
@@ -402,7 +402,7 @@ const countries: ICountry[] = [
   {
     id: 56,
     name: 'Dominican Republic',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_the_Dominican_Republic.svg',
+    flag: '/images/countries/Flag_of_the_Dominican_Republic.svg',
     iso2: 'DO',
     iso3: 'DOM',
     population: 10627165,
@@ -410,7 +410,7 @@ const countries: ICountry[] = [
   {
     id: 57,
     name: 'Ecuador',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg',
+    flag: '/images/countries/Flag_of_Ecuador.svg',
     iso2: 'EC',
     iso3: 'ECU',
     population: 17084357,
@@ -418,7 +418,7 @@ const countries: ICountry[] = [
   {
     id: 58,
     name: 'Egypt',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg',
+    flag: '/images/countries/Flag_of_Egypt.svg',
     iso2: 'EG',
     iso3: 'EGY',
     population: 98423595,
@@ -426,7 +426,7 @@ const countries: ICountry[] = [
   {
     id: 59,
     name: 'El Salvador',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_El_Salvador.svg',
+    flag: '/images/countries/Flag_of_El_Salvador.svg',
     iso2: 'SV',
     iso3: 'SLV',
     population: 6420744,
@@ -434,7 +434,7 @@ const countries: ICountry[] = [
   {
     id: 60,
     name: 'Equatorial Guinea',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Equatorial_Guinea.svg',
+    flag: '/images/countries/Flag_of_Equatorial_Guinea.svg',
     iso2: 'GQ',
     iso3: 'GNQ',
     population: 1308974,
@@ -442,7 +442,7 @@ const countries: ICountry[] = [
   {
     id: 62,
     name: 'Estonia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Flag_of_Estonia.svg',
+    flag: '/images/countries/Flag_of_Estonia.svg',
     iso2: 'EE',
     iso3: 'EST',
     population: 1321977,
@@ -450,7 +450,7 @@ const countries: ICountry[] = [
   {
     id: 63,
     name: 'Ethiopia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg',
+    flag: '/images/countries/Flag_of_Ethiopia.svg',
     iso2: 'ET',
     iso3: 'ETH',
     population: 109224559,
@@ -458,7 +458,7 @@ const countries: ICountry[] = [
   {
     id: 65,
     name: 'Faroe Islands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Flag_of_the_Faroe_Islands.svg',
+    flag: '/images/countries/Flag_of_the_Faroe_Islands.svg',
     iso2: 'FO',
     iso3: 'FRO',
     population: 48497,
@@ -466,7 +466,7 @@ const countries: ICountry[] = [
   {
     id: 66,
     name: 'Fiji',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Fiji.svg',
+    flag: '/images/countries/Flag_of_Fiji.svg',
     iso2: 'FJ',
     iso3: 'FJI',
     population: 883483,
@@ -474,7 +474,7 @@ const countries: ICountry[] = [
   {
     id: 67,
     name: 'Finland',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg',
+    flag: '/images/countries/Flag_of_Finland.svg',
     iso2: 'FI',
     iso3: 'FIN',
     population: 5515525,
@@ -482,7 +482,7 @@ const countries: ICountry[] = [
   {
     id: 68,
     name: 'France',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg',
+    flag: 'images/countries/Flag_of_France.svg',
     iso2: 'FR',
     iso3: 'FRA',
     population: 66977107,
@@ -490,7 +490,7 @@ const countries: ICountry[] = [
   {
     id: 69,
     name: 'French Polynesia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/db/Flag_of_French_Polynesia.svg',
+    flag: '/images/countries/Flag_of_French_Polynesia.svg',
     iso2: 'PF',
     iso3: 'PYF',
     population: 277679,
@@ -498,7 +498,7 @@ const countries: ICountry[] = [
   {
     id: 70,
     name: 'Gabon',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Gabon.svg',
+    flag: '/images/countries/Flag_of_Gabon.svg',
     iso2: 'GA',
     iso3: 'GAB',
     population: 2119275,
@@ -506,7 +506,7 @@ const countries: ICountry[] = [
   {
     id: 71,
     name: 'Gambia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg',
+    flag: '/images/countries/Flag_of_The_Gambia.svg',
     iso2: 'GM',
     iso3: 'GMB',
     population: 2280102,
@@ -514,7 +514,7 @@ const countries: ICountry[] = [
   {
     id: 72,
     name: 'Georgia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Georgia.svg',
+    flag: '/images/countries/Flag_of_Georgia.svg',
     iso2: 'GE',
     iso3: 'GEO',
     population: 3726549,
@@ -522,7 +522,7 @@ const countries: ICountry[] = [
   {
     id: 73,
     name: 'Germany',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg',
+    flag: 'images/countries/Flag_of_Germany.svg',
     iso2: 'DE',
     iso3: 'DEU',
     population: 82905782,
@@ -530,7 +530,7 @@ const countries: ICountry[] = [
   {
     id: 74,
     name: 'Ghana',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Ghana.svg',
+    flag: '/images/countries/Flag_of_Ghana.svg',
     iso2: 'GH',
     iso3: 'GHA',
     population: 29767108,
@@ -538,7 +538,7 @@ const countries: ICountry[] = [
   {
     id: 75,
     name: 'Gibraltar',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/02/Flag_of_Gibraltar.svg',
+    flag: '/images/countries/Flag_of_Gibraltar.svg',
     iso2: 'GI',
     iso3: 'GIB',
     population: 33718,
@@ -546,7 +546,7 @@ const countries: ICountry[] = [
   {
     id: 76,
     name: 'Greece',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg',
+    flag: '/images/countries/Flag_of_Greece.svg',
     iso2: 'GR',
     iso3: 'GRC',
     population: 10731726,
@@ -554,7 +554,7 @@ const countries: ICountry[] = [
   {
     id: 77,
     name: 'Greenland',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_Greenland.svg',
+    flag: '/images/countries/Flag_of_Greenland.svg',
     iso2: 'GL',
     iso3: 'GRL',
     population: 56025,
@@ -562,7 +562,7 @@ const countries: ICountry[] = [
   {
     id: 78,
     name: 'Grenada',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Grenada.svg',
+    flag: '/images/countries/Flag_of_Grenada.svg',
     iso2: 'GD',
     iso3: 'GRD',
     population: 111454,
@@ -570,7 +570,7 @@ const countries: ICountry[] = [
   {
     id: 80,
     name: 'Guam',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/07/Flag_of_Guam.svg',
+    flag: '/images/countries/Flag_of_Guam.svg',
     iso2: 'GU',
     iso3: 'GUM',
     population: 165768,
@@ -578,7 +578,7 @@ const countries: ICountry[] = [
   {
     id: 81,
     name: 'Guatemala',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Guatemala.svg',
+    flag: '/images/countries/Flag_of_Guatemala.svg',
     iso2: 'GT',
     iso3: 'GTM',
     population: 17247807,
@@ -586,7 +586,7 @@ const countries: ICountry[] = [
   {
     id: 83,
     name: 'Guinea',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg',
+    flag: '/images/countries/Flag_of_Guinea.svg',
     iso2: 'GN',
     iso3: 'GIN',
     population: 12414318,
@@ -594,7 +594,7 @@ const countries: ICountry[] = [
   {
     id: 84,
     name: 'Guinea-Bissau',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Guinea-Bissau.svg',
+    flag: '/images/countries/Flag_of_Guinea-Bissau.svg',
     iso2: 'GW',
     iso3: 'GNB',
     population: 1874309,
@@ -602,7 +602,7 @@ const countries: ICountry[] = [
   {
     id: 85,
     name: 'Guyana',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_Guyana.svg',
+    flag: '/images/countries/Flag_of_Guyana.svg',
     iso2: 'GY',
     iso3: 'GUY',
     population: 779004,
@@ -610,7 +610,7 @@ const countries: ICountry[] = [
   {
     id: 86,
     name: 'Haiti',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Haiti.svg',
+    flag: '/images/countries/Flag_of_Haiti.svg',
     iso2: 'HT',
     iso3: 'HTI',
     population: 11123176,
@@ -618,7 +618,7 @@ const countries: ICountry[] = [
   {
     id: 89,
     name: 'Honduras',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Naval_Ensign_of_Honduras.svg',
+    flag: '/images/countries/Naval_Ensign_of_Honduras.svg',
     iso2: 'HN',
     iso3: 'HND',
     population: 9587522,
@@ -626,7 +626,7 @@ const countries: ICountry[] = [
   {
     id: 90,
     name: 'Hong Kong',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Flag_of_Hong_Kong.svg',
+    flag: '/images/countries/Flag_of_Hong_Kong.svg',
     iso2: 'HK',
     iso3: 'HKG',
     population: 7451000,
@@ -634,7 +634,7 @@ const countries: ICountry[] = [
   {
     id: 91,
     name: 'Hungary',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg',
+    flag: '/images/countries/Flag_of_Hungary.svg',
     iso2: 'HU',
     iso3: 'HUN',
     population: 9775564,
@@ -642,7 +642,7 @@ const countries: ICountry[] = [
   {
     id: 92,
     name: 'Iceland',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Iceland.svg',
+    flag: '/images/countries/Flag_of_Iceland.svg',
     iso2: 'IS',
     iso3: 'ISL',
     population: 352721,
@@ -650,7 +650,7 @@ const countries: ICountry[] = [
   {
     id: 93,
     name: 'India',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg',
+    flag: 'images/countries/Flag_of_India.svg',
     iso2: 'IN',
     iso3: 'IND',
     population: 1352617328,
@@ -658,7 +658,7 @@ const countries: ICountry[] = [
   {
     id: 94,
     name: 'Indonesia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg',
+    flag: '/images/countries/Flag_of_Indonesia.svg',
     iso2: 'ID',
     iso3: 'IDN',
     population: 267663435,
@@ -666,7 +666,7 @@ const countries: ICountry[] = [
   {
     id: 95,
     name: 'Iran',
-    flag: ' https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg',
+    flag: ' /images/countries/Flag_of_Iran.svg',
     iso2: 'IR',
     iso3: 'IRN',
     population: 81800269,
@@ -674,7 +674,7 @@ const countries: ICountry[] = [
   {
     id: 96,
     name: 'Iraq',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg',
+    flag: '/images/countries/Flag_of_Iraq.svg',
     iso2: 'IQ',
     iso3: 'IRQ',
     population: 38433600,
@@ -682,7 +682,7 @@ const countries: ICountry[] = [
   {
     id: 97,
     name: 'Ireland',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg',
+    flag: '/images/countries/Flag_of_Ireland.svg',
     iso2: 'IE',
     iso3: 'IRL',
     population: 4867309,
@@ -690,7 +690,7 @@ const countries: ICountry[] = [
   {
     id: 98,
     name: 'Isle of Man',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_the_Isle_of_Man.svg',
+    flag: '/images/countries/Flag_of_the_Isle_of_Man.svg',
     iso2: 'IM',
     iso3: 'IMN',
     population: 84077,
@@ -698,7 +698,7 @@ const countries: ICountry[] = [
   {
     id: 99,
     name: 'Israel',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg',
+    flag: '/images/countries/Flag_of_Israel.svg',
     iso2: 'IL',
     iso3: 'ISR',
     population: 8882800,
@@ -706,7 +706,7 @@ const countries: ICountry[] = [
   {
     id: 100,
     name: 'Italy',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg',
+    flag: 'images/countries/Flag_of_Italy.svg',
     iso2: 'IT',
     iso3: 'ITA',
     population: 60421760,
@@ -714,7 +714,7 @@ const countries: ICountry[] = [
   {
     id: 101,
     name: 'Jamaica',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Jamaica.svg',
+    flag: '/images/countries/Flag_of_Jamaica.svg',
     iso2: 'JM',
     iso3: 'JAM',
     population: 2934855,
@@ -722,7 +722,7 @@ const countries: ICountry[] = [
   {
     id: 102,
     name: 'Japan',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg',
+    flag: 'images/countries/Flag_of_Japan.svg',
     iso2: 'JP',
     iso3: 'JPN',
     population: 126529100,
@@ -730,7 +730,7 @@ const countries: ICountry[] = [
   {
     id: 104,
     name: 'Jordan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Jordan.svg',
+    flag: '/images/countries/Flag_of_Jordan.svg',
     iso2: 'JO',
     iso3: 'JOR',
     population: 9956011,
@@ -738,7 +738,7 @@ const countries: ICountry[] = [
   {
     id: 105,
     name: 'Kazakhstan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg',
+    flag: '/images/countries/Flag_of_Kazakhstan.svg',
     iso2: 'KZ',
     iso3: 'KAZ',
     population: 18272430,
@@ -746,7 +746,7 @@ const countries: ICountry[] = [
   {
     id: 106,
     name: 'Kenya',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg',
+    flag: '/images/countries/Flag_of_Kenya.svg',
     iso2: 'KE',
     iso3: 'KEN',
     population: 51393010,
@@ -754,7 +754,7 @@ const countries: ICountry[] = [
   {
     id: 107,
     name: 'Kiribati',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kiribati.svg',
+    flag: '/images/countries/Flag_of_Kiribati.svg',
     iso2: 'KI',
     iso3: 'KIR',
     population: 115847,
@@ -762,7 +762,7 @@ const countries: ICountry[] = [
   {
     id: 108,
     name: 'Kuwait',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/a/aa/Flag_of_Kuwait.svg',
+    flag: '/images/countries/Flag_of_Kuwait.svg',
     iso2: 'KW',
     iso3: 'KWT',
     population: 4137309,
@@ -770,7 +770,7 @@ const countries: ICountry[] = [
   {
     id: 109,
     name: 'Kyrgyzstan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Flag_of_Kyrgyzstan.svg',
+    flag: '/images/countries/Flag_of_Kyrgyzstan.svg',
     iso2: 'KG',
     iso3: 'KGZ',
     population: 6322800,
@@ -778,7 +778,7 @@ const countries: ICountry[] = [
   {
     id: 110,
     name: 'Laos',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Laos.svg',
+    flag: '/images/countries/Flag_of_Laos.svg',
     iso2: 'LA',
     iso3: 'LAO',
     population: 7061507,
@@ -786,7 +786,7 @@ const countries: ICountry[] = [
   {
     id: 111,
     name: 'Latvia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Latvia.svg',
+    flag: '/images/countries/Flag_of_Latvia.svg',
     iso2: 'LV',
     iso3: 'LVA',
     population: 1927174,
@@ -794,7 +794,7 @@ const countries: ICountry[] = [
   {
     id: 112,
     name: 'Lebanon',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Flag_of_Lebanon.svg',
+    flag: '/images/countries/Flag_of_Lebanon.svg',
     iso2: 'LB',
     iso3: 'LBN',
     population: 6848925,
@@ -802,7 +802,7 @@ const countries: ICountry[] = [
   {
     id: 113,
     name: 'Lesotho',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Flag_of_Lesotho.svg',
+    flag: '/images/countries/Flag_of_Lesotho.svg',
     iso2: 'LS',
     iso3: 'LSO',
     population: 2108132,
@@ -810,7 +810,7 @@ const countries: ICountry[] = [
   {
     id: 114,
     name: 'Liberia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg',
+    flag: '/images/countries/Flag_of_Liberia.svg',
     iso2: 'LR',
     iso3: 'LBR',
     population: 4818977,
@@ -818,7 +818,7 @@ const countries: ICountry[] = [
   {
     id: 115,
     name: 'Liechtenstein',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Flag_of_Liechtenstein.svg',
+    flag: '/images/countries/Flag_of_Liechtenstein.svg',
     iso2: 'LI',
     iso3: 'LIE',
     population: 37910,
@@ -826,7 +826,7 @@ const countries: ICountry[] = [
   {
     id: 116,
     name: 'Lithuania',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Lithuania.svg',
+    flag: '/images/countries/Flag_of_Lithuania.svg',
     iso2: 'LT',
     iso3: 'LTU',
     population: 2801543,
@@ -834,7 +834,7 @@ const countries: ICountry[] = [
   {
     id: 117,
     name: 'Luxembourg',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/da/Flag_of_Luxembourg.svg',
+    flag: '/images/countries/Flag_of_Luxembourg.svg',
     iso2: 'LU',
     iso3: 'LUX',
     population: 607950,
@@ -842,7 +842,7 @@ const countries: ICountry[] = [
   {
     id: 118,
     name: 'Macau',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Flag_of_Macau.svg',
+    flag: '/images/countries/Flag_of_Macau.svg',
     iso2: 'MO',
     iso3: 'MAC',
     population: 631636,
@@ -850,7 +850,7 @@ const countries: ICountry[] = [
   {
     id: 119,
     name: 'Madagascar',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Madagascar.svg',
+    flag: '/images/countries/Flag_of_Madagascar.svg',
     iso2: 'MG',
     iso3: 'MDG',
     population: 26262368,
@@ -858,7 +858,7 @@ const countries: ICountry[] = [
   {
     id: 120,
     name: 'Malawi',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Flag_of_Malawi.svg',
+    flag: '/images/countries/Flag_of_Malawi.svg',
     iso2: 'MW',
     iso3: 'MWI',
     population: 18143315,
@@ -866,7 +866,7 @@ const countries: ICountry[] = [
   {
     id: 121,
     name: 'Malaysia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg',
+    flag: '/images/countries/Flag_of_Malaysia.svg',
     iso2: 'MY',
     iso3: 'MYS',
     population: 31528585,
@@ -874,7 +874,7 @@ const countries: ICountry[] = [
   {
     id: 122,
     name: 'Maldives',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Maldives.svg',
+    flag: '/images/countries/Flag_of_Maldives.svg',
     iso2: 'MV',
     iso3: 'MDV',
     population: 515696,
@@ -882,7 +882,7 @@ const countries: ICountry[] = [
   {
     id: 123,
     name: 'Mali',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg',
+    flag: '/images/countries/Flag_of_Mali.svg',
     iso2: 'ML',
     iso3: 'MLI',
     population: 19077690,
@@ -890,7 +890,7 @@ const countries: ICountry[] = [
   {
     id: 124,
     name: 'Malta',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Malta.svg',
+    flag: '/images/countries/Flag_of_Malta.svg',
     iso2: 'MT',
     iso3: 'MLT',
     population: 484630,
@@ -898,7 +898,7 @@ const countries: ICountry[] = [
   {
     id: 125,
     name: 'Marshall Islands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Flag_of_the_Marshall_Islands.svg',
+    flag: '/images/countries/Flag_of_the_Marshall_Islands.svg',
     iso2: 'MH',
     iso3: 'MHL',
     population: 58413,
@@ -906,7 +906,7 @@ const countries: ICountry[] = [
   {
     id: 127,
     name: 'Mauritania',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Flag_of_Mauritania.svg',
+    flag: '/images/countries/Flag_of_Mauritania.svg',
     iso2: 'MR',
     iso3: 'MRT',
     population: 4403319,
@@ -914,7 +914,7 @@ const countries: ICountry[] = [
   {
     id: 128,
     name: 'Mauritius',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Mauritius.svg',
+    flag: '/images/countries/Flag_of_Mauritius.svg',
     iso2: 'MU',
     iso3: 'MUS',
     population: 1265303,
@@ -922,7 +922,7 @@ const countries: ICountry[] = [
   {
     id: 130,
     name: 'Mexico',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg',
+    flag: '/images/countries/Flag_of_Mexico.svg',
     iso2: 'MX',
     iso3: 'MEX',
     population: 126190788,
@@ -930,7 +930,7 @@ const countries: ICountry[] = [
   {
     id: 131,
     name: 'Monaco',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Flag_of_Monaco.svg',
+    flag: '/images/countries/Flag_of_Monaco.svg',
     iso2: 'MC',
     iso3: 'MCO',
     population: 38682,
@@ -938,7 +938,7 @@ const countries: ICountry[] = [
   {
     id: 132,
     name: 'Mongolia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Flag_of_Mongolia.svg',
+    flag: '/images/countries/Flag_of_Mongolia.svg',
     iso2: 'MN',
     iso3: 'MNG',
     population: 3170208,
@@ -946,7 +946,7 @@ const countries: ICountry[] = [
   {
     id: 133,
     name: 'Montenegro',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Flag_of_Montenegro.svg',
+    flag: '/images/countries/Flag_of_Montenegro.svg',
     iso2: 'ME',
     iso3: 'MNE',
     population: 622227,
@@ -954,7 +954,7 @@ const countries: ICountry[] = [
   {
     id: 135,
     name: 'Morocco',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg',
+    flag: '/images/countries/Flag_of_Morocco.svg',
     iso2: 'MA',
     iso3: 'MAR',
     population: 36029138,
@@ -962,7 +962,7 @@ const countries: ICountry[] = [
   {
     id: 136,
     name: 'Mozambique',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Mozambique.svg',
+    flag: '/images/countries/Flag_of_Mozambique.svg',
     iso2: 'MZ',
     iso3: 'MOZ',
     population: 29495962,
@@ -970,7 +970,7 @@ const countries: ICountry[] = [
   {
     id: 137,
     name: 'Myanmar',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Flag_of_Myanmar.svg',
+    flag: '/images/countries/Flag_of_Myanmar.svg',
     iso2: 'MM',
     iso3: 'MMR',
     population: 53708395,
@@ -978,7 +978,7 @@ const countries: ICountry[] = [
   {
     id: 138,
     name: 'Namibia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Namibia.svg',
+    flag: '/images/countries/Flag_of_Namibia.svg',
     iso2: 'NA',
     iso3: 'NAM',
     population: 2448255,
@@ -986,7 +986,7 @@ const countries: ICountry[] = [
   {
     id: 139,
     name: 'Nauru',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Flag_of_Nauru.svg',
+    flag: '/images/countries/Flag_of_Nauru.svg',
     iso2: 'NR',
     iso3: 'NRU',
     population: 12704,
@@ -994,7 +994,7 @@ const countries: ICountry[] = [
   {
     id: 140,
     name: 'Nepal',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg',
+    flag: '/images/countries/Flag_of_Nepal.svg',
     iso2: 'NP',
     iso3: 'NPL',
     population: 28087871,
@@ -1002,7 +1002,7 @@ const countries: ICountry[] = [
   {
     id: 141,
     name: 'Netherlands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg',
+    flag: '/images/countries/Flag_of_the_Netherlands.svg',
     iso2: 'NL',
     iso3: 'NLD',
     population: 17231624,
@@ -1010,7 +1010,7 @@ const countries: ICountry[] = [
   {
     id: 142,
     name: 'New Caledonia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Flags_of_New_Caledonia.svg',
+    flag: '/images/countries/Flags_of_New_Caledonia.svg',
     iso2: 'NC',
     iso3: 'NCL',
     population: 284060,
@@ -1018,7 +1018,7 @@ const countries: ICountry[] = [
   {
     id: 143,
     name: 'New Zealand',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg',
+    flag: '/images/countries/Flag_of_New_Zealand.svg',
     iso2: 'NZ',
     iso3: 'NZL',
     population: 4841000,
@@ -1026,7 +1026,7 @@ const countries: ICountry[] = [
   {
     id: 144,
     name: 'Nicaragua',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Nicaragua.svg',
+    flag: '/images/countries/Flag_of_Nicaragua.svg',
     iso2: 'NI',
     iso3: 'NIC',
     population: 6465513,
@@ -1034,7 +1034,7 @@ const countries: ICountry[] = [
   {
     id: 145,
     name: 'Niger',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Flag_of_Niger.svg',
+    flag: '/images/countries/Flag_of_Niger.svg',
     iso2: 'NE',
     iso3: 'NER',
     population: 22442948,
@@ -1042,7 +1042,7 @@ const countries: ICountry[] = [
   {
     id: 146,
     name: 'Nigeria',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg',
+    flag: '/images/countries/Flag_of_Nigeria.svg',
     iso2: 'NG',
     iso3: 'NGA',
     population: 195874740,
@@ -1050,7 +1050,7 @@ const countries: ICountry[] = [
   {
     id: 149,
     name: 'Northern Mariana Islands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Flag_of_the_Northern_Mariana_Islands.svg',
+    flag: '/images/countries/Flag_of_the_Northern_Mariana_Islands.svg',
     iso2: 'MP',
     iso3: 'MNP',
     population: 56882,
@@ -1058,7 +1058,7 @@ const countries: ICountry[] = [
   {
     id: 150,
     name: 'Norway',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg',
+    flag: '/images/countries/Flag_of_Norway.svg',
     iso2: 'NO',
     iso3: 'NOR',
     population: 5311916,
@@ -1066,7 +1066,7 @@ const countries: ICountry[] = [
   {
     id: 151,
     name: 'Oman',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg',
+    flag: '/images/countries/Flag_of_Oman.svg',
     iso2: 'OM',
     iso3: 'OMN',
     population: 4829483,
@@ -1074,7 +1074,7 @@ const countries: ICountry[] = [
   {
     id: 152,
     name: 'Pakistan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg',
+    flag: '/images/countries/Flag_of_Pakistan.svg',
     iso2: 'PK',
     iso3: 'PAK',
     population: 212215030,
@@ -1082,7 +1082,7 @@ const countries: ICountry[] = [
   {
     id: 153,
     name: 'Palau',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Palau.svg',
+    flag: '/images/countries/Flag_of_Palau.svg',
     iso2: 'PW',
     iso3: 'PLW',
     population: 17907,
@@ -1090,7 +1090,7 @@ const countries: ICountry[] = [
   {
     id: 154,
     name: 'Panama',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_Panama.svg',
+    flag: '/images/countries/Flag_of_Panama.svg',
     iso2: 'PA',
     iso3: 'PAN',
     population: 4176873,
@@ -1098,7 +1098,7 @@ const countries: ICountry[] = [
   {
     id: 155,
     name: 'Papua New Guinea',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Flag_of_Papua_New_Guinea.svg',
+    flag: '/images/countries/Flag_of_Papua_New_Guinea.svg',
     iso2: 'PG',
     iso3: 'PNG',
     population: 8606316,
@@ -1106,7 +1106,7 @@ const countries: ICountry[] = [
   {
     id: 156,
     name: 'Paraguay',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Paraguay.svg',
+    flag: '/images/countries/Flag_of_Paraguay.svg',
     iso2: 'PY',
     iso3: 'PRY',
     population: 6956071,
@@ -1114,7 +1114,7 @@ const countries: ICountry[] = [
   {
     id: 157,
     name: 'Peru',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg',
+    flag: '/images/countries/Flag_of_Peru.svg',
     iso2: 'PE',
     iso3: 'PER',
     population: 31989256,
@@ -1122,7 +1122,7 @@ const countries: ICountry[] = [
   {
     id: 158,
     name: 'Philippines',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg',
+    flag: '/images/countries/Flag_of_the_Philippines.svg',
     iso2: 'PH',
     iso3: 'PHL',
     population: 106651922,
@@ -1130,7 +1130,7 @@ const countries: ICountry[] = [
   {
     id: 160,
     name: 'Poland',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg',
+    flag: 'images/countries/Flag_of_Poland.svg',
     iso2: 'PL',
     iso3: 'POL',
     population: 37974750,
@@ -1138,7 +1138,7 @@ const countries: ICountry[] = [
   {
     id: 161,
     name: 'Portugal',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg',
+    flag: '/images/countries/Flag_of_Portugal.svg',
     iso2: 'PT',
     iso3: 'PRT',
     population: 10283822,
@@ -1146,7 +1146,7 @@ const countries: ICountry[] = [
   {
     id: 162,
     name: 'Puerto Rico',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_Puerto_Rico.svg',
+    flag: '/images/countries/Flag_of_Puerto_Rico.svg',
     iso2: 'PR',
     iso3: 'PRI',
     population: 3195153,
@@ -1154,7 +1154,7 @@ const countries: ICountry[] = [
   {
     id: 163,
     name: 'Qatar',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Qatar.svg',
+    flag: '/images/countries/Flag_of_Qatar.svg',
     iso2: 'QA',
     iso3: 'QAT',
     population: 2781677,
@@ -1162,7 +1162,7 @@ const countries: ICountry[] = [
   {
     id: 165,
     name: 'Romania',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Romania.svg',
+    flag: '/images/countries/Flag_of_Romania.svg',
     iso2: 'RO',
     iso3: 'ROU',
     population: 19466145,
@@ -1170,7 +1170,7 @@ const countries: ICountry[] = [
   {
     id: 166,
     name: 'Rwanda',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Rwanda.svg',
+    flag: '/images/countries/Flag_of_Rwanda.svg',
     iso2: 'RW',
     iso3: 'RWA',
     population: 12301939,
@@ -1178,7 +1178,7 @@ const countries: ICountry[] = [
   {
     id: 167,
     name: 'Saint Kitts and Nevis',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Saint_Kitts_and_Nevis.svg',
+    flag: '/images/countries/Flag_of_Saint_Kitts_and_Nevis.svg',
     iso2: 'KN',
     iso3: 'KNA',
     population: 52441,
@@ -1186,7 +1186,7 @@ const countries: ICountry[] = [
   {
     id: 168,
     name: 'Saint Lucia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Saint_Lucia.svg',
+    flag: '/images/countries/Flag_of_Saint_Lucia.svg',
     iso2: 'LC',
     iso3: 'LCA',
     population: 181889,
@@ -1194,7 +1194,7 @@ const countries: ICountry[] = [
   {
     id: 170,
     name: 'Saint Vincent and the Grenadines',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Flag_of_Saint_Vincent_and_the_Grenadines.svg',
+    flag: '/images/countries/Flag_of_Saint_Vincent_and_the_Grenadines.svg',
     iso2: 'VC',
     iso3: 'VCT',
     population: 110210,
@@ -1202,7 +1202,7 @@ const countries: ICountry[] = [
   {
     id: 171,
     name: 'Samoa',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Samoa.svg',
+    flag: '/images/countries/Flag_of_Samoa.svg',
     iso2: 'WS',
     iso3: 'WSM',
     population: 196130,
@@ -1210,7 +1210,7 @@ const countries: ICountry[] = [
   {
     id: 172,
     name: 'San Marino',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Flag_of_San_Marino.svg',
+    flag: '/images/countries/Flag_of_San_Marino.svg',
     iso2: 'SM',
     iso3: 'SMR',
     population: 33785,
@@ -1218,7 +1218,7 @@ const countries: ICountry[] = [
   {
     id: 173,
     name: 'Sao Tome and Principe',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe.svg',
+    flag: '/images/countries/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe.svg',
     iso2: 'ST',
     iso3: 'STP',
     population: 211028,
@@ -1226,7 +1226,7 @@ const countries: ICountry[] = [
   {
     id: 174,
     name: 'Saudi Arabia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg',
+    flag: '/images/countries/Flag_of_Saudi_Arabia.svg',
     iso2: 'SA',
     iso3: 'SAU',
     population: 33699947,
@@ -1234,7 +1234,7 @@ const countries: ICountry[] = [
   {
     id: 175,
     name: 'Senegal',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg',
+    flag: '/images/countries/Flag_of_Senegal.svg',
     iso2: 'SN',
     iso3: 'SEN',
     population: 15854360,
@@ -1242,7 +1242,7 @@ const countries: ICountry[] = [
   {
     id: 176,
     name: 'Serbia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Flag_of_Serbia.svg',
+    flag: '/images/countries/Flag_of_Serbia.svg',
     iso2: 'RS',
     iso3: 'SRB',
     population: 6982604,
@@ -1250,7 +1250,7 @@ const countries: ICountry[] = [
   {
     id: 177,
     name: 'Seychelles',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Seychelles.svg',
+    flag: '/images/countries/Flag_of_Seychelles.svg',
     iso2: 'SC',
     iso3: 'SYC',
     population: 96762,
@@ -1258,7 +1258,7 @@ const countries: ICountry[] = [
   {
     id: 178,
     name: 'Sierra Leone',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Sierra_Leone.svg',
+    flag: '/images/countries/Flag_of_Sierra_Leone.svg',
     iso2: 'SL',
     iso3: 'SLE',
     population: 7650154,
@@ -1266,7 +1266,7 @@ const countries: ICountry[] = [
   {
     id: 179,
     name: 'Singapore',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg',
+    flag: '/images/countries/Flag_of_Singapore.svg',
     iso2: 'SG',
     iso3: 'SGP',
     population: 5638676,
@@ -1274,7 +1274,7 @@ const countries: ICountry[] = [
   {
     id: 180,
     name: 'Slovakia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Flag_of_Slovakia.svg',
+    flag: '/images/countries/Flag_of_Slovakia.svg',
     iso2: 'SK',
     iso3: 'SVK',
     population: 5446771,
@@ -1282,7 +1282,7 @@ const countries: ICountry[] = [
   {
     id: 181,
     name: 'Slovenia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Flag_of_Slovenia.svg',
+    flag: '/images/countries/Flag_of_Slovenia.svg',
     iso2: 'SI',
     iso3: 'SVN',
     population: 2073894,
@@ -1290,7 +1290,7 @@ const countries: ICountry[] = [
   {
     id: 182,
     name: 'Solomon Islands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Flag_of_the_Solomon_Islands.svg',
+    flag: '/images/countries/Flag_of_the_Solomon_Islands.svg',
     iso2: 'SB',
     iso3: 'SLB',
     population: 652858,
@@ -1298,7 +1298,7 @@ const countries: ICountry[] = [
   {
     id: 183,
     name: 'Somalia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Flag_of_Somalia.svg',
+    flag: '/images/countries/Flag_of_Somalia.svg',
     iso2: 'SO',
     iso3: 'SOM',
     population: 15008154,
@@ -1306,7 +1306,7 @@ const countries: ICountry[] = [
   {
     id: 184,
     name: 'South Africa',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg',
+    flag: '/images/countries/Flag_of_South_Africa.svg',
     iso2: 'ZA',
     iso3: 'ZAF',
     population: 57779622,
@@ -1314,7 +1314,7 @@ const countries: ICountry[] = [
   {
     id: 186,
     name: 'Spain',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg',
+    flag: 'images/countries/Flag_of_Spain.svg',
     iso2: 'ES',
     iso3: 'ESP',
     population: 46796540,
@@ -1322,7 +1322,7 @@ const countries: ICountry[] = [
   {
     id: 187,
     name: 'Sri Lanka',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg',
+    flag: '/images/countries/Flag_of_Sri_Lanka.svg',
     iso2: 'LK',
     iso3: 'LKA',
     population: 21670000,
@@ -1330,7 +1330,7 @@ const countries: ICountry[] = [
   {
     id: 188,
     name: 'Sudan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Sudan.svg',
+    flag: '/images/countries/Flag_of_Sudan.svg',
     iso2: 'SD',
     iso3: 'SDN',
     population: 41801533,
@@ -1338,7 +1338,7 @@ const countries: ICountry[] = [
   {
     id: 189,
     name: 'Suriname',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Flag_of_Suriname.svg',
+    flag: '/images/countries/Flag_of_Suriname.svg',
     iso2: 'SR',
     iso3: 'SUR',
     population: 575991,
@@ -1346,7 +1346,7 @@ const countries: ICountry[] = [
   {
     id: 190,
     name: 'Swaziland',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_Eswatini.svg',
+    flag: '/images/countries/Flag_of_Eswatini.svg',
     iso2: 'SZ',
     iso3: 'SWZ',
     population: 1136191,
@@ -1354,7 +1354,7 @@ const countries: ICountry[] = [
   {
     id: 191,
     name: 'Sweden',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg',
+    flag: '/images/countries/Flag_of_Sweden.svg',
     iso2: 'SE',
     iso3: 'SWE',
     population: 10175214,
@@ -1362,7 +1362,7 @@ const countries: ICountry[] = [
   {
     id: 192,
     name: 'Switzerland',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_%28Pantone%29.svg',
+    flag: '/images/countries/Flag_of_Switzerland_%28Pantone%29.svg',
     iso2: 'CH',
     iso3: 'CHE',
     population: 8513227,
@@ -1370,7 +1370,7 @@ const countries: ICountry[] = [
   {
     id: 193,
     name: 'Syria',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Flag_of_Syria.svg',
+    flag: '/images/countries/Flag_of_Syria.svg',
     iso2: 'SY',
     iso3: 'SYR',
     population: 16906283,
@@ -1378,7 +1378,7 @@ const countries: ICountry[] = [
   {
     id: 195,
     name: 'Tajikistan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Tajikistan.svg',
+    flag: '/images/countries/Flag_of_Tajikistan.svg',
     iso2: 'TJ',
     iso3: 'TJK',
     population: 9100837,
@@ -1386,7 +1386,7 @@ const countries: ICountry[] = [
   {
     id: 196,
     name: 'Thailand',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg',
+    flag: '/images/countries/Flag_of_Thailand.svg',
     iso2: 'TH',
     iso3: 'THA',
     population: 69428524,
@@ -1394,7 +1394,7 @@ const countries: ICountry[] = [
   {
     id: 197,
     name: 'Timor-Leste',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Flag_of_East_Timor.svg',
+    flag: '/images/countries/Flag_of_East_Timor.svg',
     iso2: 'TL',
     iso3: 'TLS',
     population: 1267972,
@@ -1402,7 +1402,7 @@ const countries: ICountry[] = [
   {
     id: 198,
     name: 'Togo',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/68/Flag_of_Togo.svg',
+    flag: '/images/countries/Flag_of_Togo.svg',
     iso2: 'TG',
     iso3: 'TGO',
     population: 7889094,
@@ -1410,7 +1410,7 @@ const countries: ICountry[] = [
   {
     id: 200,
     name: 'Tonga',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Tonga.svg',
+    flag: '/images/countries/Flag_of_Tonga.svg',
     iso2: 'TO',
     iso3: 'TON',
     population: 103197,
@@ -1418,7 +1418,7 @@ const countries: ICountry[] = [
   {
     id: 201,
     name: 'Trinidad and Tobago',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Flag_of_Trinidad_and_Tobago.svg',
+    flag: '/images/countries/Flag_of_Trinidad_and_Tobago.svg',
     iso2: 'TT',
     iso3: 'TTO',
     population: 1389858,
@@ -1426,7 +1426,7 @@ const countries: ICountry[] = [
   {
     id: 202,
     name: 'Tunisia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Tunisia.svg',
+    flag: '/images/countries/Flag_of_Tunisia.svg',
     iso2: 'TN',
     iso3: 'TUN',
     population: 11565204,
@@ -1434,7 +1434,7 @@ const countries: ICountry[] = [
   {
     id: 203,
     name: 'Turkey',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg',
+    flag: '/images/countries/Flag_of_Turkey.svg',
     iso2: 'TR',
     iso3: 'TUR',
     population: 82319724,
@@ -1442,7 +1442,7 @@ const countries: ICountry[] = [
   {
     id: 204,
     name: 'Turkmenistan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Turkmenistan.svg',
+    flag: '/images/countries/Flag_of_Turkmenistan.svg',
     iso2: 'TM',
     iso3: 'TKM',
     population: 5850908,
@@ -1450,7 +1450,7 @@ const countries: ICountry[] = [
   {
     id: 205,
     name: 'Turks and Caicos Islands',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Flag_of_the_Turks_and_Caicos_Islands.svg',
+    flag: '/images/countries/Flag_of_the_Turks_and_Caicos_Islands.svg',
     iso2: 'TC',
     iso3: 'TCA',
     population: 37665,
@@ -1458,7 +1458,7 @@ const countries: ICountry[] = [
   {
     id: 206,
     name: 'Tuvalu',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Tuvalu.svg',
+    flag: '/images/countries/Flag_of_Tuvalu.svg',
     iso2: 'TV',
     iso3: 'TUV',
     population: 11508,
@@ -1466,7 +1466,7 @@ const countries: ICountry[] = [
   {
     id: 207,
     name: 'Uganda',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Flag_of_Uganda.svg',
+    flag: '/images/countries/Flag_of_Uganda.svg',
     iso2: 'UG',
     iso3: 'UGA',
     population: 42723139,
@@ -1474,7 +1474,7 @@ const countries: ICountry[] = [
   {
     id: 208,
     name: 'Ukraine',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg',
+    flag: '/images/countries/Flag_of_Ukraine.svg',
     iso2: 'UA',
     iso3: 'UKR',
     population: 44622516,
@@ -1482,7 +1482,7 @@ const countries: ICountry[] = [
   {
     id: 209,
     name: 'United Arab Emirates',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg',
+    flag: '/images/countries/Flag_of_the_United_Arab_Emirates.svg',
     iso2: 'AE',
     iso3: 'ARE',
     population: 9630959,
@@ -1490,7 +1490,7 @@ const countries: ICountry[] = [
   {
     id: 210,
     name: 'United Kingdom',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg',
+    flag: '/images/countries/Flag_of_the_United_Kingdom.svg',
     iso2: 'GB',
     iso3: 'GBR',
     population: 66460344,
@@ -1498,7 +1498,7 @@ const countries: ICountry[] = [
   {
     id: 211,
     name: 'United States',
-    flag: 'https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg',
+    flag: 'images/countries/Flag_of_the_United_States.svg',
     iso2: 'US',
     iso3: 'USA',
     population: 326687501,
@@ -1506,7 +1506,7 @@ const countries: ICountry[] = [
   {
     id: 213,
     name: 'Uruguay',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg',
+    flag: '/images/countries/Flag_of_Uruguay.svg',
     iso2: 'UY',
     iso3: 'URY',
     population: 3449299,
@@ -1514,7 +1514,7 @@ const countries: ICountry[] = [
   {
     id: 214,
     name: 'Uzbekistan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg',
+    flag: '/images/countries/Flag_of_Uzbekistan.svg',
     iso2: 'UZ',
     iso3: 'UZB',
     population: 32955400,
@@ -1522,7 +1522,7 @@ const countries: ICountry[] = [
   {
     id: 215,
     name: 'Vanuatu',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Vanuatu.svg',
+    flag: '/images/countries/Flag_of_Vanuatu.svg',
     iso2: 'VU',
     iso3: 'VUT',
     population: 292680,
@@ -1530,7 +1530,7 @@ const countries: ICountry[] = [
   {
     id: 216,
     name: 'Vietnam',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg',
+    flag: '/images/countries/Flag_of_Vietnam.svg',
     iso2: 'VN',
     iso3: 'VNM',
     population: 95540395,
@@ -1538,7 +1538,7 @@ const countries: ICountry[] = [
   {
     id: 218,
     name: 'Yemen',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_Yemen.svg',
+    flag: '/images/countries/Flag_of_Yemen.svg',
     iso2: 'YE',
     iso3: 'YEM',
     population: 28498687,
@@ -1546,7 +1546,7 @@ const countries: ICountry[] = [
   {
     id: 219,
     name: 'Zambia',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Zambia.svg',
+    flag: '/images/countries/Flag_of_Zambia.svg',
     iso2: 'ZM',
     iso3: 'ZMB',
     population: 17351822,
@@ -1554,7 +1554,7 @@ const countries: ICountry[] = [
   {
     id: 220,
     name: 'Zimbabwe',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg',
+    flag: '/images/countries/Flag_of_Zimbabwe.svg',
     iso2: 'ZW',
     iso3: 'ZWE',
     population: 14439018,

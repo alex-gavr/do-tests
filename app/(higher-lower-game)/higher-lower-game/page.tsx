@@ -17,6 +17,8 @@ const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'
 });
 const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), { ssr: false });
 
+
+
 const Page = ({ searchParams }: IServerProps) => {
   const { country } = useServerSearchParams(searchParams);
 
@@ -31,7 +33,7 @@ const Page = ({ searchParams }: IServerProps) => {
       <InitialCountries country={country} />
       <div className='flex min-h-screen flex-col items-center justify-start gap-4 bg-slate-900 py-4'>
         <div className='absolute top-4 w-full max-w-2xl'>
-          <ScoresContainer country={country}  />
+          <ScoresContainer country={country} />
         </div>
         <h1 className='mt-16 text-center text-xl text-white sm:text-2xl md:text-3xl'>
           which country has higher population?

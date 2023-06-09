@@ -29,10 +29,12 @@ const GameOverHeader = ({}: IHeaderProps) => {
       if (n === state.user.topScore) {
         return;
       } else {
-        setCookie('topScore', state.user.topScore);
+        setCookie('topScore', state.user.topScore, { path: '/', maxAge: 60 * 60 * 24 * 365 });
+        router.refresh();
       }
     } else {
-      setCookie('topScore', state.user.topScore);
+      setCookie('topScore', state.user.topScore, { path: '/', maxAge: 60 * 60 * 24 * 365 });
+      router.refresh();
     }
   }, [topScoreCookie]);
 

@@ -25,8 +25,10 @@ const Countries = ({}: ICountriesProps) => {
   if (state.topCard === null || state.bottomCard === null) {
     return;
   }
+  
 
   const countriesToDisplay: TCountryPair = [state.topCard, state.bottomCard];
+  console.log('🚀 ~ state:', state)
 
   const topScore = state.user.topScore;
   const hints = state.user.hintsAvailable;
@@ -117,7 +119,7 @@ const Countries = ({}: ICountriesProps) => {
         // setTopScore((prev: number) => prev + 1);
         deleteCookie('topScore');
         dispatch({ type: GameActionTypes.setTopScore, payload: topScore + 1 });
-        setCookie('topScore', topScore + 1, { path: '/', maxAge: 60 * 60 * 24 });
+        setCookie('topScore', topScore + 1, { path: '/', maxAge: 60 * 60 * 24 * 365 });
       }
       // If lose
       if (isWin === false) {
