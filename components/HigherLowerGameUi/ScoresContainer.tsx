@@ -1,11 +1,22 @@
 'use client';
 import { useAppContext } from '@context/Context';
 import { TrophyIcon } from '@heroicons/react/24/solid';
+import CreateUser from './CreateUser';
 
-interface IScoresContainerProps {}
+interface IScoresContainerProps {
+  country: string;
+}
 
-const ScoresContainer = ({}: IScoresContainerProps) => {
+const ScoresContainer = ({ country }: IScoresContainerProps) => {
   const { gameState: state } = useAppContext();
+  if (
+    state.user.currentScore === null ||
+    state.user.currentScore === undefined ||
+    isNaN(state.user.currentScore)
+  ) {
+    localStorage.removeItem('gameState');
+    return <CreateUser country={country} />;
+  }
 
   return (
     <div className='flex w-full flex-row items-start justify-between px-4'>
