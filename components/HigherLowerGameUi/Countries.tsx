@@ -179,7 +179,7 @@ const Countries = ({}: ICountriesProps) => {
 
   return (
     <>
-      <TimerToAnswer />
+      {/* <TimerToAnswer /> */}
       <div className='flex flex-col flex-wrap justify-center gap-4'>
         {countriesToDisplay.map((country, index) => (
           <CountryCard

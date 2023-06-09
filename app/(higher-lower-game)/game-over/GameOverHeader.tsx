@@ -98,7 +98,7 @@ const GameOverHeader = ({}: IHeaderProps) => {
           onClick={handleClickLeaderboard}
           className='w-full min-w-0 max-w-[200px]'
         >
-          {loading ? <ArrowPathIcon className='h-4 w-4 animate-spin ' /> : 'Leaderboard'}
+          {loading ? <ArrowPathIcon className='h-4 w-4 animate-spin text-emerald-400' /> : 'Leaderboard'}
         </GameButton>
         <p className='ml-1 text-xs tracking-widest text-slate-300 md:text-sm'>
           top score: {state.user.topScore}

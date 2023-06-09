@@ -1,5 +1,4 @@
 'use client';
-
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { cn } from '@utils/cn';
@@ -7,7 +6,8 @@ import { randomIntFromInterval } from '@utils/randomInt';
 import { hasCookie, setCookie } from 'cookies-next';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { ImageWithSkeleton } from '@components/ImageWithSkeleton';
 
 const cheers = [
   'Great job!',
@@ -98,14 +98,10 @@ const CountryCard = ({
         className={cn(cardBaseStyles, borderStyles, state.showAnswer ? 'pointer-events-none' : '')}
         onClick={handleClick}
       >
-        <Image
-          width={400}
-          height={300}
+        <ImageWithSkeleton
           className='absolute object-cover pointer-events-none'
           src={flag}
           alt='whatever'
-          loading='eager'
-          priority
         />
         <div className={cn(nameBaseStyles, borderStyles)}>
           <div className='flex h-full w-full items-center justify-center'>
