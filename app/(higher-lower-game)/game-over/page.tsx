@@ -36,7 +36,7 @@ const Page = async ({}: IPageProps) => {
           <div className='mb-16 flex w-full flex-1 flex-col items-center justify-start gap-4'>
             <Position />
           </div>
-          <div className='fixed bottom-0 w-full rounded-t-md bg-gray-600 bg-opacity-40 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter'>
+          <div className='fixed bottom-0 w-full rounded-t-md bg-gray-600 bg-opacity-40 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter max-w-2xl'>
             <GameOverFooter />
           </div>
         </div>

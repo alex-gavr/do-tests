@@ -36,7 +36,7 @@ const Page = async ({}: IPageProps) => {
       ))}
       </div>
       {/* Button to go back, button to play again */}
-      <div className='fixed bottom-0 w-full rounded-t-md bg-gray-600 bg-opacity-40 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter'>
+      <div className='fixed bottom-0 w-full rounded-t-md bg-gray-600 bg-opacity-40 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter max-w-2xl'>
         <LeaderboardButtons />
       </div>
     </div>
