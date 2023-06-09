@@ -25,7 +25,6 @@ const Countries = ({}: ICountriesProps) => {
   if (state.topCard === null || state.bottomCard === null) {
     return;
   }
-  
 
   const countriesToDisplay: TCountryPair = [state.topCard, state.bottomCard];
 
@@ -202,6 +201,7 @@ const Countries = ({}: ICountriesProps) => {
         type='button'
         disabled={nothingPicked || (showAnswer && isWin === false)}
         variant='primary'
+        className={showAnswer && isWin === false ? 'text-white disabled:bg-opacity-50 disabled:bg-pink-700' : ''}
       >
         {nothingPicked
           ? 'select a country'

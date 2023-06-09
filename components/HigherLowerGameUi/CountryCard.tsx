@@ -122,11 +122,11 @@ const CountryCard = ({
             ? positiveFeedBack
             : isAnswerCorrect === false
             ? 'incorrect 😢'
-            : state.user.roundsPlayed <= 2
+            : state.user.roundsPlayed < 2
             ? 'pick top or bottom country'
             : state.timerToAnswer.time}
           <br />
-          {state.user.roundsPlayed <= 2 &&
+          {state.user.roundsPlayed < 2 &&
             isAnswerCorrect === null &&
             'Seconds left: ' + state.timerToAnswer.time}
         </p>

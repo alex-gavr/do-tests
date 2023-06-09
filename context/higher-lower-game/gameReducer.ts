@@ -154,7 +154,7 @@ const gameReducer = (state: IGameInitialState, action: TGameActions): IGameIniti
     }
 
     case GameActionTypes.resetSecondsToAnswer: {
-      if (state.user.roundsPlayed <= 2) {
+      if (state.user.roundsPlayed < 2) {
         return {
           ...state,
           timerToAnswer: {

@@ -15,18 +15,10 @@ const TimerToAnswer = ({}: ITimerToAnswerProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
 
   const router = useRouter();
-  const l = hasCookie('lost');
-
+  const lostCookie = hasCookie('lost');
+  
   useEffect(() => {
-    if (state.user.roundsPlayed <= 2) {
-      dispatch({ type: GameActionTypes.setSecondsToAnswer, payload: 25 });
-    } else {
-      dispatch({ type: GameActionTypes.setSecondsToAnswer, payload: 15 });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (l || !state.timerToAnswer.enabled) {
+    if (lostCookie || !state.timerToAnswer.enabled) {
       return;
     } else {
       if (state.timerToAnswer.time === 0) {
@@ -56,7 +48,7 @@ const TimerToAnswer = ({}: ITimerToAnswerProps) => {
         };
       }
     }
-  }, [state.timerToAnswer.time, router, l, state.timerToAnswer.enabled]);
+  }, [state.timerToAnswer.time, router, lostCookie, state.timerToAnswer.enabled]);
   return null;
 };
 
