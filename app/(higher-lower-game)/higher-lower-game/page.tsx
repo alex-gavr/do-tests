@@ -7,17 +7,19 @@ import { cookies } from 'next/dist/client/components/headers';
 import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import SimpleLoader from '@components/SimpleLoader';
+import InitialCountries from '@components/HigherLowerGameUi/InitialCountries';
+import Countries from '@components/HigherLowerGameUi/Countries';
 
-const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
-  ssr: false,
-});
+// const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
+//   ssr: false,
+// });
 const ScoresContainer = dynamic(() => import('@components/HigherLowerGameUi/ScoresContainer'), {
   ssr: false,
 });
-const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
-  loading: () => <SimpleLoader />,
-  ssr: false,
-});
+// const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'), {
+//   loading: () => <SimpleLoader />,
+//   ssr: false,
+// });
 const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), { ssr: false });
 
 const Page = ({ searchParams }: IServerProps) => {
