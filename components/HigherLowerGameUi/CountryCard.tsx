@@ -102,6 +102,7 @@ const CountryCard = ({
           className='absolute object-cover pointer-events-none'
           src={flag}
           alt='whatever'
+          priority
         />
         <div className={cn(nameBaseStyles, borderStyles)}>
           <div className='flex h-full w-full items-center justify-center'>
