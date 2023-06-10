@@ -1,9 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import langParser from 'accept-language-parser';
-import { locales, getLocalePartsFrom } from './i18n';
-import { defaultLocale } from '@utils/defaultValues';
+
+import { TValidLocale, defaultLocale, locales } from 'config';
 
 // const BLOCKED_COUNTRY = 'PH';
+
+type TLocaleSource = {
+  locale: TValidLocale;
+};
+
+export const getLocalePartsFrom = ({ locale }: TLocaleSource) => {
+  const localeParts = locale?.toLowerCase().split('-');
+  const lang = localeParts ? localeParts[0] : defaultLocale;
+  return {
+    lang,
+  };
+};
 
 const findBestMatchingLocale = (acceptLangHeader: string) => {
   // parse the locales acceptable in the header, and sort them by priority (q)
@@ -42,7 +54,7 @@ export function middleware(request: NextRequest) {
   } else {
     console.log('we set cookie');
     const { nextUrl: url, geo } = request;
-    
+
     // if (geo?.country === BLOCKED_COUNTRY) {
     //   return new Response('Blocked for legal reasons', { status: 451 });
     // }
@@ -53,7 +65,7 @@ export function middleware(request: NextRequest) {
       const matchedLocale = findBestMatchingLocale(request.headers.get('Accept-Language') || defaultLocale);
       return matchedLocale;
     };
-    
+
     const locale = getLocale();
     console.log('lang:', locale);
 

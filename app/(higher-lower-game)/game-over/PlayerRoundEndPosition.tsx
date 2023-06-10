@@ -2,12 +2,14 @@
 
 import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
 import { useAppContext } from '@context/Context';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
 interface IPlayerRoundEndPositionProps {
   place: number;
+  playerCardTexts: THigherLowerGameDictionary['leaderboard']['playerCard'];
 }
 
-const PlayerRoundEndPosition = ({ place }: IPlayerRoundEndPositionProps) => {
+const PlayerRoundEndPosition = ({ place, playerCardTexts }: IPlayerRoundEndPositionProps) => {
   const { gameState: state } = useAppContext();
 
   return (
@@ -19,6 +21,7 @@ const PlayerRoundEndPosition = ({ place }: IPlayerRoundEndPositionProps) => {
         highestScore={state.user.topScore}
         hintsAvailable={state.user.hintsAvailable}
         index={place}
+        playerCardTexts={playerCardTexts}
       />
     </div>
   );

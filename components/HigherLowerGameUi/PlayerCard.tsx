@@ -1,5 +1,6 @@
 import { TrophyIcon } from '@heroicons/react/24/solid';
 import { cn } from '@utils/cn';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
 interface IPlayerStatsProps {
   name: string;
@@ -8,8 +9,8 @@ interface IPlayerStatsProps {
   hintsAvailable: number;
   playerName: string;
   index: number;
+  playerCardTexts: THigherLowerGameDictionary['leaderboard']['playerCard'];
 }
-
 
 const PlayerCard = ({
   name,
@@ -18,6 +19,7 @@ const PlayerCard = ({
   hintsAvailable,
   playerName,
   index,
+  playerCardTexts,
 }: IPlayerStatsProps) => {
   const n = name.toLocaleLowerCase();
   const p = playerName.toLocaleLowerCase();
@@ -45,14 +47,18 @@ const PlayerCard = ({
           {index === 0 ? <TrophyIcon className=' h-7 w-7 text-yellow-300' /> : index + 1}
         </span>
         <div className='flex flex-col items-start justify-start gap-1'>
-          <p className={cn('text-xs text-white', user && 'text-black')}>{user ? name + ' (you)' : name}</p>
+          <p className={cn('text-xs text-white', user && 'text-black')}>
+            {user ? name + playerCardTexts.you : name}
+          </p>
           <p className={cn('text-xs text-neutral-400', user && 'text-neutral-500')}>{country}</p>
         </div>
       </div>
       <div className='flex flex-col items-end justify-end gap-1'>
-        <p className={cn('text-xs text-green-400', user && 'text-green-600')}>Top Score: {highestScore}</p>
+        <p className={cn('text-xs text-green-400', user && 'text-green-600')}>
+          {playerCardTexts.topScore}: {highestScore}
+        </p>
         <p className={cn('text-[0.7rem] text-neutral-400', user && 'text-neutral-500')}>
-          Hints: {hintsAvailable}
+          {playerCardTexts.hints}: {hintsAvailable}
         </p>
       </div>
     </div>

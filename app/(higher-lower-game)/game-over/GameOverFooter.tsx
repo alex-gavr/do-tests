@@ -6,11 +6,14 @@ import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie } from 'cookies-next';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 
-interface IGameOverFooterProps {}
-const GameOverFooter = ({}: IGameOverFooterProps) => {
+interface IGameOverFooterProps {
+  footerTexts: THigherLowerGameDictionary['gameOver']['footer'];
+}
+const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
   const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
   const router = useRouter();
 
@@ -63,10 +66,10 @@ const GameOverFooter = ({}: IGameOverFooterProps) => {
   return (
     <div className='flex w-full flex-row items-start justify-between gap-4'>
       <GameButton variant='secondary' onClick={handleFinish} className='w-full min-w-0 max-w-[200px]'>
-        Finish
+        {footerTexts.finish}
       </GameButton>
       <GameButton variant='primary' onClick={handlePlayAgain} className='w-full min-w-0 max-w-[200px]'>
-        Play Again
+        {footerTexts.playAgain}
       </GameButton>
     </div>
   );

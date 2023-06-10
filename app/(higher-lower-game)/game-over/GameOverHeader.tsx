@@ -3,19 +3,22 @@
 import GameButton from '@components/HigherLowerGameUi/GameButton';
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { sendUserDataToDb } from '@utils/HigherLowerGame/sendUserDataToDb';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { GameEvents } from 'types/TrackEvents';
 
-interface IHeaderProps {}
+interface IHeaderProps {
+  headerTexts: THigherLowerGameDictionary['gameOver']['header'];
+}
 
-const GameOverHeader = ({}: IHeaderProps) => {
+const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const [loading, setLoading] = useState<boolean>(false);
   const playerNameCookie = hasCookie('playerName');
@@ -93,26 +96,31 @@ const GameOverHeader = ({}: IHeaderProps) => {
   };
 
   return (
-    <div className='flex w-full flex-row items-start justify-between gap-4 max-w-2xl'>
+    <div className='flex w-full max-w-2xl flex-row items-start justify-between gap-4'>
       <div className='flex w-full flex-col items-start justify-start gap-4'>
         <GameButton
           variant='secondary'
           onClick={handleClickLeaderboard}
           className='w-full min-w-0 max-w-[200px]'
         >
-          {loading ? <ArrowPathIcon className='h-4 w-4 animate-spin text-emerald-400' /> : 'Leaderboard'}
+          {loading ? (
+            <ArrowPathIcon className='h-4 w-4 animate-spin text-emerald-400' />
+          ) : (
+            headerTexts.leaderboardButton
+          )}
         </GameButton>
         <p className='ml-1 text-xs tracking-widest text-slate-300 md:text-sm'>
-          top score: {state.user.topScore}
+          {headerTexts.topScore}: {state.user.topScore}
         </p>
       </div>
       <div className='flex w-full flex-col items-end justify-start gap-4'>
-        <GameButton variant='secondary' onClick={handleGetMoreHints} className='w-full min-w-0 max-w-[200px]'>
-          More Hints
+        <GameButton variant='secondary' onClick={handleGetMoreHints} className='w-full min-w-0 max-w-[200px] relative'>
+          <PlusIcon className=' absolute right-1 w-6 text-emerald-400' />
+          {headerTexts.moreHintsButton}
         </GameButton>
         <p className='mr-1 text-xs tracking-widest text-slate-300 md:text-sm'>
           {' '}
-          hints available: {state.user.hintsAvailable}
+          {headerTexts.hintsAvailable}: {state.user.hintsAvailable}
         </p>
       </div>
     </div>

@@ -3,31 +3,10 @@ import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { cn } from '@utils/cn';
 import { randomIntFromInterval } from '@utils/randomInt';
-import { hasCookie, setCookie } from 'cookies-next';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { ImageWithSkeleton } from '@components/ImageWithSkeleton';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
-const cheers = [
-  'Great job!',
-  'You got it right!',
-  'Correct answer!',
-  'Well done!',
-  "You're absolutely right!",
-  "That's the correct answer!",
-  'Nice!',
-  'You nailed it! ',
-  'Well played!',
-  'Excellent!',
-  'Your answer is correct!',
-  'Spot on!',
-  'You got it!',
-  'Brilliant!',
-  "That's the right answer!",
-  'Nice work!',
-  "You're on fire!",
-];
 interface ICountryCardProps {
   id: number;
   flag: string;
@@ -37,6 +16,7 @@ interface ICountryCardProps {
   index: number;
   isWin: boolean | null;
   range: Array<number> | undefined;
+  countryCardTexts: THigherLowerGameDictionary['welcome']['Countries']['CountryCard'];
 }
 //  Flag_of_Sao_Tome_and_Principe
 const CountryCard = ({
@@ -48,6 +28,7 @@ const CountryCard = ({
   iso2,
   isWin,
   range = [567834, 34523951],
+  countryCardTexts,
 }: ICountryCardProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
 
@@ -88,9 +69,9 @@ const CountryCard = ({
       : '';
 
   const n = useMemo(() => {
-    return randomIntFromInterval(0, cheers.length - 1);
+    return randomIntFromInterval(0, countryCardTexts.positiveFeedback.length - 1);
   }, []);
-  const positiveFeedBack = cheers[n];
+  const positiveFeedBack = countryCardTexts.positiveFeedback[n];
 
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
@@ -99,7 +80,7 @@ const CountryCard = ({
         onClick={handleClick}
       >
         <ImageWithSkeleton
-          className='absolute object-cover pointer-events-none'
+          className='pointer-events-none absolute object-cover'
           src={flag}
           alt='whatever'
           priority
@@ -121,14 +102,14 @@ const CountryCard = ({
           {isAnswerCorrect === true
             ? positiveFeedBack
             : isAnswerCorrect === false
-            ? 'incorrect 😢'
+            ? countryCardTexts.lost
             : state.user.roundsPlayed < 2
-            ? 'pick top or bottom country'
+            ? countryCardTexts.instructions
             : state.timerToAnswer.time}
           <br />
           {state.user.roundsPlayed < 2 &&
             isAnswerCorrect === null &&
-            'Seconds left: ' + state.timerToAnswer.time}
+            `${countryCardTexts.secondsLeft}: ` + state.timerToAnswer.time}
         </p>
       )}
     </div>

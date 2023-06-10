@@ -2,12 +2,12 @@ import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
 import { db } from '@db/connection';
 import { gameUser } from '@db/schema';
 import { asc, desc, gte, sql } from 'drizzle-orm';
-// import PlayerRoundEndPosition from './PlayerRoundEndPosition';
 import { cookies } from 'next/dist/client/components/headers';
 import TopThree from './TopThree';
 import dynamic from 'next/dynamic';
-import SimpleLoader from '@components/SimpleLoader';
-// import TextResults from './TextResults';
+import { getDictionary } from 'i18n';
+import { TLanguage, TValidLocale } from 'config';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
 const TextResults = dynamic(() => import('./TextResults'), {
   ssr: false,
@@ -16,18 +16,20 @@ const PlayerRoundEndPosition = dynamic(() => import('./PlayerRoundEndPosition'),
   ssr: false,
 });
 
-interface IPositionProps {}
+interface IPositionProps extends TLanguage {}
 interface ITotalPlayers {
   players: number;
 }
 
-const LeaderboardWithPlayer = async ({}: IPositionProps) => {
+const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
   const cookiesList = cookies();
   const topScoreValue = cookiesList.get('topScore')?.value ?? '0';
   const playerName = cookiesList.get('playerName')?.value ?? '?????';
   const topScoreInt = parseInt(topScoreValue);
+  
+  const dReq = getDictionary(7777, language as TValidLocale);
 
-  const playerAbove = await db
+  const playerAboveReq = db
     .select({
       gameUser,
       place: sql<string>`ROW_NUMBER() OVER (ORDER BY ${gameUser.topScore} DESC)`,
@@ -37,11 +39,15 @@ const LeaderboardWithPlayer = async ({}: IPositionProps) => {
     .where(gte(gameUser.topScore, topScoreInt))
     .limit(1);
 
+  const totalPlayersReq = db.select({ players: sql`COUNT(*)` }).from(gameUser);
+
+  const [dRes, playerAbove, totalPlayersRes] = await Promise.all([dReq, playerAboveReq, totalPlayersReq]);
+  const d = dRes as THigherLowerGameDictionary;
+  const totalPlayers = totalPlayersRes as ITotalPlayers[];
+
   const topPlayerPlace = parseInt(playerAbove[0].place);
   const place = parseInt(playerAbove[0].place) + 1;
   const bottomPlayerPlace = place + 1;
-
-  const totalPlayers = (await db.select({ players: sql`COUNT(*)` }).from(gameUser)) as ITotalPlayers[];
 
   if (place > 4) {
     const topThreeReq = db.select().from(gameUser).orderBy(desc(gameUser.topScore)).limit(3);
@@ -66,7 +72,13 @@ const LeaderboardWithPlayer = async ({}: IPositionProps) => {
 
     return (
       <>
-        <TextResults place={place} />
+        <TextResults
+          place={place}
+          heading={d.gameOver.heading}
+          roundScoreFeedbackTexts={d.gameOver.roundScoreFeedback}
+          topScoreFeedbackTexts={d.gameOver.topScoreFeedback}
+          positiveFeedbackTexts={d.gameOver.positiveFeedback}
+        />
         <div className='flex w-full flex-col items-center justify-start gap-2 overflow-y-scroll px-1'>
           {topThree.map((user, index) => (
             <PlayerCard
@@ -77,6 +89,7 @@ const LeaderboardWithPlayer = async ({}: IPositionProps) => {
               highestScore={user.topScore}
               hintsAvailable={user.hintsAvailable}
               playerName={playerName}
+              playerCardTexts={d.leaderboard.playerCard}
             />
           ))}
           <span className='text-white'>&#x2022; &#x2022; &#x2022;</span>
@@ -89,9 +102,10 @@ const LeaderboardWithPlayer = async ({}: IPositionProps) => {
               highestScore={user.gameUser.topScore}
               hintsAvailable={user.gameUser.hintsAvailable}
               playerName={playerName}
+              playerCardTexts={d.leaderboard.playerCard}
             />
           ))}
-          <PlayerRoundEndPosition place={place} />
+          <PlayerRoundEndPosition place={place} playerCardTexts={d.leaderboard.playerCard} />
           {playerBelowWithPlace.map((user, index) => (
             <PlayerCard
               index={bottomPlayerPlace}
@@ -101,9 +115,12 @@ const LeaderboardWithPlayer = async ({}: IPositionProps) => {
               highestScore={user.topScore}
               hintsAvailable={user.hintsAvailable}
               playerName={playerName}
+              playerCardTexts={d.leaderboard.playerCard}
             />
           ))}
-          <p className='my-2 text-sm text-slate-300'>Total Players: {totalPlayers[0].players}</p>
+          <p className='my-2 text-sm text-slate-300'>
+            {d.leaderboard.totalPlayers}: {totalPlayers[0].players}
+          </p>
         </div>
       </>
     );
@@ -113,11 +130,19 @@ const LeaderboardWithPlayer = async ({}: IPositionProps) => {
     const topThree = await db.select().from(gameUser).orderBy(desc(gameUser.topScore)).limit(3);
     return (
       <>
-        <TextResults place={place} />
+        <TextResults
+          place={place}
+          heading={d.gameOver.heading}
+          roundScoreFeedbackTexts={d.gameOver.roundScoreFeedback}
+          topScoreFeedbackTexts={d.gameOver.topScoreFeedback}
+          positiveFeedbackTexts={d.gameOver.positiveFeedback}
+        />
         <div className='flex w-full flex-col items-center justify-center gap-2'>
-          <TopThree topThree={topThree} place={place} />
+          <TopThree topThree={topThree} place={place} playerCardTexts={d.leaderboard.playerCard} />
         </div>
-        <p className='my-1 text-sm text-slate-300'>Total Players: {totalPlayers[0].players}</p>
+        <p className='my-1 text-sm text-slate-300'>
+          {d.leaderboard.totalPlayers}: {totalPlayers[0].players}
+        </p>
       </>
     );
   }

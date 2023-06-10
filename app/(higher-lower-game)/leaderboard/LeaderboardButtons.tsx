@@ -6,12 +6,15 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie } from 'cookies-next';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 
-interface ILeaderboardButtonsProps {}
+interface ILeaderboardButtonsProps {
+  buttonsTexts: THigherLowerGameDictionary['leaderboard']['buttons'];
+}
 
-const LeaderboardButtons = ({}: ILeaderboardButtonsProps) => {
+const LeaderboardButtons = ({buttonsTexts}: ILeaderboardButtonsProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const router = useRouter();
   const handlePlayAgain = () => {
@@ -46,10 +49,10 @@ const LeaderboardButtons = ({}: ILeaderboardButtonsProps) => {
   return (
     <div className='flex w-full flex-row items-start justify-between gap-4'>
       <GameButton variant='secondary' onClick={handleBack} className='w-full min-w-0 max-w-[200px]'>
-        Back
+        {buttonsTexts.back}
       </GameButton>
       <GameButton variant='primary' onClick={handlePlayAgain} className='w-full min-w-0 max-w-[200px]'>
-        Play Again
+      {buttonsTexts.playAgain}
       </GameButton>
     </div>
   );

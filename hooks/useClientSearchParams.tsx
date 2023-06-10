@@ -1,4 +1,4 @@
-import { defaultCountry, defaultLocale, defaultOffer } from '@utils/defaultValues';
+import { defaultCountry, defaultLocale, defaultOffer } from 'config';
 import { useSearchParams } from 'next/navigation';
 import { ISearchParams } from './useServerSearchParams';
 

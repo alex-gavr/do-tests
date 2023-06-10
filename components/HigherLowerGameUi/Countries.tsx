@@ -16,10 +16,15 @@ import TimerToAnswer from './TimerToAnswer';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { GameEvents } from 'types/TrackEvents';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
-interface ICountriesProps {}
+interface ICountriesProps {
+  buttonTexts: THigherLowerGameDictionary['welcome']['Countries']['Button'];
+  hintButtonTexts: THigherLowerGameDictionary['welcome']['Countries']['HintButton'];
+  countryCardTexts: THigherLowerGameDictionary['welcome']['Countries']['CountryCard'];
+}
 
-const Countries = ({}: ICountriesProps) => {
+const Countries = ({ buttonTexts, hintButtonTexts, countryCardTexts }: ICountriesProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const router = useRouter();
   if (state.topCard === null || state.bottomCard === null) {
@@ -192,6 +197,7 @@ const Countries = ({}: ICountriesProps) => {
             population={country.population}
             flag={country.flag}
             iso2={country.iso2}
+            countryCardTexts={countryCardTexts}
           />
         ))}
       </div>
@@ -201,15 +207,17 @@ const Countries = ({}: ICountriesProps) => {
         type='button'
         disabled={nothingPicked || (showAnswer && isWin === false)}
         variant='primary'
-        className={showAnswer && isWin === false ? 'text-white disabled:bg-opacity-50 disabled:bg-pink-700' : ''}
+        className={
+          showAnswer && isWin === false ? 'text-white disabled:bg-pink-700 disabled:bg-opacity-50' : ''
+        }
       >
         {nothingPicked
-          ? 'select a country'
+          ? buttonTexts.nothingPicked
           : showAnswer && isWin === true
-          ? 'Next pair'
+          ? buttonTexts.answerIsCorrect
           : showAnswer && isWin === false
           ? timer
-          : `confirm ${state.pickedCard?.name}`}
+          : `${buttonTexts.confirmCountry} ${state.pickedCard?.name}`}
       </GameButton>
 
       <GameButton
@@ -218,10 +226,12 @@ const Countries = ({}: ICountriesProps) => {
         variant='secondary'
         disabled={showHint || hints === 0 || showAnswer === true}
       >
-        {showHint ? 'hope it helps' : hints === 0 ? 'no hint credits left' : 'get hint'}
+        {showHint
+          ? hintButtonTexts.hintShown
+          : hints === 0
+          ? hintButtonTexts.noHintAvailable
+          : hintButtonTexts.getHint}
       </GameButton>
-
-      {/* <p>Available hints {hintsAvailable}</p> */}
     </>
   );
 };

@@ -1,9 +1,11 @@
 import Button from '@components/Button/Button';
-import { ValidLocale, getTranslator } from 'i18n';
-import { ILanguage } from './TravelSurvey';
+import { getDictionary } from 'i18n';
+import { TLanguage, TValidLocale } from 'config';
+import { TTravelSurveyDictionary } from 'dictionaries/9999/en';
 
-const TravelThankYou = async ({ language }: ILanguage) => {
-  const t = await getTranslator(language as ValidLocale);
+export interface ITravelThankYouProps extends TLanguage {}
+const TravelThankYou = async ({ language }: ITravelThankYouProps) => {
+  const d = (await getDictionary(9999, language as TValidLocale)) as TTravelSurveyDictionary;
 
   return (
     <>
@@ -22,10 +24,10 @@ const TravelThankYou = async ({ language }: ILanguage) => {
         />
       </svg>
 
-      <h1 className='text-4xl'>{t.TravelSurvey.thankYou.title}</h1>
-      <p className='text-center text-lg'>{t.TravelSurvey.thankYou.description}</p>
+      <h1 className='text-4xl'>{d.thankYou.title}</h1>
+      <p className='text-center text-lg'>{d.thankYou.description}</p>
       <Button to='mainExit' variant='luxury'>
-        {t.TravelSurvey.thankYou.button}
+        {d.thankYou.button}
       </Button>
     </>
   );

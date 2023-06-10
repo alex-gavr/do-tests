@@ -7,9 +7,12 @@ import dynamic from 'next/dynamic';
 import { shoppingSurveyData } from '@configs/ShoppingSurvey/ShoppingSurveyData';
 import Privacy from '@app/Privacy';
 import ProgressBar from '@components/ProgressBar';
-import { ValidLocale, getTranslator } from 'i18n';
+
 // import SurveyContainer from '@components/SurveyContainer';
 import { kv } from '@vercel/kv';
+import { getDictionary } from 'i18n';
+import { TValidLocale } from 'config';
+import { TShoppingSurveyDictionary } from 'dictionaries/9998/en';
 
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 
@@ -17,16 +20,14 @@ const Page = async ({ searchParams }: IServerProps) => {
   const { language, country, debug, offerId } = useServerSearchParams(searchParams);
   const surveyData = await getSurveyDataFromRedis(offerId, language);
   // const surveyData = shoppingSurveyData;
-  const t = await getTranslator(language as ValidLocale);
+  const d = (await getDictionary(9998, language as TValidLocale)) as TShoppingSurveyDictionary;
 
   return (
     <>
       <ProgressBar />
       <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 py-10 sm:px-4'>
         {debug && <Debug debug={debug} />}
-        {offerId === 9998 ? (
-          <Privacy text1={t.ShoppingSurvey.privacy.text1} text2={t.ShoppingSurvey.privacy.text2} />
-        ) : null}
+        {offerId === 9998 ? <Privacy text1={d.privacy.text1} text2={d.privacy.text2} /> : null}
         {surveyData !== undefined ? (
           <SurveyContainer offerId={offerId} surveyData={surveyData} />
         ) : (
@@ -73,5 +74,3 @@ const getSurveyDataFromRedis = async (offerId: number | 'default', lang: string)
     }
   }
 };
-
-

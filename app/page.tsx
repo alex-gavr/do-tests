@@ -14,9 +14,6 @@ export interface IServerProps {
 const StartingPage = async ({ searchParams }: IServerProps) => {
   const { language, country, debug, offerId } = useServerSearchParams(searchParams);
 
-  // const response = await fetch('https://offpichuan.com/rotate?zz=5972907;5972947').then((response) => response.json());
-  // console.log(response);
-
   return (
     <>
       <main>
@@ -25,7 +22,7 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
         {offerId === 'default' && <DefaultSurvey />}
         {offerId === 9998 && <ShoppingSurvey language={language} />}
         {offerId === 9999 && <TravelSurvey language={language} />}
-        {offerId === 7777 && <HigherLowerGame country={country} />}
+        {offerId === 7777 && <HigherLowerGame country={country} language={language} />}
         {offerId !== 7777 && <BackButton />}
       </main>
     </>

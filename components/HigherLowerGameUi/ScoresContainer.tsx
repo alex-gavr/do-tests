@@ -5,9 +5,11 @@ import CreateUser from './CreateUser';
 
 interface IScoresContainerProps {
   country: string;
+  score: string;
+  hintsAvailable: string;
 }
 
-const ScoresContainer = ({ country }: IScoresContainerProps) => {
+const ScoresContainer = ({ country, score, hintsAvailable }: IScoresContainerProps) => {
   const { gameState: state } = useAppContext();
   if (
     state.user.currentScore === null ||
@@ -25,8 +27,8 @@ const ScoresContainer = ({ country }: IScoresContainerProps) => {
         <p className='text-slate-100'>{state.user.topScore}</p>
       </div>
       <div className='flex flex-col items-end justify-center '>
-        <p className='text-white'> score: {state.user.currentScore}</p>
-        <p className='text-xs text-emerald-300'> hints available: {state.user.hintsAvailable}</p>
+        <p className='text-white'> {score}: {state.user.currentScore}</p>
+        <p className='text-xs text-emerald-300'> {hintsAvailable}: {state.user.hintsAvailable}</p>
       </div>
     </div>
   );

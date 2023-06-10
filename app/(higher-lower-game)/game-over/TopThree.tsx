@@ -2,6 +2,7 @@
 
 import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
 import { useAppContext } from '@context/Context';
+import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
 interface ITopThreeProps {
   topThree: {
@@ -14,9 +15,10 @@ interface ITopThreeProps {
     roundsPlayed: number;
   }[];
   place: number;
+  playerCardTexts: THigherLowerGameDictionary['leaderboard']['playerCard'];
 }
 
-const TopThree = ({ topThree, place }: ITopThreeProps) => {
+const TopThree = ({ topThree, place, playerCardTexts }: ITopThreeProps) => {
   const { gameState: state } = useAppContext();
   //Index starts at 0, place starts at 1, therefore - 1
   const indexToAdd = place - 1;
@@ -47,6 +49,7 @@ const TopThree = ({ topThree, place }: ITopThreeProps) => {
           highestScore={user.topScore}
           hintsAvailable={user.hintsAvailable}
           playerName={state.user.playerName}
+          playerCardTexts={playerCardTexts}
         />
       ))}
     </div>

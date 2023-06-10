@@ -1,15 +1,13 @@
-import { defaultCountry, defaultLocale, defaultOffer } from "@utils/defaultValues";
-import { ValidLocale } from "i18n";
-
+import { TValidLocale, defaultCountry, defaultLocale, defaultOffer } from 'config';
 
 export interface ISearchParams {
-  locale?: ValidLocale;
+  locale?: TValidLocale;
   offer_id?: string | undefined;
   debug?: string | undefined;
   country?: string | undefined;
 }
 
-export const useServerSearchParams = ( searchParams: ISearchParams) => {
+export const useServerSearchParams = (searchParams: ISearchParams) => {
   const language = searchParams?.locale ?? defaultLocale;
   const country = searchParams?.country ?? defaultCountry;
   const debug = searchParams?.debug ? true : false;
@@ -18,7 +16,7 @@ export const useServerSearchParams = ( searchParams: ISearchParams) => {
   return {
     language,
     country,
-    offerId: offerId as number | "default",
+    offerId: offerId as number | 'default',
     debug,
   };
 };

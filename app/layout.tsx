@@ -1,5 +1,5 @@
-export const runtime = 'edge';
-export const preferredRegion = 'fra1'
+export const runtime = 'nodejs';
+// export const preferredRegion = 'fra1'
 
 import { inter, interBold } from '@fonts/Fonts';
 import '@styles/globals.css';
