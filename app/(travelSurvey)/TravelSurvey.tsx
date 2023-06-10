@@ -27,7 +27,7 @@ const TravelSurvey = async ({ language }: ILanguage) => {
   ];
 
   return (
-    <>
+    <section className='flex min-h-screen flex-col items-center justify-center gap-2 px-2 pb-10 pt-20 sm:px-4'>
       <header className='fixed top-0 z-10 w-full py-1'>
         <CountDown
           offerExpired={t.CountDown.offerExpired}
@@ -35,14 +35,19 @@ const TravelSurvey = async ({ language }: ILanguage) => {
           secondsWord={t.CountDown.secondsWord}
         />
       </header>
-      <div className='p-4 text-sm flex flex-col gap-4'>
-        <p>Join hundreds of lucky winners share your believes with confidence - our survey is 100% secure and trusted by many!</p>
+      <div className='flex flex-col gap-4 p-4 text-sm'>
+        <p>
+          Join hundreds of lucky winners share your believes with confidence - our survey is 100% secure and
+          trusted by many!
+        </p>
       </div>
       <div className='z-10 flex flex-col gap-8 rounded-md border border-gray-700 bg-slate-900 px-2 py-8 backdrop-blur-sm backdrop-filter'>
         <h1 className='pl-2 text-center text-3xl text-slate-100 sm:text-4xl md:text-4xl'>
           {t.TravelSurvey.welcome.title}
         </h1>
-        <p className='text-center text-lg text-slate-300'>{formatRichText(t.TravelSurvey.welcome.paragraph, tags)}</p>
+        <p className='text-center text-lg text-slate-300'>
+          {formatRichText(t.TravelSurvey.welcome.paragraph, tags)}
+        </p>
         <div className='flex w-full flex-row content-center justify-center gap-4'>
           <NoThankYou className='text-slate-200'>{t.NotInterested.text}</NoThankYou>
           <Button type='button' variant='luxury' to='beginSurvey'>
@@ -59,9 +64,15 @@ const TravelSurvey = async ({ language }: ILanguage) => {
       </div>
       <FullScreenImage />
       <div className='fixed top-0 h-screen w-full object-cover '>
-        <Image fill priority src={'/images/travel/singapore2.webp'} alt='singapore' className='object-cover ' />
+        <Image
+          fill
+          priority
+          src={'/images/travel/singapore2.webp'}
+          alt='singapore'
+          className='object-cover '
+        />
       </div>
-    </>
+    </section>
   );
 };
 

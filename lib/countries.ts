@@ -82,7 +82,7 @@ const countries: ICountry[] = [
   {
     id: 11,
     name: 'Australia',
-    flag: '/images/countries/Flag_of_Australia_%28converted%29.svg',
+    flag: '/images/countries/Flag_of_Australia.svg',
     iso2: 'AU',
     iso3: 'AUS',
     population: 24982688,
@@ -306,7 +306,7 @@ const countries: ICountry[] = [
   {
     id: 41,
     name: 'China',
-    flag: '/images/countries/Flag_of_the_People%27s_Republic_of_China.svg',
+    flag: '/images/countries/Flag_of_the_China.svg',
     iso2: 'CN',
     iso3: 'CHN',
     population: 1392730000,
@@ -338,7 +338,7 @@ const countries: ICountry[] = [
   {
     id: 48,
     name: 'Costa Rica',
-    flag: '/images/countries/Flag_of_Costa_Rica_%28state%29.svg',
+    flag: '/images/countries/Flag_of_Costa_Rica.svg',
     iso2: 'CR',
     iso3: 'CRI',
     population: 4999441,
@@ -1218,7 +1218,7 @@ const countries: ICountry[] = [
   {
     id: 173,
     name: 'Sao Tome and Principe',
-    flag: '/images/countries/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe.svg',
+    flag: '/images/countries/Flag_of_Sao.svg',
     iso2: 'ST',
     iso3: 'STP',
     population: 211028,
@@ -1362,7 +1362,7 @@ const countries: ICountry[] = [
   {
     id: 192,
     name: 'Switzerland',
-    flag: '/images/countries/Flag_of_Switzerland_%28Pantone%29.svg',
+    flag: '/images/countries/Flag_of_Switzerland.svg',
     iso2: 'CH',
     iso3: 'CHE',
     population: 8513227,

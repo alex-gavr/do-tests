@@ -27,7 +27,7 @@ const Providers = ({ children }: IProps) => {
   const nonUnique = hasCookie('nonUnique');
 
   useEffect(() => {
-    if (pathname === '/higher-lower-game' && production && !debug && !beenHome) {
+    if (offerId === 7777 && production && !debug && !beenHome) {
       const eventData: TGameEventProperties = {
         track: GameEvents.firstTimeGame,
         offerId: 'populations-game',

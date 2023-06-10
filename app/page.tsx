@@ -5,6 +5,7 @@ import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
 import ShoppingSurvey from './(shoppingSurvey)/ShoppingSurvey';
+import HigherLowerGame from './(higher-lower-game)/HigherLowerGame';
 
 export interface IServerProps {
   searchParams: ISearchParams;
@@ -17,14 +18,17 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
   // console.log(response);
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-center gap-2 px-2 pb-10 pt-20 sm:px-4'>
-      {debug && <Debug debug={debug} />}
-      {offerId === 9241 && <CareerSurvey />}
-      {offerId === 'default' && <DefaultSurvey />}
-      {offerId === 9998 && <ShoppingSurvey language={language} />}
-      {offerId === 9999 && <TravelSurvey language={language} />}
-      <BackButton />
-    </main>
+    <>
+      <main>
+        {debug && <Debug debug={debug} />}
+        {offerId === 9241 && <CareerSurvey />}
+        {offerId === 'default' && <DefaultSurvey />}
+        {offerId === 9998 && <ShoppingSurvey language={language} />}
+        {offerId === 9999 && <TravelSurvey language={language} />}
+        {offerId === 7777 && <HigherLowerGame country={country} />}
+        {offerId !== 7777 && <BackButton />}
+      </main>
+    </>
   );
 };
 

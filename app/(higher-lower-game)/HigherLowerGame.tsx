@@ -1,5 +1,3 @@
-import { IServerProps } from '@app/page';
-import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import { cookies } from 'next/dist/client/components/headers';
 import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -19,11 +17,11 @@ const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'
 });
 const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), { ssr: false });
 
+interface IHigherLowerGameProps {
+  country: string;
+}
 
-
-const Page = ({ searchParams }: IServerProps) => {
-  const { country } = useServerSearchParams(searchParams);
-
+const HigherLowerGame = ({ country }: IHigherLowerGameProps) => {
   const cookiesList = cookies();
   const lost = cookiesList.has('lost');
   if (lost) {
@@ -47,4 +45,4 @@ const Page = ({ searchParams }: IServerProps) => {
   );
 };
 
-export default Page;
+export default HigherLowerGame;

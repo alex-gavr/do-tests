@@ -29,7 +29,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
   ];
 
   return (
-    <>
+    <section className='flex min-h-screen flex-col items-center justify-center gap-2 px-2 pb-10 pt-20 sm:px-4'>
       <header className='fixed top-0 w-full py-1'>
         <CountDown
           className='border border-orange-300 bg-yellow-100'
@@ -41,7 +41,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
       <Image
         src='/images/shopping.svg'
         alt='whatever'
-        className='absolute left-0 top-8 w-56 -translate-x-8 sm:w-96 sm:-translate-x-14 sm:top-2'
+        className='absolute left-0 top-8 w-56 -translate-x-8 sm:top-2 sm:w-96 sm:-translate-x-14'
         width={300}
         height={300}
         priority
@@ -78,7 +78,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
         <Image
           src='/images/bucket.svg'
           alt='whatever'
-          className='absolute right-0 bottom-0 w-16 rotate-12'
+          className='absolute bottom-0 right-0 w-16 rotate-12'
           width={40}
           height={40}
           priority
@@ -86,7 +86,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
         <Image
           src='/images/bag.svg'
           alt='whatever'
-          className='absolute left-0 bottom-4 w-16 -rotate-12'
+          className='absolute bottom-4 left-0 w-16 -rotate-12'
           width={40}
           height={40}
           priority
@@ -108,7 +108,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
         </ReviewsContainer>
       </div>
       <FullScreenImage />
-    </>
+    </section>
   );
 };
 

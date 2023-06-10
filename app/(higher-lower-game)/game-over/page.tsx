@@ -5,7 +5,7 @@ import ShowVignette from './ShowVignette';
 // import ScoresContainer from '@components/HigherLowerGameUi/ScoresContainer';
 
 import dynamic from 'next/dynamic';
-import Position from './Position';
+import Position from './LeaderboardWithPlayer';
 import production from '@utils/isProd';
 import AutoExit from '@components/Monetization/AutoExit';
 
@@ -23,7 +23,7 @@ const Page = async ({}: IPageProps) => {
   const lost = cookiesList.has('lost');
 
   if (lost !== true) {
-    redirect('/higher-lower-game');
+    redirect('/?offer_id=7777');
   }
 
   return (

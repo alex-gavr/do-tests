@@ -11,7 +11,6 @@ import SimpleLoader from '@components/SimpleLoader';
 
 const TextResults = dynamic(() => import('./TextResults'), {
   ssr: false,
-  loading: () => <SimpleLoader />,
 });
 const PlayerRoundEndPosition = dynamic(() => import('./PlayerRoundEndPosition'), {
   ssr: false,
@@ -22,7 +21,7 @@ interface ITotalPlayers {
   players: number;
 }
 
-const Position = async ({}: IPositionProps) => {
+const LeaderboardWithPlayer = async ({}: IPositionProps) => {
   const cookiesList = cookies();
   const topScoreValue = cookiesList.get('topScore')?.value ?? '0';
   const playerName = cookiesList.get('playerName')?.value ?? '?????';
@@ -124,4 +123,4 @@ const Position = async ({}: IPositionProps) => {
   }
 };
 
-export default Position;
+export default LeaderboardWithPlayer;

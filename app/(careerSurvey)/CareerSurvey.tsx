@@ -5,7 +5,7 @@ import NoThankYou from '@components/Monetization/NoThankYou';
 
 const CareerSurvey = () => {
   return (
-    <>
+    <section className='flex min-h-screen flex-col items-center justify-center gap-2 px-2 pb-10 pt-20 sm:px-4'>
       <header className='fixed top-0 w-full py-1'>
         <CountDown />
       </header>
@@ -25,7 +25,7 @@ const CareerSurvey = () => {
         </div>
       </div>
       <MemoizedCommentSection />
-    </>
+    </section>
   );
 };
 

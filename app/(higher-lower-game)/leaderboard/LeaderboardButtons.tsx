@@ -29,7 +29,7 @@ const LeaderboardButtons = ({}: ILeaderboardButtonsProps) => {
       sendEvent('game', data);
     }
     deleteCookie('lost');
-    router.replace('/higher-lower-game');
+    router.replace('/?offer_id=7777');
     dispatch({ type: GameActionTypes.setCurrentScore, payload: 0 });
     dispatch({ type: GameActionTypes.resetLostCountDown });
     dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
