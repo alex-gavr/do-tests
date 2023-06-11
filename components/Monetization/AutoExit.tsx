@@ -14,14 +14,10 @@ const THIRTY_SECONDS = 30;
 // WARNING: Autoexit works only in game.
 const AutoExit = () => {
   const router = useRouter();
-  // const pathname = usePathname();
-  // if (pathname === '/higher-lower-game' || pathname === '/game-over' || pathname === '/leaderboard') {
-  //   return null;
-  // }
-
-  // const { offerId } = useClientSearchParams();
+  const { offerId } = useClientSearchParams();
   const { surveyState: state } = useAppContext();
   const [count, setCount] = useState(THIRTY_SECONDS);
+
   // AUTO-EXIT
   const updateCount = () => {
     setCount(THIRTY_SECONDS);
@@ -39,11 +35,19 @@ const AutoExit = () => {
     }, 1000);
     // when count is 0, Auto-Exit happens
     if (count === 0) {
-      const eventData = {
-        track: TrackEvents.autoExit,
-        offerId: 'populations-game' as const,
-      };
-      sendEvent('game', eventData);
+      if (offerId === 7777) {
+        const eventData = {
+          track: TrackEvents.autoExit,
+          offerId: 'populations-game' as const,
+        };
+        sendEvent('game', eventData);
+      } else {
+        const eventData = {
+          track: TrackEvents.autoExit,
+          offerId: offerId,
+        };
+        sendEvent('offer', eventData);
+      }
       if (state.exits.autoExit) {
         setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
         const url = makeExitUrl(state.exits.autoExit);

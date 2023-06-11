@@ -1,5 +1,5 @@
 import Button from '@components/Button/Button';
-import CompanyCard from '@components/Company';
+import CompanyCard from '@components/CareerSurvey/Company';
 
 
 import React from 'react';

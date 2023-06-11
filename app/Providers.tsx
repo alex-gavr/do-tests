@@ -35,6 +35,7 @@ const Providers = ({ children }: IProps) => {
       sendEvent('game', eventData);
       setCookie('beenHome', true, { maxAge: 60 * 60 * 24 * 365 });
     }
+
     if (pathname === '/game-over' && production && !debug && !beenGameOver) {
       const eventData: TGameEventProperties = {
         track: GameEvents.firstTimeGameOver,
@@ -43,7 +44,8 @@ const Providers = ({ children }: IProps) => {
       sendEvent('game', eventData);
       setCookie('beenGameOver', true, { maxAge: 60 * 60 * 24 * 365 });
     }
-    if (pathname === '/leaderboard' && production && !debug && !beenGameOver) {
+
+    if (pathname === '/leaderboard' && production && !debug && !beenLeaderboard) {
       const eventData: TGameEventProperties = {
         track: GameEvents.firstTimeLeaderboard,
         offerId: 'populations-game',
@@ -51,6 +53,7 @@ const Providers = ({ children }: IProps) => {
       sendEvent('game', eventData);
       setCookie('beenLeaderboard', true, { maxAge: 60 * 60 * 24 * 365 });
     }
+
     if (production && !debug) {
       if (beenHere && !nonUnique) {
         const eventData = {
@@ -59,6 +62,7 @@ const Providers = ({ children }: IProps) => {
         };
         sendEvent('offer', eventData);
       }
+
       if (offerId !== 'default') {
         // Cookie to track if user has been here before within 30 minutes
         setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
@@ -73,7 +77,7 @@ const Providers = ({ children }: IProps) => {
 
   return (
     <AppProvider>
-      {/* {production && !debug && <AutoExit />} */}
+      {production && !debug && <AutoExit />}
       {/* {production && !debug && <Reverse />} */}
       {/* {production && !debug && <NonUnique />} */}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>

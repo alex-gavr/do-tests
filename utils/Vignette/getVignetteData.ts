@@ -1,4 +1,4 @@
-import { IVignette } from '@context/vignette/vignetteStateType';
+import { IVignette } from '@app/vignette/[id]/VignetteUi';
 
 const getVignetteData = async (zone: string) => {
   try {

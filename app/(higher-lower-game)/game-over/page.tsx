@@ -3,10 +3,8 @@ import { cookies } from 'next/dist/client/components/headers';
 import ShowVignette from './ShowVignette';
 import dynamic from 'next/dynamic';
 import Position from './LeaderboardWithPlayer';
-import production from '@utils/isProd';
-import AutoExit from '@components/Monetization/AutoExit';
 import { getDictionary } from 'i18n';
-import { TLanguage, TValidLocale } from 'config';
+import { TValidLocale } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
@@ -30,7 +28,6 @@ const Page = async ({ searchParams }: IServerProps) => {
 
   return (
     <>
-      {production && <AutoExit />}
       <ShowVignette />
       <div className='relative flex min-h-screen w-full flex-col items-start justify-center gap-4 bg-slate-900 px-2 py-4'>
         <div className='flex min-h-screen w-full flex-col items-center justify-start gap-8 place-self-center'>

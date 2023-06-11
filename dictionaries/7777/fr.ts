@@ -43,7 +43,7 @@ const dictionary = {
     },
   },
   gameOver: {
-    heading: 'Final Score',
+    heading: 'Score final',
     header: {
       leaderboardButton: 'Classement',
       topScore: 'Meilleur score',

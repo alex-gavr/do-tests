@@ -5,7 +5,7 @@ import { TSurvey, surveySchema } from 'types/Survey';
 import { z } from 'zod';
 import dynamic from 'next/dynamic';
 import { shoppingSurveyData } from '@configs/ShoppingSurvey/ShoppingSurveyData';
-import Privacy from '@app/Privacy';
+import Privacy from '@app/(shoppingSurvey)/Privacy';
 import ProgressBar from '@components/ProgressBar';
 
 // import SurveyContainer from '@components/SurveyContainer';

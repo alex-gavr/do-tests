@@ -1,6 +1,4 @@
 'use client';
-
-import { IVignette } from '@context/vignette/vignetteStateType';
 import getVignetteData from '@utils/Vignette/getVignetteData';
 import Image from 'next/image';
 import { use } from 'react';
@@ -14,6 +12,14 @@ import { useAppContext } from '@context/Context';
 
 interface IVignetteProps {
   id: string;
+}
+export interface IVignette {
+  banner_id: number;
+  title: string;
+  text: string;
+  icon: string;
+  click: string;
+  impression_url: string;
 }
 
 const VignetteUi = ({ id }: IVignetteProps) => {
