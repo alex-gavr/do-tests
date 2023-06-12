@@ -8,7 +8,7 @@ interface IPlayerStatsProps {
   highestScore: number;
   hintsAvailable: number;
   playerName: string;
-  index: number;
+  place: number;
   playerCardTexts: THigherLowerGameDictionary['leaderboard']['playerCard'];
 }
 
@@ -18,7 +18,7 @@ const PlayerCard = ({
   highestScore,
   hintsAvailable,
   playerName,
-  index,
+  place,
   playerCardTexts,
 }: IPlayerStatsProps) => {
   const n = name.toLocaleLowerCase();
@@ -38,17 +38,17 @@ const PlayerCard = ({
       <div className='flex flex-row items-center justify-center'>
         <span
           className={cn(
-            index !== 0 && 'ml-1 mr-3 rounded-md bg-slate-950 px-2 py-1 text-xs text-white',
-            index === 0 && 'ml-1 mr-2',
-            index === 1 && 'bg-slate-300 text-black',
-            index === 2 && 'bg-amber-900',
+            place !== 1 && 'ml-1 mr-3 rounded-md bg-slate-950 px-2 py-1 text-xs text-white',
+            place === 1 && 'ml-1 mr-2',
+            place === 2 && 'bg-slate-300 text-black',
+            place === 3 && 'bg-amber-900',
           )}
         >
-          {index === 0 ? <TrophyIcon className=' h-7 w-7 text-yellow-300' /> : index + 1}
+          {place === 1 ? <TrophyIcon className=' h-7 w-7 text-yellow-300' /> : place}
         </span>
         <div className='flex flex-col items-start justify-start gap-1'>
           <p className={cn('text-xs text-white', user && 'text-black')}>
-            {user ? name + playerCardTexts.you : name}
+            {user ? name + ` (${playerCardTexts.you})` : name}
           </p>
           <p className={cn('text-xs text-neutral-400', user && 'text-neutral-500')}>{country}</p>
         </div>

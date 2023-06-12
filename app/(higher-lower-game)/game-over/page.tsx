@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/dist/client/components/headers';
 import ShowVignette from './ShowVignette';
 import dynamic from 'next/dynamic';
-import Position from './LeaderboardWithPlayer';
+import LeaderboardWithPlayer from './LeaderboardWithPlayer';
 import { getDictionary } from 'i18n';
 import { TValidLocale } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
@@ -33,7 +33,7 @@ const Page = async ({ searchParams }: IServerProps) => {
         <div className='flex min-h-screen w-full flex-col items-center justify-start gap-8 place-self-center'>
           <GameOverHeader headerTexts={d.gameOver.header} />
           <div className='mb-16 flex w-full flex-1 flex-col items-center justify-start gap-4'>
-            <Position language={language} />
+            <LeaderboardWithPlayer language={language} />
           </div>
           <div className='fixed bottom-0 w-full max-w-2xl rounded-t-md bg-gray-600 bg-opacity-40 bg-clip-padding p-2 backdrop-blur-sm backdrop-filter'>
             <GameOverFooter footerTexts={d.gameOver.footer} />

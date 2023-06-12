@@ -20,7 +20,7 @@ const PlayerRoundEndPosition = ({ place, playerCardTexts }: IPlayerRoundEndPosit
         country={state.user.country}
         highestScore={state.user.topScore}
         hintsAvailable={state.user.hintsAvailable}
-        index={place}
+        place={place}
         playerCardTexts={playerCardTexts}
       />
     </div>

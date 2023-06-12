@@ -42,7 +42,7 @@ const TopThree = ({ topThree, place, playerCardTexts }: ITopThreeProps) => {
     <div className='flex w-full flex-col items-center justify-center gap-2'>
       {newArray.map((user, index) => (
         <PlayerCard
-          index={index}
+          place={index + 1}
           key={user.uuid}
           name={user.playerName}
           country={user.country}
