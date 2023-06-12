@@ -61,6 +61,7 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
       .select({ place: leaderboardView.place })
       .from(leaderboardView)
       .where(eq(leaderboardView.uuid, playerId));
+    console.log('playerPosition in a View:', playerPosition)
 
     const userPlace = playerPosition[0].place;
 
