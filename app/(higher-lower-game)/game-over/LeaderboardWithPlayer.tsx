@@ -33,7 +33,7 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
     .select({ count: sql<string>`COUNT(*)` })
     .from(gameUser)
     .where(eq(gameUser.uuid, playerId));
-
+    
   // Get dictionary
   const dReq = getDictionary(7777, language as TValidLocale);
 
@@ -50,6 +50,9 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
   const isUserExists = parseInt(isUserExistsRes[0].count); // 1 - true, 0 - false
   const totalPlayers = parseInt(totalPlayersRes[0].players);
   const totalPlayersToDisplay = totalPlayers + 1;
+
+  console.log('🚀 ~ isUserExists:', isUserExists)
+  
 
   // if user exists. Get user above them and below them
   if (isUserExists === 1) {
@@ -225,9 +228,12 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
       .where(gte(leaderboardView.topScore, topScoreInt))
       .orderBy(desc(leaderboardView.place))
       .limit(1);
+    console.log('playerAboveId:', playerAboveId)
 
     const topPlayerPlace = playerAboveId.length > 0 ? playerAboveId[0].place : 0;
     const userPlace = topPlayerPlace + 1;
+    console.log('topPlayerPlace:', topPlayerPlace)
+    console.log('userPlace:', userPlace)
 
     if (userPlace > 4) {
       // If user has score of 0, they are the last one
