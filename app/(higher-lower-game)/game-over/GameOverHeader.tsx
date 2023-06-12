@@ -8,7 +8,7 @@ import { sendUserDataToDb } from '@utils/HigherLowerGame/sendUserDataToDb';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
-import { getCookie, hasCookie, setCookie } from 'cookies-next';
+import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
 import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -32,6 +32,7 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
       if (n === state.user.topScore) {
         return;
       } else {
+        deleteCookie('topScore');
         setCookie('topScore', state.user.topScore, { path: '/', maxAge: 60 * 60 * 24 * 365 });
         router.refresh();
       }

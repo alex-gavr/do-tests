@@ -15,6 +15,9 @@ const GameOverHeader = dynamic(() => import('./GameOverHeader'), {
 const GameOverFooter = dynamic(() => import('./GameOverFooter'), {
   ssr: false,
 });
+// const ShowVignette = dynamic(() => import('./ShowVignette'), {
+//   ssr: false,
+// });
 
 const Page = async ({ searchParams }: IServerProps) => {
   const cookiesList = cookies();
