@@ -85,10 +85,18 @@ const Countries = ({ buttonTexts, hintButtonTexts, countryCardTexts }: ICountrie
       const timer = setTimeout(() => {
         dispatch({ type: GameActionTypes.setRoundsPlayed, payload: state.user.roundsPlayed + 1 });
         const lostCookie = hasCookie('lost');
-        if (lostCookie) {
+        const playerIdCookie = hasCookie('playerId');
+        if (lostCookie && playerIdCookie) {
           router.replace('/game-over');
-        } else {
+        } else if (lostCookie && !playerIdCookie) {
+          setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
+          router.replace('/game-over');
+        } else if (!lostCookie && playerIdCookie) {
           setCookie('lost', true, { maxAge: 60 * 60 * 24 });
+          router.replace('/game-over');
+        } else if (!lostCookie && !playerIdCookie) {
+          setCookie('lost', true, { maxAge: 60 * 60 * 24 });
+          setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
           router.replace('/game-over');
         }
       }, 3000);

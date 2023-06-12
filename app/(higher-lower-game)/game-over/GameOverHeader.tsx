@@ -114,9 +114,9 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
         </p>
       </div>
       <div className='flex w-full flex-col items-end justify-start gap-4'>
-        <GameButton variant='secondary' onClick={handleGetMoreHints} className='w-full min-w-0 max-w-[200px] relative'>
-          <PlusIcon className=' absolute right-1 w-6 text-emerald-400' />
+        <GameButton variant='secondary' onClick={handleGetMoreHints} className='w-full min-w-0 max-w-[200px]'>
           {headerTexts.moreHintsButton}
+          <PlusIcon className=' ml-2 w-4 stroke-current stroke-2 text-emerald-400 sm:w-5' />
         </GameButton>
         <p className='mr-1 text-xs tracking-widest text-slate-300 md:text-sm'>
           {' '}

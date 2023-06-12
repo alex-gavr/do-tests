@@ -75,8 +75,6 @@ const positionMessage = (
       : position === 3
       ? 2
       : 1;
-
-      console.log(position, reachTarget);
       
   const variants: string[] = replaceTexts(
     { reachTarget: reachTarget.toString() },
@@ -87,18 +85,6 @@ const positionMessage = (
     { reachTarget: reachTarget.toString() },
     positiveFeedbackTexts.nearTopThree,
   );
-
-  // const text = [
-  //   `Just a bit more to get the ${reachTarget} position`,
-  //   `Keep pushing to get ${reachTarget} place!`,
-  //   `A little more effort and you'll reach the ${reachTarget} position!`,
-  //   `Just a few more points to secure ${reachTarget} place!`,
-  //   `Keep going for that ${reachTarget} position!`,
-  //   `You're within reach of ${reachTarget} place! Keep your focus! `,
-  //   `You're on the verge of ${reachTarget} position! Don't give up now! `,
-  //   `So close! Aim higher for the ${reachTarget} position!`,
-  //   `${reachTarget} place is within sight! Keep pushing! `,
-  // ];
 
   if (reachTarget < 10) {
     const rInt = randomIntFromInterval(0, positiveFeedbackTexts.nearTopThree.length - 1);

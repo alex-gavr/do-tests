@@ -39,6 +39,7 @@ const CreateUser = ({ country }: ICreateUserProps) => {
   useEffect(() => {
     if (gameState.user.uuid.length === 0) {
       gameDispatch({ type: GameActionTypes.setUser, payload: user });
+      setCookie('playerId', user.uuid, { path: '/', maxAge: 60 * 60 * 24 * 365 });
       if (production) {
         const data: TGameEventProperties = {
           track: GameEvents.userCreated,
