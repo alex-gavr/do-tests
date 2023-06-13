@@ -1,8 +1,8 @@
 import { cookies } from 'next/dist/client/components/headers';
 import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import ScoresSkeleton from '@components/HigherLowerGameUi/ScoresSkeleton';
-import CountriesSkeleton from '@components/HigherLowerGameUi/CountriesSkeleton';
+import ScoresSkeleton from '@components/HigherLowerGameUi/Skeletons/ScoresSkeleton';
+import CountriesSkeleton from '@components/HigherLowerGameUi/Skeletons/CountriesSkeleton';
 import { getDictionary } from 'i18n';
 import { TLanguage, TValidLocale } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
