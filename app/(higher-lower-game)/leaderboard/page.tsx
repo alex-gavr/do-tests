@@ -11,12 +11,17 @@ import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import LeaderboardSuspense from '@components/HigherLowerGameUi/Skeletons/LeaderboardSuspense';
+import { redirect } from 'next/navigation';
 
 const Page = async ({ searchParams }: IServerProps) => {
   const cookie = cookies();
-  const playerName = cookie.get('playerName')?.value ?? '?????';
-  const playerId = cookie.get('playerId')?.value ?? '?????';
+  const playerName = cookie.get('playerName')?.value ?? null;
+  const playerId = cookie.get('playerId')?.value ?? null;
   const { language } = useServerSearchParams(searchParams);
+
+  if (playerId === null || playerName === null) {
+    redirect('/game-over');
+  }
 
   const playerPlace = await db.select().from(leaderboardView).where(eq(leaderboardView.uuid, playerId));
 
