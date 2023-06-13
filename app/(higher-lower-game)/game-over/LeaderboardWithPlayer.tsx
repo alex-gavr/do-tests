@@ -33,7 +33,7 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
     .select({ count: sql<string>`COUNT(*)` })
     .from(gameUser)
     .where(eq(gameUser.uuid, playerId));
-    
+
   // Get dictionary
   const dReq = getDictionary(7777, language as TValidLocale);
 
@@ -51,17 +51,25 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
   const totalPlayers = parseInt(totalPlayersRes[0].players);
   const totalPlayersToDisplay = totalPlayers + 1;
 
-  console.log('🚀 ~ isUserExists:', isUserExists)
-  
+  console.log('🚀 ~ isUserExists:', isUserExists);
+
+  // WE HAVE MISMATCH IS TOP SCORE WHEN USER EXISTS IN DB.
+  // CURRENTLY WE TAKE THE TOP SCORE FROM DB.
+  // BUT TOP SCORE IN A BROWSER CAN BE HIGHER
 
   // if user exists. Get user above them and below them
   if (isUserExists === 1) {
+    // Update top score of a user so that we match browser top score with db top score and update user's place in the leaderboard
+    const updateTopScore = await db
+      .update(gameUser)
+      .set({ topScore: topScoreInt })
+      .where(eq(gameUser.uuid, playerId));
+
     // Get user's position
     const playerPosition = await db
       .select({ place: leaderboardView.place })
       .from(leaderboardView)
       .where(eq(leaderboardView.uuid, playerId));
-    console.log('playerPosition in a View:', playerPosition)
 
     const userPlace = playerPosition[0].place;
 
@@ -229,12 +237,9 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
       .where(gte(leaderboardView.topScore, topScoreInt))
       .orderBy(desc(leaderboardView.place))
       .limit(1);
-    console.log('playerAboveId:', playerAboveId)
 
     const topPlayerPlace = playerAboveId.length > 0 ? playerAboveId[0].place : 0;
     const userPlace = topPlayerPlace + 1;
-    console.log('topPlayerPlace:', topPlayerPlace)
-    console.log('userPlace:', userPlace)
 
     if (userPlace > 4) {
       // If user has score of 0, they are the last one
