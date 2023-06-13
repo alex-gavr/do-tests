@@ -11,6 +11,16 @@ import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
 
 const TextResults = dynamic(() => import('./TextResults'), {
   ssr: false,
+  loading: () => (
+    <div className='flex w-full flex-col items-center justify-center gap-2'>
+      <span className='h-8 w-52 bg-slate-200 rounded-sm animate-pulse' />
+      <div className='flex flex-col justify-center items-center gap-2'>
+        <span className='h-4 w-24 bg-emerald-300 rounded-sm animate-pulse' />
+        <span className='h-4 w-60 bg-emerald-300 px-1 rounded-sm animate-pulse' />
+        <span className='h-4 w-44 bg-emerald-300 px-1 rounded-sm animate-pulse' />
+      </div>
+    </div>
+  ),
 });
 const PlayerRoundEndPosition = dynamic(() => import('./PlayerRoundEndPosition'), {
   ssr: false,
@@ -50,12 +60,6 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
   const isUserExists = parseInt(isUserExistsRes[0].count); // 1 - true, 0 - false
   const totalPlayers = parseInt(totalPlayersRes[0].players);
   const totalPlayersToDisplay = totalPlayers + 1;
-
-  console.log('🚀 ~ isUserExists:', isUserExists);
-
-  // WE HAVE MISMATCH IS TOP SCORE WHEN USER EXISTS IN DB.
-  // CURRENTLY WE TAKE THE TOP SCORE FROM DB.
-  // BUT TOP SCORE IN A BROWSER CAN BE HIGHER
 
   // if user exists. Get user above them and below them
   if (isUserExists === 1) {

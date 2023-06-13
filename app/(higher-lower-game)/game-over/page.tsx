@@ -11,9 +11,11 @@ import { useServerSearchParams } from '@hooks/useServerSearchParams';
 
 const GameOverHeader = dynamic(() => import('./GameOverHeader'), {
   ssr: false,
+  loading: () => <div className='h-[82px] w-full animate-pulse bg-slate-800' />,
 });
 const GameOverFooter = dynamic(() => import('./GameOverFooter'), {
   ssr: false,
+  loading: () => <div className='h-[66px] animate-pulse bg-slate-800' />,
 });
 // const ShowVignette = dynamic(() => import('./ShowVignette'), {
 //   ssr: false,
