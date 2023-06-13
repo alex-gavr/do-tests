@@ -144,6 +144,8 @@ const dictionary = {
     },
   },
   leaderboard: {
+    heading: 'Papan peringkat',
+    paragraph: 'TOP 10 Legenda permainan',
     totalPlayers: 'Total Pemain',
     playerCard: {
       you: 'kamu',

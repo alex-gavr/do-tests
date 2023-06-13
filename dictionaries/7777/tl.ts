@@ -144,6 +144,8 @@ const dictionary = {
     },
   },
   leaderboard: {
+    heading: 'Leaderboard',
+    paragraph: 'TOP 10 Legends ng laro',
     totalPlayers: 'Kabuuang Mga Manlalaro',
     playerCard: {
       you: 'ikaw',

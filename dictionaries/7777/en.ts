@@ -144,6 +144,8 @@ export const dictionary = {
     },
   },
   leaderboard: {
+    heading: 'Leaderboard',
+    paragraph: 'TOP 10 Legends of the game',
     totalPlayers: 'Total Players',
     playerCard: {
       you: 'you',

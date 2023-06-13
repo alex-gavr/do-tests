@@ -144,6 +144,8 @@ const dictionary = {
     },
   },
   leaderboard: {
+    heading: 'กระดานผู้นำ',
+    paragraph: '10 อันดับตำนานของเกม',
     totalPlayers: 'ผู้เล่นทั้งหมด',
     playerCard: {
       you: 'ท่าน',

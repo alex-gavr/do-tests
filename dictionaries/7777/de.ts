@@ -144,6 +144,8 @@ const dictionary = {
     },
   },
   leaderboard: {
+    heading: 'Bestenliste',
+    paragraph: 'TOP 10 Legenden des Spiels',
     totalPlayers: 'Gesamtzahl der Spieler',
     playerCard: {
       you: 'du',
