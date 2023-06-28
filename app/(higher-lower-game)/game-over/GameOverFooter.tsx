@@ -5,7 +5,7 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
-import { deleteCookie } from 'cookies-next';
+import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
@@ -16,6 +16,8 @@ interface IGameOverFooterProps {
 const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
   const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
   const router = useRouter();
+
+  const alreadyConverted = hasCookie('gameConversion');
 
   const handleFinish = async () => {
     if (production) {
@@ -51,6 +53,12 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
         roundsPlayed: state.user.roundsPlayed,
       };
       sendEvent('game', data);
+      if (surveyState.subId !== null && !alreadyConverted) {
+        const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${surveyState.subId}`;
+        window.navigator.sendBeacon(conversionUrl);
+        console.log('Conversion');
+        setCookie('gameConversion', 1);
+      }
     }
     deleteCookie('lost');
     router.replace('/?offer_id=10702');
