@@ -7,7 +7,7 @@ import { cookies } from 'next/dist/client/components/headers';
 import LeaderboardButtons from './LeaderboardButtons';
 import { getDictionary } from 'i18n';
 import { TValidLocale } from 'config';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
 import LeaderboardSuspense from '@components/HigherLowerGameUi/Skeletons/LeaderboardSuspense';
@@ -33,7 +33,7 @@ const Page = async ({ searchParams }: IServerProps) => {
       .orderBy(desc(leaderboardView.topScore))
       .limit(10);
 
-    const dReq = getDictionary(7777, language as TValidLocale);
+    const dReq = getDictionary(10702, language as TValidLocale);
     const totalPlayersReq = db.select({ players: sql<string>`COUNT(*)` }).from(leaderboardView);
 
     const [leaderboardDataRes, dRes, totalPlayersRes] = await Promise.all([
@@ -94,7 +94,7 @@ const Page = async ({ searchParams }: IServerProps) => {
       .leftJoin(leaderboardView, eq(leaderboardView.uuid, playerId))
       .where(eq(gameUser.uuid, playerId));
 
-    const dReq = getDictionary(7777, language as TValidLocale);
+    const dReq = getDictionary(10702, language as TValidLocale);
     const totalPlayersReq = db.select({ players: sql<string>`COUNT(*)` }).from(leaderboardView);
 
     const [leaderboardDataRes, dRes, totalPlayersRes, playerRes] = await Promise.all([

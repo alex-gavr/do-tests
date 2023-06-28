@@ -1,6 +1,6 @@
 import { randomIntFromInterval } from '@utils/randomInt';
 import { replaceTexts } from '@utils/replaceTexts';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 
 export const createRoundFeedback = (
   roundScore: number,

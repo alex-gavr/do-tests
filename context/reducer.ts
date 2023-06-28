@@ -39,6 +39,14 @@ const surveyReducer = (state: InitialState, action: Actions): InitialState => {
         },
       };
     }
+    case ActionsType.setSubId: {
+      const { payload } = action;
+
+      return {
+        ...state,
+        subId: payload,
+      };
+    }
 
     default:
       return state;

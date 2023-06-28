@@ -69,4 +69,5 @@ export interface InitialState {
   exits: IExits;
   notificationVisible: boolean | null;
   fullScreenImage: IImageFull;
+  subId: string | null;
 }

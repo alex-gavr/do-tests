@@ -35,7 +35,7 @@ const AutoExit = () => {
     }, 1000);
     // when count is 0, Auto-Exit happens
     if (count === 0) {
-      if (offerId === 7777) {
+      if (offerId === 10702) {
         const eventData = {
           track: TrackEvents.autoExit,
           offerId: 'populations-game' as const,

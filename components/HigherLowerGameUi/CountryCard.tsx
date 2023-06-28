@@ -5,7 +5,7 @@ import { cn } from '@utils/cn';
 import { randomIntFromInterval } from '@utils/randomInt';
 import { useMemo } from 'react';
 import { ImageWithSkeleton } from '@components/ImageWithSkeleton';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 
 interface ICountryCardProps {
   id: number;

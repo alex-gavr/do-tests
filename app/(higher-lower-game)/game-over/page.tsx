@@ -5,9 +5,10 @@ import dynamic from 'next/dynamic';
 import LeaderboardWithPlayer from './LeaderboardWithPlayer';
 import { getDictionary } from 'i18n';
 import { TValidLocale } from 'config';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
+import SubId from '@components/SubId';
 
 const GameOverHeader = dynamic(() => import('./GameOverHeader'), {
   ssr: false,
@@ -26,10 +27,10 @@ const Page = async ({ searchParams }: IServerProps) => {
   const lost = cookiesList.has('lost');
 
   if (lost !== true) {
-    redirect('/?offer_id=7777');
+    redirect('/?offer_id=10702');
   }
   const { language } = useServerSearchParams(searchParams);
-  const d = (await getDictionary(7777, language as TValidLocale)) as THigherLowerGameDictionary;
+  const d = (await getDictionary(10702, language as TValidLocale)) as THigherLowerGameDictionary;
 
   return (
     <>

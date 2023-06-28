@@ -1,12 +1,13 @@
-import { defaultCountry, defaultLocale, defaultOffer } from 'config';
+import { TValidOffer, defaultCountry, defaultLocale, defaultOffer, defaultZone } from 'config';
 import { useSearchParams } from 'next/navigation';
 import { ISearchParams } from './useServerSearchParams';
 
-enum SearchParamsOptions {
+export enum SearchParamsOptions {
   offerId = 'offer_id',
   locale = 'locale',
   debug = 'debug',
   country = 'country',
+  zone = 'z',
 }
 
 export const useClientSearchParams = () => {
@@ -21,10 +22,14 @@ export const useClientSearchParams = () => {
   const country =
     (searchParams.get(SearchParamsOptions.country) as ISearchParams['country']) ?? defaultCountry;
 
+  const zoneParam = (searchParams.get(SearchParamsOptions.zone) as ISearchParams['z']) ?? defaultZone;
+  const zone = zoneParam !== defaultZone ? parseInt(zoneParam) : defaultZone;
+
   return {
     language,
     country,
-    offerId: offerId as number | 'default',
+    offerId: offerId as TValidOffer,
     debug,
+    zone,
   };
 };

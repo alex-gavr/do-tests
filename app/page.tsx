@@ -12,7 +12,7 @@ export interface IServerProps {
 }
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
-  const { language, country, debug, offerId } = useServerSearchParams(searchParams);
+  const { language, country, debug, offerId, zone } = useServerSearchParams(searchParams);
 
   return (
     <>
@@ -22,8 +22,10 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
         {offerId === 'default' && <DefaultSurvey />}
         {offerId === 9998 && <ShoppingSurvey language={language} />}
         {offerId === 9999 && <TravelSurvey language={language} />}
-        {offerId === 7777 && <HigherLowerGame country={country} language={language} />}
-        {offerId !== 7777 && <BackButton />}
+        {offerId === 10702 && (
+          <HigherLowerGame country={country} language={language} offer={offerId} zone={zone} />
+        )}
+        {offerId !== 10702 && <BackButton />}
       </main>
     </>
   );

@@ -6,7 +6,7 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie } from 'cookies-next';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 
@@ -32,7 +32,7 @@ const LeaderboardButtons = ({buttonsTexts}: ILeaderboardButtonsProps) => {
       sendEvent('game', data);
     }
     deleteCookie('lost');
-    router.replace('/?offer_id=7777');
+    router.replace('/?offer_id=10702');
     dispatch({ type: GameActionTypes.setCurrentScore, payload: 0 });
     dispatch({ type: GameActionTypes.resetLostCountDown });
     dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });

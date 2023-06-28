@@ -2,7 +2,7 @@
 
 import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
 import { useAppContext } from '@context/Context';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 
 interface ITopThreeProps {
   topThree: {

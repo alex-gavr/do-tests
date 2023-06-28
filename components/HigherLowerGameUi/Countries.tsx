@@ -16,7 +16,7 @@ import TimerToAnswer from './TimerToAnswer';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { GameEvents } from 'types/TrackEvents';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 
 interface ICountriesProps {
   buttonTexts: THigherLowerGameDictionary['welcome']['Countries']['Button'];

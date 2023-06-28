@@ -38,7 +38,7 @@ const findBestMatchingLocale = (acceptLangHeader: string) => {
 };
 
 export function middleware(request: NextRequest) {
-  console.log(request.nextUrl);
+  
   if (request.nextUrl.pathname.startsWith('/track') && process.env.NODE_ENV === 'development') {
     const { pathname, search } = request.nextUrl;
     const url = new URL(`${process.env.NEXT_PUBLIC_MARKER_DOMAIN}${pathname}${search}`);

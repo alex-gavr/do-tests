@@ -9,7 +9,7 @@ import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { GameEvents } from 'types/TrackEvents';

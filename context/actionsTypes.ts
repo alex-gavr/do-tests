@@ -3,6 +3,7 @@ export enum ActionsType {
   setSurveyLength = 'setSurveyLength',
   setNotificationVisibility = 'setNotificationVisibility',
   setImageFullScreen = 'setImageFullScreen',
+  setSubId = 'setSubId',
 }
 
 export interface IIncrementStep {
@@ -27,5 +28,9 @@ export interface ISetImageFullScreen {
     src: string | null;
   };
 }
+export interface ISetSubId {
+  type: ActionsType.setSubId;
+  payload: string | null;
+}
 
-export type Actions = IIncrementStep | ISetSurveyLength | ISetNotificationVisibility | ISetImageFullScreen;
+export type Actions = IIncrementStep | ISetSurveyLength | ISetNotificationVisibility | ISetImageFullScreen | ISetSubId;

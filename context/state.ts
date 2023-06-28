@@ -32,6 +32,7 @@ const initialState: InitialState = {
     visible: false,
     src: null,
   },
+  subId: null,
 };
 
 export default initialState;

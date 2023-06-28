@@ -7,7 +7,7 @@ import { cookies } from 'next/dist/client/components/headers';
 import dynamic from 'next/dynamic';
 import { getDictionary } from 'i18n';
 import { TLanguage, TValidLocale } from 'config';
-import { THigherLowerGameDictionary } from 'dictionaries/7777/en';
+import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 
 const TextResults = dynamic(() => import('./TextResults'), {
   ssr: false,
@@ -45,7 +45,7 @@ const LeaderboardWithPlayer = async ({ language }: IPositionProps) => {
     .where(eq(gameUser.uuid, playerId));
 
   // Get dictionary
-  const dReq = getDictionary(7777, language as TValidLocale);
+  const dReq = getDictionary(10702, language as TValidLocale);
 
   // Total number of players
   const totalPlayersReq = db.select({ players: sql<string>`COUNT(*)` }).from(leaderboardView);
