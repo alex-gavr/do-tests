@@ -17,6 +17,7 @@ const envVariables = z.object({
     NEXT_PUBLIC_API_ROUTE_SECRET: z.string(),
     NEXT_PUBLIC_VIGNETTE_URL: z.string(),
     NEXT_PUBLIC_IPP_URL: z.string(),
+    NEXT_PUBLIC_MARKER_DOMAIN: z.string(),
 });
 
 envVariables.parse(process.env);
