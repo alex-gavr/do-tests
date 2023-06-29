@@ -37,17 +37,17 @@ const SubId = ({ offer, zone }: ISubIdProps) => {
       const markerResponse = await fetch(url);
       const markerData = (await markerResponse.json()) as MarkerWithSubIdResponse;
       if (markerData.subId) {
-        console.log('we received subId', markerData.subId);
+        console.log('we received subId');
         surveyDispatch({ type: ActionsType.setSubId, payload: markerData.subId });
       }
     } catch (error) {
-      console.log('fetchSubId error:', error);
+      console.log('error:', error);
     }
   }, []);
 
   useEffect(() => {
     if (surveyState.subId !== null) {
-      console.log('subId is already in global state:', surveyState.subId);
+      console.log('subId is already in global state');
     }
     if (zone === 0) {
       console.log('zone is not defined');
