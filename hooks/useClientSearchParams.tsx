@@ -20,6 +20,7 @@ export const useClientSearchParams = () => {
   const osVersion = (searchParams.get(SearchParamsOptions.osVersion) as TSearchParams['os_version']) ?? '';
   const bannerId = (searchParams.get(SearchParamsOptions.bannerId) as TSearchParams['b']) ?? '';
   const campaignId = (searchParams.get(SearchParamsOptions.campaignId) as TSearchParams['campaignid']) ?? '';
+  const subId = (searchParams.get(SearchParamsOptions.subId) as TSearchParams['s']) ?? '';
 
   return {
     language: language as TValidLocale,
@@ -34,5 +35,6 @@ export const useClientSearchParams = () => {
     osVersion,
     bannerId,
     campaignId,
+    subId,
   };
 };
