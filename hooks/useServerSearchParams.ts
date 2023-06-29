@@ -14,7 +14,7 @@ export enum SearchParamsOptions {
   osVersion = 'os_version',
   bannerId = 'b',
   campaignId = 'campaignid',
-  subId = 's'
+  subId = 's',
 }
 
 type TSearchParamsKeys = keyof typeof SearchParamsOptions;
@@ -34,9 +34,9 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
   const var3 = searchParams?.var_3 ? searchParams.var_3 : '';
   const abTest = searchParams?.ab2 ? searchParams.ab2 : '';
   const osVersion = searchParams?.os_version ? searchParams.os_version : '';
-  const bannerId = searchParams?.b? searchParams.b : '';
-  const campaignId = searchParams?.campaignid? searchParams.campaignid : '';
-  const subId = searchParams?.s? searchParams.s : '';
+  const bannerId = searchParams?.b ? searchParams.b : '';
+  const campaignId = searchParams?.campaignid ? searchParams.campaignid : '';
+  const subId = searchParams?.s ? searchParams.s : '';
 
   return {
     language: language as TValidLocale,
