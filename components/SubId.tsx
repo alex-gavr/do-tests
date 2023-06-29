@@ -29,8 +29,6 @@ const SubId = ({ children }: ISubIdProps) => {
 
   const searchParams = `?offer_id=${offerId}&z=${zone}&request_var=${requestVar}&variable2=${ymid}&var_3=${var3}&ab2=${abTest}&os_version=${osVersion}`;
   const devUrl = `/track${searchParams}`;
-  console.log('🚀 ~ var3:', var3)
-  console.log('🚀 ~ requestVar:', requestVar)
 
   const prodUrl = `${process.env.NEXT_PUBLIC_MARKER_DOMAIN}/track${searchParams}`;
   const url = production ? prodUrl : devUrl;
