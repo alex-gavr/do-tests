@@ -4,9 +4,11 @@ import { SearchParamsOptions, TSearchParams } from './useServerSearchParams';
 import { hasMacros, replaceMacrosWithEmptyString } from '@utils/replaceMacros';
 
 export const useClientSearchParams = () => {
-  const doesHasMacros = hasMacros(window.location.href);
-  if (doesHasMacros) {
-    replaceMacrosWithEmptyString(window.location.href);
+  if (typeof window !== 'undefined') {
+    const doesHasMacros = hasMacros(window.location.href);
+    if (doesHasMacros) {
+      replaceMacrosWithEmptyString(window.location.href);
+    }
   }
   const searchParams = useSearchParams();
 
