@@ -7,6 +7,7 @@ import { getDictionary } from 'i18n';
 import { TLanguage, TValidLocale, TValidOffer } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import SubId from '@components/SubId';
+import { TSearchParams } from '@hooks/useServerSearchParams';
 
 const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
   ssr: false,
@@ -24,10 +25,10 @@ const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUse
 interface IHigherLowerGameProps extends TLanguage {
   country: string;
   offer: TValidOffer;
-  zone: number;
+  zone: TSearchParams['z'];
 }
 
-const HigherLowerGame = async ({ country, language, offer, zone }: IHigherLowerGameProps) => {
+const HigherLowerGame = async ({ country, language }: IHigherLowerGameProps) => {
   const cookiesList = cookies();
   const lost = cookiesList.has('lost');
   if (lost) {
@@ -37,7 +38,7 @@ const HigherLowerGame = async ({ country, language, offer, zone }: IHigherLowerG
 
   return (
     <>
-      <SubId offer={offer} zone={zone} />
+      <SubId />
       <InitialCountries country={country} />
       <div className='flex min-h-screen flex-col items-center justify-start gap-4 bg-slate-900 py-4'>
         <div className='absolute top-4 w-full max-w-2xl'>

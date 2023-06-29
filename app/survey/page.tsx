@@ -40,9 +40,9 @@ const Page = async ({ searchParams }: IServerProps) => {
 
 export default Page;
 
-const getSurveyDataFromRedis = async (offerId: number | 'default', lang: string) => {
+const getSurveyDataFromRedis = async (offerId: number, lang: string) => {
   // DEFAULT CASE
-  if (offerId === 'default') {
+  if (offerId === 0) {
     try {
       const defaultSurveyData = await kv.get(`offer:default:lang:en`);
       const validatedDefaultSurveyData = surveySchema.parse(defaultSurveyData);
@@ -55,7 +55,7 @@ const getSurveyDataFromRedis = async (offerId: number | 'default', lang: string)
     }
   }
   // SPECIFIC OFFER ID CASE
-  if (typeof offerId === 'number') {
+  if (offerId > 0) {
     try {
       const surveyData = (await kv.get(`offer:${offerId}:lang:${lang}`)) as TSurvey | null;
       if (surveyData === null) {

@@ -1,3 +1,4 @@
+import { TValidOffer } from 'config';
 import { z } from 'zod';
 
 const dataVariantSchema = z.enum(['offer', 'game']);
@@ -6,7 +7,7 @@ export type TDataVariant = z.infer<typeof dataVariantSchema>;
 
 export const offerDataSchema = z.object({
   track: z.string(),
-  offerId: z.union([z.enum(['default']), z.number()]),
+  offerId: z.number(),
   step: z.number().optional(),
   totalSteps: z.optional(z.number()),
   buttonText: z.string().optional(),
@@ -30,7 +31,7 @@ export type TGameEventProperties = z.infer<typeof gameDataSchema>;
 
 export interface ICustomEventProperties {
   track: string;
-  offerId: number | 'default';
+  offerId: TValidOffer;
   step?: number;
   totalSteps?: number;
   buttonText?: string | React.ReactNode;

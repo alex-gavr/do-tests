@@ -14,7 +14,7 @@ const Page = ({ searchParams }: IServerProps) => {
       {debug && <Debug debug={debug} />}
       {offerId === 9241 && <CareerThankYou />}
       {offerId === 9999 && <TravelThankYou language={language} />}
-      {offerId === 'default' && <DefaultThankYou />}
+      {offerId === 0 && <DefaultThankYou />}
       {offerId === 9998 && <ShoppingThankYou language={language} />}
     </section>
   );

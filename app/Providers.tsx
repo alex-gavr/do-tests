@@ -63,7 +63,7 @@ const Providers = ({ children }: IProps) => {
         sendEvent('offer', eventData);
       }
 
-      if (offerId !== 'default') {
+      if (offerId !== 0) {
         // Cookie to track if user has been here before within 30 minutes
         setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
         const eventData = {

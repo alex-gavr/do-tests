@@ -1,4 +1,4 @@
-import { TValidLocale, TValidOffer, defaultLocale, locales, offers } from 'config';
+import { TValidLocale, TValidOffer, locales, offers } from 'config';
 
 const dictionaries: Record<(typeof offers)[number], Record<(typeof locales)[number], () => Promise<any>>> = {
   10702: {
@@ -45,16 +45,16 @@ const dictionaries: Record<(typeof offers)[number], Record<(typeof locales)[numb
     it: () => import('dictionaries/9999/it').then((module) => module.default),
     pt: () => import('dictionaries/9999/pt').then((module) => module.default),
   },
-  default: {
-    en: () => import('dictionaries/default/en').then((module) => module.default),
-    id: () => import('dictionaries/default/id').then((module) => module.default),
-    th: () => import('dictionaries/default/th').then((module) => module.default),
-    tl: () => import('dictionaries/default/tl').then((module) => module.default),
-    de: () => import('dictionaries/default/de').then((module) => module.default),
-    es: () => import('dictionaries/default/es').then((module) => module.default),
-    fr: () => import('dictionaries/default/fr').then((module) => module.default),
-    it: () => import('dictionaries/default/it').then((module) => module.default),
-    pt: () => import('dictionaries/default/pt').then((module) => module.default),
+  0: {
+    en: () => import('dictionaries/0/en').then((module) => module.default),
+    id: () => import('dictionaries/0/id').then((module) => module.default),
+    th: () => import('dictionaries/0/th').then((module) => module.default),
+    tl: () => import('dictionaries/0/tl').then((module) => module.default),
+    de: () => import('dictionaries/0/de').then((module) => module.default),
+    es: () => import('dictionaries/0/es').then((module) => module.default),
+    fr: () => import('dictionaries/0/fr').then((module) => module.default),
+    it: () => import('dictionaries/0/it').then((module) => module.default),
+    pt: () => import('dictionaries/0/pt').then((module) => module.default),
   },
 };
 

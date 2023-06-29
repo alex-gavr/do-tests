@@ -5,12 +5,13 @@ import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { TSurvey } from 'types/Survey';
 import { cn } from '@utils/cn';
+import { TValidOffer } from 'config';
 // import Notification from './Notification';
 // import { AnimatePresence } from 'framer-motion';
 
 interface IProps {
   surveyData: TSurvey;
-  offerId: number | 'default';
+  offerId: TValidOffer;
 }
 
 const SurveyContainer = ({ surveyData, offerId }: IProps) => {

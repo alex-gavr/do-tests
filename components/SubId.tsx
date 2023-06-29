@@ -2,14 +2,13 @@
 
 import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
+import { TSearchParams } from '@hooks/useServerSearchParams';
 import production from '@utils/isProd';
 import { TValidOffer } from 'config';
 import { useCallback, useEffect } from 'react';
 
-interface ISubIdProps {
-  offer: TValidOffer;
-  zone: number;
-}
+interface ISubIdProps {}
 
 export type MarkerWithSubIdResponse = {
   browser: string;
@@ -24,11 +23,13 @@ export type MarkerWithSubIdResponse = {
   subId?: string;
 };
 
-const SubId = ({ offer, zone }: ISubIdProps) => {
+const SubId = ({}: ISubIdProps) => {
   const { surveyDispatch, surveyState } = useAppContext();
+  const { offerId, zone, requestVar, ymid, var3, abTest, osVersion } = useClientSearchParams();
 
-  const searchParams = `?offer_id=${offer}&z=${zone}`;
+  const searchParams = `?offer_id=${offerId}&z=${zone}&request_var=${requestVar}&variable2=${ymid}&var_3=${var3}&ab2=${abTest}&os_version=${osVersion}`;
   const devUrl = `/track${searchParams}`;
+
   const prodUrl = `${process.env.NEXT_PUBLIC_MARKER_DOMAIN}/track${searchParams}`;
   const url = production ? prodUrl : devUrl;
 
@@ -49,10 +50,10 @@ const SubId = ({ offer, zone }: ISubIdProps) => {
     if (surveyState.subId !== null) {
       console.log('subId is already in global state');
     }
-    if (zone === 0) {
+    if (zone === '') {
       console.log('zone is not defined');
     }
-    if (offer !== 10702) {
+    if (offerId !== 10702) {
       console.log('offer is not supported');
     }
     if (surveyState.subId === null) {

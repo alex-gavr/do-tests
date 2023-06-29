@@ -1,6 +1,6 @@
 import BackButton from '@components/Monetization/BackButton';
 import Debug from './Debug';
-import { ISearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
+import { TSearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
 import CareerSurvey from './(careerSurvey)/CareerSurvey';
 import DefaultSurvey from './(defaultSurvey)/DefaultSurvey';
 import TravelSurvey from './(travelSurvey)/TravelSurvey';
@@ -8,7 +8,7 @@ import ShoppingSurvey from './(shoppingSurvey)/ShoppingSurvey';
 import HigherLowerGame from './(higher-lower-game)/HigherLowerGame';
 
 export interface IServerProps {
-  searchParams: ISearchParams;
+  searchParams: TSearchParams;
 }
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
@@ -19,7 +19,7 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
       <main>
         {debug && <Debug debug={debug} />}
         {offerId === 9241 && <CareerSurvey />}
-        {offerId === 'default' && <DefaultSurvey />}
+        {offerId === 0 && <DefaultSurvey />}
         {offerId === 9998 && <ShoppingSurvey language={language} />}
         {offerId === 9999 && <TravelSurvey language={language} />}
         {offerId === 10702 && (
