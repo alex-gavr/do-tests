@@ -56,7 +56,6 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
       if (surveyState.subId !== null && !alreadyConverted) {
         const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${surveyState.subId}`;
         window.navigator.sendBeacon(conversionUrl);
-        console.log('Conversion');
         setCookie('gameConversion', 1);
       }
     }
