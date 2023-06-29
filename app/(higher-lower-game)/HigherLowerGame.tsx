@@ -6,7 +6,6 @@ import CountriesSkeleton from '@components/HigherLowerGameUi/Skeletons/Countries
 import { getDictionary } from 'i18n';
 import { TLanguage, TValidLocale, TValidOffer } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
-import SubId from '@components/SubId';
 import { TSearchParams } from '@hooks/useServerSearchParams';
 
 const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
@@ -38,7 +37,6 @@ const HigherLowerGame = async ({ country, language }: IHigherLowerGameProps) => 
 
   return (
     <>
-      <SubId />
       <InitialCountries country={country} />
       <div className='flex min-h-screen flex-col items-center justify-start gap-4 bg-slate-900 py-4'>
         <div className='absolute top-4 w-full max-w-2xl'>

@@ -12,6 +12,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { GameEvents, TrackEvents } from 'types/TrackEvents';
 import { usePathname } from 'next/navigation';
+import SubId from '@components/SubId';
 
 interface IProps {
   children: React.ReactNode;
@@ -77,12 +78,14 @@ const Providers = ({ children }: IProps) => {
 
   return (
     <AppProvider>
-      {production && !debug && <AutoExit />}
-      {/* {production && !debug && <Reverse />} */}
-      {/* {production && !debug && <NonUnique />} */}
-      <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
-        <AnimatePresence>{children}</AnimatePresence>
-      </LazyMotion>
+      <SubId>
+        {production && !debug && <AutoExit />}
+        {/* {production && !debug && <Reverse />} */}
+        {/* {production && !debug && <NonUnique />} */}
+        <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
+          <AnimatePresence>{children}</AnimatePresence>
+        </LazyMotion>
+      </SubId>
     </AppProvider>
   );
 };

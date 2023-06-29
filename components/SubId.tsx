@@ -3,12 +3,12 @@
 import { useAppContext } from '@context/Context';
 import { ActionsType } from '@context/actionsTypes';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import { TSearchParams } from '@hooks/useServerSearchParams';
 import production from '@utils/isProd';
-import { TValidOffer } from 'config';
 import { useCallback, useEffect } from 'react';
 
-interface ISubIdProps {}
+interface ISubIdProps {
+  children: React.ReactNode;
+}
 
 export type MarkerWithSubIdResponse = {
   browser: string;
@@ -23,9 +23,9 @@ export type MarkerWithSubIdResponse = {
   subId?: string;
 };
 
-const SubId = ({}: ISubIdProps) => {
+const SubId = ({ children }: ISubIdProps) => {
   const { surveyDispatch, surveyState } = useAppContext();
-  const { offerId, zone, requestVar, ymid, var3, abTest, osVersion } = useClientSearchParams();
+  const { offerId, zone, requestVar, ymid, var3, abTest, osVersion, subId } = useClientSearchParams();
 
   const searchParams = `?offer_id=${offerId}&z=${zone}&request_var=${requestVar}&variable2=${ymid}&var_3=${var3}&ab2=${abTest}&os_version=${osVersion}`;
   const devUrl = `/track${searchParams}`;
@@ -56,12 +56,16 @@ const SubId = ({}: ISubIdProps) => {
     if (offerId !== 10702) {
       console.log('offer is not supported');
     }
-    if (surveyState.subId === null) {
-      fetchSubId(url);
+    if (surveyState.subId === null && offerId === 10702) {
+      if (subId !== '') {
+        surveyDispatch({ type: ActionsType.setSubId, payload: subId });
+      } else if (zone !== '') {
+        fetchSubId(url);
+      }
     }
   }, []);
 
-  return null;
+  return <>{children}</>;
 };
 
 export default SubId;
