@@ -1,8 +1,13 @@
 import { TValidLocale, TValidOffer, defaultCountry, defaultLocale, defaultOffer } from 'config';
 import { useSearchParams } from 'next/navigation';
 import { SearchParamsOptions, TSearchParams } from './useServerSearchParams';
+import { hasMacros, replaceMacrosWithEmptyString } from '@utils/replaceMacros';
 
 export const useClientSearchParams = () => {
+  const doesHasMacros = hasMacros(window.location.href);
+  if (doesHasMacros) {
+    replaceMacrosWithEmptyString(window.location.href);
+  }
   const searchParams = useSearchParams();
 
   const offerIdParam = (searchParams.get(SearchParamsOptions.offerId) as TSearchParams['offer_id']) ?? defaultOffer;
