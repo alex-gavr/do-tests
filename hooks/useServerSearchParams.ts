@@ -8,10 +8,12 @@ export enum SearchParamsOptions {
   offerId = 'offer_id',
   zone = 'z',
   requestVar = 'var',
-  ymid = 'variable2',
+  ymid = 'ymid',
   var3 = 'var_3',
   abTest = 'ab2',
   osVersion = 'os_version',
+  bannerId = 'b',
+  campaignId = 'campaignid',
 }
 
 type TSearchParamsKeys = keyof typeof SearchParamsOptions;
@@ -22,16 +24,17 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
   const country = searchParams?.country ?? defaultCountry;
   const debug = searchParams?.debug ? true : false;
 
-  // NaN is possible
   const offerIdValue = searchParams?.offer_id ? parseInt(searchParams.offer_id) : defaultOffer;
   const offerId = isNaN(offerIdValue) ? defaultOffer : offerIdValue;
 
   const zone = searchParams?.z ? searchParams.z : '';
   const requestVar = searchParams?.var ? searchParams.var : '';
-  const ymid = searchParams?.variable2 ? searchParams.variable2 : '';
+  const ymid = searchParams?.ymid ? searchParams.ymid : '';
   const var3 = searchParams?.var_3 ? searchParams.var_3 : '';
   const abTest = searchParams?.ab2 ? searchParams.ab2 : '';
   const osVersion = searchParams?.os_version ? searchParams.os_version : '';
+  const bannerId = searchParams?.b? searchParams.b : '';
+  const campaignId = searchParams?.campaignid? searchParams.campaignid : '';
 
   return {
     language: language as TValidLocale,
@@ -44,5 +47,7 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
     var3,
     abTest,
     osVersion,
+    bannerId,
+    campaignId,
   };
 };

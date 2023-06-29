@@ -14,10 +14,12 @@ export const useClientSearchParams = () => {
 
   const zone = (searchParams.get(SearchParamsOptions.zone) as TSearchParams['z']) ?? '';
   const requestVar = (searchParams.get(SearchParamsOptions.requestVar) as TSearchParams['var']) ?? '';
-  const ymid = (searchParams.get(SearchParamsOptions.ymid) as TSearchParams['variable2']) ?? '';
+  const ymid = (searchParams.get(SearchParamsOptions.ymid) as TSearchParams['ymid']) ?? '';
   const var3 = (searchParams.get(SearchParamsOptions.var3) as TSearchParams['var_3']) ?? '';
   const abTest = (searchParams.get(SearchParamsOptions.abTest) as TSearchParams['ab2']) ?? '';
   const osVersion = (searchParams.get(SearchParamsOptions.osVersion) as TSearchParams['os_version']) ?? '';
+  const bannerId = (searchParams.get(SearchParamsOptions.bannerId) as TSearchParams['b']) ?? '';
+  const campaignId = (searchParams.get(SearchParamsOptions.campaignId) as TSearchParams['campaignid']) ?? '';
 
   return {
     language: language as TValidLocale,
@@ -30,5 +32,7 @@ export const useClientSearchParams = () => {
     var3,
     abTest,
     osVersion,
+    bannerId,
+    campaignId,
   };
 };
