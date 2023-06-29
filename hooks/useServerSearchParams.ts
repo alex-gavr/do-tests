@@ -1,6 +1,5 @@
 import { TValidLocale, TValidOffer, defaultCountry, defaultLocale, defaultOffer, defaultZone } from 'config';
 
-
 export interface ISearchParams {
   locale?: TValidLocale;
   offer_id?: string | undefined;
@@ -14,7 +13,8 @@ export const useServerSearchParams = (searchParams: ISearchParams) => {
   const country = searchParams?.country ?? defaultCountry;
   const debug = searchParams?.debug ? true : false;
   const offerId = searchParams?.offer_id ? parseInt(searchParams.offer_id) : defaultOffer;
-  const zone = searchParams?.z ? parseInt(searchParams.z) : defaultZone;
+  const parsedZone = searchParams?.z ? parseInt(searchParams.z) : defaultZone;
+  const zone = isNaN(parsedZone) ? defaultZone : parsedZone;
 
   return {
     language,
