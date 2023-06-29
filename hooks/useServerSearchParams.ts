@@ -1,26 +1,48 @@
-import { TValidLocale, TValidOffer, defaultCountry, defaultLocale, defaultOffer, defaultZone } from 'config';
+import { TValidLocale, TValidOffer, defaultCountry, defaultLocale, defaultOffer } from 'config';
 
-export interface ISearchParams {
-  locale?: TValidLocale;
-  offer_id?: string | undefined;
-  debug?: string | undefined;
-  country?: string | undefined;
-  z?: string | undefined;
+// Left side used in code, right side in browser
+export enum SearchParamsOptions {
+  locale = 'locale',
+  debug = 'debug',
+  country = 'country',
+  offerId = 'offer_id',
+  zone = 'z',
+  requestVar = 'var',
+  ymid = 'variable2',
+  var3 = 'var_3',
+  abTest = 'ab2',
+  osVersion = 'os_version',
 }
 
-export const useServerSearchParams = (searchParams: ISearchParams) => {
-  const language = searchParams?.locale ?? defaultLocale;
+type TSearchParamsKeys = keyof typeof SearchParamsOptions;
+export type TSearchParams = Partial<Record<SearchParamsOptions, string>>;
+
+export const useServerSearchParams = (searchParams: TSearchParams) => {
+  const language = searchParams.locale ?? defaultLocale;
   const country = searchParams?.country ?? defaultCountry;
   const debug = searchParams?.debug ? true : false;
-  const offerId = searchParams?.offer_id ? parseInt(searchParams.offer_id) : defaultOffer;
-  const parsedZone = searchParams?.z ? parseInt(searchParams.z) : defaultZone;
-  const zone = isNaN(parsedZone) ? defaultZone : parsedZone;
+
+  // NaN is possible
+  const offerIdValue = searchParams?.offer_id ? parseInt(searchParams.offer_id) : defaultOffer;
+  const offerId = isNaN(offerIdValue) ? defaultOffer : offerIdValue;
+
+  const zone = searchParams?.z ? searchParams.z : '';
+  const requestVar = searchParams?.var ? searchParams.var : '';
+  const ymid = searchParams?.variable2 ? searchParams.variable2 : '';
+  const var3 = searchParams?.var_3 ? searchParams.var_3 : '';
+  const abTest = searchParams?.ab2 ? searchParams.ab2 : '';
+  const osVersion = searchParams?.os_version ? searchParams.os_version : '';
 
   return {
-    language,
+    language: language as TValidLocale,
     country,
-    offerId: offerId as TValidOffer,
     debug,
+    offerId: offerId as TValidOffer,
     zone,
+    requestVar,
+    ymid,
+    var3,
+    abTest,
+    osVersion,
   };
 };
