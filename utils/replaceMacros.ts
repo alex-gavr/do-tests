@@ -4,7 +4,7 @@ export function replaceMacrosWithEmptyString(url: string): void {
 
   if (hasMacros) {
     const updatedURL = url.replace(regex, ' ');
-    history.replaceState(null, '', updatedURL);
+    window.location.href = updatedURL;
   }
 }
 export function hasMacros(url: string): boolean {
