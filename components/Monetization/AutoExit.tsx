@@ -36,10 +36,12 @@ const AutoExit = () => {
     }, 1000);
     // when count is 0, Auto-Exit happens
     if (count === 0) {
+      const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
       if (offerId === 10702) {
         const eventData = {
           track: TrackEvents.autoExit,
           offerId: 'populations-game' as const,
+          url: url,
         };
         sendEvent('game', eventData);
       } else {
@@ -51,7 +53,7 @@ const AutoExit = () => {
       }
       if (state.exits.autoExit) {
         setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
-        const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
+        
         window.open(url, '_blank');
         router.replace(url);
       }
