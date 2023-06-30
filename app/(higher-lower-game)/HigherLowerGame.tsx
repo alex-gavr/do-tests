@@ -7,6 +7,7 @@ import { getDictionary } from 'i18n';
 import { TLanguage, TValidLocale, TValidOffer } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { TSearchParams } from '@hooks/useServerSearchParams';
+// import TimerToAnswer from '@components/HigherLowerGameUi/TimerToAnswer';
 
 const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
   ssr: false,
@@ -20,6 +21,7 @@ const Countries = dynamic(() => import('@components/HigherLowerGameUi/Countries'
   ssr: false,
 });
 const CreateUser = dynamic(() => import('@components/HigherLowerGameUi/CreateUser'), { ssr: false });
+const TimerToAnswer = dynamic(() => import('@components/HigherLowerGameUi/TimerToAnswer'), { ssr: false });
 
 interface IHigherLowerGameProps extends TLanguage {
   country: string;
@@ -47,11 +49,9 @@ const HigherLowerGame = async ({ country, language }: IHigherLowerGameProps) => 
           />
         </div>
         <h1 className='mt-16 text-center text-xl text-white sm:text-2xl md:text-3xl'>{d.welcome.heading}</h1>
-        <Countries
-          buttonTexts={d.welcome.Countries.Button}
-          hintButtonTexts={d.welcome.Countries.HintButton}
-          countryCardTexts={d.welcome.Countries.CountryCard}
-        />
+        <Countries buttonTexts={d.welcome.Countries.Button} hintButtonTexts={d.welcome.Countries.HintButton}>
+          <TimerToAnswer countryCardTexts={d.welcome.Countries.CountryCard} />
+        </Countries>
       </div>
       <CreateUser country={country} />
     </>

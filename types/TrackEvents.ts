@@ -37,4 +37,5 @@ export enum GameEvents {
     firstTimeLeaderboard = 'firstTimeLeaderboard',
     clickedOnVignetteImage = 'clickedOnVignetteImage',
     endOfGame = 'endOfGame',
+    cookiesDisabled = 'cookiesDisabled',
 }

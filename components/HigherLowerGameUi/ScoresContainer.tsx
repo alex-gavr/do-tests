@@ -11,13 +11,13 @@ interface IScoresContainerProps {
 
 const ScoresContainer = ({ country, score, hintsAvailable }: IScoresContainerProps) => {
   const { gameState: state } = useAppContext();
-  if (
-    state.user.currentScore === null ||
-    state.user.currentScore === undefined ||
-    isNaN(state.user.currentScore)
-  ) {
-    localStorage.removeItem('gameState');
-    return <CreateUser country={country} />;
+  if (state.user.currentScore === null || state.user.currentScore === undefined || isNaN(state.user.currentScore)) {
+    try {
+      localStorage.removeItem('gameState');
+      return <CreateUser country={country} />;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -27,8 +27,14 @@ const ScoresContainer = ({ country, score, hintsAvailable }: IScoresContainerPro
         <p className='text-slate-100'>{state.user.topScore}</p>
       </div>
       <div className='flex flex-col items-end justify-center '>
-        <p className='text-white'> {score}: {state.user.currentScore}</p>
-        <p className='text-xs text-emerald-300'> {hintsAvailable}: {state.user.hintsAvailable}</p>
+        <p className='text-white'>
+          {' '}
+          {score}: {state.user.currentScore}
+        </p>
+        <p className='text-xs text-emerald-300'>
+          {' '}
+          {hintsAvailable}: {state.user.hintsAvailable}
+        </p>
       </div>
     </div>
   );

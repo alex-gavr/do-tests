@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+// import { useEffect, useMemo, useState } from 'react';
 import CountryCard from './CountryCard';
 import { useAppContext } from '@context/Context';
 import GameButton from './GameButton';
@@ -9,26 +9,28 @@ import getNextCountryPair, { TCountryPair } from '@utils/HigherLowerGame/getNext
 import { useRouter } from 'next/navigation';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
-import { ICard } from '@context/higher-lower-game/gameStateType';
-import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
-import { randomIntFromInterval } from '@utils/randomInt';
-import TimerToAnswer from './TimerToAnswer';
+// import { ICard } from '@context/higher-lower-game/gameStateType';
+// import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
+// import { randomIntFromInterval } from '@utils/randomInt';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { GameEvents } from 'types/TrackEvents';
 import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import Lost from './Lost';
+import { getPopulationRanges } from './getPopulationRanges';
 
 interface ICountriesProps {
   buttonTexts: THigherLowerGameDictionary['welcome']['Countries']['Button'];
   hintButtonTexts: THigherLowerGameDictionary['welcome']['Countries']['HintButton'];
-  countryCardTexts: THigherLowerGameDictionary['welcome']['Countries']['CountryCard'];
+  children: React.ReactNode;
 }
 
-const Countries = ({ buttonTexts, hintButtonTexts, countryCardTexts }: ICountriesProps) => {
+const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
   const router = useRouter();
+
   if (state.topCard === null || state.bottomCard === null) {
-    return;
+    return null;
   }
 
   const countriesToDisplay: TCountryPair = [state.topCard, state.bottomCard];
@@ -43,76 +45,11 @@ const Countries = ({ buttonTexts, hintButtonTexts, countryCardTexts }: ICountrie
 
   const unpickedCard = countriesToDisplay.find((country) => country.id !== state.pickedCard?.id);
 
-  // RANGES FOR CARDS
-  const isTopCardPopulationBigger = state.topCard.population > state.bottomCard.population ? true : false;
-  const rangeForFirstCountry = useMemo(() => {
-    if (state.topCard) {
-      return createPopulationRange(state.topCard.population, 90);
-    }
-  }, []);
-  const rangeForSecondCountry = useMemo(() => {
-    if (state.bottomCard) {
-      return createPopulationRange(state.bottomCard.population, 90);
-    }
-  }, []);
-
-  if (isTopCardPopulationBigger) {
-    useMemo(() => {
-      if (rangeForFirstCountry && rangeForSecondCountry) {
-        rangeForSecondCountry[1] = Math.round(
-          rangeForFirstCountry[1] * (randomIntFromInterval(90, 110) / 100),
-        );
-      }
-    }, []);
-  } else {
-    useMemo(() => {
-      if (rangeForFirstCountry && rangeForSecondCountry) {
-        rangeForFirstCountry[1] = Math.round(
-          rangeForSecondCountry[1] * (randomIntFromInterval(90, 110) / 100),
-        );
-      }
-    }, []);
-  }
-
   let isWin: boolean | null = null;
 
   if (pickedCardPopulation && unpickedCard) {
     isWin = pickedCardPopulation > unpickedCard.population ? true : false;
   }
-
-  useEffect(() => {
-    if (showAnswer && isWin === false) {
-      const timer = setTimeout(() => {
-        dispatch({ type: GameActionTypes.setRoundsPlayed, payload: state.user.roundsPlayed + 1 });
-        const lostCookie = hasCookie('lost');
-        const playerIdCookie = hasCookie('playerId');
-        if (lostCookie && playerIdCookie) {
-          router.replace('/game-over');
-        } else if (lostCookie && !playerIdCookie) {
-          setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
-          router.replace('/game-over');
-        } else if (!lostCookie && playerIdCookie) {
-          setCookie('lost', true, { maxAge: 60 * 60 * 24 });
-          router.replace('/game-over');
-        } else if (!lostCookie && !playerIdCookie) {
-          setCookie('lost', true, { maxAge: 60 * 60 * 24 });
-          setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
-          router.replace('/game-over');
-        }
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showAnswer, isWin]);
-
-  useEffect(() => {
-    if (showAnswer && isWin === false) {
-      const interval = setInterval(() => {
-        dispatch({ type: GameActionTypes.decrementLostCountDown });
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, [showAnswer, isWin]);
 
   const handleClick = () => {
     // Show Answer
@@ -190,34 +127,35 @@ const Countries = ({ buttonTexts, hintButtonTexts, countryCardTexts }: ICountrie
     dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable - 1 });
   };
 
+  const { rangeForFirstCountry, rangeForSecondCountry } = getPopulationRanges(state.topCard, state.bottomCard);
+
   return (
     <>
-      <TimerToAnswer />
-      <div className='flex flex-col flex-wrap justify-center gap-4'>
-        {countriesToDisplay.map((country, index) => (
-          <CountryCard
-            range={index % 2 === 0 ? rangeForFirstCountry : rangeForSecondCountry}
-            isWin={isWin}
-            key={country.id}
-            id={country.id}
-            index={index}
-            name={country.name}
-            population={country.population}
-            flag={country.flag}
-            iso2={country.iso2}
-            countryCardTexts={countryCardTexts}
-          />
-        ))}
-      </div>
+      {isWin !== null && <Lost isWin={isWin} />}
+      <CountryCard
+        range={rangeForFirstCountry}
+        id={state.topCard.id}
+        name={state.topCard.name}
+        population={state.topCard.population}
+        flag={state.topCard.flag}
+        iso2={state.topCard.iso2}
+      />
+      {children}
+      <CountryCard
+        range={rangeForSecondCountry}
+        id={state.bottomCard.id}
+        name={state.bottomCard.name}
+        population={state.bottomCard.population}
+        flag={state.bottomCard.flag}
+        iso2={state.bottomCard.iso2}
+      />
 
       <GameButton
         onClick={handleClick}
         type='button'
         disabled={nothingPicked || (showAnswer && isWin === false)}
         variant='primary'
-        className={
-          showAnswer && isWin === false ? 'text-white disabled:bg-pink-700 disabled:bg-opacity-50' : ''
-        }
+        className={showAnswer && isWin === false ? 'text-white disabled:bg-pink-700 disabled:bg-opacity-50' : ''}
       >
         {nothingPicked
           ? buttonTexts.nothingPicked
@@ -228,17 +166,8 @@ const Countries = ({ buttonTexts, hintButtonTexts, countryCardTexts }: ICountrie
           : `${buttonTexts.confirmCountry} ${state.pickedCard?.name}`}
       </GameButton>
 
-      <GameButton
-        onClick={handleClickHint}
-        type='button'
-        variant='secondary'
-        disabled={showHint || hints === 0 || showAnswer === true}
-      >
-        {showHint
-          ? hintButtonTexts.hintShown
-          : hints === 0
-          ? hintButtonTexts.noHintAvailable
-          : hintButtonTexts.getHint}
+      <GameButton onClick={handleClickHint} type='button' variant='secondary' disabled={showHint || hints === 0 || showAnswer === true}>
+        {showHint ? hintButtonTexts.hintShown : hints === 0 ? hintButtonTexts.noHintAvailable : hintButtonTexts.getHint}
       </GameButton>
     </>
   );

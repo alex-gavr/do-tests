@@ -8,7 +8,6 @@ import { TValidLocale } from 'config';
 import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
-import SubId from '@components/SubId';
 
 const GameOverHeader = dynamic(() => import('./GameOverHeader'), {
   ssr: false,
@@ -34,7 +33,6 @@ const Page = async ({ searchParams }: IServerProps) => {
 
   return (
     <>
-      <ShowVignette />
       <div className='relative flex min-h-screen w-full flex-col items-start justify-center gap-4 bg-slate-900 px-2 py-4'>
         <div className='flex min-h-screen w-full flex-col items-center justify-start gap-8 place-self-center'>
           <GameOverHeader headerTexts={d.gameOver.header} />
@@ -46,6 +44,7 @@ const Page = async ({ searchParams }: IServerProps) => {
           </div>
         </div>
       </div>
+      <ShowVignette />
     </>
   );
 };

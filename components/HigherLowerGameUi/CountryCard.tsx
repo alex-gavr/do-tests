@@ -2,10 +2,7 @@
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { cn } from '@utils/cn';
-import { randomIntFromInterval } from '@utils/randomInt';
-import { useMemo } from 'react';
 import { ImageWithSkeleton } from '@components/ImageWithSkeleton';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
 
 interface ICountryCardProps {
   id: number;
@@ -13,22 +10,16 @@ interface ICountryCardProps {
   name: string;
   population: number;
   iso2: string;
-  index: number;
-  isWin: boolean | null;
   range: Array<number> | undefined;
-  countryCardTexts: THigherLowerGameDictionary['welcome']['Countries']['CountryCard'];
 }
 //  Flag_of_Sao_Tome_and_Principe
 const CountryCard = ({
   id,
-  index,
   flag,
   name,
   population: p,
   iso2,
-  isWin,
   range = [567834, 34523951],
-  countryCardTexts,
 }: ICountryCardProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
 
@@ -68,11 +59,6 @@ const CountryCard = ({
       ? 'border-4 border-red-400'
       : '';
 
-  const n = useMemo(() => {
-    return randomIntFromInterval(0, countryCardTexts.positiveFeedback.length - 1);
-  }, []);
-  const positiveFeedBack = countryCardTexts.positiveFeedback[n];
-
   return (
     <div className='flex flex-col items-center justify-center gap-4'>
       <div
@@ -97,21 +83,6 @@ const CountryCard = ({
           </div>
         </div>
       </div>
-      {index !== 1 && (
-        <p className='rounded-xl bg-emerald-300 px-4 py-2 text-center  text-xs uppercase tracking-widest text-black'>
-          {isAnswerCorrect === true
-            ? positiveFeedBack
-            : isAnswerCorrect === false
-            ? countryCardTexts.lost
-            : state.user.roundsPlayed < 2
-            ? countryCardTexts.instructions
-            : state.timerToAnswer.time}
-          <br />
-          {state.user.roundsPlayed < 2 &&
-            isAnswerCorrect === null &&
-            `${countryCardTexts.secondsLeft}: ` + state.timerToAnswer.time}
-        </p>
-      )}
     </div>
   );
 };

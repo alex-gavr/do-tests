@@ -13,10 +13,9 @@ const ShowVignette = ({}: IShowVignetteProps) => {
   const { gameState: state } = useAppContext();
   const router = useRouter();
   useEffect(() => {
-    router.push('/vignette/5959144');
+    
 
     // Production in incognito is busted. 
-    // TODO: Review where I use prod and how can it affect us.
     if (production) {
       const data: TGameEventProperties = {
         track: GameEvents.vignetteGameOver,
@@ -30,6 +29,8 @@ const ShowVignette = ({}: IShowVignetteProps) => {
       };
       sendEvent('game', data);
     }
+
+    router.push('/vignette/5959144');
   }, []);
   return null;
 };

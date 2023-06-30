@@ -21,6 +21,7 @@ interface IExits {
   noThankYouIpp: number;
   noThankYouPopsIpp: number;
   gameFinishIpp: number;
+  cookiesDisabled: number;
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';

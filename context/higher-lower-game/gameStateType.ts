@@ -10,10 +10,10 @@ export const userSchema = z.object({
   topScore: z.number(),
   currentScore: z.number(),
   hintsAvailable: z.number(),
-  roundsPlayed: z.number()
+  roundsPlayed: z.number(),
 });
 
-export type TUser = z.infer<typeof userSchema>
+export type TUser = z.infer<typeof userSchema>;
 
 interface ITimerToAnswer {
   enabled: boolean;

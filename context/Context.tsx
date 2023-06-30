@@ -18,11 +18,15 @@ interface AppContextType {
 
 const getSavedState = (initialState: IGameInitialState) => {
   if (typeof window !== 'undefined') {
-    const savedState = localStorage.getItem('gameState');
-    if (savedState !== null) {
-      return JSON.parse(savedState);
+    try {
+      const savedState = localStorage.getItem('gameState');
+      if (savedState !== null) {
+        return JSON.parse(savedState);
+      }
+      return initialState;
+    } catch (error) {
+      console.error(error);
     }
-    return initialState;
   }
 };
 
@@ -46,7 +50,11 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   useEffect(() => {
-    localStorage.setItem('gameState', JSON.stringify(gameState));
+    try {
+      localStorage.setItem('gameState', JSON.stringify(gameState));
+    } catch (error) {
+      console.error(error);
+    }
   }, [gameState]);
 
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
