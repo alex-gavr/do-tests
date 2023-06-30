@@ -1,6 +1,6 @@
 function getYmid() {
     try {
-        return new URL(location.href).searchParams.get('ymid');
+        return new URL(location.href).searchParams.get('var');
     } catch (e) {
         console.warn(e);
     }
@@ -8,7 +8,7 @@ function getYmid() {
 }
 function getVar() {
     try {
-        return new URL(location.href).searchParams.get('var');
+        return new URL(location.href).searchParams.get('z');
     } catch (e) {
         console.warn(e);
     }
