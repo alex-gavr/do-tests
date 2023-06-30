@@ -38,6 +38,24 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
   const campaignId = searchParams?.campaignid ? searchParams.campaignid : '';
   const subId = searchParams?.s ? searchParams.s : '';
 
+  const searchParamString = Object.entries({
+    offer_id: offerId,
+    z: zone,
+    var: requestVar,
+    ymid,
+    var_3: var3,
+    ab2: abTest,
+    os_version: osVersion,
+    b: bannerId,
+    campaignid: campaignId,
+    s: subId,
+  })
+    .filter(([_, value]) => value !== '')
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .join('&');
+
+    
+
   return {
     language: language as TValidLocale,
     country,
@@ -52,5 +70,6 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
     bannerId,
     campaignId,
     subId,
+    searchParamString
   };
 };

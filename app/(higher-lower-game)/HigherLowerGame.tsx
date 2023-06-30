@@ -27,13 +27,14 @@ interface IHigherLowerGameProps extends TLanguage {
   country: string;
   offer: TValidOffer;
   zone: TSearchParams['z'];
+  searchParamString: string;
 }
 
-const HigherLowerGame = async ({ country, language }: IHigherLowerGameProps) => {
+const HigherLowerGame = async ({ country, language, searchParamString }: IHigherLowerGameProps) => {
   const cookiesList = cookies();
   const lost = cookiesList.has('lost');
   if (lost) {
-    redirect('/game-over');
+    redirect(`/game-over?${searchParamString}`);
   }
   const d = (await getDictionary(10702, language as TValidLocale)) as THigherLowerGameDictionary;
 
