@@ -13,6 +13,7 @@ import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { GameEvents, TrackEvents } from 'types/TrackEvents';
 import { usePathname } from 'next/navigation';
 import SubId from '@components/SubId';
+import CookieChecker from '@components/CookiesChecker/CookiesChecker';
 
 interface IProps {
   children: React.ReactNode;
@@ -78,6 +79,7 @@ const Providers = ({ children }: IProps) => {
 
   return (
     <AppProvider>
+      <CookieChecker />
       <SubId>
         {production && !debug && <AutoExit />}
         {/* {production && !debug && <Reverse />} */}
