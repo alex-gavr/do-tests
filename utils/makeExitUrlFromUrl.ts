@@ -20,7 +20,7 @@ const makeExitUrlFromUrl = (url: string) => {
     queryParams.set('campaignid', `${campaignId}`);
     queryParams.set('osversion', `${osVersion}`);
     queryParams.set('click_id', `${clickId}`);
-    queryParams.set('ab2', `${abTest}`);
+    queryParams.set('ab2r', `${abTest}`);
 
     const newExitUrl = new URL(url);
     // params from backend
