@@ -10,13 +10,14 @@ import { TrackEvents } from 'types/TrackEvents';
 import { setCookie } from 'cookies-next';
 
 const THIRTY_SECONDS = 30;
+const FORTY_SECONDS = 40;
 
 // WARNING: Autoexit works only in game.
 const AutoExit = () => {
   const router = useRouter();
   const { offerId } = useClientSearchParams();
   const { surveyState: state } = useAppContext();
-  const [count, setCount] = useState(THIRTY_SECONDS);
+  const [count, setCount] = useState(FORTY_SECONDS);
 
   // AUTO-EXIT
   const updateCount = () => {
