@@ -59,15 +59,18 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
         setCookie('gameConversion', 1);
       }
     }
-    deleteCookie('lost');
-    router.replace('/?offer_id=10702');
-    dispatch({ type: GameActionTypes.setCurrentScore, payload: 0 });
-    dispatch({ type: GameActionTypes.resetLostCountDown });
-    dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
-    dispatch({ type: GameActionTypes.setShowAnswer, payload: false });
-    dispatch({ type: GameActionTypes.setPickedCard, payload: null });
-    dispatch({ type: GameActionTypes.setShowHint, payload: false });
-    dispatch({ type: GameActionTypes.resetSecondsToAnswer });
+    if (typeof window !== 'undefined') {
+      const params = window.location.search;
+      deleteCookie('lost');
+      router.replace(`/${params}`);
+      dispatch({ type: GameActionTypes.setCurrentScore, payload: 0 });
+      dispatch({ type: GameActionTypes.resetLostCountDown });
+      dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
+      dispatch({ type: GameActionTypes.setShowAnswer, payload: false });
+      dispatch({ type: GameActionTypes.setPickedCard, payload: null });
+      dispatch({ type: GameActionTypes.setShowHint, payload: false });
+      dispatch({ type: GameActionTypes.resetSecondsToAnswer });
+    }
   };
 
   return (

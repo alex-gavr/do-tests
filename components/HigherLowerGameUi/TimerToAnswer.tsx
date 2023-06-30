@@ -47,7 +47,10 @@ const TimerToAnswer = ({ countryCardTexts }: ITimerToAnswerProps) => {
         }
         setCookie('lost', true, { maxAge: 60 * 60 * 24 });
         dispatch({ type: GameActionTypes.setRoundsPlayed, payload: state.user.roundsPlayed + 1 });
-        router.replace('/game-over');
+        if (typeof window !== 'undefined') {
+          const params = window.location.search;
+          router.replace(`/game-over${params}`);
+        }
       } else {
         const interval = setInterval(() => {
           dispatch({ type: GameActionTypes.decrementSecondsToAnswer });

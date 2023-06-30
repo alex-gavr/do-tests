@@ -12,6 +12,7 @@ interface ILostProps {
 
 const Lost = ({ isWin }: ILostProps) => {
   const { gameState: state, gameDispatch: dispatch } = useAppContext();
+
   const router = useRouter();
   const showAnswer = state.showAnswer;
 
@@ -22,18 +23,21 @@ const Lost = ({ isWin }: ILostProps) => {
         dispatch({ type: GameActionTypes.setRoundsPlayed, payload: state.user.roundsPlayed + 1 });
         const lostCookie = hasCookie('lost');
         const playerIdCookie = hasCookie('playerId');
-        if (lostCookie && playerIdCookie) {
-          router.replace('/game-over');
-        } else if (lostCookie && !playerIdCookie) {
-          setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
-          router.replace('/game-over');
-        } else if (!lostCookie && playerIdCookie) {
-          setCookie('lost', true, { maxAge: 60 * 60 * 24 });
-          router.replace('/game-over');
-        } else if (!lostCookie && !playerIdCookie) {
-          setCookie('lost', true, { maxAge: 60 * 60 * 24 });
-          setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
-          router.replace('/game-over');
+        if (typeof window !== 'undefined') {
+          const params = window.location.search;
+          if (lostCookie && playerIdCookie) {
+            router.replace(`/game-over${params}`);
+          } else if (lostCookie && !playerIdCookie) {
+            setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
+            router.replace(`/game-over${params}`);
+          } else if (!lostCookie && playerIdCookie) {
+            setCookie('lost', true, { maxAge: 60 * 60 * 24 });
+            router.replace(`/game-over${params}`);
+          } else if (!lostCookie && !playerIdCookie) {
+            setCookie('lost', true, { maxAge: 60 * 60 * 24 });
+            setCookie('playerId', state.user.uuid, { maxAge: 60 * 60 * 24 * 365 });
+            router.replace(`/game-over${params}`);
+          }
         }
       }, 3000);
       return () => clearTimeout(timer);

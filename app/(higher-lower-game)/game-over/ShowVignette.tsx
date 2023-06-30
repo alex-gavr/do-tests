@@ -29,8 +29,11 @@ const ShowVignette = ({}: IShowVignetteProps) => {
       };
       sendEvent('game', data);
     }
-
-    router.push(`/vignette/${surveyState.exits.vignetteGameOver}`);
+    if (typeof window !== 'undefined') {
+      const params = window.location.search;
+      router.push(`/vignette/${surveyState.exits.vignetteGameOver}${params}`);
+    }
+    
   }, []);
   return null;
 };

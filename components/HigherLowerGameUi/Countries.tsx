@@ -118,7 +118,11 @@ const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) 
     // Freeze time
     dispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: false });
     // Show Vignette
-    router.push(`/vignette/${surveyState.exits.vignetteShowHint}`);
+
+    if (typeof window !== 'undefined') {
+      const params = window.location.search;
+      router.push(`/vignette/${surveyState.exits.vignetteShowHint}${params}`);
+    }
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
 
     // Trigger Hint

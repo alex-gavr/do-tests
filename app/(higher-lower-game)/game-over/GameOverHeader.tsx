@@ -72,12 +72,18 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
       sendEvent('game', data);
     }
 
-    router.push('/leaderboard');
+    if (typeof window !== 'undefined') {
+      const params = window.location.search;
+      router.push(`/leaderboard${params}`);
+    }
     setLoading(false);
   };
 
   const handleGetMoreHints = () => {
-    !debug && router.push(`/vignette/${surveyState.exits.vignetteGetHint}`);
+    if (typeof window !== 'undefined') {
+      const params = window.location.search;
+      !debug && router.push(`/vignette/${surveyState.exits.vignetteGetHint}${params}`);
+    }
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
     dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable + 1 });
 
@@ -99,16 +105,8 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
   return (
     <div className='flex w-full max-w-2xl flex-row items-start justify-between gap-4'>
       <div className='flex w-full flex-col items-start justify-start gap-4'>
-        <GameButton
-          variant='secondary'
-          onClick={handleClickLeaderboard}
-          className='w-full min-w-0 max-w-[200px]'
-        >
-          {loading ? (
-            <ArrowPathIcon className='h-4 w-4 animate-spin text-emerald-400' />
-          ) : (
-            headerTexts.leaderboardButton
-          )}
+        <GameButton variant='secondary' onClick={handleClickLeaderboard} className='w-full min-w-0 max-w-[200px]'>
+          {loading ? <ArrowPathIcon className='h-4 w-4 animate-spin text-emerald-400' /> : headerTexts.leaderboardButton}
         </GameButton>
         <p className='ml-1 text-xs tracking-widest text-slate-300 md:text-sm'>
           {headerTexts.topScore}: {state.user.topScore}

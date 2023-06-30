@@ -41,7 +41,6 @@ const AutoExit = () => {
         const eventData = {
           track: TrackEvents.autoExit,
           offerId: 'populations-game' as const,
-          url: url,
         };
         sendEvent('game', eventData);
       } else {

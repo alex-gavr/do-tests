@@ -32,7 +32,10 @@ const LeaderboardButtons = ({buttonsTexts}: ILeaderboardButtonsProps) => {
       sendEvent('game', data);
     }
     deleteCookie('lost');
-    router.replace('/?offer_id=10702');
+    if (typeof window !== 'undefined') {
+      const params = window.location.search;
+      router.replace(`/${params}`);
+    }
     dispatch({ type: GameActionTypes.setCurrentScore, payload: 0 });
     dispatch({ type: GameActionTypes.resetLostCountDown });
     dispatch({ type: GameActionTypes.setIsAnswerCorrect, payload: null });
