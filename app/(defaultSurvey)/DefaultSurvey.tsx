@@ -1,4 +1,5 @@
 import Button from '@components/Button/Button';
+import ButtonForTesting from '@components/ButtonForTesting/ButtonForTesting';
 
 const DefaultSurvey = () => {
   return (
@@ -10,6 +11,7 @@ const DefaultSurvey = () => {
       <Button type='button' variant='primary' to='beginSurvey'>
         LET'S GO
       </Button>
+      <ButtonForTesting />
     </section>
   );
 };

@@ -1,6 +1,6 @@
 'use client';
 import { useAppContext } from '@context/Context';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import production from '@utils/isProd';
@@ -42,7 +42,7 @@ const CountDown = ({
       };
       sendEvent('offer',eventData);
       if (state.exits.accessAutoExit) {
-        const url = makeExitUrl(state.exits.accessAutoExit);
+        const url = makeExitUrl(state.exits.accessAutoExit, ExitType.onclick);
         window.open(url, '_blank');
         router.replace(url);
       }
@@ -60,7 +60,7 @@ const CountDown = ({
       sendEvent('offer',eventData);
 
       if (state.exits.accessAutoExit) {
-        const url = makeExitUrl(state.exits.accessAutoExit);
+        const url = makeExitUrl(state.exits.accessAutoExit, ExitType.onclick);
         window.open(url, '_blank');
         router.replace(url);
       }

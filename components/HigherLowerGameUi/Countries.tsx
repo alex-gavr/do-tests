@@ -26,7 +26,7 @@ interface ICountriesProps {
 }
 
 const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) => {
-  const { gameState: state, gameDispatch: dispatch } = useAppContext();
+  const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
   const router = useRouter();
 
   if (state.topCard === null || state.bottomCard === null) {
@@ -118,7 +118,7 @@ const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) 
     // Freeze time
     dispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: false });
     // Show Vignette
-    router.push('/vignette/5948180');
+    router.push(`/vignette/${surveyState.exits.vignetteShowHint}`);
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
 
     // Trigger Hint

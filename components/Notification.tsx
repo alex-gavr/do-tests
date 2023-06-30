@@ -4,7 +4,7 @@ import { ActionsType } from '@context/actionsTypes';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { m } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -25,8 +25,8 @@ const Notification = () => {
       sendEvent('offer',eventData);
     }
 
-    const url = makeExitUrl(state.exits.motivatedYes);
-    const urlPops = makeExitUrl(state.exits.motivatedYesPops);
+    const url = makeExitUrl(state.exits.motivatedYes, ExitType.onclick);
+    const urlPops = makeExitUrl(state.exits.motivatedYesPops, ExitType.onclick);
     window.open(url, '_blank');
     router.replace(urlPops);
   };

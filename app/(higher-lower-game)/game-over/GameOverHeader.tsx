@@ -19,7 +19,7 @@ interface IHeaderProps {
 }
 
 const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
-  const { gameState: state, gameDispatch: dispatch } = useAppContext();
+  const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
   const [loading, setLoading] = useState<boolean>(false);
   const playerNameCookie = hasCookie('playerName');
   const topScoreCookie = hasCookie('topScore');
@@ -77,7 +77,7 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
   };
 
   const handleGetMoreHints = () => {
-    !debug && router.push('/vignette/5959137');
+    !debug && router.push(`/vignette/${surveyState.exits.vignetteGetHint}`);
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
     dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable + 1 });
 

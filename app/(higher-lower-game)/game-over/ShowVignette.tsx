@@ -10,7 +10,7 @@ import { GameEvents } from 'types/TrackEvents';
 interface IShowVignetteProps {}
 
 const ShowVignette = ({}: IShowVignetteProps) => {
-  const { gameState: state } = useAppContext();
+  const { gameState: state, surveyState } = useAppContext();
   const router = useRouter();
   useEffect(() => {
     
@@ -30,7 +30,7 @@ const ShowVignette = ({}: IShowVignetteProps) => {
       sendEvent('game', data);
     }
 
-    router.push('/vignette/5959144');
+    router.push(`/vignette/${surveyState.exits.vignetteGameOver}`);
   }, []);
   return null;
 };

@@ -4,7 +4,7 @@ import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
 import { TrackEvents } from 'types/TrackEvents';
@@ -25,7 +25,7 @@ const BackButton = ({text = 'back'}: IBackButtonProps) => {
       };
       sendEvent('offer',eventData);
     }
-    const url = makeExitUrl(state.exits.backButton);
+    const url = makeExitUrl(state.exits.backButton, ExitType.onclick);
     window.open(url, '_blank');
     router.replace(url);
   };

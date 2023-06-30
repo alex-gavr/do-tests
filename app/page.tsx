@@ -13,7 +13,7 @@ export interface IServerProps {
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
   const { language, country, debug, offerId, zone } = useServerSearchParams(searchParams);
-
+  
   return (
     <>
       <main>

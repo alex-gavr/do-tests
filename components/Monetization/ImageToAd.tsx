@@ -5,7 +5,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { cn } from '@utils/cn';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -29,7 +29,7 @@ const ImageToAd = ({ src, className }: IImageToAdProps) => {
       };
       sendEvent('offer',eventData);
     }
-    const url = makeExitUrl(state.exits.photoExit);
+    const url = makeExitUrl(state.exits.photoExit, ExitType.onclick);
     window.open(url, '_black');
     router.replace(url);
   };

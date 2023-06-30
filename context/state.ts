@@ -27,6 +27,9 @@ const initialState: InitialState = {
     noThankYouPopsIpp: 5973162,
     gameFinishIpp: 6020461,
     cookiesDisabled: 6088166,
+    vignetteShowHint: 5948180,
+    vignetteGameOver: 5959144,
+    vignetteGetHint: 5959137,
   },
   notificationVisible: null,
   fullScreenImage: {

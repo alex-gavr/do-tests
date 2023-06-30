@@ -1,9 +1,20 @@
 import { IVignette } from '@app/vignette/[id]/VignetteUi';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
+import makeExitUrlFromUrl from '@utils/makeExitUrlFromUrl';
 
 const getVignetteData = async (zone: string) => {
   try {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_VIGNETTE_URL}${zone}`).then((res) => res.json());
-    return data.ads[0] as IVignette;
+    const url = makeExitUrl(zone, ExitType.vignette);
+    const data = (await fetch(url).then((res) => res.json()));
+    const d = data.ads as IVignette[];
+    const readyData = d.map((i) => {
+      const mutatedUrl = makeExitUrlFromUrl(i.click);
+      return {
+        ...i,
+        click: mutatedUrl,
+      };
+    });
+    return readyData[0] as IVignette;
   } catch (error) {
     console.log(error);
   }

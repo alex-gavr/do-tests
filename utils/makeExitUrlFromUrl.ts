@@ -1,54 +1,40 @@
 import { SearchParamsOptions } from '@hooks/useServerSearchParams';
 
-export enum ExitType {
-  onclick = 'onclick',
-  ipp = 'ipp',
-  vignette = 'vignette',
-}
-
 //  we receive zone if onclick and url if ipp or vignette
-const makeExitUrl = (zone: number | string, type: ExitType) => {
+const makeExitUrlFromUrl = (url: string) => {
   if (typeof window !== 'undefined') {
     const currentUrl = new URL(window.location.href);
     const zoneEntry = currentUrl.searchParams.get(SearchParamsOptions.zone) ?? '';
     const requestVar = currentUrl.searchParams.get(SearchParamsOptions.requestVar) ?? '';
-    const bannerId = currentUrl.searchParams.get(SearchParamsOptions.bannerId) ?? '';
+    // const bannerId = currentUrl.searchParams.get(SearchParamsOptions.bannerId) ?? '';
     const campaignId = currentUrl.searchParams.get(SearchParamsOptions.campaignId) ?? '';
     const osVersion = currentUrl.searchParams.get(SearchParamsOptions.osVersion) ?? '';
     const clickId = currentUrl.searchParams.get(SearchParamsOptions.subId) ?? '';
-    const abTest = currentUrl.searchParams.get(SearchParamsOptions.abTest)?? '';
+    const abTest = currentUrl.searchParams.get(SearchParamsOptions.abTest) ?? '';
 
     const queryParams = new URLSearchParams();
 
     // Adding search parameters
     queryParams.set('var', `${zoneEntry}`);
     queryParams.set('ymid', `${requestVar}`);
-    queryParams.set('b', `${bannerId}`);
     queryParams.set('campaignid', `${campaignId}`);
     queryParams.set('osversion', `${osVersion}`);
     queryParams.set('click_id', `${clickId}`);
     queryParams.set('ab2', `${abTest}`);
 
-    let baseUrl: string = '';
-    if (type === ExitType.onclick) {
-      baseUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/${zone}/`;
-    }
-    if (type === ExitType.ipp) {
-      queryParams.set('zz', `${zone}`);
-      baseUrl = `${process.env.NEXT_PUBLIC_IPP_URL}`;
-    }
-    if (type === ExitType.vignette) {
-      baseUrl = `${process.env.NEXT_PUBLIC_VIGNETTE_URL}${zone}`;
-    }
-
-    const url = new URL(baseUrl);
-    url.search = queryParams.toString();
-    return url.href;
-
+    const newExitUrl = new URL(url);
+    // params from backend
+    const zone = newExitUrl.searchParams.get('_z') ?? '';
+    const bannerId = newExitUrl.searchParams.get(SearchParamsOptions.bannerId) ?? '';
+    
+    queryParams.set('_z', `${zone}`);
+    queryParams.set('b', `${bannerId}`);
+    newExitUrl.search = queryParams.toString();
+    return newExitUrl.href;
   } else {
     throw new Error('You cannot get exit url on backend');
   }
 };
-export default makeExitUrl;
+export default makeExitUrlFromUrl;
 
 // https://careersurvey.top/?offer_id=10702&z=6085938&s=698631152912838677&b=18233048&campaignid=7119450&var=%20&ymid=698631152912838677&var_3=%20&geo=NL&abtest=296069

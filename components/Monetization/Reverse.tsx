@@ -1,7 +1,7 @@
 'use client';
 import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { sendEvent } from '@utils/sendEvent';
 import { useEffect } from 'react';
 import { TrackEvents } from 'types/TrackEvents';
@@ -21,7 +21,7 @@ const Reverse = () => {
       sendEvent('offer',eventData);
 
       if (state.exits.reverse) {
-        const url = makeExitUrl(state.exits.reverse);
+        const url = makeExitUrl(state.exits.reverse, ExitType.onclick);
         window.location.replace(url);
       }
     };

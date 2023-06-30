@@ -1,7 +1,7 @@
 'use client'; // Error components must be Client components
 
 import production from '@utils/isProd';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { useEffect } from 'react';
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
@@ -10,7 +10,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     console.error(error);
     if (production) {
       const FALLBACK = 5812355;
-      const url = makeExitUrl(FALLBACK);
+      const url = makeExitUrl(FALLBACK, ExitType.onclick);
       window.location.replace(url);
     }
   }, [error]);

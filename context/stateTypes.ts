@@ -22,6 +22,9 @@ interface IExits {
   noThankYouPopsIpp: number;
   gameFinishIpp: number;
   cookiesDisabled: number;
+  vignetteShowHint: number;
+  vignetteGameOver: number;
+  vignetteGetHint: number;
 }
 
 type TStyleVariants = 'primary' | 'secondary' | 'success' | 'danger';

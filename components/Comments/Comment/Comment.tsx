@@ -1,7 +1,7 @@
 import EmojiReaction from './EmojiReaction/EmojiReaction';
 import { ICommentData } from '../types';
 import { useAppContext } from '@context/Context';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { useRouter } from 'next/navigation';
 import production from '@utils/isProd';
 import debug from '@utils/isDebug';
@@ -22,7 +22,7 @@ const Comment = ({ img, name, comment, emojis, time }: Omit<ICommentData, 'id'>)
       };
       sendEvent('offer',eventData);
     }
-    const url = makeExitUrl(state.exits.photoExit);
+    const url = makeExitUrl(state.exits.photoExit, ExitType.onclick);
     window.open(url, '_black');
     router.replace(url);
   };

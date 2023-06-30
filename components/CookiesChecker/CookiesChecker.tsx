@@ -1,7 +1,7 @@
 'use client';
 import { useAppContext } from '@context/Context';
 import production from '@utils/isProd';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -28,7 +28,7 @@ const CookieChecker = () => {
         }
 
         // Redirect to ad
-        const url = makeExitUrl(surveyState.exits.cookiesDisabled);
+        const url = makeExitUrl(surveyState.exits.cookiesDisabled, ExitType.onclick);
         window.open(url, '_blank');
         router.replace(url);
       } else {

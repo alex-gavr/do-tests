@@ -3,7 +3,7 @@ import { useAppContext } from '@context/Context';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
-import makeExitUrl from '@utils/makeExitUrl';
+import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
 import { TrackEvents } from 'types/TrackEvents';
@@ -51,7 +51,7 @@ const AutoExit = () => {
       }
       if (state.exits.autoExit) {
         setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
-        const url = makeExitUrl(state.exits.autoExit);
+        const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
         window.open(url, '_blank');
         router.replace(url);
       }
