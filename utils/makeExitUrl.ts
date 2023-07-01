@@ -28,6 +28,7 @@ const makeExitUrl = (zone: number | string, type: ExitType) => {
     queryParams.set('osversion', `${osVersion}`);
     queryParams.set('click_id', `${clickId}`);
     queryParams.set('ab2r', `${abTest}`);
+    queryParams.set('ab2', `${abTest}`);
 
     let baseUrl: string = '';
     if (type === ExitType.onclick) {
