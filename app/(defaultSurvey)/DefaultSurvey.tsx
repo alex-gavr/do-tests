@@ -11,7 +11,7 @@ const DefaultSurvey = () => {
       <Button type='button' variant='primary' to='beginSurvey'>
         LET'S GO
       </Button>
-      <ButtonForTesting />
+      {/* <ButtonForTesting /> */}
     </section>
   );
 };
