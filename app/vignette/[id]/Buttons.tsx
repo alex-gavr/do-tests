@@ -6,7 +6,6 @@ import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { GameEvents } from 'types/TrackEvents';
 
 interface ICloseButtonProps {

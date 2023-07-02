@@ -33,7 +33,6 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
   const ymid = searchParams?.ymid ? searchParams.ymid : '';
   const var3 = searchParams?.var_3 ? searchParams.var_3 : '';
   const abTest = searchParams?.abtest ? searchParams.abtest : '';
-  console.log('🚀 ~ abTest:', abTest)
   
   const osVersion = searchParams?.os_version ? searchParams.os_version : '';
   const bannerId = searchParams?.b ? searchParams.b : '';

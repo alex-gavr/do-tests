@@ -13,7 +13,6 @@ interface ISendImpressionProps {
 const SendImpression = ({ url }: ISendImpressionProps) => {
   const { gameState: state } = useAppContext();
   useEffect(() => {
-    triggerImpression(url);
     if (production) {
       const eventData: TGameEventProperties = {
         track: GameEvents.vignetteImpression,
@@ -27,6 +26,7 @@ const SendImpression = ({ url }: ISendImpressionProps) => {
       };
       sendEvent('game', eventData);
     }
+    triggerImpression(url);
   }, []);
 
   return null;
