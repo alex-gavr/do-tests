@@ -6,9 +6,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import production from '@utils/isProd';
 import { useCallback, useEffect } from 'react';
 
-interface ISubIdProps {
-  children: React.ReactNode;
-}
+interface ISubIdProps {}
 
 export type MarkerWithSubIdResponse = {
   browser: string;
@@ -23,7 +21,7 @@ export type MarkerWithSubIdResponse = {
   subId?: string;
 };
 
-const SubId = ({ children }: ISubIdProps) => {
+const SubId = ({}: ISubIdProps) => {
   const { surveyDispatch, surveyState } = useAppContext();
   const { offerId, zone, requestVar, ymid, var3, abTest, osVersion, subId } = useClientSearchParams();
 
@@ -65,7 +63,7 @@ const SubId = ({ children }: ISubIdProps) => {
     }
   }, []);
 
-  return <>{children}</>;
+  return null;
 };
 
 export default SubId;

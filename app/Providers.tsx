@@ -67,12 +67,15 @@ const Providers = ({ children }: IProps) => {
 
       if (offerId !== 0) {
         // Cookie to track if user has been here before within 30 minutes
-        setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
-        const eventData = {
-          track: TrackEvents.loaded,
-          offerId: offerId,
-        };
-        sendEvent('offer', eventData);
+        // + don't want to track them again
+        if (!beenHere) {
+          setCookie('beenHere', 1, { path: '/', maxAge: 60 * 30 });
+          const eventData = {
+            track: TrackEvents.loaded,
+            offerId: offerId,
+          };
+          sendEvent('offer', eventData);
+        }
       }
     }
   }, [pathname]);
@@ -80,14 +83,13 @@ const Providers = ({ children }: IProps) => {
   return (
     <AppProvider>
       <CookieChecker />
-      <SubId>
-        {production && !debug && <AutoExit />}
-        {/* {production && !debug && <Reverse />} */}
-        {/* {production && !debug && <NonUnique />} */}
-        <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
-          <AnimatePresence>{children}</AnimatePresence>
-        </LazyMotion>
-      </SubId>
+      {/* <SubId /> */}
+      {production && !debug && <AutoExit />}
+      {/* {production && !debug && <Reverse />} */}
+      {/* {production && !debug && <NonUnique />} */}
+      <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
+        <AnimatePresence>{children}</AnimatePresence>
+      </LazyMotion>
     </AppProvider>
   );
 };
