@@ -14,7 +14,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { sendEvent } from '@utils/sendEvent';
 import production from '@utils/isProd';
 import { TrackEvents } from 'types/TrackEvents';
-import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
+import getIppIfErrorGetOnclick from '@utils/ipp/getIppIfErrorGetOnclick';
 
 const buttonVariants = cva(
   'active:scale-95 tracking-widest min-w-[120px] inline-flex items-center justify-center rounded-md text-xs sm:text-base transition-colors duration-500 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none',
@@ -94,8 +94,8 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
         };
         sendEvent('offer', eventData);
       }
-      const teenExit = getExitLinkWithMediation(state.exits.teenExitIpp, state.exits.teenExit);
-      const teenPops = getExitLinkWithMediation(state.exits.teenPopsIpp, state.exits.teenPops);
+      const teenExit = getIppIfErrorGetOnclick(state.exits.teenExitIpp, state.exits.teenExit);
+      const teenPops = getIppIfErrorGetOnclick(state.exits.teenPopsIpp, state.exits.teenPops);
 
       const [url, urlPops] = await Promise.all([teenExit, teenPops]);
 
@@ -126,8 +126,8 @@ const Button = ({ children, type, variant, disabled, size, className, to, ...pro
         };
         sendEvent('offer', eventData);
       }
-      const mainExit = getExitLinkWithMediation(state.exits.mainExitIpp, state.exits.mainExit);
-      const mainPops = getExitLinkWithMediation(state.exits.mainPopsIpp, state.exits.mainPops);
+      const mainExit = getIppIfErrorGetOnclick(state.exits.mainExitIpp, state.exits.mainExit);
+      const mainPops = getIppIfErrorGetOnclick(state.exits.mainPopsIpp, state.exits.mainPops);
 
       const [url, urlPops] = await Promise.all([mainExit, mainPops]);
 

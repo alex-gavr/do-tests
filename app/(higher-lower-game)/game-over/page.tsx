@@ -3,9 +3,9 @@ import { cookies } from 'next/dist/client/components/headers';
 import ShowVignette from './ShowVignette';
 import dynamic from 'next/dynamic';
 import LeaderboardWithPlayer from './LeaderboardWithPlayer';
-import { getDictionary } from 'i18n';
+import { getDictionary } from '@i18n/i18n';
 import { TValidLocale } from 'config';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
 

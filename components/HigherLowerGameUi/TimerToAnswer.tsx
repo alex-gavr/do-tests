@@ -6,7 +6,7 @@ import production from '@utils/isProd';
 import { randomIntFromInterval } from '@utils/randomInt';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { hasCookie, setCookie } from 'cookies-next';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { GameEvents } from 'types/TrackEvents';

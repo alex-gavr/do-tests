@@ -1,7 +1,7 @@
 import Button from '@components/Button/Button';
-import { getDictionary } from 'i18n';
+import { getDictionary } from '@i18n/i18n';
 import { TLanguage, TValidLocale } from 'config';
-import { TTravelSurveyDictionary } from 'dictionaries/9999/en';
+import { TTravelSurveyDictionary } from '@i18n/9999/en';
 
 export interface ITravelThankYouProps extends TLanguage {}
 const TravelThankYou = async ({ language }: ITravelThankYouProps) => {

@@ -1,7 +1,7 @@
 'use client';
 import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
+import getIppIfErrorGetOnclick from '@utils/ipp/getIppIfErrorGetOnclick';
 import { sendEvent } from '@utils/sendEvent';
 import { hasCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,7 @@ const NonUnique = () => {
     return null;
   }
 
-  const url = use(getExitLinkWithMediation(state.exits.nonUniqueIpp, state.exits.nonUniqueExit));
+  const url = use(getIppIfErrorGetOnclick(state.exits.nonUniqueIpp, state.exits.nonUniqueExit));
 
   const { offerId } = useClientSearchParams();
   // NonUnique Block

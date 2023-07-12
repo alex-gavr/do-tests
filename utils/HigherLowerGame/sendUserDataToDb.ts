@@ -6,7 +6,7 @@ export const sendUserDataToDb = async ({ uuid, playerName, country, topScore, hi
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: process.env.NEXT_PUBLIC_API_ROUTE_SECRET!,
+        Authorization: process.env.NEXT_PUBLIC_API_ROUTE_SECRET,
       },
       body: JSON.stringify({
         uuid,
@@ -15,7 +15,7 @@ export const sendUserDataToDb = async ({ uuid, playerName, country, topScore, hi
         topScore,
         currentScore,
         hintsAvailable,
-        roundsPlayed
+        roundsPlayed,
       }),
     });
     return res.status;

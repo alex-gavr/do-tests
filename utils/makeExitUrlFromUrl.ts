@@ -1,7 +1,13 @@
 import { SearchParamsOptions } from '@hooks/useServerSearchParams';
 
+export enum UrlType {
+  ipp = 'ipp',
+  onclick = 'onclick',
+  vignette = 'vignette',
+}
+
 //  we receive zone if onclick and url if ipp or vignette
-const makeExitUrlFromUrl = (url: string) => {
+const makeExitUrlFromUrl = (url: string, urlType: UrlType) => {
   if (typeof window !== 'undefined') {
     const currentUrl = new URL(window.location.href);
     const zoneEntry = currentUrl.searchParams.get(SearchParamsOptions.zone) ?? '';
@@ -22,13 +28,20 @@ const makeExitUrlFromUrl = (url: string) => {
     queryParams.set('click_id', `${clickId}`);
     queryParams.set('ab2r', `${abTest}`);
 
-    const newExitUrl = new URL(url);
-    // params from backend
-    const zone = newExitUrl.searchParams.get('_z') ?? '';
-    const bannerId = newExitUrl.searchParams.get(SearchParamsOptions.bannerId) ?? '';
-    
-    queryParams.set('_z', `${zone}`);
-    queryParams.set('b', `${bannerId}`);
+    let newExitUrl = new URL(url);
+    if (urlType === UrlType.ipp || urlType === UrlType.vignette) {
+      // params from backend
+      const zone = newExitUrl.searchParams.get('_z') ?? '';
+      const bannerId = newExitUrl.searchParams.get(SearchParamsOptions.bannerId) ?? '';
+
+      queryParams.set('_z', `${zone}`);
+      queryParams.set('b', `${bannerId}`);
+    }
+    if (urlType === UrlType.onclick) {
+      const userId = newExitUrl.searchParams.get('userId') ?? '';
+      queryParams.set('userId', `${userId}`);
+    }
+
     newExitUrl.search = queryParams.toString();
     return newExitUrl.href;
   } else {
@@ -36,5 +49,3 @@ const makeExitUrlFromUrl = (url: string) => {
   }
 };
 export default makeExitUrlFromUrl;
-
-// https://careersurvey.top/?offer_id=10702&z=6085938&s=698631152912838677&b=18233048&campaignid=7119450&var=%20&ymid=698631152912838677&var_3=%20&geo=NL&abtest=296069

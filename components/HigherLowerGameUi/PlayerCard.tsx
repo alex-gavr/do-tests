@@ -1,6 +1,6 @@
 import { TrophyIcon } from '@heroicons/react/24/solid';
 import { cn } from '@utils/cn';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 
 interface IPlayerStatsProps {
   name: string;

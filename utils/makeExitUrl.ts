@@ -3,7 +3,9 @@ import { SearchParamsOptions } from '@hooks/useServerSearchParams';
 export enum ExitType {
   onclick = 'onclick',
   ipp = 'ipp',
+  ippWithRotationOnBackend = 'ippWithRotationOnBackend',
   vignette = 'vignette',
+  reverse = 'reverse',
 }
 
 //  we receive zone if onclick and url if ipp or vignette
@@ -31,14 +33,20 @@ const makeExitUrl = (zone: number | string, type: ExitType) => {
 
     let baseUrl: string = '';
     if (type === ExitType.onclick) {
-      baseUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/${zone}/`;
+      baseUrl = `${process.env.NEXT_PUBLIC_ONCLICK_DOMAIN}/${process.env.NEXT_PUBLIC_ONCLICK_CODE}/${zone}/`;
+    }
+    if (type === ExitType.reverse) {
+      baseUrl = `${process.env.NEXT_PUBLIC_DOMAIN_REVERSE}/${process.env.NEXT_PUBLIC_ONCLICK_CODE}/${zone}/`;
     }
     if (type === ExitType.ipp) {
+      baseUrl = `${process.env.NEXT_PUBLIC_FORMATS_DOMAIN_DATA}/${zone}`;
+    }
+    if (type === ExitType.ippWithRotationOnBackend) {
       queryParams.set('zz', `${zone}`);
-      baseUrl = `${process.env.NEXT_PUBLIC_IPP_URL}`;
+      baseUrl = `${process.env.NEXT_PUBLIC_MARKER_DOMAIN_ROTATION}`;
     }
     if (type === ExitType.vignette) {
-      baseUrl = `${process.env.NEXT_PUBLIC_VIGNETTE_URL}${zone}`;
+      baseUrl = `${process.env.NEXT_PUBLIC_FORMATS_DOMAIN_DATA}/${zone}`;
     }
 
     const url = new URL(baseUrl);

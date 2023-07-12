@@ -2,7 +2,7 @@
 
 import PlayerCard from '@components/HigherLowerGameUi/PlayerCard';
 import { useAppContext } from '@context/Context';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 
 interface IPlayerRoundEndPositionProps {
   place: number;

@@ -5,9 +5,9 @@ import { desc, eq, gte, or, sql } from 'drizzle-orm';
 import { cookies } from 'next/dist/client/components/headers';
 // import TopThree from './TopThree';
 import dynamic from 'next/dynamic';
-import { getDictionary } from 'i18n';
+import { getDictionary } from '@i18n/i18n';
 import { TLanguage, TValidLocale } from 'config';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 
 const TextResults = dynamic(() => import('./TextResults'), {
   ssr: false,

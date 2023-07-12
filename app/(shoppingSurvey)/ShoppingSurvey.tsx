@@ -6,8 +6,8 @@ import Review from '@components/Reviews/Review';
 import ReviewsContainer from '@components/Reviews/ReviewsContainer';
 import formatRichText from '@utils/formatRichText';
 import { TLanguage, TValidLocale } from 'config';
-import { TShoppingSurveyDictionary } from 'dictionaries/9998/en';
-import { getDictionary } from 'i18n';
+import { TShoppingSurveyDictionary } from '@i18n/9998/en';
+import { getDictionary } from '@i18n/i18n';
 import Image from 'next/image';
 
 interface IShoppingSurveyProps extends TLanguage {}

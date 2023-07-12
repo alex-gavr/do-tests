@@ -1,9 +1,8 @@
 import Button from '@components/Button/Button';
 import ThumbUp from '@components/ThumbUp';
 import { TLanguage, TValidLocale } from 'config';
-import { TShoppingSurveyDictionary } from 'dictionaries/9998/en';
-import { getDictionary } from 'i18n';
-
+import { TShoppingSurveyDictionary } from '@i18n/9998/en';
+import { getDictionary } from '@i18n/i18n';
 import Image from 'next/image';
 
 interface IShoppingThankYouProps extends TLanguage {}

@@ -1,5 +1,5 @@
-import CountDown from "dictionaries/countDown/th";
-import NotInterested from "dictionaries/notInterested/th";
+import CountDown from "@i18n/countDown/th";
+import NotInterested from "@i18n/notInterested/th";
 
 const dictionary = {
   welcome: {

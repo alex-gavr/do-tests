@@ -2,7 +2,7 @@
 import Button, { IButtonVariants } from '@components/Button/Button';
 import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
+import getIppIfErrorGetOnclick from '@utils/ipp/getIppIfErrorGetOnclick';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl from '@utils/makeExitUrl';
@@ -31,8 +31,8 @@ const NoThankYou = ({
         offerId: offerId,
       };
       sendEvent('offer',eventData);
-      const noThankYouExit = getExitLinkWithMediation(state.exits.noThankYouIpp, state.exits.noThankYou);
-      const noThankYouPops = getExitLinkWithMediation(state.exits.noThankYouPopsIpp, state.exits.noThankYouPops);
+      const noThankYouExit = getIppIfErrorGetOnclick(state.exits.noThankYouIpp, state.exits.noThankYou);
+      const noThankYouPops = getIppIfErrorGetOnclick(state.exits.noThankYouPopsIpp, state.exits.noThankYouPops);
 
       const [url, urlPops] = await Promise.all([noThankYouExit, noThankYouPops]);
 

@@ -10,9 +10,9 @@ import ProgressBar from '@components/ProgressBar';
 
 // import SurveyContainer from '@components/SurveyContainer';
 import { kv } from '@vercel/kv';
-import { getDictionary } from 'i18n';
+import { getDictionary } from '@i18n/i18n';
 import { TValidLocale } from 'config';
-import { TShoppingSurveyDictionary } from 'dictionaries/9998/en';
+import { TShoppingSurveyDictionary } from '@i18n/9998/en';
 
 const SurveyContainer = dynamic(() => import('@components/SurveyContainer'));
 

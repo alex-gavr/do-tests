@@ -8,8 +8,8 @@ import Review from '@components/Reviews/Review';
 import FullScreenImage from '@components/FullScreenImage';
 import { travelReviews } from '@configs/TravelSurvey/TravelSingporeReviews';
 import { TLanguage, TValidLocale } from 'config';
-import { getDictionary } from 'i18n';
-import { TTravelSurveyDictionary } from 'dictionaries/9999/en';
+import { getDictionary } from '@i18n/i18n';
+import { TTravelSurveyDictionary } from '@i18n/9999/en';
 
 export interface ITravelSurveyProps extends TLanguage {}
 

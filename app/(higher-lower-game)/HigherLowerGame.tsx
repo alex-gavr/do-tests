@@ -3,9 +3,9 @@ import { redirect } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import ScoresSkeleton from '@components/HigherLowerGameUi/Skeletons/ScoresSkeleton';
 import CountriesSkeleton from '@components/HigherLowerGameUi/Skeletons/CountriesSkeleton';
-import { getDictionary } from 'i18n';
+import { getDictionary } from '@i18n/i18n';
 import { TLanguage, TValidLocale, TValidOffer } from 'config';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { TSearchParams } from '@hooks/useServerSearchParams';
 // import TimerToAnswer from '@components/HigherLowerGameUi/TimerToAnswer';
 

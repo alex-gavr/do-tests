@@ -6,7 +6,7 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie } from 'cookies-next';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 

@@ -2,11 +2,11 @@
 import GameButton from '@components/HigherLowerGameUi/GameButton';
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
-import getExitLinkWithMediation from '@utils/ipp/getExitLinkWithMediation';
+import getIppIfErrorGetOnclick from '@utils/ipp/getIppIfErrorGetOnclick';
 import production from '@utils/isProd';
 import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
-import { THigherLowerGameDictionary } from 'dictionaries/10702/en';
+import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { useRouter } from 'next/navigation';
 import { GameEvents } from 'types/TrackEvents';
 
@@ -33,7 +33,7 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
       };
       sendEvent('game', data);
     }
-    const url = await getExitLinkWithMediation(surveyState.exits.gameFinishIpp, surveyState.exits.mainExit);
+    const url = await getIppIfErrorGetOnclick(surveyState.exits.gameFinishIpp, surveyState.exits.mainExit);
     // Main Zone
     router.replace(url);
     // Pops
