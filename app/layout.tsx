@@ -5,8 +5,6 @@ import { inter, interBold } from '@fonts/Fonts';
 import '@styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Providers from './Providers';
-import Script from 'next/script';
-import { WebVitals } from '@utils/WebVitals';
 
 export const metadata = {
   title: 'Best offers',
