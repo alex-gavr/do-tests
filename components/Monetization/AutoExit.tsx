@@ -46,7 +46,12 @@ const AutoExit = () => {
             const url = new URL(window.location.href);
             const subId = url.searchParams.get('s');
             const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${subId}`;
-            window.navigator.sendBeacon(conversionUrl);
+            if (navigator.sendBeacon) {
+              navigator.sendBeacon(conversionUrl);
+            } else {
+              fetch(conversionUrl, { method: 'POST', keepalive: true });
+            }
+            // window.navigator.sendBeacon(conversionUrl);
             setCookie('nonUnique', 1, { maxAge: 60 * 60 * 24 * 7, path: '' });
 
             const triggerExit = async () => {

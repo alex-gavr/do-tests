@@ -12,7 +12,10 @@ const DefaultAssessment = ({ t }: IDefaultAssessmentProps) => {
   const router = useRouter();
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace('/thank-you');
+      if (typeof window !== 'undefined') {
+        const params = window.location.search;
+        router.replace(`/thank-you${params}`);
+      }
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
