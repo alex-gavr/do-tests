@@ -1,9 +1,9 @@
 // import Button from '@components/Button/Button';
 // import ButtonForTesting from '@components/ButtonForTesting/ButtonForTesting';
 import Header from './Header';
+import { TValidLocale, TValidOffer } from 'config';
 // import Footer from './Footer';
 // import CommentsSection from './CommentsSection/CommentsSection';
-import { TValidLocale, TValidOffer } from 'config';
 // import Survey from './Survey';
 import { getDictionary } from '@i18n/i18n';
 import { TDefaultDictionary } from '@i18n/0/en';
