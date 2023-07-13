@@ -1,13 +1,15 @@
 'use client';
 import { useAppContext } from '@context/Context';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useEventListener } from 'usehooks-ts';
 import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import { sendEvent } from '@utils/sendEvent';
-import { TrackEvents } from 'types/TrackEvents';
 import { setCookie } from 'cookies-next';
+import production from '@utils/isProd';
+import exitZones from '@app/(defaultSurvey)/Exits';
+import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
+import { initBack } from './InitBack';
 
 const THIRTY_SECONDS = 30;
 const FORTY_SECONDS = 40;
@@ -36,28 +38,45 @@ const AutoExit = () => {
     }, 1000);
     // when count is 0, Auto-Exit happens
     if (count === 0) {
-      const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
-      if (offerId === 10702) {
-        const eventData = {
-          track: TrackEvents.autoExit,
-          offerId: 'populations-game' as const,
-        };
-        sendEvent('game', eventData);
-      } else {
-        const eventData = {
-          track: TrackEvents.autoExit,
-          offerId: offerId,
-        };
-        sendEvent('offer', eventData);
-      }
-      if (state.exits.autoExit) {
-        setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
-        
-        window.open(url, '_blank');
-        router.replace(url);
+      if (typeof window !== 'undefined') {
+        const pathname = window.location.pathname;
+        if (pathname === '/thank-you' && offerId === 0) {
+          // IF thank-you page we still trigger conversion for pub
+          if (production) {
+            const url = new URL(window.location.href);
+            const subId = url.searchParams.get('s');
+            const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${subId}`;
+            window.navigator.sendBeacon(conversionUrl);
+            setCookie('nonUnique', 1, { maxAge: 60 * 60 * 24 * 7, path: '' });
+
+            const triggerExit = async () => {
+              const mainZone = exitZones.ipp_main_exit[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
+              const mainPops = exitZones.ipp_main_exit_pops;
+
+              const main = getExitLinkFromBackend(mainZone);
+              const pops = getExitLinkFromBackend(mainPops);
+
+              const [mainUrl, popsUrl] = await Promise.all([main, pops]);
+
+              initBack(exitZones.onclick_back_zone);
+              window.open(mainUrl, '_blank');
+              window.location.replace(popsUrl);
+            };
+            triggerExit();
+          } else {
+            console.log(`autoexit conversion`);
+          }
+        } else {
+          const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
+          if (state.exits.autoExit) {
+            setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
+            window.open(url, '_blank');
+            router.replace(url);
+          }
+        }
       }
     }
-    // clean up the interval
+    
     return () => clearInterval(interval);
   }, [count, router]);
 

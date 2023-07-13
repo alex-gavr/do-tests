@@ -15,6 +15,7 @@ export enum SearchParamsOptions {
   bannerId = 'b',
   campaignId = 'campaignid',
   subId = 's',
+  oaid = 'oaid',
 }
 
 type TSearchParamsKeys = keyof typeof SearchParamsOptions;

@@ -19,13 +19,13 @@ const StartingPage = async ({ searchParams }: IServerProps) => {
       <main>
         {debug && <Debug debug={debug} />}
         {offerId === 9241 && <CareerSurvey />}
-        {offerId === 0 && <DefaultSurvey />}
+        {offerId === 0 && <DefaultSurvey language={language} offer={offerId} />}
         {offerId === 9998 && <ShoppingSurvey language={language} />}
         {offerId === 9999 && <TravelSurvey language={language} />}
         {offerId === 10702 && (
           <HigherLowerGame country={country} language={language} offer={offerId} zone={zone} searchParamString={searchParamString} />
         )}
-        {offerId !== 10702 && <BackButton />}
+        {offerId !== 10702 && offerId !== 0 && <BackButton />}
       </main>
     </>
   );

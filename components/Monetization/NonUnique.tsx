@@ -1,50 +1,42 @@
 'use client';
-import { useAppContext } from '@context/Context';
-import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import getIppIfErrorGetOnclick from '@utils/ipp/getIppIfErrorGetOnclick';
-import { sendEvent } from '@utils/sendEvent';
+import exitZones from '@app/(defaultSurvey)/Exits';
+import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
 import { hasCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
-import { use, useEffect } from 'react';
-import { TrackEvents } from 'types/TrackEvents';
+import { useEffect } from 'react';
+import { initBack } from './InitBack';
 
 const NonUnique = () => {
   const router = useRouter();
   const nonUnique = hasCookie('nonUnique');
   const nonUniqueAutoExit = hasCookie('autoExit');
-  const { surveyState: state } = useAppContext();
-
-  if (!nonUnique && !nonUniqueAutoExit) {
-    return null;
-  }
-
-  const url = use(getIppIfErrorGetOnclick(state.exits.nonUniqueIpp, state.exits.nonUniqueExit));
-
-  const { offerId } = useClientSearchParams();
-  // NonUnique Block
+  const nonUniqueTeen = hasCookie('nonUniqueTeen');
 
   useEffect(() => {
-    if (nonUnique || (nonUniqueAutoExit)) {
-      if (nonUnique) {
-        const eventData = {
-          track: TrackEvents.nonUnique,
-          offerId: offerId,
+    if (!nonUnique && !nonUniqueAutoExit && !nonUniqueTeen) {
+      return;
+    } else {
+      if (nonUniqueTeen) {
+        const initNonUniqueTeen = async () => {
+          const nonUniqueTeenIpp = exitZones.ipp_not_unique_teen;
+          const url = await getExitLinkFromBackend(nonUniqueTeenIpp);
+          initBack(exitZones.onclick_back_zone);
+          window.open(url, '_blank');
+          router.replace(url);
         };
-        sendEvent('offer', eventData);
-      }
-      if (nonUniqueAutoExit) {
-        const eventData = {
-          track: TrackEvents.nonUniqueAutoExit,
-          offerId: offerId,
+        initNonUniqueTeen();
+      } else {
+        const initNonUnique = async () => {
+          const nonUniqueIpp = exitZones.ipp_not_unique[Math.floor(Math.random() * exitZones.ipp_not_unique.length)];
+          const url = await getExitLinkFromBackend(nonUniqueIpp);
+          initBack(exitZones.onclick_back_zone);
+          window.open(url, '_blank');
+          router.replace(url);
         };
-        sendEvent('offer', eventData);
+        initNonUnique();
       }
-
-      // const url = makeExitUrl(state.exits.nonUniqueExit);
-      window.open(url, '_blank');
-      router.replace(url);
     }
-  }, [nonUnique]);
+  }, []);
   return null;
 };
 

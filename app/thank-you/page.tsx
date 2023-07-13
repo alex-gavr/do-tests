@@ -10,13 +10,13 @@ const Page = ({ searchParams }: IServerProps) => {
   const { language, country, debug, offerId } = useServerSearchParams(searchParams);
 
   return (
-    <section className='flex min-h-screen flex-col items-center justify-center gap-8 p-4'>
+    <main className='flex min-h-screen flex-col items-center justify-center gap-8'>
       {debug && <Debug debug={debug} />}
       {offerId === 9241 && <CareerThankYou />}
       {offerId === 9999 && <TravelThankYou language={language} />}
-      {offerId === 0 && <DefaultThankYou />}
+      {offerId === 0 && <DefaultThankYou offer={offerId} language={language} />}
       {offerId === 9998 && <ShoppingThankYou language={language} />}
-    </section>
+    </main>
   );
 };
 

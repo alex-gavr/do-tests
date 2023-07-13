@@ -6,6 +6,7 @@ import '@styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Providers from './Providers';
 import Script from 'next/script';
+import { WebVitals } from '@utils/WebVitals';
 
 export const metadata = {
   title: 'Best offers',
@@ -31,10 +32,6 @@ export default function RootLayout({ children, modal }: IProps) {
         </body>
       </Providers>
       <Analytics mode='production' />
-      <Script
-        src='https://uwoaptee.com/pfe/current/micro.tag.min.js?z=5893057&sw=/sw-check-permissions.js'
-        strategy='lazyOnload'
-      />
     </html>
   );
 }

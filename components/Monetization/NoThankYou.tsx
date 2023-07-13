@@ -40,6 +40,8 @@ const NoThankYou = ({
       // const urlPops = makeExitUrl(state.exits.noThankYouPops);
       window.open(url, '_blank');
       router.replace(urlPops);
+    } else {
+      console.log('not interested pressed');
     }
   };
 

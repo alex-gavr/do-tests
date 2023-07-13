@@ -1,5 +1,5 @@
 import { InferModel } from 'drizzle-orm';
-import { bigint, int, mediumint, mysqlEnum, mysqlTable, mysqlView, varchar } from 'drizzle-orm/mysql-core';
+import { bigint, char, int, mediumint, mysqlEnum, mysqlTable, mysqlView, smallint, varchar } from 'drizzle-orm/mysql-core';
 
 // DEFAULT SURVEY
 
@@ -90,3 +90,19 @@ export const leaderboardView = mysqlView('leaderboard_view', {
   uuid: varchar('uuid', { length: 36 }).notNull(),
   topScore: mediumint('top_score').notNull(),
 }).existing();
+
+
+export const webVitalsNext = mysqlTable('web_vitals_next', {
+  id: varchar('id', { length: 50 }).primaryKey(),
+  geo: varchar('geo', { length: 10 }).default('??').notNull(),
+  pathname: varchar('pathname', { length: 100 }).notNull(),
+  offer: varchar('offer', { length: 10 }).notNull(),
+  name: mysqlEnum('vital_name', ['CLS', 'FCP', 'FID', 'INP', 'LCP', 'TTFB', 'Next.js-hydration', 'Next.js-route-change-to-render', 'Next.js-render']),
+  value: smallint('vital_value').notNull(),
+  rating: mysqlEnum('rating', ['good', 'needs-improvement', 'poor']),
+  delta: smallint('delta'),
+  navigationType: mysqlEnum('navigation_type', ['navigate', 'reload', 'back-forward', 'back-forward-cache', 'prerender', 'restore']),
+  lang: varchar('lang', { length: 10 }).default('??').notNull(),
+});
+
+export type TWebVitalsNext = InferModel<typeof webVitalsNext>;
