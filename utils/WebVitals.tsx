@@ -20,7 +20,15 @@ const WebVitals = ({ offer }: IProps) => {
     const geo = geoCookie ? geoCookie.toString() : '??';
     const language = languageCookie ? languageCookie.toString() : '??';
 
-    sendToAnalyticsToDb({ metric, pathname, language, geo, offer });
+    if (metric.name === 'TTFB') {
+      sendToAnalyticsToDb({ metric, pathname, language, geo, offer });
+    }
+    if (metric.name === 'FCP') {
+      sendToAnalyticsToDb({ metric, pathname, language, geo, offer });
+    }
+    if (metric.name === 'LCP') {
+      sendToAnalyticsToDb({ metric, pathname, language, geo, offer });
+    }
   });
 
   return null;
