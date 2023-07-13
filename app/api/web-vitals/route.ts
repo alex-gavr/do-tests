@@ -1,6 +1,7 @@
 import { db } from '@db/connection';
 import { TWebVitalsNext, webVitalsNext } from '@db/schema';
 import { NextRequest, NextResponse } from 'next/server';
+import { UAParser } from 'ua-parser-js';
 
 export async function POST(request: NextRequest, response: NextResponse) {
   const { headers } = request;
@@ -12,7 +13,16 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
   const webVitalsData = (await request.json()) as TWebVitalsNext;
 
-  console.log(`web`, webVitalsData);
+  // UA Parsing
+  const UA = request.headers.get('user-agent') ?? undefined;
+  const parser = UAParser(UA);
+
+  const browserName = parser.browser.name;
+  const browserVersion = parser.browser.version;
+  const osName = parser.os.name;
+  const osVersion = parser.os.version;
+  const deviceVendor = parser.device.vendor;
+  const deviceType = parser.device.type;
 
   try {
     const res = await db.insert(webVitalsNext).values({
@@ -26,6 +36,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
       delta: webVitalsData.delta,
       navigationType: webVitalsData.navigationType,
       lang: webVitalsData.lang,
+      browserName,
+      browserVersion,
+      osName,
+      osVersion,
+      deviceVendor,
+      deviceType
     });
 
     return NextResponse.json({ msg: 'Success', status: 200 });
