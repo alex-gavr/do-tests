@@ -32,6 +32,7 @@ const WebVitals = dynamic(() => import('@utils/WebVitals'), {
   ssr: false,
 });
 
+
 interface IProps {
   children: React.ReactNode;
 }
