@@ -5,24 +5,25 @@ import sendToAnalyticsToDb from './sendToAnalyticsToDb';
 import { getCookie } from 'cookies-next';
 
 interface IProps {
-  language: string;
   offer: number;
 }
 
-const WebVitals = ({ language, offer }: IProps) => {
+const WebVitals = ({ offer }: IProps) => {
   //   onTTFB((metric) => sendToAnalyticsToDb(metric, pathname, language, geo, offer));
 
+  const languageCookie = getCookie('locale');
   const geoCookie = getCookie('geo');
-  
+
   useReportWebVitals((metric: Metric) => {
     const url = new URL(window.location.href);
     const pathname = url.pathname;
     const geo = geoCookie ? geoCookie.toString() : '??';
+    const language = languageCookie ? languageCookie.toString() : '??';
 
     sendToAnalyticsToDb({ metric, pathname, language, geo, offer });
   });
 
   return null;
-}
+};
 
 export default WebVitals;

@@ -32,13 +32,12 @@ const WebVitals = dynamic(() => import('@utils/WebVitals'), {
   ssr: false,
 });
 
-
 interface IProps {
   children: React.ReactNode;
 }
 
 const Providers = ({ children }: IProps) => {
-  const { offerId, language } = useClientSearchParams();
+  const { offerId } = useClientSearchParams();
 
   const zone = offerId === 0 ? exitZones.push_zone[Math.floor(Math.random() * exitZones.push_zone.length)] : 5893057;
 
@@ -53,7 +52,7 @@ const Providers = ({ children }: IProps) => {
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>
-      {production && !debug && <WebVitals language={language} offer={offerId} />}
+      {production && !debug && <WebVitals offer={offerId} />}
     </AppProvider>
   );
 };
