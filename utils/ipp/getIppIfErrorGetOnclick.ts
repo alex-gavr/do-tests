@@ -1,3 +1,4 @@
+import triggerImpression from '@utils/Vignette/triggerImpression';
 import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import makeExitUrlFromUrl, { UrlType } from '@utils/makeExitUrlFromUrl';
 
@@ -29,6 +30,7 @@ const getIppLink = async (zone: number) => {
       console.error('No data');
     } else {
       const res = data.ads[0] as IppData;
+      triggerImpression(res.impression_url);
       const exitUrl = makeExitUrlFromUrl(res.click, UrlType.ipp);
 
       return exitUrl;
