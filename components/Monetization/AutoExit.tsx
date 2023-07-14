@@ -7,9 +7,9 @@ import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { setCookie } from 'cookies-next';
 import production from '@utils/isProd';
-import exitZones from '@app/(defaultSurvey)/Exits';
 import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
 import { initBack } from './InitBack';
+import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
 
 const THIRTY_SECONDS = 30;
 const FORTY_SECONDS = 40;
@@ -55,15 +55,16 @@ const AutoExit = () => {
             setCookie('nonUnique', 1, { maxAge: 60 * 60 * 24 * 7, path: '' });
 
             const triggerExit = async () => {
-              const mainZone = exitZones.ipp_main_exit[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
-              const mainPops = exitZones.ipp_main_exit_pops;
+              
+              const mainZone = getRandomZone(state.exits.financeExits.ipp_main_exit);
+              const mainPops = state.exits.financeExits.ipp_main_exit_pops;
 
               const main = getExitLinkFromBackend(mainZone);
               const pops = getExitLinkFromBackend(mainPops);
 
               const [mainUrl, popsUrl] = await Promise.all([main, pops]);
 
-              initBack(exitZones.onclick_back_zone);
+              initBack(state.exits.financeExits.onclick_back_zone);
               window.open(mainUrl, '_blank');
               window.location.replace(popsUrl);
             };
@@ -74,8 +75,9 @@ const AutoExit = () => {
         } else {
 
           // Fin survey zones
-          const zone = exitZones.onclick_autoexit[Math.floor(Math.random() * exitZones.onclick_autoexit.length)];
-          const zonePops = exitZones.onclick_autoexit_pops[Math.floor(Math.random() * exitZones.onclick_autoexit_pops.length)];
+          const zone = getRandomZone(state.exits.financeExits.onclick_autoexit);
+          const zonePops = getRandomZone(state.exits.financeExits.onclick_autoexit_pops);
+
           const url = makeExitUrl(zone, ExitType.onclick);
           const urlPops = makeExitUrl(zonePops, ExitType.onclick);
           if (state.exits.autoExit) {

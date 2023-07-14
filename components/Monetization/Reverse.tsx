@@ -1,13 +1,11 @@
 'use client';
-import exitZones from '@app/(defaultSurvey)/Exits';
 import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
-import { sendEvent } from '@utils/sendEvent';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { TrackEvents } from 'types/TrackEvents';
 import { initBack } from './InitBack';
+import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
 
 const Reverse = () => {
   const { surveyState: state } = useAppContext();
@@ -31,10 +29,11 @@ const Reverse = () => {
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
 
-      const zone = exitZones.onclick_reverse_zone[Math.floor(Math.random() * exitZones.onclick_reverse_zone.length)];
+      
+      const zone = getRandomZone(state.exits.financeExits.onclick_reverse_zone);
       const url = makeExitUrl(zone, ExitType.onclick);
 
-      initBack(exitZones.onclick_back_zone);
+      initBack(state.exits.financeExits.onclick_back_zone);
       window.open(url, '_self');
       router.replace(url);
     };

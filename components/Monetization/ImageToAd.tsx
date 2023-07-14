@@ -1,15 +1,12 @@
 'use client';
-
 import { useAppContext } from '@context/Context';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
 import { cn } from '@utils/cn';
 import debug from '@utils/isDebug';
 import production from '@utils/isProd';
 import makeExitUrl, { ExitType } from '@utils/makeExitUrl';
-import { sendEvent } from '@utils/sendEvent';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { TrackEvents } from 'types/TrackEvents';
 
 interface IImageToAdProps {
   src: string;
@@ -22,16 +19,12 @@ const ImageToAd = ({ src, className }: IImageToAdProps) => {
   const router = useRouter();
   const handleClick = () => {
     if (production && !debug) {
-      const eventData = {
-        track: TrackEvents.photoExit,
-        offerId: offerId,
-        imgId: src,
-      };
-      sendEvent('offer',eventData);
+      const url = makeExitUrl(state.exits.photoExit, ExitType.onclick);
+      window.open(url, '_black');
+      router.replace(url);
+    } else {
+      console.log('Image Ad')
     }
-    const url = makeExitUrl(state.exits.photoExit, ExitType.onclick);
-    window.open(url, '_black');
-    router.replace(url);
   };
 
   return (

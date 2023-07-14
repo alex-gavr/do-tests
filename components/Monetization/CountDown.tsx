@@ -36,11 +36,6 @@ const CountDown = ({
 
   useEffect(() => {
     if (alreadyAccessAutoExit) {
-      const eventData = {
-        track: TrackEvents.alreadyAccessAutoExit,
-        offerId: offerId,
-      };
-      sendEvent('offer',eventData);
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit, ExitType.onclick);
         window.open(url, '_blank');
@@ -51,13 +46,9 @@ const CountDown = ({
     const interval = setInterval(() => {
       setTime((currentCount) => currentCount - 1);
     }, 1000);
+    
     if (time < 0 && production && !debug) {
       setCookie('accessAutoExit', 1, { path: '/', maxAge: 60 * 30 });
-      const eventData = {
-        track: TrackEvents.accessAutoExit,
-        offerId: offerId,
-      };
-      sendEvent('offer',eventData);
 
       if (state.exits.accessAutoExit) {
         const url = makeExitUrl(state.exits.accessAutoExit, ExitType.onclick);

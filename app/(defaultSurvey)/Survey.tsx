@@ -1,8 +1,7 @@
 'use client';
-import { TDefaultDictionary, TSurveyTexts } from '@i18n/0/en';
+import { TDefaultDictionary } from '@i18n/0/en';
 import { useState } from 'react';
 import { LeadsTo, financeSurveyData } from './SurveyData';
-import exitZones from './Exits';
 import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
 import production from '@utils/isProd';
 import { setCookie } from 'cookies-next';
@@ -11,6 +10,8 @@ import { initBack } from '@components/Monetization/InitBack';
 // import DefaultAssessment from './DefaultAssessment';
 import dynamic from 'next/dynamic';
 import SurveySkeleton from './SurveySkeleton';
+import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
+import { useAppContext } from '@context/Context';
 
 const DefaultThankYou = dynamic(() => import('./DefaultThankYou'), {
   ssr: false,
@@ -34,6 +35,7 @@ const Survey = ({ texts }: ISurveyProps) => {
   const [showSurvey, setShowSurvey] = useState<boolean>(true);
   const [showAssessment, setShowAssessment] = useState<boolean>(false);
   const [showThankYou, setShowThankYou] = useState<boolean>(false);
+  const { surveyState: state } = useAppContext();
 
   const surveyData = financeSurveyData(texts.MainSection.SurveyTexts);
   const filteredQuestion = surveyData.filter((question) => question.id === currentQuestion)[0];
@@ -44,11 +46,8 @@ const Survey = ({ texts }: ISurveyProps) => {
     }
 
     if (leadsTo === LeadsTo.teenExit) {
-      const teenExitIpp = exitZones.ipp_teen[Math.floor(Math.random() * exitZones.ipp_teen.length)];
-      const teenExitPopsIpp = exitZones.ipp_teen_pops;
-
-      // const teenExitOnclick = exitZones.onclick_teen[Math.floor(Math.random() * exitZones.onclick_autoexit.length)];
-      // const teenExitPopsOnclick = exitZones.onclick_teen_pops;
+      const teenExitIpp = getRandomZone(state.exits.financeExits.ipp_teen);
+      const teenExitPopsIpp = state.exits.financeExits.ipp_teen_pops;
 
       const main = getExitLinkFromBackend(teenExitIpp);
       const pops = getExitLinkFromBackend(teenExitPopsIpp);
@@ -56,7 +55,7 @@ const Survey = ({ texts }: ISurveyProps) => {
 
       if (production) {
         setCookie('nonUniqueTeen', 1, { maxAge: 60 * 60 * 24 * 7 });
-        initBack(exitZones.onclick_back_zone);
+        initBack(state.exits.financeExits.onclick_back_zone);
         window.open(mainUrl, '_blank');
         window.location.replace(popsUrl);
       } else {

@@ -1,10 +1,9 @@
 'use client';
 import { AnimatePresence, LazyMotion } from 'framer-motion';
 import production from '@utils/isProd';
-import { AppProvider } from '@context/Context';
+import { AppProvider, useAppContext } from '@context/Context';
 import debug from '@utils/isDebug';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import exitZones from './(defaultSurvey)/Exits';
 // import WebVitals from '@utils/WebVitals';
 // import AutoExit from '@components/Monetization/AutoExit';
 // import InitPush from '@components/Monetization/InitPush';
@@ -12,6 +11,7 @@ import exitZones from './(defaultSurvey)/Exits';
 // import Reverse from '@components/Monetization/Reverse';
 // import NonUnique from '@components/Monetization/NonUnique';
 import dynamic from 'next/dynamic';
+import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
 
 const AutoExit = dynamic(() => import('@components/Monetization/AutoExit'), {
   ssr: false,
@@ -39,14 +39,12 @@ interface IProps {
 const Providers = ({ children }: IProps) => {
   const { offerId } = useClientSearchParams();
 
-  const zone = offerId === 0 ? exitZones.push_zone[Math.floor(Math.random() * exitZones.push_zone.length)] : 5893057;
-
   return (
     <AppProvider>
       {/* <SubId /> */}
       {production && !debug && <NonUnique />}
       {production && !debug && <CookieChecker />}
-      {production && !debug && <InitPush zone={zone} />}
+      {production && !debug && <InitPush />}
       {production && !debug && <AutoExit />}
       {production && !debug && <Reverse />}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>

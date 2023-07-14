@@ -57,7 +57,7 @@ const SurveyContainer = ({ surveyData, offerId }: IProps) => {
         className={cn(
           'px-4 text-center text-2xl sm:text-3xl md:text-4xl',
           offerId === 9998 &&
-            'rounded-md bg-gradient-to-r from-red-600 to-amber-500 py-1 tracking-wider text-white',
+            'text-left tracking-wider text-black',
         )}
       >
         {currentQuestion?.question}

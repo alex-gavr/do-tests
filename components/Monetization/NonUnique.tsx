@@ -1,13 +1,15 @@
 'use client';
-import exitZones from '@app/(defaultSurvey)/Exits';
 import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
 import { hasCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { initBack } from './InitBack';
+import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
+import { useAppContext } from '@context/Context';
 
 const NonUnique = () => {
   const router = useRouter();
+  const { surveyState: state } = useAppContext();
   const nonUnique = hasCookie('nonUnique');
   const nonUniqueAutoExit = hasCookie('autoExit');
   const nonUniqueTeen = hasCookie('nonUniqueTeen');
@@ -18,18 +20,18 @@ const NonUnique = () => {
     } else {
       if (nonUniqueTeen) {
         const initNonUniqueTeen = async () => {
-          const nonUniqueTeenIpp = exitZones.ipp_not_unique_teen;
+          const nonUniqueTeenIpp = state.exits.financeExits.ipp_not_unique_teen;
           const url = await getExitLinkFromBackend(nonUniqueTeenIpp);
-          initBack(exitZones.onclick_back_zone);
+          initBack(state.exits.financeExits.onclick_back_zone);
           window.open(url, '_blank');
           router.replace(url);
         };
         initNonUniqueTeen();
       } else {
         const initNonUnique = async () => {
-          const nonUniqueIpp = exitZones.ipp_not_unique[Math.floor(Math.random() * exitZones.ipp_not_unique.length)];
+          const nonUniqueIpp = getRandomZone(state.exits.financeExits.ipp_not_unique);
           const url = await getExitLinkFromBackend(nonUniqueIpp);
-          initBack(exitZones.onclick_back_zone);
+          initBack(state.exits.financeExits.onclick_back_zone);
           window.open(url, '_blank');
           router.replace(url);
         };

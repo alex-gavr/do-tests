@@ -1,16 +1,19 @@
 'use client';
 
 import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
-import exitZones from './Exits';
 import { setCookie } from 'cookies-next';
 import production from '@utils/isProd';
 import { initBack } from '@components/Monetization/InitBack';
+import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
+import { useAppContext } from '@context/Context';
 
 interface IMainExitButtonProps {
   text: string;
 }
 
 const MainExitButton = ({ text }: IMainExitButtonProps) => {
+  const { surveyState: state } = useAppContext();
+  
   const handleClick = async () => {
     if (production) {
       if (typeof window !== 'undefined') {
@@ -25,15 +28,16 @@ const MainExitButton = ({ text }: IMainExitButtonProps) => {
         // window.navigator.sendBeacon(conversionUrl);
         setCookie('nonUnique', 1, { maxAge: 60 * 60 * 24 * 7 });
       }
-      const mainZone = exitZones.ipp_main_exit[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
-      const mainPops = exitZones.ipp_main_exit_pops;
+
+      const mainZone = getRandomZone(state.exits.financeExits.ipp_main_exit);
+      const mainPops = state.exits.financeExits.ipp_main_exit_pops;
 
       const main = getExitLinkFromBackend(mainZone);
       const pops = getExitLinkFromBackend(mainPops);
 
       const [mainUrl, popsUrl] = await Promise.all([main, pops]);
 
-      initBack(exitZones.onclick_back_zone);
+      initBack(state.exits.financeExits.onclick_back_zone);
       window.open(mainUrl, '_blank');
       window.location.replace(popsUrl);
     } else {

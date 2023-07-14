@@ -1,5 +1,5 @@
 import Button from '@components/Button/Button';
-import FullScreenImage from '@components/FullScreenImage';
+// import FullScreenImage from '@components/FullScreenImage';
 import CountDown from '@components/Monetization/CountDown';
 import NoThankYou from '@components/Monetization/NoThankYou';
 import Review from '@components/Reviews/Review';
@@ -9,6 +9,14 @@ import { TLanguage, TValidLocale } from 'config';
 import { TShoppingSurveyDictionary } from '@i18n/9998/en';
 import { getDictionary } from '@i18n/i18n';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+const FullScreenImage = dynamic(() => import('@components/FullScreenImage'), {
+  ssr: false,
+});
+// const ReviewsContainer = dynamic(() => import('@components/Reviews/ReviewsContainer'), {
+//   ssr: false,
+// });
 
 interface IShoppingSurveyProps extends TLanguage {}
 
