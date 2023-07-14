@@ -1,5 +1,5 @@
-'use client'
-import { TSurveyTexts } from '@i18n/0/en';
+'use client';
+import { TDefaultDictionary, TSurveyTexts } from '@i18n/0/en';
 import { useState } from 'react';
 import { LeadsTo, financeSurveyData } from './SurveyData';
 import exitZones from './Exits';
@@ -7,14 +7,35 @@ import { getExitLinkFromBackend } from '@utils/ipp/getExitLinkFromBackend';
 import production from '@utils/isProd';
 import { setCookie } from 'cookies-next';
 import { initBack } from '@components/Monetization/InitBack';
+// import DefaultThankYou from './DefaultThankYou';
+// import DefaultAssessment from './DefaultAssessment';
+import dynamic from 'next/dynamic';
+import SurveySkeleton from './SurveySkeleton';
+
+const DefaultThankYou = dynamic(() => import('./DefaultThankYou'), {
+  ssr: false,
+  loading: () => (
+    <div className='min-h-[77vh] w-11/12 max-w-2xl flex-col items-center justify-center gap-4 md:gap-8 rounded-md bg-neutral-900 px-2 py-4 animate-pulse' />
+  ),
+});
+const DefaultAssessment = dynamic(() => import('./DefaultAssessment'), {
+  ssr: false,
+  loading: () => (
+    <div className='min-h-[70vh] w-11/12 max-w-2xl flex-col items-center justify-center gap-4 md:gap-8 rounded-md bg-neutral-900 px-2 py-4 animate-pulse' />
+  ),
+});
 
 interface ISurveyProps {
-  texts: TSurveyTexts;
+  texts: TDefaultDictionary;
 }
 
 const Survey = ({ texts }: ISurveyProps) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
-  const surveyData = financeSurveyData(texts);
+  const [showSurvey, setShowSurvey] = useState<boolean>(true);
+  const [showAssessment, setShowAssessment] = useState<boolean>(false);
+  const [showThankYou, setShowThankYou] = useState<boolean>(false);
+
+  const surveyData = financeSurveyData(texts.MainSection.SurveyTexts);
   const filteredQuestion = surveyData.filter((question) => question.id === currentQuestion)[0];
 
   const handleButtonClick = async (leadsTo: LeadsTo) => {
@@ -46,30 +67,42 @@ const Survey = ({ texts }: ISurveyProps) => {
     }
 
     if (leadsTo === LeadsTo.thankYouPage) {
-      // setAssessment(true);
-      if (typeof window !== 'undefined') {
-        const params = window.location.search;
-        window.location.href = `/assessment${params}`;
-      }
+      setShowSurvey(false);
+      setShowAssessment(true);
+      // if (typeof window !== 'undefined') {
+      //   const params = window.location.search;
+      //   window.location.href = `/assessment${params}`;
+      // }
     }
   };
 
   return (
-    <div className='flex flex-col justify-center items-center w-11/12 gap-4'>
-      <h1 className={'text-center text-xl font-bold text-slate-200'}>{filteredQuestion.question}</h1>
-      <div className={'grid w-full grid-cols-1 gap-4 sm:grid-cols-2 max-w-xl'}>
-        {filteredQuestion.answers.map((answer) => (
-          <button
-            type={'button'}
-            onClick={() => handleButtonClick(answer.to)}
-            key={answer.id}
-            className={'w-full cursor-pointer rounded bg-yellow-500 px-5 py-1 text-center text-black'}
-          >
-            {answer.text}
-          </button>
-        ))}
-      </div>
-    </div>
+    <>
+      {showThankYou && <DefaultThankYou t={texts} />}
+      {showAssessment && <DefaultAssessment t={texts} setShowThankYou={setShowThankYou} setShowAssessment={setShowAssessment} />}
+      {showSurvey && (
+        <>
+          {/* <SurveySkeleton /> */}
+          <h1 className='text-center text-xl tracking-wide md:text-4xl text-slate-50'>{texts.MainSection.title}</h1>
+          <p className='text-slate-300 text-sm'>{texts.MainSection.paragraph}</p>
+          <div className='flex flex-col justify-center items-center w-11/12 gap-4'>
+            <h1 className={'text-center text-xl font-bold text-slate-200'}>{filteredQuestion.question}</h1>
+            <div className={'grid w-full grid-cols-1 gap-4 sm:grid-cols-2 max-w-xl'}>
+              {filteredQuestion.answers.map((answer) => (
+                <button
+                  type={'button'}
+                  onClick={() => handleButtonClick(answer.to)}
+                  key={answer.id}
+                  className={'w-full cursor-pointer rounded bg-yellow-500 px-5 py-1 text-center text-black'}
+                >
+                  {answer.text}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

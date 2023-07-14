@@ -72,16 +72,21 @@ const AutoExit = () => {
             console.log(`autoexit conversion`);
           }
         } else {
-          const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
+
+          // Fin survey zones
+          const zone = exitZones.onclick_autoexit[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
+          const zonePops = exitZones.onclick_autoexit_pops[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
+          const url = makeExitUrl(zone, ExitType.onclick);
+          const urlPops = makeExitUrl(zonePops, ExitType.onclick);
           if (state.exits.autoExit) {
             setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
             window.open(url, '_blank');
-            router.replace(url);
+            router.replace(urlPops);
           }
         }
       }
     }
-    
+
     return () => clearInterval(interval);
   }, [count, router]);
 

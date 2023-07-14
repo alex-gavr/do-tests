@@ -1,28 +1,30 @@
 'use client';
 
 import { TDefaultDictionary } from '@i18n/0/en';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 interface IDefaultAssessmentProps {
   t: TDefaultDictionary;
+  setShowThankYou: (show: boolean) => void;
+  setShowAssessment: (show: boolean) => void;
 }
 
-const DefaultAssessment = ({ t }: IDefaultAssessmentProps) => {
-  const router = useRouter();
+const DefaultAssessment = ({ t, setShowThankYou, setShowAssessment }: IDefaultAssessmentProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (typeof window !== 'undefined') {
-        const params = window.location.search;
-        router.replace(`/thank-you${params}`);
-      }
+      setShowAssessment(false);
+      setShowThankYou(true);
+      // if (typeof window !== 'undefined') {
+      //   const params = window.location.search;
+      //   router.replace(`/thank-you${params}`);
+      // }
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className='flex min-h-screen w-screen flex-col items-center justify-center gap-2 bg-neutral-800 px-2 py-4'>
-      <div className='flex w-full max-w-5xl flex-col items-center justify-center z-20'>
+    <>
+      <div className='flex w-full max-w-5xl flex-col items-center justify-center z-20 min-h-[70vh]'>
         <div className='flex min-h-[70vh] flex-col items-start justify-center gap-6 rounded-md bg-neutral-900 px-4 py-6'>
           <h1 className='animate-fade-up text-slate-100 text-center text-3xl font-bold'>{t.Assessment.title}</h1>
           <div className='flex flex-col gap-4'>
@@ -41,7 +43,7 @@ const DefaultAssessment = ({ t }: IDefaultAssessmentProps) => {
         </div>
       </div>
       <span className='rain' />
-    </section>
+    </>
   );
 };
 

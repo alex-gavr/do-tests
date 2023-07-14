@@ -1,16 +1,16 @@
-import { getDictionary } from '@i18n/i18n';
-import { TValidLocale, TValidOffer } from 'config';
+'use client';
+// import { getDictionary } from '@i18n/i18n';
+// import { TValidLocale, TValidOffer } from 'config';
 import MainExitButton from './MainExitButton';
+import { TDefaultDictionary } from '@i18n/0/en';
 
 interface IDefaultThankYouProps {
-  offer: TValidOffer;
-  language: TValidLocale;
+  t: TDefaultDictionary;
 }
 
-const DefaultThankYou = async ({ offer, language }: IDefaultThankYouProps) => {
-  const t = await getDictionary(offer, language);
+const DefaultThankYou = ({ t }: IDefaultThankYouProps) => {
   return (
-    <section className='flex min-h-screen w-screen flex-col items-center justify-center gap-2 bg-neutral-800 px-2 py-4'>
+    <>
       <div
         className={
           ' z-20 flex min-h-[70vh] max-w-2xl flex-col items-center justify-center gap-4 md:gap-8 rounded-md bg-neutral-900 px-2 py-4'
@@ -44,7 +44,7 @@ const DefaultThankYou = async ({ offer, language }: IDefaultThankYouProps) => {
         <MainExitButton text={t.Offer.button} />
       </div>
       <div className='rain' />
-    </section>
+    </>
   );
 };
 

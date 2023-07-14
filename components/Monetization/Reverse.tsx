@@ -30,14 +30,13 @@ const Reverse = () => {
 
     const handleBackButton = (event: PopStateEvent) => {
       event.preventDefault();
-      if (state.exits.reverse) {
-        const zone = exitZones.onclick_reverse_zone[Math.floor(Math.random() * exitZones.onclick_reverse_zone.length)];
-        const url = makeExitUrl(state.exits.reverse, ExitType.onclick);
 
-        initBack(exitZones.onclick_back_zone);
-        window.open(url, '_self');
-        router.replace(url);
-      }
+      const zone = exitZones.onclick_reverse_zone[Math.floor(Math.random() * exitZones.onclick_reverse_zone.length)];
+      const url = makeExitUrl(zone, ExitType.onclick);
+
+      initBack(exitZones.onclick_back_zone);
+      window.open(url, '_self');
+      router.replace(url);
     };
 
     window.addEventListener('popstate', handleBackButton);
