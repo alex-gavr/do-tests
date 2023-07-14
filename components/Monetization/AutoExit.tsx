@@ -74,8 +74,8 @@ const AutoExit = () => {
         } else {
 
           // Fin survey zones
-          const zone = exitZones.onclick_autoexit[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
-          const zonePops = exitZones.onclick_autoexit_pops[Math.floor(Math.random() * exitZones.ipp_main_exit.length)];
+          const zone = exitZones.onclick_autoexit[Math.floor(Math.random() * exitZones.onclick_autoexit.length)];
+          const zonePops = exitZones.onclick_autoexit_pops[Math.floor(Math.random() * exitZones.onclick_autoexit_pops.length)];
           const url = makeExitUrl(zone, ExitType.onclick);
           const urlPops = makeExitUrl(zonePops, ExitType.onclick);
           if (state.exits.autoExit) {
