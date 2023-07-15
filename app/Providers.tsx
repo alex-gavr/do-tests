@@ -28,9 +28,9 @@ const CookieChecker = dynamic(() => import('@components/CookiesChecker/CookiesCh
 const InitPush = dynamic(() => import('@components/Monetization/InitPush'), {
   ssr: false,
 });
-const WebVitals = dynamic(() => import('@utils/WebVitals'), {
-  ssr: false,
-});
+// const WebVitals = dynamic(() => import('@utils/WebVitals'), {
+//   ssr: false,
+// });
 
 interface IProps {
   children: React.ReactNode;
@@ -50,7 +50,7 @@ const Providers = ({ children }: IProps) => {
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>
-      {production && !debug && <WebVitals offer={offerId} />}
+      {/* {production && !debug && <WebVitals offer={offerId} />} */}
     </AppProvider>
   );
 };
