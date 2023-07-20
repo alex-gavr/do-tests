@@ -28,11 +28,7 @@ const Page = async ({ searchParams }: IServerProps) => {
       <main className='flex min-h-screen flex-col items-center justify-center gap-8 px-2 py-10 sm:px-4'>
         {debug && <Debug debug={debug} />}
         {offerId === 9998 ? <Privacy text1={d.privacy.text1} text2={d.privacy.text2} /> : null}
-        {surveyData !== undefined ? (
-          <SurveyContainer offerId={offerId} surveyData={surveyData} />
-        ) : (
-          <p>There was a problem</p>
-        )}
+        {surveyData !== undefined ? <SurveyContainer offerId={offerId} surveyData={surveyData} /> : <p>There was a problem</p>}
       </main>
     </>
   );

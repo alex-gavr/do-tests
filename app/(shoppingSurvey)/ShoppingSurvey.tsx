@@ -21,8 +21,7 @@ const FullScreenImage = dynamic(() => import('@components/FullScreenImage'), {
 interface IShoppingSurveyProps extends TLanguage {}
 
 const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
-  const d = await getDictionary(9998, language as TValidLocale) as TShoppingSurveyDictionary;
-  
+  const d = (await getDictionary(9998, language as TValidLocale)) as TShoppingSurveyDictionary;
 
   const accent = [
     {
@@ -66,9 +65,7 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
       />
       <div className='relative z-20 flex min-h-[70vh] max-w-4xl flex-col items-center justify-center gap-6'>
         <div className='flex flex-col items-center justify-center gap-2'>
-          <h1 className='text-center text-xl sm:text-3xl md:text-4xl'>
-            {formatRichText(d.welcome.title, accent)}
-          </h1>
+          <h1 className='text-center text-xl sm:text-3xl md:text-4xl'>{formatRichText(d.welcome.title, accent)}</h1>
           {/* <h1>Get personal discount from Lazada after completing survey</h1> */}
           <p className='text-center text-sm sm:text-base'>
             {/* {t.ShoppingSurvey.welcome.paragraph} */}
@@ -92,22 +89,8 @@ const ShoppingSurvey = async ({ language }: IShoppingSurveyProps) => {
           height={40}
           priority
         />
-        <Image
-          src='/images/bag.svg'
-          alt='whatever'
-          className='absolute bottom-4 left-0 w-16 -rotate-12'
-          width={40}
-          height={40}
-          priority
-        />
-        <Image
-          src='/images/discount.svg'
-          alt='whatever'
-          className='absolute bottom-5 w-24'
-          width={40}
-          height={40}
-          priority
-        />
+        <Image src='/images/bag.svg' alt='whatever' className='absolute bottom-4 left-0 w-16 -rotate-12' width={40} height={40} priority />
+        <Image src='/images/discount.svg' alt='whatever' className='absolute bottom-5 w-24' width={40} height={40} priority />
       </div>
       <div className='z-10 bg-slate-50 bg-opacity-10 px-1 py-2 backdrop-blur-sm backdrop-filter'>
         <ReviewsContainer title={d.commentSection.title}>

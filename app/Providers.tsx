@@ -42,11 +42,11 @@ const Providers = ({ children }: IProps) => {
   return (
     <AppProvider>
       {/* <SubId /> */}
-      {production && !debug && <NonUnique />}
+      {production && !debug && offerId !== 10702 && <NonUnique />}
       {production && !debug && <CookieChecker />}
       {production && !debug && <InitPush />}
-      {production && !debug && <AutoExit />}
-      {production && !debug && <Reverse />}
+      {production && !debug && offerId !== 10702 && <AutoExit />}
+      {production && !debug && offerId !== 10702 && <Reverse />}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>
