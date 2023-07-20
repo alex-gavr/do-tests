@@ -27,7 +27,7 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
 
   const handlePlayAgain = () => {
     if (production) {
-      if (surveyState.subId !== null && !alreadyConverted) {
+      if (!alreadyConverted) {
         const url = new URL(window.location.href);
         const subId = url.searchParams.get('s');
         const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${subId}`;
