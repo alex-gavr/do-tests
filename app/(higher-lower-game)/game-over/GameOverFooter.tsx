@@ -37,7 +37,7 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
           fetch(conversionUrl, { method: 'POST', keepalive: true });
         }
         setCookie('gameConversion', 1, { path: '/', maxAge: 60 * 60 * 24 * 7 });
-        console.log('fired', surveyState.subId);
+        console.log('fired', subId);
       }
     }
     if (typeof window !== 'undefined') {
