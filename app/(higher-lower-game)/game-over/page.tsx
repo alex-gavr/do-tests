@@ -24,12 +24,12 @@ const GameOverFooter = dynamic(() => import('./GameOverFooter'), {
 const Page = async ({ searchParams }: IServerProps) => {
   const cookiesList = cookies();
   const lost = cookiesList.has('lost');
-  const { language, searchParamString } = useServerSearchParams(searchParams);
+  const { language, searchParamString, vignette } = useServerSearchParams(searchParams);
 
   if (lost !== true) {
     redirect(`/?${searchParamString}`);
   }
-  
+
   const d = (await getDictionary(10702, language as TValidLocale)) as THigherLowerGameDictionary;
 
   return (
@@ -45,7 +45,7 @@ const Page = async ({ searchParams }: IServerProps) => {
           </div>
         </div>
       </div>
-      <ShowVignette />
+      {vignette === '1' ? <ShowVignette /> : null}
     </>
   );
 };

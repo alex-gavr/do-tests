@@ -28,7 +28,6 @@ export default function RootLayout({ children, modal }: IProps) {
         <body className='relative'>
           {children}
           {modal}
-          <Script src='//pl20108044.highwaycpmrevenue.com/a2/c9/7a/a2c97a2875423efd1aeee5a0f16cffb0.js' defer />
         </body>
       </Providers>
       <Analytics mode='production' />

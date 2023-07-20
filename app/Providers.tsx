@@ -11,7 +11,7 @@ import { useClientSearchParams } from '@hooks/useClientSearchParams';
 // import Reverse from '@components/Monetization/Reverse';
 // import NonUnique from '@components/Monetization/NonUnique';
 import dynamic from 'next/dynamic';
-import { getRandomZone } from '@utils/monetizationHelpers/getRandomZone';
+import Script from 'next/script';
 
 const AutoExit = dynamic(() => import('@components/Monetization/AutoExit'), {
   ssr: false,
@@ -37,7 +37,7 @@ interface IProps {
 }
 
 const Providers = ({ children }: IProps) => {
-  const { offerId } = useClientSearchParams();
+  const { offerId, vignette } = useClientSearchParams();
 
   return (
     <AppProvider>
@@ -47,6 +47,16 @@ const Providers = ({ children }: IProps) => {
       {production && !debug && <InitPush />}
       {production && !debug && <AutoExit />}
       {production && !debug && offerId !== 10702 && <Reverse />}
+      {vignette === '0' && offerId === 10702 && (
+        <Script
+          src='/adsterra.js'
+          strategy='lazyOnload'
+          async
+          onError={(e: Error) => {
+            console.error('Script failed to load', e);
+          }}
+        />
+      )}
       <LazyMotion features={async () => (await import('@utils/domAnimation')).default}>
         <AnimatePresence>{children}</AnimatePresence>
       </LazyMotion>

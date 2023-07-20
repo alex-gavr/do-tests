@@ -67,6 +67,7 @@ const initialState: InitialState = {
     gameFinishIpp: 6020461,
     cookiesDisabled: 6088166,
     vignetteShowHint: 5948180,
+    vignetteGameStart: 6146020,
     vignetteGameOver: 5959144,
     vignetteGetHint: 5959137,
   },

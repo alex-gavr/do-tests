@@ -16,6 +16,7 @@ export enum SearchParamsOptions {
   campaignId = 'campaignid',
   subId = 's',
   oaid = 'oaid',
+  vignette = 'vignette',
 }
 
 type TSearchParamsKeys = keyof typeof SearchParamsOptions;
@@ -34,11 +35,14 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
   const ymid = searchParams?.ymid ? searchParams.ymid : '';
   const var3 = searchParams?.var_3 ? searchParams.var_3 : '';
   const abTest = searchParams?.abtest ? searchParams.abtest : '';
-  
+
   const osVersion = searchParams?.os_version ? searchParams.os_version : '';
   const bannerId = searchParams?.b ? searchParams.b : '';
   const campaignId = searchParams?.campaignid ? searchParams.campaignid : '';
   const subId = searchParams?.s ? searchParams.s : '';
+
+  const oaid = searchParams?.oaid ? searchParams.oaid : '';
+  const vignette = searchParams?.vignette ? searchParams.vignette : '';
 
   const searchParamString = Object.entries({
     offer_id: offerId,
@@ -51,12 +55,12 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
     b: bannerId,
     campaignid: campaignId,
     s: subId,
+    oaid,
+    vignette,
   })
     .filter(([_, value]) => value !== '')
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
-
-    
 
   return {
     language: language as TValidLocale,
@@ -72,6 +76,8 @@ export const useServerSearchParams = (searchParams: TSearchParams) => {
     bannerId,
     campaignId,
     subId,
-    searchParamString
+    oaid,
+    vignette,
+    searchParamString,
   };
 };

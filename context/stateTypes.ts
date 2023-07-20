@@ -1,4 +1,3 @@
-
 export interface InitialState {
   currentStep: number;
   surveyLength: number;
@@ -7,7 +6,6 @@ export interface InitialState {
   fullScreenImage: IImageFull;
   subId: string | null;
 }
-
 
 interface IExits {
   financeExits: IFinanceSurveyExits;
@@ -35,6 +33,7 @@ interface IExits {
   gameFinishIpp: number;
   cookiesDisabled: number;
   vignetteShowHint: number;
+  vignetteGameStart: number;
   vignetteGameOver: number;
   vignetteGetHint: number;
 }
@@ -75,8 +74,6 @@ interface IImageFull {
   visible: boolean;
   src: string | null;
 }
-
-
 
 interface IFinanceSurveyExits {
   ipp_main_exit: number[];

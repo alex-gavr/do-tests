@@ -28,6 +28,8 @@ export const useClientSearchParams = () => {
   const bannerId = (searchParams.get(SearchParamsOptions.bannerId) as TSearchParams['b']) ?? '';
   const campaignId = (searchParams.get(SearchParamsOptions.campaignId) as TSearchParams['campaignid']) ?? '';
   const subId = (searchParams.get(SearchParamsOptions.subId) as TSearchParams['s']) ?? '';
+  const oaid = (searchParams.get(SearchParamsOptions.oaid) as TSearchParams['oaid']) ?? '';
+  const vignette = (searchParams.get(SearchParamsOptions.vignette) as TSearchParams['vignette']) ?? '';
 
   return {
     language: language as TValidLocale,
@@ -43,5 +45,7 @@ export const useClientSearchParams = () => {
     bannerId,
     campaignId,
     subId,
+    oaid,
+    vignette,
   };
 };

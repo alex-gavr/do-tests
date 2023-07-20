@@ -10,6 +10,7 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import Lost from './Lost';
 import { getPopulationRanges } from './getPopulationRanges';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
 
 interface ICountriesProps {
   buttonTexts: THigherLowerGameDictionary['welcome']['Countries']['Button'];
@@ -20,6 +21,7 @@ interface ICountriesProps {
 const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) => {
   const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
   const router = useRouter();
+  const { vignette } = useClientSearchParams();
 
   if (state.topCard === null || state.bottomCard === null) {
     return null;
@@ -80,13 +82,14 @@ const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) 
   };
 
   const handleClickHint = () => {
-    // Freeze time
-    dispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: false });
     // Show Vignette
-
     if (typeof window !== 'undefined') {
       const params = window.location.search;
-      router.push(`/vignette/${surveyState.exits.vignetteShowHint}${params}`);
+      if (vignette === '1') {
+        // Freeze time
+        dispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: false });
+        router.push(`/vignette/${surveyState.exits.vignetteShowHint}${params}`);
+      }
     }
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
 

@@ -6,7 +6,8 @@ import CountriesSkeleton from '@components/HigherLowerGameUi/Skeletons/Countries
 import { getDictionary } from '@i18n/i18n';
 import { TLanguage, TValidLocale, TValidOffer } from 'config';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
-import { TSearchParams } from '@hooks/useServerSearchParams';
+import { TSearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
+import ShowVignette from './game-over/ShowVignette';
 // import TimerToAnswer from '@components/HigherLowerGameUi/TimerToAnswer';
 
 const InitialCountries = dynamic(() => import('@components/HigherLowerGameUi/InitialCountries'), {
@@ -28,14 +29,17 @@ interface IHigherLowerGameProps extends TLanguage {
   offer: TValidOffer;
   zone: TSearchParams['z'];
   searchParamString: string;
+  searchParams: TSearchParams;
 }
 
-const HigherLowerGame = async ({ country, language, searchParamString }: IHigherLowerGameProps) => {
+const HigherLowerGame = async ({ country, language, searchParamString, searchParams }: IHigherLowerGameProps) => {
   const cookiesList = cookies();
   const lost = cookiesList.has('lost');
   if (lost) {
     redirect(`/game-over?${searchParamString}`);
   }
+
+  const { vignette } = useServerSearchParams(searchParams);
   const d = (await getDictionary(10702, language as TValidLocale)) as THigherLowerGameDictionary;
 
   return (
@@ -54,6 +58,7 @@ const HigherLowerGame = async ({ country, language, searchParamString }: IHigher
           <TimerToAnswer countryCardTexts={d.welcome.Countries.CountryCard} />
         </Countries>
       </div>
+      {vignette === '1' ? <ShowVignette /> : null}
       <CreateUser country={country} />
     </>
   );

@@ -10,6 +10,7 @@ import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useClientSearchParams } from '@hooks/useClientSearchParams';
 
 interface IHeaderProps {
   headerTexts: THigherLowerGameDictionary['gameOver']['header'];
@@ -21,6 +22,7 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
   const playerNameCookie = hasCookie('playerName');
   const topScoreCookie = hasCookie('topScore');
   const router = useRouter();
+  const { vignette } = useClientSearchParams();
 
   useEffect(() => {
     if (topScoreCookie) {
@@ -65,7 +67,9 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
   const handleGetMoreHints = () => {
     if (typeof window !== 'undefined') {
       const params = window.location.search;
-      !debug && router.push(`/vignette/${surveyState.exits.vignetteGetHint}${params}`);
+      if (vignette === '1') {
+        !debug && router.push(`/vignette/${surveyState.exits.vignetteGetHint}${params}`);
+      }
     }
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
     dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable + 1 });
