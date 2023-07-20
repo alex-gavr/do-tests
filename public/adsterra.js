@@ -1224,7 +1224,7 @@ function _0x49f9() {
     'height:\x2020px',
     'width:\x20auto',
     'ANY',
-    '25', // sec between ads. Default: 10
+    '20', // sec between ads. Default: 10
     'pbpr0tpuw4isk85t8yg3jb2lj5vqf',
     'buildVersion',
     'createElement',
