@@ -10,7 +10,6 @@ import { TValidLocale } from 'config';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { IServerProps } from '@app/page';
 import { useServerSearchParams } from '@hooks/useServerSearchParams';
-import LeaderboardSuspense from '@components/HigherLowerGameUi/Skeletons/LeaderboardSuspense';
 import { redirect } from 'next/navigation';
 
 const Page = async ({ searchParams }: IServerProps) => {
@@ -36,11 +35,7 @@ const Page = async ({ searchParams }: IServerProps) => {
     const dReq = getDictionary(10702, language as TValidLocale);
     const totalPlayersReq = db.select({ players: sql<string>`COUNT(*)` }).from(leaderboardView);
 
-    const [leaderboardDataRes, dRes, totalPlayersRes] = await Promise.all([
-      leaderboardDataReq,
-      dReq,
-      totalPlayersReq,
-    ]);
+    const [leaderboardDataRes, dRes, totalPlayersRes] = await Promise.all([leaderboardDataReq, dReq, totalPlayersReq]);
 
     const d = dRes as THigherLowerGameDictionary;
 
