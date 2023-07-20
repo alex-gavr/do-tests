@@ -1,7 +1,7 @@
 'use client';
 import getVignetteData from '@utils/Vignette/getVignetteData';
 import Image from 'next/image';
-import { use } from 'react';
+import { useEffect, useState } from 'react';
 import Buttons from './Buttons';
 import SendImpression from './SendImpression';
 import ButtonForProxy from './ButtonForProxy';
@@ -20,12 +20,22 @@ export interface IVignette {
 }
 
 const VignetteUi = ({ id }: IVignetteProps) => {
-  const vignetteData = use(getVignetteData(id)) as IVignette;
-
+  // const vignetteData = use(getVignetteData(id)) as IVignette;
+  const [vignetteData, setVignetteData] = useState<IVignette | undefined>(undefined);
   const router = useRouter();
 
+  useEffect(() => {
+    if (vignetteData === undefined) {
+      const pleaseGetVignetteData = async () => {
+        const data = await getVignetteData(id);
+        setVignetteData(data);
+      };
+      pleaseGetVignetteData();
+    }
+  }, [vignetteData]);
+
   if (vignetteData === undefined) {
-    return <ButtonForProxy />;
+    return null;
   }
 
   const handleImageClick = () => {

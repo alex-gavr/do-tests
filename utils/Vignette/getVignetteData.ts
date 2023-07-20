@@ -24,7 +24,7 @@ const getVignetteData = async (zone: string) => {
       return readyData[0] as IVignette;
     }
   } catch (error) {
-    console.error(error);
+    throw new Error('Vignette catch error: ' + error);
   }
 };
 export default getVignetteData;
