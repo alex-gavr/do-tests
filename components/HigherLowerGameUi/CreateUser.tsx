@@ -5,11 +5,8 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { TUser } from '@context/higher-lower-game/gameStateType';
 import countries from '@lib/countries';
 import generateRandomName from '@utils/HigherLowerGame/generateRandomName';
-import production from '@utils/isProd';
-import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
-import { hasCookie, setCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
 import { useEffect } from 'react';
-import { GameEvents } from 'types/TrackEvents';
 import { v4 } from 'uuid';
 
 interface ICreateUserProps {
@@ -23,8 +20,7 @@ const CreateUser = ({ country }: ICreateUserProps) => {
     return null;
   }
 
-  const fullCountryName =
-    countries.find((c) => c.iso2.toLowerCase() === country.toLowerCase())?.name ?? 'Earth';
+  const fullCountryName = countries.find((c) => c.iso2.toLowerCase() === country.toLowerCase())?.name ?? 'Earth';
 
   const user: TUser = {
     uuid: v4(),
@@ -40,19 +36,6 @@ const CreateUser = ({ country }: ICreateUserProps) => {
     if (gameState.user.uuid.length === 0) {
       gameDispatch({ type: GameActionTypes.setUser, payload: user });
       setCookie('playerId', user.uuid, { path: '/', maxAge: 60 * 60 * 24 * 365 });
-      if (production) {
-        const data: TGameEventProperties = {
-          track: GameEvents.userCreated,
-          offerId: 'populations-game',
-          userId: user.uuid,
-          playerName: user.playerName,
-          country: user.country,
-          topScore: user.topScore,
-          hintsAvailable: user.hintsAvailable,
-          roundsPlayed: user.roundsPlayed,
-        };
-        sendEvent('game', data);
-      }
     }
   }, []);
 

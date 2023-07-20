@@ -5,10 +5,7 @@ import { use } from 'react';
 import Buttons from './Buttons';
 import SendImpression from './SendImpression';
 import ButtonForProxy from './ButtonForProxy';
-import production from '@utils/isProd';
-import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
-import { GameEvents } from 'types/TrackEvents';
-import { useAppContext } from '@context/Context';
+import { useRouter } from 'next/navigation';
 
 interface IVignetteProps {
   id: string;
@@ -25,26 +22,15 @@ export interface IVignette {
 const VignetteUi = ({ id }: IVignetteProps) => {
   const vignetteData = use(getVignetteData(id)) as IVignette;
 
-  const { gameState: state } = useAppContext();
+  const router = useRouter();
 
   if (vignetteData === undefined) {
     return <ButtonForProxy />;
   }
 
   const handleImageClick = () => {
-    if (production) {
-      const eventData: TGameEventProperties = {
-        track: GameEvents.clickedOnVignetteImage,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', eventData);
-    }
+    router.replace(vignetteData.click);
+    // window.open(vignetteData.click, '_blank');
   };
 
   return (

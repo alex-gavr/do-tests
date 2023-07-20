@@ -6,8 +6,6 @@ import React, { useEffect, useState } from 'react';
 import production from '@utils/isProd';
 import debug from '@utils/isDebug';
 import { useClientSearchParams } from '@hooks/useClientSearchParams';
-import { sendEvent } from '@utils/sendEvent';
-import { TrackEvents } from 'types/TrackEvents';
 import { cn } from '@utils/cn';
 import { hasCookie, setCookie } from 'cookies-next';
 
@@ -20,12 +18,7 @@ interface IProps {
   offerExpired?: string;
   className?: string;
 }
-const CountDown = ({
-  freeAccess = 'free access ends in',
-  secondsWord = 'seconds',
-  offerExpired = 'offer expired',
-  className,
-}: IProps) => {
+const CountDown = ({ freeAccess = 'free access ends in', secondsWord = 'seconds', offerExpired = 'offer expired', className }: IProps) => {
   const router = useRouter();
   const { offerId } = useClientSearchParams();
   const { surveyState: state } = useAppContext();
@@ -42,11 +35,11 @@ const CountDown = ({
         router.replace(url);
       }
     }
-    
+
     const interval = setInterval(() => {
       setTime((currentCount) => currentCount - 1);
     }, 1000);
-    
+
     if (time < 0 && production && !debug) {
       setCookie('accessAutoExit', 1, { path: '/', maxAge: 60 * 30 });
 
@@ -65,9 +58,7 @@ const CountDown = ({
       {time > 0 ? (
         <>
           <p className='text-center text-xs text-slate-950 sm:text-sm'>{freeAccess}</p>
-          <p
-            className={cn('rounded-lg bg-indigo-200 px-2 py-1 text-xs text-slate-950 sm:text-sm', className)}
-          >
+          <p className={cn('rounded-lg bg-indigo-200 px-2 py-1 text-xs text-slate-950 sm:text-sm', className)}>
             {/* 0{minutes}: */}
             {time} {secondsWord}
           </p>

@@ -1,20 +1,12 @@
 'use client';
-
-// import { useEffect, useMemo, useState } from 'react';
 import CountryCard from './CountryCard';
 import { useAppContext } from '@context/Context';
 import GameButton from './GameButton';
 import countries from '@lib/countries';
 import getNextCountryPair, { TCountryPair } from '@utils/HigherLowerGame/getNextCountryPair';
 import { useRouter } from 'next/navigation';
-import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
-// import { ICard } from '@context/higher-lower-game/gameStateType';
-// import createPopulationRange from '@utils/HigherLowerGame/createPopulationRange';
-// import { randomIntFromInterval } from '@utils/randomInt';
-import production from '@utils/isProd';
-import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
-import { GameEvents } from 'types/TrackEvents';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import Lost from './Lost';
 import { getPopulationRanges } from './getPopulationRanges';
@@ -71,19 +63,6 @@ const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) 
       }
       // If lose
       if (isWin === false) {
-        if (production) {
-          const data: TGameEventProperties = {
-            track: GameEvents.lostByWrongAnswer,
-            offerId: 'populations-game',
-            userId: state.user.uuid,
-            playerName: state.user.playerName,
-            country: state.user.country,
-            topScore: state.user.topScore,
-            hintsAvailable: state.user.hintsAvailable,
-            roundsPlayed: state.user.roundsPlayed,
-          };
-          sendEvent('game', data);
-        }
         setCookie('lost', true, { maxAge: 60 * 60 * 24 });
       }
     }
@@ -101,20 +80,6 @@ const Countries = ({ buttonTexts, hintButtonTexts, children }: ICountriesProps) 
   };
 
   const handleClickHint = () => {
-    if (production) {
-      const data: TGameEventProperties = {
-        track: GameEvents.showHint,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', data);
-    }
-
     // Freeze time
     dispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: false });
     // Show Vignette

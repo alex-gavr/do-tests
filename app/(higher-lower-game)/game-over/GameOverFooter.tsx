@@ -4,35 +4,20 @@ import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import getIppIfErrorGetOnclick from '@utils/ipp/getIppIfErrorGetOnclick';
 import production from '@utils/isProd';
-import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { useRouter } from 'next/navigation';
-import { GameEvents } from 'types/TrackEvents';
 
 interface IGameOverFooterProps {
   footerTexts: THigherLowerGameDictionary['gameOver']['footer'];
 }
 const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
-  const { gameState: state, gameDispatch: dispatch, surveyState } = useAppContext();
+  const { gameDispatch: dispatch, surveyState } = useAppContext();
   const router = useRouter();
 
   const alreadyConverted = hasCookie('gameConversion');
 
   const handleFinish = async () => {
-    if (production) {
-      const data: TGameEventProperties = {
-        track: GameEvents.endOfGame,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', data);
-    }
     const url = await getIppIfErrorGetOnclick(surveyState.exits.gameFinishIpp, surveyState.exits.mainExit);
     // Main Zone
     router.replace(url);
@@ -42,20 +27,13 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
 
   const handlePlayAgain = () => {
     if (production) {
-      const data: TGameEventProperties = {
-        track: GameEvents.playAgain,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', data);
       if (surveyState.subId !== null && !alreadyConverted) {
         const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${surveyState.subId}`;
-        window.navigator.sendBeacon(conversionUrl);
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(conversionUrl);
+        } else {
+          fetch(conversionUrl, { method: 'POST', keepalive: true });
+        }
         setCookie('gameConversion', 1, { path: '/', maxAge: 60 * 60 * 24 * 7 });
       }
     }

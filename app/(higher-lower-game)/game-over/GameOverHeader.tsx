@@ -6,13 +6,10 @@ import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
 import { ArrowPathIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { sendUserDataToDb } from '@utils/HigherLowerGame/sendUserDataToDb';
 import debug from '@utils/isDebug';
-import production from '@utils/isProd';
-import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
 import { THigherLowerGameDictionary } from '@i18n/10702/en';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { GameEvents } from 'types/TrackEvents';
 
 interface IHeaderProps {
   headerTexts: THigherLowerGameDictionary['gameOver']['header'];
@@ -57,20 +54,6 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
       hintsAvailable: state.user.hintsAvailable,
       roundsPlayed: state.user.roundsPlayed,
     });
-    // Event
-    if (production) {
-      const data: TGameEventProperties = {
-        track: GameEvents.requestLeaderboard,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', data);
-    }
 
     if (typeof window !== 'undefined') {
       const params = window.location.search;
@@ -86,20 +69,6 @@ const GameOverHeader = ({ headerTexts }: IHeaderProps) => {
     }
     // vignetteDispatch({ type: VignetteActionTypes.openVignette });
     dispatch({ type: GameActionTypes.setHintsAvailable, payload: state.user.hintsAvailable + 1 });
-
-    if (production) {
-      const data: TGameEventProperties = {
-        track: GameEvents.getMoreHint,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', data);
-    }
   };
 
   return (

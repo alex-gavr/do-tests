@@ -95,11 +95,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   return NextResponse.json({ response: res, status: 200 });
 }
 
-const createBody = (
-  baseData: IBaseBody,
-  dataVariant: TDataVariant,
-  additionalData: TOfferEventProperties | TGameEventProperties,
-) => {
+const createBody = (baseData: IBaseBody, dataVariant: TDataVariant, additionalData: TOfferEventProperties | TGameEventProperties) => {
   const baseBody = {
     token: process.env.MIXPANEL_TOKEN,
     $browser: baseData.browserName,

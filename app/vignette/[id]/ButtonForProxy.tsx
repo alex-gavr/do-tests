@@ -1,26 +1,9 @@
 'use client';
-import { useAppContext } from '@context/Context';
-import { TGameEventProperties } from '@utils/sendEvent';
-import { sendEvent } from '@utils/sendEvent';
-import { GameEvents } from 'types/TrackEvents';
 
 interface IButtonForProxyProps {}
 
 const ButtonForProxy = ({}: IButtonForProxyProps) => {
-  const { gameState: state } = useAppContext();
-
-  const handleClick = async () => {
-    const eventData: TGameEventProperties = {
-      track: GameEvents.vignetteProxy,
-      offerId: 'populations-game',
-      userId: state.user.uuid,
-      playerName: state.user.playerName,
-      country: state.user.country,
-      topScore: state.user.topScore,
-      hintsAvailable: state.user.hintsAvailable,
-      roundsPlayed: state.user.roundsPlayed,
-    };
-    sendEvent('game', eventData);
+  const handleClick = () => {
     window.location.replace('https://google.com');
   };
 

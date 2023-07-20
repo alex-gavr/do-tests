@@ -2,51 +2,22 @@
 
 import { useAppContext } from '@context/Context';
 import { GameActionTypes } from '@context/higher-lower-game/gameActionsType';
-import production from '@utils/isProd';
-import { TGameEventProperties, sendEvent } from '@utils/sendEvent';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { GameEvents } from 'types/TrackEvents';
 
 interface ICloseButtonProps {
   link: string;
 }
 
 const Buttons = ({ link }: ICloseButtonProps) => {
-  const { gameDispatch, gameState: state } = useAppContext();
+  const { gameDispatch } = useAppContext();
   const router = useRouter();
 
   const handleClose = () => {
-    if (production) {
-      const eventData: TGameEventProperties = {
-        track: GameEvents.vignetteClose,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', eventData);
-    }
     gameDispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: true });
     router.back();
   };
   const handleContinue = () => {
-    if (production) {
-      const eventData: TGameEventProperties = {
-        track: GameEvents.vignetteLead,
-        offerId: 'populations-game',
-        userId: state.user.uuid,
-        playerName: state.user.playerName,
-        country: state.user.country,
-        topScore: state.user.topScore,
-        hintsAvailable: state.user.hintsAvailable,
-        roundsPlayed: state.user.roundsPlayed,
-      };
-      sendEvent('game', eventData);
-    }
     gameDispatch({ type: GameActionTypes.setSecondsToAnswerEnabled, payload: true });
     router.back();
   };
