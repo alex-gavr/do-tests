@@ -13,7 +13,7 @@ interface IMainExitButtonProps {
 
 const MainExitButton = ({ text }: IMainExitButtonProps) => {
   const { surveyState: state } = useAppContext();
-  
+
   const handleClick = async () => {
     if (production) {
       if (typeof window !== 'undefined') {

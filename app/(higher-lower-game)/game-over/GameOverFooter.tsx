@@ -28,13 +28,16 @@ const GameOverFooter = ({ footerTexts }: IGameOverFooterProps) => {
   const handlePlayAgain = () => {
     if (production) {
       if (surveyState.subId !== null && !alreadyConverted) {
-        const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${surveyState.subId}`;
+        const url = new URL(window.location.href);
+        const subId = url.searchParams.get('s');
+        const conversionUrl = `https://ad.propellerads.com/conversion.php?visitor_id=${subId}`;
         if (navigator.sendBeacon) {
           navigator.sendBeacon(conversionUrl);
         } else {
           fetch(conversionUrl, { method: 'POST', keepalive: true });
         }
         setCookie('gameConversion', 1, { path: '/', maxAge: 60 * 60 * 24 * 7 });
+        console.log('fired', surveyState.subId);
       }
     }
     if (typeof window !== 'undefined') {
