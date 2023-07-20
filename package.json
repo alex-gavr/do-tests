@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@planetscale/database": "^1.8.0",
+    "@sentry/nextjs": "^7.59.3",
     "@types/node": "^20.4.1",
     "@types/node-fetch": "^2.6.4",
     "@types/react": "^18.2.14",

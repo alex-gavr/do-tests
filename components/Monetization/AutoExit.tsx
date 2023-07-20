@@ -19,7 +19,7 @@ const AutoExit = () => {
   const router = useRouter();
   const { offerId } = useClientSearchParams();
   const { surveyState: state } = useAppContext();
-  const [count, setCount] = useState(FORTY_SECONDS);
+  const [count, setCount] = useState(THIRTY_SECONDS);
 
   // AUTO-EXIT
   const updateCount = () => {
@@ -55,7 +55,6 @@ const AutoExit = () => {
             setCookie('nonUnique', 1, { maxAge: 60 * 60 * 24 * 7, path: '' });
 
             const triggerExit = async () => {
-              
               const mainZone = getRandomZone(state.exits.financeExits.ipp_main_exit);
               const mainPops = state.exits.financeExits.ipp_main_exit_pops;
 
@@ -72,19 +71,27 @@ const AutoExit = () => {
           } else {
             console.log(`autoexit conversion`);
           }
-        } else {
+        } else if (offerId === 10702) {
+          // Fin survey zones
 
+          // zone 5874492
+          const url = makeExitUrl(state.exits.autoExit, ExitType.onclick);
+          const urlPops = makeExitUrl(state.exits.autoExit, ExitType.onclick);
+
+          // setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
+          window.open(url, '_blank');
+          router.replace(urlPops);
+        } else {
           // Fin survey zones
           const zone = getRandomZone(state.exits.financeExits.onclick_autoexit);
           const zonePops = getRandomZone(state.exits.financeExits.onclick_autoexit_pops);
 
           const url = makeExitUrl(zone, ExitType.onclick);
           const urlPops = makeExitUrl(zonePops, ExitType.onclick);
-          if (state.exits.autoExit) {
-            setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
-            window.open(url, '_blank');
-            router.replace(urlPops);
-          }
+
+          setCookie('autoExit', 1, { path: '/', maxAge: 60 * 30 });
+          window.open(url, '_blank');
+          router.replace(urlPops);
         }
       }
     }
