@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Buttons from './Buttons';
 import SendImpression from './SendImpression';
-import ButtonForProxy from './ButtonForProxy';
 import { useRouter } from 'next/navigation';
 
 interface IVignetteProps {
