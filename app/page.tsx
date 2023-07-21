@@ -1,4 +1,3 @@
-import fs from 'fs';
 import BackButton from '@components/Monetization/BackButton';
 import Debug from './Debug';
 import { TSearchParams, useServerSearchParams } from '@hooks/useServerSearchParams';
@@ -13,33 +12,7 @@ export interface IServerProps {
 }
 
 const StartingPage = async ({ searchParams }: IServerProps) => {
-  const { language, country, debug, offerId, zone, searchParamString, vignette } = useServerSearchParams(searchParams);
-
-  const getScript = async () => {
-    const filePath = './public/adsterra/social_NoAlerts_NoSoftware_NoAdsWithSound.js';
-
-    try {
-      const response = await fetch('https://pl20118814.highwaycpmrevenue.com/1e/62/59/1e6259bdc59431e3066ab6dbcfab5747.js', {
-        headers: {
-          'X-Forwarded-For': '192.168.121.36',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Request failed');
-      }
-
-      const text = await response.text();
-
-      // Write the response to a file.
-      fs.writeFileSync(filePath, text);
-
-      console.log('Response written to file successfully!');
-    } catch (error) {
-      console.error('Error occurred:', error);
-    }
-  };
-  // getScript();
+  const { language, country, debug, offerId, zone, searchParamString } = useServerSearchParams(searchParams);
 
   return (
     <>
